@@ -30,3 +30,17 @@ let aString = "" + aNumber;
 console.log(Number('5'));
 
 console.log(typeof NaN);
+
+let dogs = parseInt('54 dogs');
+console.log(dogs);
+
+let tt = !!"test";
+console.log(tt);
+
+console.log(Number(true));
+console.log(parseFloat(true));
+
+console.log(parseInt("dogs 88"));
+console.log(parseInt(" 88 dogs"));
+console.log(parseFloat("dogs 88"));
+console.log(parseFloat(" 88 dogs"));
