@@ -44,3 +44,5 @@ console.log(parseInt("dogs 88"));
 console.log(parseInt(" 88 dogs"));
 console.log(parseFloat("dogs 88"));
 console.log(parseFloat(" 88 dogs"));
+console.log('...');
+console.log(parseFloat("88|,dogs"));
