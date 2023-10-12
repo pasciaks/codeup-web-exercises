@@ -46,3 +46,16 @@ console.log(parseFloat("dogs 88"));
 console.log(parseFloat(" 88 dogs"));
 console.log('...');
 console.log(parseFloat("88|,dogs"));
+
+let aaa = 'sheldon pasciak abc def';
+let ccc = aaa.replace('a', '_')
+console.log(ccc);
+
+console.log("ABC AAA CAT DOG BANANA".replace('A', '_'));
+
+let firstName = 'John';
+let lastName = 'Doe';
+let fullName = `${firstName} ${lastName}`;
+console.log(fullName);
+
+
