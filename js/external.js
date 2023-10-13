@@ -1,4 +1,6 @@
-console.log('Started...');
+"use strict";
+
+console.log('Started...Strict mode javascript.');
 
 let question_3b = `Suppose you're working as a contractor for 3 companies: 
 Google, Amazon and Facebook, they pay you a different rate per hour. 
