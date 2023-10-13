@@ -42,9 +42,9 @@ let passwordExceedsMaxLength = false;
 passwordExceedsMaxLength = password.length > 20;
 console.log(passwordExceedsMaxLength);
 
-// let passwordNoWhiteSpace = false;
-// passwordNoWhiteSpace = password.trim() === password;
-// console.log(passwordNoWhiteSpace);
+let passwordNoWhiteSpace = false;
+passwordNoWhiteSpace = password.trim() === password;
+console.log(passwordNoWhiteSpace);
 console.log('.' + password + '.');
 console.log('.' + password.trim() + '.');
 
