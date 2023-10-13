@@ -60,11 +60,9 @@ amazonHours = prompt("How many hours did you work at Amazon ?", "4");
 facebookRate = prompt("What is the facebook pay rate ?", "350");
 facebookHours = prompt("How many hours did you work at Facebook ?", "10");
 
-// todo, input validation, conversion, etc
-
-googleEarnings = googleHours * googleRate;
-facebookEarnings = facebookHours * facebookRate;
-amazonEarnings = amazonHours * amazonRate;
+googleEarnings = Number(googleHours) * Number(googleRate);
+facebookEarnings = Number(facebookHours) * Number(facebookRate);
+amazonEarnings = Number(amazonHours) * Number(amazonRate);
 
 totalEarnings = googleEarnings + facebookEarnings + amazonEarnings;
 
