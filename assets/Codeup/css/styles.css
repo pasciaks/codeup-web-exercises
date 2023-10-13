@@ -1,0 +1,110 @@
+html {
+    background-color: rgb(230, 227, 227);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    background-image: url('../img/back.jpg');
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 5px 10px 15px 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: rgb(14, 102, 134);
+    text-decoration: underline;
+}
+
+div {
+    color: rgb(0, 0, 0);
+}
+
+table {
+    font-family: 'Courier New', Courier, monospace;
+    border: 2px solid red;
+    font-size: 16px;
+}
+
+td,
+tr {
+    border: 1px dotted gray;
+    padding: 2px;
+    font-size: 14px;
+    text-align: center;
+}
+
+th {
+    font-size: 28px;
+    background-color: aquamarine;
+}
+
+/* Apply alternating background colors to table rows */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Light gray background for even rows */
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* White background for odd rows */
+}
+
+ol {
+    list-style: upper-alpha;
+}
+
+ul {
+    list-style: square;
+}
+
+.fifty-percent {
+    max-width: 50%;
+}
+
+/* Default link styles */
+a:link {
+    color: #007bff;
+    /* Change the link color */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+/* Visited link styles */
+a:visited {
+    color: black;
+    /* Change the visited link color */
+}
+
+/* Hover link styles */
+a:hover {
+    color: green;
+    /* Change the link color on hover */
+    text-decoration: underline;
+    /* Underline on hover */
+}
+
+/* Active link styles (when clicked) */
+a:active {
+    color: red;
+    /* Change the link color when active */
+}
+
+.back-to-top {
+    border: 2px solid gold;
+    background-color: aquamarine;
+    padding: 5px;
+    margin: 5px;
+    font-size: 32px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.fixed-bottom-right {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}

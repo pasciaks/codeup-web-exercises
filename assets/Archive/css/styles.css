@@ -1,0 +1,53 @@
+h1 {
+    color: blue !important;
+}
+
+h1 {
+    color: cyan;
+}
+
+#priority {
+    color: yellow;
+    background-color: red;
+}
+
+div {
+    color: blue;
+}
+
+div p {
+    color: red;
+}
+
+div span {
+    color: yellow;
+}
+
+div p span {
+    color: purple;
+}
+
+div div p {
+    color: black;
+}
+
+div>span {
+    background-color: aquamarine;
+}
+
+#id {
+    color: blue;
+}
+
+#id.claa {
+    color: brown;
+}
+
+#both.claa {
+
+    background-color: darksalmon;
+}
+
+#id .claa {
+    background-color: chartreuse;
+}

@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    background-color: #FFF;
+}
+
+.box {
+    color: #FFF;
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    margin-top: 50px;
+    margin-right: 50px;
+    font-size: medium;
+    float: left;
+}
+
+/* .box:nth-child(4) {
+    clear: left;
+} */
+
+.box:nth-child(3),
+.box:nth-child(5) {
+    clear: left;
+}
+
+.box>img {
+    position: relative;
+    bottom: 80px;
+    right: -40px;
+}
+
+.code-up-ribbon {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+#box-red {
+    background-color: red;
+}
+
+#box-orange {
+    background-color: orange;
+}
+
+#box-yellow {
+    background-color: yellow;
+}
+
+#box-green {
+    background-color: green;
+}
+
+#box-blue {
+    background-color: blue;
+}
+
+#box-violet {
+    background-color: violet;
+}
+
+h1 {
+    margin-bottom: 0px;
+}

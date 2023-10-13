@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>break_continue</title>
+  </head>
+  <body>
+    <script>
+      function isOdd(number) {
+        return number % 2 !== 0;
+      }
+      function isEven(number) {
+        return number % 2 === 0;
+      }
+      function getRandom(min = 1, max = 50) {
+        return Math.floor(Math.random() * max) + min;
+      }
+
+      var randomNumberChosen = getRandom();
+
+      while (isEven(randomNumberChosen)) {
+        randomNumberChosen = getRandom();
+      }
+
+      console.log("Random odd number to skip is " + randomNumberChosen);
+
+      for (var i = 1; i <= 100; i++) {
+        if (i > 49) {
+          break;
+        }
+        if (isEven(i)) {
+          continue;
+        }
+        if (i === randomNumberChosen) {
+          console.log("Yikes! Skipping number " + i);
+        } else {
+          console.log("Here is an odd number " + i);
+        }
+      }
+
+      console.log("Alternate version, only walk through odd values 1-49.");
+
+      randomNumberChosen = getRandom();
+
+      while (isEven(randomNumberChosen)) {
+        randomNumberChosen = getRandom();
+      }
+
+      console.log("Random odd number to skip is " + randomNumberChosen);
+
+      for (var j = 1; j < 50; j += 2) {
+        if (j === randomNumberChosen) {
+          console.log("Yikes! Skipping number " + j);
+        } else {
+          console.log("Here is an odd number " + j);
+        }
+      }
+    </script>
+    <p>Note: View the javascript console to see the console message.</p>
+  </body>
+</html>
