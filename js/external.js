@@ -11,14 +11,16 @@ let amazonRate = 380;
 let facebookRate = 350;
 
 let googleHours = 6;
-let facebookHours = 10;
 let amazonHours = 4;
+let facebookHours = 10;
+
 
 let googleTotal = googleRate * googleHours;
-let facebookTotal = facebookRate * facebookHours;
 let amazonTotal = amazonRate * amazonHours;
+let facebookTotal = facebookRate * facebookHours;
 
-let total = googleTotal + facebookTotal + amazonTotal;
+
+let total = googleTotal + amazonTotal + facebookTotal;
 
 console.log(`You worked at Google for ${googleHours} hours at $${googleRate.toFixed(2)} per hour, earning $${googleTotal}.`);
 console.log(`You worked at Amazon for ${amazonHours} hours at $${amazonRate.toFixed(2)} per hour, earning $${amazonTotal}.`);
