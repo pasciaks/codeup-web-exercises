@@ -6,9 +6,11 @@ alert("Welcome to my Website!");
 
 let favoriteColor = prompt("What is your favorite color?");
 
-alert(`Great, ${favoriteColor} is my favorite color too!`);
+if (!favoriteColor) {
+    console.log("no favorite color added.");
+}
 
-// exercise 3
+alert(`Great, ${favoriteColor} is my favorite color too!`);
 
 let question3 = `
 Write some JavaScript code, that is, variables and operators, to describe the following scenarios. Do not worry about the real operations to get the values, the goal of these exercises is to understand how real world conditions can be represented with code.
@@ -60,11 +62,11 @@ amazonHours = prompt("How many hours did you work at Amazon ?", "4");
 facebookRate = prompt("What is the facebook pay rate ?", "350");
 facebookHours = prompt("How many hours did you work at Facebook ?", "10");
 
+
 googleEarnings = Number(googleHours) * Number(googleRate);
 facebookEarnings = Number(facebookHours) * Number(facebookRate);
 amazonEarnings = Number(amazonHours) * Number(amazonRate);
 
-// finished
 totalEarnings = googleEarnings + facebookEarnings + amazonEarnings;
 
 alert(`You will receive $${totalEarnings.toFixed(2)} pay for this week.`);
