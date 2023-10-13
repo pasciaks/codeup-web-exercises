@@ -6,12 +6,6 @@ alert("Welcome to my Website!");
 
 let favoriteColor = prompt("What is your favorite color?");
 
-if (!favoriteColor) {
-    console.log("no favorite color added.");
-}
-
-// test
-
 alert(`Great, ${favoriteColor} is my favorite color too!`);
 
 let question3 = `
@@ -63,7 +57,6 @@ amazonHours = prompt("How many hours did you work at Amazon ?", "4");
 
 facebookRate = prompt("What is the facebook pay rate ?", "350");
 facebookHours = prompt("How many hours did you work at Facebook ?", "10");
-
 
 googleEarnings = Number(googleHours) * Number(googleRate);
 facebookEarnings = Number(facebookHours) * Number(facebookRate);
