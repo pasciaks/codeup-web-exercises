@@ -26,3 +26,29 @@ console.log(`You worked at Facebook for ${facebookHours} hours at $${facebookRat
 
 console.log(`You earned a total of $${total}.`);
 
+
+let username = 'codeup';
+let password = '  notastr  ongpa  ssword  ';
+
+let passwordAtLeastFive = false;
+passwordAtLeastFive = password.length >= 5;
+console.log(passwordAtLeastFive);
+
+let passwordNotIncludesUsername = true;
+passwordNotIncludesUsername = password.indexOf(username) >= 0;
+console.log(passwordNotIncludesUsername);
+
+let passwordExceedsMaxLength = false;
+passwordExceedsMaxLength = password.length > 20;
+console.log(passwordExceedsMaxLength);
+
+// let passwordNoWhiteSpace = false;
+// passwordNoWhiteSpace = password.trim() === password;
+// console.log(passwordNoWhiteSpace);
+console.log('.' + password + '.');
+console.log('.' + password.trim() + '.');
+
+
+
+
+
