@@ -1,6 +1,6 @@
 console.log('Started...');
 
-let question = `Suppose you're working as a contractor for 3 companies: 
+let question_3b = `Suppose you're working as a contractor for 3 companies: 
 Google, Amazon and Facebook, they pay you a different rate per hour. 
 Google pays $400, Amazon $380, and Facebook $350. 
 How much will you receive in payment for this week? 
@@ -27,26 +27,6 @@ console.log(`You worked at Facebook for ${facebookHours} hours at $${facebookRat
 console.log(`You earned a total of $${total}.`);
 
 
-let username = 'codeup';
-let password = '  notastr  ongpa  ssword  ';
-
-let passwordAtLeastFive = false;
-passwordAtLeastFive = password.length >= 5;
-console.log(passwordAtLeastFive);
-
-let passwordNotIncludesUsername = true;
-passwordNotIncludesUsername = password.indexOf(username) >= 0;
-console.log(passwordNotIncludesUsername);
-
-let passwordExceedsMaxLength = false;
-passwordExceedsMaxLength = password.length > 20;
-console.log(passwordExceedsMaxLength);
-
-let passwordNoWhiteSpace = false;
-passwordNoWhiteSpace = password.trim() === password;
-console.log(passwordNoWhiteSpace);
-console.log('.' + password + '.');
-console.log('.' + password.trim() + '.');
 
 
 
