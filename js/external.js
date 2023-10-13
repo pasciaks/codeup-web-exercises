@@ -35,7 +35,7 @@ let herculesCost = Number(herculesRentalDays) * Number(rentalRate);
 
 totalCost = mermaidCost + brotherBearCost + herculesCost;
 
-alert(`Your rental cost is ${totalCost}`);
+alert(`Your rental cost is $${totalCost.toFixed(2)}`);
 
 let googleRate;
 let amazonRate;
@@ -66,7 +66,7 @@ amazonEarnings = Number(amazonHours) * Number(amazonRate);
 
 totalEarnings = googleEarnings + facebookEarnings + amazonEarnings;
 
-alert(`You will receive ${totalEarnings.toFixed(2)} pay for this week.`);
+alert(`You will receive $${totalEarnings.toFixed(2)} pay for this week.`);
 
 
 
