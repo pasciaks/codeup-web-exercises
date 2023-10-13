@@ -10,6 +10,8 @@ if (!favoriteColor) {
     console.log("no favorite color added.");
 }
 
+// test
+
 alert(`Great, ${favoriteColor} is my favorite color too!`);
 
 let question3 = `
