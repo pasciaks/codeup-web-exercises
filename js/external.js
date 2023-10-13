@@ -14,11 +14,9 @@ let googleHours = 6;
 let amazonHours = 4;
 let facebookHours = 10;
 
-
 let googleTotal = googleRate * googleHours;
 let amazonTotal = amazonRate * amazonHours;
 let facebookTotal = facebookRate * facebookHours;
-
 
 let total = googleTotal + amazonTotal + facebookTotal;
 
