@@ -64,6 +64,7 @@ googleEarnings = Number(googleHours) * Number(googleRate);
 facebookEarnings = Number(facebookHours) * Number(facebookRate);
 amazonEarnings = Number(amazonHours) * Number(amazonRate);
 
+// finished
 totalEarnings = googleEarnings + facebookEarnings + amazonEarnings;
 
 alert(`You will receive $${totalEarnings.toFixed(2)} pay for this week.`);
