@@ -1,6 +1,27 @@
 "use strict";
 
 /**
+ * Just a function to self run and test the other functions
+ * Note that 'hoisting' allows this early declared function to call the others
+ */
+function selfTests() {
+    console.log(sayHello()); // Hello, !
+    console.log(sayHello(1)); // Hello, 1!
+    console.log(sayHello('Test')); // Hello, Test!
+
+    console.log(isTwo()); // false
+    console.log(isTwo(.2)); // false
+    console.log(isTwo(2)); // true
+    console.log(isTwo('2')); // true
+
+    console.log(calculateTip(.1, 100)); // 10
+
+    console.log(applyDiscount(100, 0.10)); // 90
+}
+
+selfTests();
+
+/**
  * TODO:
  * Create a function called 'sayHello' that takes a parameter 'name'.
  * When called, the function should return a message that says hello to the passed in name.
@@ -9,11 +30,16 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
 
-function sayHello(name) {
-    // Note: return a message that says hello to the passed in name doesn't necessarily mean console.log(name);
-    let resultMessage = `Hello, ${name}!`;
-    console.log(resultMessage);
-    return resultMessage;
+/**
+ * sayHello - returns a string that says Hello, including the passed in name
+ * @param name - Default's to empty string
+ * @returns {string} - Example output 'Hello, Sheldon!'
+ */
+function sayHello(name = "") {
+    console.debug("Debugging purpose only, default name set to empty string.");
+    console.debug(name);
+    console.debug("Debugging purpose only, default name set to empty string.");
+    return `Hello, ${name}!`;
 }
 
 /**
@@ -25,6 +51,7 @@ function sayHello(name) {
  */
 
 let helloMessage = sayHello("Sheldon");
+console.log(helloMessage);
 
 /**
  * TODO:
@@ -34,8 +61,8 @@ let helloMessage = sayHello("Sheldon");
  */
 
 let myName = "Sheldon";
-
-sayHello(myName);
+helloMessage = sayHello(myName);
+console.log(helloMessage);
 
 // Don't modify the following line, it generates a random number between 1 and 3
 // and stores it in a variable named random
@@ -59,7 +86,15 @@ const random = Math.floor((Math.random() * 3) + 1);
  * number)
  */
 
+/**
+ * isTwo - evaluates a passed in value to determine if it is the number 2
+ * @param num
+ * @returns {boolean}
+ */
 function isTwo(num) {
+    console.debug("Debugging purpose only...");
+    console.debug({num});
+    console.debug("Debugging purpose only...");
     return Number(num) === 2;
 }
 
@@ -81,10 +116,14 @@ console.log(`The number ${random} was checked, and the isTwo function returned $
 /**
  * calculateTip
  * @param tipPercentage - Value as a float/decimal in range of 0-1, example 0.20 = 20%
- * @param totalBill - Value as a float/decimal
+ * @param totalBill - Value as a float/decimal, example 25.50
  * @returns {number}
  */
-function calculateTip(tipPercentage, totalBill) {
+function calculateTip(tipPercentage = 0, totalBill = 0) {
+    console.debug("Debugging purpose only...");
+    console.debug({tipPercentage});
+    console.debug({totalBill});
+    console.debug("Debugging purpose only...");
     return Number(tipPercentage) * Number(totalBill);
 }
 
@@ -104,10 +143,10 @@ console.log({test3});
  * then display the dollar amount they should tip
  */
 
-let billTotal = prompt("What is the total bill (example 100.00 for $100) ?");
+let billTotal = prompt("What is the total bill (example 100.00 for $100) ?", "100.00");
 billTotal = Number(billTotal);
 
-let percentageTip = prompt("What is the percentage to tip (example .15 for 15 %) ?");
+let percentageTip = prompt("What is the percentage to tip (example 0.15 for 15 %) ?", "0.15");
 percentageTip = Number(percentageTip);
 
 let tipAmount = calculateTip(percentageTip, billTotal);
@@ -128,13 +167,23 @@ alert(`Your tip amount on a bill total of $${billTotal.toFixed(2)} with a percen
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
 
-function applyDiscount(priceBeforeDiscount, discountPercentage) {
+/**
+ * applyDiscount - returns the discounted price on a starting price minus the passed in discount percentage
+ * @param priceBeforeDiscount - default 0's for input safety
+ * @param discountPercentage - default 0's for input safety
+ * @returns {number}
+ */
+function applyDiscount(priceBeforeDiscount = 0, discountPercentage = 0) {
+    console.debug("Debugging purpose only...");
+    console.debug({priceBeforeDiscount, discountPercentage});
+    console.debug("Debugging purpose only...");
+    // Note: Original Price - ( Price * Discount Percentage )
     return Number(priceBeforeDiscount) - (Number(priceBeforeDiscount) * Number(discountPercentage));
 }
 
-let originalPrice = 100;
-let discountPercent = .2; // 20%
-let discountTest1 = applyDiscount(originalPrice, discountPercent); // 80
+let originalPrice = 100; // $100.00
+let discountPercent = 0.2; // 20%
+let discountTest1 = applyDiscount(originalPrice, discountPercent);
 console.log(discountTest1);
 
 let discountTest2 = applyDiscount(45.99, 0.12); // 40.4712
