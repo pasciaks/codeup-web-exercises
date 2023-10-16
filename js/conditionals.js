@@ -2,8 +2,18 @@
 
 /* ########################################################################## */
 
-
 function analyzeColor(whichColor = '') {
+    whichColor = whichColor.toLowerCase();
+    if (whichColor === 'red') {
+        return `Strawberries are red.`;
+    } else if (whichColor === 'blue') {
+        return `Blue is the color of the sky.`;
+    } else {
+        return `I don't know anything about ${whichColor}.`;
+    }
+}
+
+function analyzeColorRevised(whichColor = '') {
     let response = '';
     switch (whichColor) {
         case 'red':
@@ -21,8 +31,8 @@ function analyzeColor(whichColor = '') {
     return response
 }
 
-let r1 = analyzeColor();
-let r2 = analyzeColor('red');
+let r1 = analyzeColorRevised();
+let r2 = analyzeColorRevised('red');
 console.log({r1, r2});
 
 /**
@@ -44,6 +54,12 @@ console.log({r1, r2});
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
  */
+
+let t1 = analyzeColor('red');
+let t2 = analyzeColor('RED');
+let t3 = analyzeColor('blue');
+let t4 = analyzeColor('cyan');
+console.log({t1, t2, t3, t4});
 
 // Don't change the next two lines!
 // These lines create two variables for you:
