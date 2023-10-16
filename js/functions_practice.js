@@ -94,5 +94,23 @@ const nonHoistedFunction = () => {
 
 console.log(nonHoistedFunction);
 
+/**
+ * factorial - Recursive function - function that calls itself
+ * @param n
+ * @returns {number}
+ */
+function factorial(n) {
+    console.log(n);
+    if (n === 0 || n === 1) {
+        console.log(1);
+        return 1;
+    } else {
+        console.log(`factorial(${n - 1});`);
+        return n * factorial(n - 1);
+    }
+}
+
+console.log(`Factorial 5 = ${factorial(5)}!`);
+
 
 
