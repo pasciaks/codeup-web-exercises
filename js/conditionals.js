@@ -94,10 +94,15 @@ console.log(analyzeColorRevised(randomColor));
  * function to show it to the user.
  */
 
-let choice = prompt("What color would you like to evaluate ?", "blue");
-let yourChoiceResult = analyzeColorRevised(choice);
+try {
+    let choice = prompt("What color would you like to evaluate ?", "blue");
+    let yourChoiceResult = analyzeColorRevised(choice);
+    alert("Your result: " + yourChoiceResult);
+} catch {
+    console.log("Probably running in IntelliJ!");
+}
 
-alert("Your result: " + yourChoiceResult);
+
 /* ########################################################################## */
 
 /**
@@ -120,6 +125,29 @@ alert("Your result: " + yourChoiceResult);
  * return value.
  */
 
+function calculateTotal(luckyNumber, amount) {
+    let discountPercentage = 0;
+    if (luckyNumber === 1) {
+        discountPercentage = .1;
+    } else if (luckyNumber === 2) {
+        discountPercentage = .25;
+    } else if (luckyNumber === 3) {
+        discountPercentage = .35;
+    } else if (luckyNumber === 4) {
+        discountPercentage = .5;
+    } else if (luckyNumber === 5) {
+        discountPercentage = 1;
+    } else {
+        discountPercentage = 0;
+    }
+    console.log("Using discount Percentage: " + discountPercentage);
+    return amount - (discountPercentage * amount);
+}
+
+console.log(calculateTotal(0, 100));
+console.log(calculateTotal(4, 100));
+console.log(calculateTotal(5, 100));
+
 /**
  * TODO:
  * Uncomment the line below to generate a random number between 0 and 5.
@@ -129,7 +157,10 @@ alert("Your result: " + yourChoiceResult);
  * price before the discount was, and what their price after the discount is.
  */
 // Generate a random number between 0 and 6
-// const luckyNumber = Math.floor(Math.random() * 6);
+const luckyNumber = Math.floor(Math.random() * 6);
+let totalBill = prompt("What total bill to use ?");
+let totalAfterRandomDiscount = calculateTotal(luckyNumber, Number(totalBill));
+alert(`Your lucky number ${luckyNumber} gave you a discount, your new price is ${totalAfterRandomDiscount.toFixed(2)}!`);
 
 /**
  * TODO:
@@ -149,3 +180,29 @@ alert("Your result: " + yourChoiceResult);
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could be improved
  */
+let confirmResponse = confirm("Would you like to enter a number?");
+
+if (confirmResponse) {
+    let aNumber = prompt("What number?");
+    alert(`The number isEven(${aNumber}) returned ${isEven(aNumber)}`);
+    alert(`The number addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
+    alert(`The number positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
+}
+
+function isEven(num) {
+    return (Number(num) % 2 === 0);
+}
+
+function addOneHundred(num) {
+    return Number(num) + 100;
+}
+
+function positiveOrNegative(num) {
+    if (Number(num) < 0) {
+        return '-';
+    } else if (Number(num) > 0) {
+        return '+';
+    } else {
+        return '0';
+    }
+}
