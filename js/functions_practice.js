@@ -42,6 +42,10 @@ console.log(helloAnyoneResponse);
  * @param num1
  * @param num2
  * @returns {number}
+ *
+ * The terms parameter and argument can be used for the same thing: information that are passed into a function.
+ * These arguments are sometimes referred to as the inputs of the function.
+ * An argument is passed into the function as an input, where the function receives the input as a parameter of the function.
  */
 function addNumbers(num1, num2) {
     return Number(num1) + Number(num2);
