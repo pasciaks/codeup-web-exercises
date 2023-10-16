@@ -184,9 +184,13 @@ let confirmResponse = confirm("Would you like to enter a number?");
 
 if (confirmResponse) {
     let aNumber = prompt("What number?");
-    alert(`The number isEven(${aNumber}) returned ${isEven(aNumber)}`);
-    alert(`The number addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
-    alert(`The number positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
+    if (!(isNaN(aNumber))) {
+        alert(`The number isEven(${aNumber}) returned ${isEven(aNumber)}`);
+        alert(`The number addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
+        alert(`The number positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
+    } else {
+        alert("You didn't enter a valid number.");
+    }
 }
 
 function isEven(num) {
