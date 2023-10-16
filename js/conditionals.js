@@ -31,9 +31,10 @@ function analyzeColorRevised(whichColor = '') {
     return response
 }
 
-let r1 = analyzeColorRevised();
+let r1 = analyzeColorRevised('BLUE');
 let r2 = analyzeColorRevised('red');
-console.log({r1, r2});
+let r3 = analyzeColorRevised('CYAN');
+console.log({r1, r2, r3});
 
 /**
  * TODO:
@@ -144,9 +145,35 @@ function calculateTotal(luckyNumber, amount) {
     return amount - (discountPercentage * amount);
 }
 
+function calculateTotalObjectReturned(luckyNumber, amount) {
+    let discountPercentage = 0;
+    if (luckyNumber === 1) {
+        discountPercentage = .1;
+    } else if (luckyNumber === 2) {
+        discountPercentage = .25;
+    } else if (luckyNumber === 3) {
+        discountPercentage = .35;
+    } else if (luckyNumber === 4) {
+        discountPercentage = .5;
+    } else if (luckyNumber === 5) {
+        discountPercentage = 1;
+    } else {
+        discountPercentage = 0;
+    }
+    console.log("Using discount Percentage: " + discountPercentage);
+    return {
+        newAmount: amount - (discountPercentage * amount),
+        luckyNumber,
+        originalAmount: amount,
+        discountPercentage,
+        discountAmount: (discountPercentage * amount)
+    }
+}
+
 console.log(calculateTotal(0, 100));
 console.log(calculateTotal(4, 100));
 console.log(calculateTotal(5, 100));
+
 
 /**
  * TODO:
@@ -161,6 +188,8 @@ const luckyNumber = Math.floor(Math.random() * 6);
 let totalBill = prompt("What total bill to use ?");
 let totalAfterRandomDiscount = calculateTotal(luckyNumber, Number(totalBill));
 alert(`Your lucky number ${luckyNumber} gave you a discount, your new price is ${totalAfterRandomDiscount.toFixed(2)}!`);
+
+console.log(calculateTotalObjectReturned(luckyNumber, 55));
 
 /**
  * TODO:
