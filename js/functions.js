@@ -188,3 +188,17 @@ console.log(discountTest1);
 
 let discountTest2 = applyDiscount(45.99, 0.12); // 40.4712
 console.log(discountTest2);
+
+//----------------------------------------
+// DRY - functions, calling functions
+//----------------------------------------
+
+function calculatePercentage(percentage, value) {
+    return percentage * value;
+}
+
+function calculateDiscountedPrice(percentage, value) {
+    return value - calculatePercentage(percentage, value);
+}
+
+console.log(calculateDiscountedPrice(.10, 100));
