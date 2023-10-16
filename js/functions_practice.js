@@ -67,7 +67,25 @@ console.log(doSomething());
 
 // Notes - Arrow functions used heavily in React.  Perhaps as ways to keep the global scope clean - TLDR; Functions declared the old way are ‘HOISTED’ up.
 
+let last = 'Pasciak';
+let first = 'Sheldon';
 
+console.log(last);
+console.log(first);
+
+// let last = 'Pasciak';
+// let first = 'Sheldon';
+
+console.log(hoistedFunction);
+console.log(nonHoistedFunction);
+
+function hoistedFunction() {
+    console.log("Hoist me up!")
+}
+
+const nonHoistedFunction = () => {
+    return 'Nothing!'
+}
 
 
 
