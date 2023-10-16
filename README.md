@@ -9,5 +9,9 @@
 
 - Completed functions 1st exercise
 
+10/16/23
+
+- Functions lesson
+
 
 
