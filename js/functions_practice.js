@@ -65,7 +65,9 @@ doSomething();
 console.log(doSomething);
 console.log(doSomething());
 
-// Notes - Arrow functions used heavily in React.  Perhaps as ways to keep the global scope clean - TLDR; Functions declared the old way are ‘HOISTED’ up.
+// Notes - Arrow functions used heavily in React.
+// Perhaps as ways to keep the global scope clean.
+// TLDR; Functions declared the old way are ‘HOISTED’ up.
 
 let last = 'Pasciak';
 let first = 'Sheldon';
