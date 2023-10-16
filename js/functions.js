@@ -5,6 +5,7 @@
  * Note that 'hoisting' allows this early declared function to call the others
  */
 function selfTests() {
+
     console.log(sayHello()); // Hello, !
     console.log(sayHello(1)); // Hello, 1!
     console.log(sayHello('Test')); // Hello, Test!
@@ -17,6 +18,15 @@ function selfTests() {
     console.log(calculateTip(.1, 100)); // 10
 
     console.log(applyDiscount(100, 0.10)); // 90
+
+    // ------------------------ extra special, spicy! ------------------------
+    let listOfNumbers = [];
+    for (let i = 0; i < 10; i++) {
+        listOfNumbers.push(generateRandom(1, 10));
+    }
+    console.log(listOfNumbers);
+    // ------------------------ extra special, spicy! ------------------------
+
 }
 
 selfTests();
@@ -67,6 +77,16 @@ console.log(helloMessage);
 // Don't modify the following line, it generates a random number between 1 and 3
 // and stores it in a variable named random
 const random = Math.floor((Math.random() * 3) + 1);
+
+/**
+ * generateRandom - Return random integer in range of  >= min <= max
+ * @param min
+ * @param max
+ * @returns {number}
+ */
+function generateRandom(min, max) {
+    return Math.floor((Math.random() * Number(max)) + Number(min));
+}
 
 /**
  * TODO:
