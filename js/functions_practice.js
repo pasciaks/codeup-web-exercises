@@ -79,7 +79,6 @@ console.log(first);
 // let first = 'Sheldon';
 
 console.log(hoistedFunction);
-console.log(nonHoistedFunction);
 
 function hoistedFunction() {
     console.log("Hoist me up!")
@@ -88,6 +87,8 @@ function hoistedFunction() {
 const nonHoistedFunction = () => {
     return 'Nothing!'
 }
+
+console.log(nonHoistedFunction);
 
 
 
