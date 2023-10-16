@@ -222,3 +222,7 @@ function calculateDiscountedPrice(percentage, value) {
 }
 
 console.log(calculateDiscountedPrice(.10, 100));
+
+// This is a test line.  Command+D to duplicate the line.
+// This is a test line.  Command+D to duplicate the line.
+// This is a test line.  Command+D to duplicate the line.
