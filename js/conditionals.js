@@ -68,6 +68,9 @@ console.log({t1, t2, t3, t4});
 //                  will contain a different color every time the page loads)
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+console.log(`Analyzing ${randomColor}...`);
+console.log(analyzeColor(randomColor));
 /**
  * TODO:
  * Pass the `randomColor` variable to your 'analyzeColor' function and console.log the results.
