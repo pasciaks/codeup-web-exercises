@@ -77,11 +77,16 @@ console.log(analyzeColor(randomColor));
  * You should see a different message every time you refresh the page
  */
 
+console.log(`Analyzing ${randomColor}...`);
+console.log(analyzeColor(randomColor));
+
 /**
  * TODO:
  * Comment out the code above, and refactor your function to use a switch-case statement
  */
 
+console.log(`Analyzing ${randomColor}...`);
+console.log(analyzeColorRevised(randomColor));
 /**
  * TODO:
  * Prompt the user for a color when the page loads, and pass the input from the
@@ -89,6 +94,10 @@ console.log(analyzeColor(randomColor));
  * function to show it to the user.
  */
 
+let choice = prompt("What color would you like to evaluate ?", "blue");
+let yourChoiceResult = analyzeColorRevised(choice);
+
+alert("Your result: " + yourChoiceResult);
 /* ########################################################################## */
 
 /**
