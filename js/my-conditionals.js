@@ -8,7 +8,7 @@ console.log("My Conditionals Started.");
 
 let milk = 2000; // 2000 units
 
-let durationMilliseconds = 5000; // 5 seconds
+let durationMilliseconds = 1000; // 5 seconds
 
 const drinkMilk = (amount = 0) => {
     milk -= amount;
@@ -72,3 +72,11 @@ do {
 
 console.log({milk});
 console.log(currentTime - startedAt);
+
+let a = 1;
+let message = (a === 1) ? 'A is 1' : 'A is not 1';
+console.log({a, message});
+
+a = 2;
+message = (a === 1) ? 'A is 1' : 'A is not 1';
+console.log({a, message});
