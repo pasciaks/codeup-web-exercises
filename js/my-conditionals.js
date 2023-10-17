@@ -1,9 +1,14 @@
 "use strict";
 
+/**
+ * Uses 'random' and global scope to simulate drinking and getting milk - ends when you run out of milk.
+ */
+
 console.log("My Conditionals Started.");
 
-let milk = 2000;
-let durationMilliseconds = 3000;
+let milk = 2000; // 2000 units
+
+let durationMilliseconds = 5000; // 5 seconds
 
 const drinkMilk = (amount = 0) => {
     milk -= amount;
@@ -30,23 +35,29 @@ do {
         getMilk(1 + Math.random() * 5);
     }
     if (random === 3) {
+        console.log({message: 'If...'});
         console.log({milk});
     }
 
     if (random === 1) {
-
+        drinkMilk(1 + Math.random() * 5);
     } else if (random === 2) {
-
+        getMilk(1 + Math.random() * 5);
     } else {
-
+        console.log({message: 'If and else/if...'});
+        console.log({milk});
     }
 
     switch (random) {
         case 1:
+            drinkMilk(1 + Math.random() * 5);
             break;
         case 2:
+            getMilk(1 + Math.random() * 5);
             break;
         default:
+            console.log({message: 'switch...'});
+            console.log({milk});
             break;
     }
 
