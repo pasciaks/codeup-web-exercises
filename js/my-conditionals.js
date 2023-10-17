@@ -1,7 +1,8 @@
 "use strict";
 
 /**
- * Uses 'random' and global scope to simulate drinking and getting milk - ends when you run out of milk.
+ * Uses 'random' and global scope to simulate drinking and getting milk.
+ * Ends when you run out of milk or the time duration ends.
  */
 
 console.log("My Conditionals Started.");
