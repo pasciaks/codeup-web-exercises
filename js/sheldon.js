@@ -3,16 +3,12 @@
 // $ npm install -g documentation
 // $ documentation build js/sheldon.js -f html -o docs
 
-isTwo(2);
-let myName = 'Sheldon';
-console.log(myName);
-
 /**
  * isTwo
  * @param num
  * @returns {boolean}
  */
-function isTwo(num) { // Note: This function will be hoisted!
+function isTwo(num = null) { // Note: This function will be hoisted!
     return num === 2;
 }
 
@@ -26,13 +22,15 @@ const myFunction = function () {
 
 /**
  * fatArrow
- * @returns {string}
+ * @returns {object}
  */
 const fatArrow = () => {
-    return '';
+    return {'isObject': true};
 }
 
-myFunction()
+isTwo();
+myFunction();
+fatArrow();
 
 
 
