@@ -241,3 +241,19 @@ function positiveOrNegative(num) {
         return '0';
     }
 }
+
+let example = '2';
+switch (example) {
+    case '1':
+    case 1:
+    case 'one':
+        console.log("1 or one or '1' was the value of example.");
+        break;
+    case '2':
+    case 2:
+    case 'two':
+        console.log("2 or two or '2' was the value of example.");
+        break;
+    default:
+        break;
+}
