@@ -2,7 +2,7 @@
 
 /* ########################################################################## */
 
-function analyzeColor(whichColor = '') {
+function analyzeColorOriginal(whichColor = '') {
     whichColor = whichColor.toLowerCase();
     if (whichColor === 'red') {
         return `Strawberries are red.`;
@@ -13,7 +13,7 @@ function analyzeColor(whichColor = '') {
     }
 }
 
-function analyzeColorRevised(whichColor = '') {
+function analyzeColor(whichColor = '') {
     whichColor = whichColor.toLowerCase();
     let response = '';
     switch (whichColor) {
@@ -32,9 +32,9 @@ function analyzeColorRevised(whichColor = '') {
     return response
 }
 
-let r1 = analyzeColorRevised('BLUE');
-let r2 = analyzeColorRevised('red');
-let r3 = analyzeColorRevised('CYAN');
+let r1 = analyzeColor('BLUE');
+let r2 = analyzeColor('red');
+let r3 = analyzeColor('CYAN');
 console.log({r1, r2, r3});
 
 /**
@@ -56,6 +56,12 @@ console.log({r1, r2, r3});
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
  */
+
+let test1 = analyzeColorOriginal('red');
+let test2 = analyzeColorOriginal('RED');
+let test3 = analyzeColorOriginal('blue');
+let test4 = analyzeColorOriginal('cyan');
+console.log({test1, test2, test3, test4})
 
 let t1 = analyzeColor('red');
 let t2 = analyzeColor('RED');
@@ -88,7 +94,7 @@ console.log(analyzeColor(randomColor));
  */
 
 console.log(`Analyzing ${randomColor}...`);
-console.log(analyzeColorRevised(randomColor));
+console.log(analyzeColor(randomColor));
 /**
  * TODO:
  * Prompt the user for a color when the page loads, and pass the input from the
@@ -98,7 +104,7 @@ console.log(analyzeColorRevised(randomColor));
 
 try {
     let choice = prompt("What color would you like to evaluate ?", "blue");
-    let yourChoiceResult = analyzeColorRevised(choice);
+    let yourChoiceResult = analyzeColor(choice);
     alert("Your result: " + yourChoiceResult);
 } catch {
     console.log("Probably running in IntelliJ!");
@@ -186,7 +192,7 @@ console.log(calculateTotal(5, 100));
  */
 // Generate a random number between 0 and 6
 const luckyNumber = Math.floor(Math.random() * 6);
-let totalBill = prompt("What total bill to use ?");
+let totalBill = prompt("What total bill to use ?", "100");
 let totalAfterRandomDiscount = calculateTotal(luckyNumber, Number(totalBill));
 alert(`Your lucky number ${luckyNumber} gave you a discount, your new price is ${totalAfterRandomDiscount.toFixed(2)}!`);
 
@@ -213,9 +219,8 @@ console.log(calculateTotalObjectReturned(luckyNumber, 55));
 let confirmResponse = confirm("Would you like to enter a number?");
 
 if (confirmResponse) {
-    let aNumber = prompt("What number?");
-    aNumber = Number(aNumber);
-    if (typeof aNumber === 'number') {
+    let aNumber = prompt("What number?", "22");
+    if (!isNaN(aNumber) && aNumber != null) { // Added this extra special check, if they hit cancel on # entry
         alert(`The number isEven(${aNumber}) returned ${isEven(aNumber)}`);
         alert(`The number addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
         alert(`The number positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
