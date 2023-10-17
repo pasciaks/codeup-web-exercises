@@ -222,7 +222,7 @@ let confirmResponse = confirm("Would you like to enter a number?");
 
 if (confirmResponse) {
     let aNumber = prompt("What number?", "22");
-    if (!isNaN(aNumber) && aNumber != null) { // Added this extra special check, if they hit cancel on # entry
+    if (!isNaN(aNumber) && aNumber != null && aNumber != '') { // Added this extra special check, if they hit cancel on # entry
         alert(`The number isEven(${aNumber}) returned ${isEven(aNumber)}`);
         alert(`The number addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
         alert(`The number positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
@@ -249,18 +249,42 @@ function positiveOrNegative(num) {
     }
 }
 
+/**
+ * Prompts a user for a number
+ * Note, normalizes null if no number, or not a valid number received.
+ * Note, returns the value as a Number type
+ * @param min - not yet implemented
+ * @param max - not yet implemented
+ * @returns {number|null}
+ */
 const getNumber = (min, max) => {
     let numberValue = prompt("What number?");
-    numberValue = Number(numberValue);
+
+    try {
+        numberValue = numberValue.trim();
+    } catch {
+        numberValue = null;
+    }
+
     if (isNaN(numberValue)) {
+        console.log("isNaN");
         return null;
     }
-    return numberValue;
+    if (numberValue === '') {
+        console.log("is empty");
+        return null;
+    }
+    if (numberValue === null) {
+        console.log("is null");
+        return null;
+    }
+
+    return Number(numberValue);
+
 }
 
-const askForConfirm = (message) => {
-    let response = confirm(`Would you like to add a number? (${message})`);
-    return !!response;
+const askForConfirm = () => {
+    return confirm(`Would you like to add a number?`);
 }
 
 const evaluateNumber = (aNumber) => {
@@ -275,20 +299,12 @@ const showMessage = (message) => {
     return null;
 }
 
-if (askForConfirm("Version 2")) { // ask if they want to add a number or not
-    let aNumber = getNumber(); // prompt for a user entered number
-    if (aNumber) {
-        evaluateNumber(aNumber); // if a number was received, evaluate it.
-    } else {
-        showMessage("You didn't enter a valid number."); // not a valid number, show error message.
-    }
-} else {
-    showMessage("I guess you didn't want to enter a number.");
-}
-
-while (askForConfirm("Version 3")) {
-    let aNumber = getNumber(); // prompt for a user entered number
-    if (aNumber) {
+/**
+ * This will continually loop until they cancel when asked if they want to add a number.
+ */
+while (askForConfirm()) {
+    let aNumber = getNumber(-Infinity, Infinity); // prompt for a user entered number
+    if (aNumber != null) {
         evaluateNumber(aNumber); // if a number was received, evaluate it.
     } else {
         showMessage("You didn't enter a valid number."); // not a valid number, show error message.
