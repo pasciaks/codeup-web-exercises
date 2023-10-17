@@ -213,7 +213,8 @@ let confirmResponse = confirm("Would you like to enter a number?");
 
 if (confirmResponse) {
     let aNumber = prompt("What number?");
-    if (!(isNaN(aNumber))) {
+    aNumber = Number(aNumber);
+    if (typeof aNumber === 'number') {
         alert(`The number isEven(${aNumber}) returned ${isEven(aNumber)}`);
         alert(`The number addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
         alert(`The number positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
