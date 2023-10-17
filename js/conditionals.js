@@ -231,14 +231,29 @@ if (confirmResponse) {
     }
 }
 
+/**
+ *
+ * @param num
+ * @returns {boolean}
+ */
 function isEven(num) {
     return (Number(num) % 2 === 0);
 }
 
+/**
+ *
+ * @param num
+ * @returns {number}
+ */
 function addOneHundred(num) {
     return Number(num) + 100;
 }
 
+/**
+ *
+ * @param num
+ * @returns {string}
+ */
 function positiveOrNegative(num) {
     if (Number(num) < 0) {
         return '-';
@@ -266,7 +281,7 @@ const getNumber = (min, max) => {
         numberValue = null;
     }
 
-    if (isNaN(numberValue)) {
+    if (isNaN(Number(numberValue))) {
         console.log("isNaN");
         return null;
     }
