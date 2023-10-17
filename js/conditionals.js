@@ -91,6 +91,7 @@ console.log(analyzeColor(randomColor));
 /**
  * TODO:
  * Comment out the code above, and refactor your function to use a switch-case statement
+ * NOTE: Instead... I created an alternate version of the function and renamed them appropriately.
  */
 
 console.log(`Analyzing ${randomColor}...`);
@@ -107,7 +108,7 @@ try {
     let yourChoiceResult = analyzeColor(choice);
     alert("Your result: " + yourChoiceResult);
 } catch {
-    console.log("Probably running in IntelliJ!");
+    console.log("Probably running in IntelliJ! .js code runner, alert will error if not on webpage.");
 }
 
 
@@ -148,7 +149,8 @@ function calculateTotal(luckyNumber, amount) {
     } else {
         discountPercentage = 0;
     }
-    console.log("Using discount Percentage: " + discountPercentage);
+
+    console.log(`Your lucky number is ${luckyNumber}, and your percentage discount is ${discountPercentage}.`);
     return amount - (discountPercentage * amount);
 }
 
@@ -247,18 +249,48 @@ function positiveOrNegative(num) {
     }
 }
 
-// let example = '2';
-// switch (example) {
-//     case '1':
-//     case 1:
-//     case 'one':
-//         console.log("1 or one or '1' was the value of example.");
-//         break;
-//     case '2':
-//     case 2:
-//     case 'two':
-//         console.log("2 or two or '2' was the value of example.");
-//         break;
-//     default:
-//         break;
-// }
+const getNumber = (min, max) => {
+    let numberValue = prompt("What number?");
+    numberValue = Number(numberValue);
+    if (isNaN(numberValue)) {
+        return null;
+    }
+    return numberValue;
+}
+
+const askForConfirm = (message) => {
+    let response = confirm(`Would you like to add a number? (${message})`);
+    return !!response;
+}
+
+const evaluateNumber = (aNumber) => {
+    alert(`The number isEven(${aNumber}) returned ${isEven(aNumber)}`);
+    alert(`The number addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
+    alert(`The number positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
+    return true;
+}
+
+const showMessage = (message) => {
+    alert(message);
+    return null;
+}
+
+if (askForConfirm("Version 2")) { // ask if they want to add a number or not
+    let aNumber = getNumber(); // prompt for a user entered number
+    if (aNumber) {
+        evaluateNumber(aNumber); // if a number was received, evaluate it.
+    } else {
+        showMessage("You didn't enter a valid number."); // not a valid number, show error message.
+    }
+} else {
+    showMessage("I guess you didn't want to enter a number.");
+}
+
+while (askForConfirm("Version 3")) {
+    let aNumber = getNumber(); // prompt for a user entered number
+    if (aNumber) {
+        evaluateNumber(aNumber); // if a number was received, evaluate it.
+    } else {
+        showMessage("You didn't enter a valid number."); // not a valid number, show error message.
+    }
+}
