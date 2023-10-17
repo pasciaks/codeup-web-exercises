@@ -14,6 +14,7 @@ function analyzeColor(whichColor = '') {
 }
 
 function analyzeColorRevised(whichColor = '') {
+    whichColor = whichColor.toLowerCase();
     let response = '';
     switch (whichColor) {
         case 'red':
