@@ -73,10 +73,13 @@ do {
 console.log({milk});
 console.log(currentTime - startedAt);
 
-let a = 1;
-let message = (a === 1) ? 'A is 1' : 'A is not 1';
+let a, message;
+
+a = 1;
+message = (a === 1) ? 'A is 1' : 'A is not 1';
 console.log({a, message});
 
 a = 2;
 message = (a === 1) ? 'A is 1' : 'A is not 1';
 console.log({a, message});
+
