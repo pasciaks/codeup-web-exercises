@@ -2,7 +2,7 @@
 
 console.log("My Conditionals Started.");
 
-let milk = 500;
+let milk = 2000;
 
 const drinkMilk = (amount) => {
     milk -= amount;
@@ -16,10 +16,20 @@ const startedAt = Date.now();
 let currentTime = Date.now();
 
 do {
-    let random = Math.floor(Math.random() * (3 - 1) + 1);
+
+    let random = Math.floor(Math.random() * (3) + 1);
 
     currentTime = Date.now();
-    console.log(new Date().toISOString());
+
+    if (random === 1) {
+        drinkMilk(1 + Math.random() * 5);
+    }
+    if (random === 2) {
+        getMilk(1 + Math.random() * 5);
+    }
+    if (random === 3) {
+        console.log({milk});
+    }
 
     if (random === 1) {
 
@@ -38,25 +48,13 @@ do {
             break;
     }
 
-    if (random === 1) {
-        console.log({milk});
-        drinkMilk(1 + Math.random() * 5);
-    }
-    if (random === 2) {
-        console.log({milk});
-        getMilk(1 + Math.random() * 5);
-    }
-    if (random === 3) {
-        console.log({milk});
-        getMilk(Math.random() * 5);
-    }
-
     if (milk <= 0.0) {
         alert('You ran out of milk!');
         break;
     }
 
-} while (currentTime - startedAt < 3000);
+} while ((currentTime - startedAt) < 3000);
 
 console.log({milk});
+
 console.log(currentTime - startedAt);
