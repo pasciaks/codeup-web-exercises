@@ -25,9 +25,11 @@ const startedAt = Date.now();
 
 do {
 
-    let random = Math.floor(Math.random() * (3) + 1);
+    let random = (Math.random() * (3) + 1);
 
     console.log(`Random number: [${random}]`);
+
+    random = Math.floor(random);
 
     if (random === 1) {
         drinkMilk(1 + Math.random() * 5);
@@ -63,7 +65,7 @@ do {
     }
 
     if (milk <= 0.0) {
-        alert('You ran out of milk!');
+        console.log('You ran out of milk!');
         break;
     }
 
