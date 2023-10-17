@@ -28,9 +28,11 @@ const fatArrow = () => {
     return {'isObject': true};
 }
 
-isTwo();
-myFunction();
-fatArrow();
+console.log(typeof isTwo());
+
+console.log(typeof myFunction())
+
+console.log(typeof fatArrow())
 
 
 
