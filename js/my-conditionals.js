@@ -3,6 +3,7 @@
 console.log("My Conditionals Started.");
 
 let milk = 2000;
+let durationMilliseconds = 3000;
 
 const drinkMilk = (amount) => {
     milk -= amount;
@@ -18,8 +19,6 @@ let currentTime = Date.now();
 do {
 
     let random = Math.floor(Math.random() * (3) + 1);
-
-    currentTime = Date.now();
 
     if (random === 1) {
         drinkMilk(1 + Math.random() * 5);
@@ -53,8 +52,9 @@ do {
         break;
     }
 
-} while ((currentTime - startedAt) < 3000);
+    currentTime = Date.now();
+
+} while ((currentTime - startedAt) < durationMilliseconds);
 
 console.log({milk});
-
 console.log(currentTime - startedAt);
