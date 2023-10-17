@@ -9,7 +9,7 @@ console.log("My Conditionals Started.");
 
 let milk = 2000; // 2000 units
 
-let durationMilliseconds = 1000; // 5 seconds
+let durationMilliseconds = 5000; // 5 seconds
 
 const drinkMilk = (amount = 0) => {
     milk -= amount;
@@ -26,10 +26,10 @@ const startedAt = Date.now();
 do {
 
     let random = (Math.random() * (3) + 1);
-
     console.log(`Random number: [${random}]`);
 
     random = Math.floor(random);
+    console.log(`Random number: [${random}]`);
 
     if (random === 1) {
         drinkMilk(1 + Math.random() * 5);
