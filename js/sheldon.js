@@ -1,12 +1,10 @@
 "use strict";
 
-// npm install -g documentation
-// documentation build js/*.js -f html -o docs
+// $ npm install -g documentation
+// $ documentation build js/sheldon.js -f html -o docs
 
 isTwo(2);
-
 let myName = 'Sheldon';
-
 console.log(myName);
 
 /**
@@ -26,6 +24,10 @@ const myFunction = function () {
     return '';
 }
 
+/**
+ * fatArrow
+ * @returns {string}
+ */
 const fatArrow = () => {
     return '';
 }
