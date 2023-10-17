@@ -195,6 +195,11 @@ console.log(calculateTotal(5, 100));
 // Generate a random number between 0 and 6
 const luckyNumber = Math.floor(Math.random() * 6);
 let totalBill = prompt("What total bill to use ?", "100");
+totalBill = Number(totalBill);
+if (isNaN(totalBill) || totalBill === null || totalBill <= 0) {
+    alert("You didn't enter a valid amount. Using 100 for default.");
+    totalBill = 100;
+}
 let totalAfterRandomDiscount = calculateTotal(luckyNumber, Number(totalBill));
 alert(`Your lucky number ${luckyNumber} gave you a discount, your new price is ${totalAfterRandomDiscount.toFixed(2)}!`);
 
