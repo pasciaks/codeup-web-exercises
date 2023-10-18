@@ -35,7 +35,7 @@ function analyzeColor(whichColor = '') {
 let r1 = analyzeColor('BLUE');
 let r2 = analyzeColor('red');
 let r3 = analyzeColor('CYAN');
-console.log({ r1, r2, r3 });
+console.log({r1, r2, r3});
 
 /**
  * TODO:
@@ -61,13 +61,13 @@ let test1 = analyzeColorOriginal('red');
 let test2 = analyzeColorOriginal('RED');
 let test3 = analyzeColorOriginal('blue');
 let test4 = analyzeColorOriginal('cyan');
-console.log({ test1, test2, test3, test4 })
+console.log({test1, test2, test3, test4})
 
 let t1 = analyzeColor('red');
 let t2 = analyzeColor('RED');
 let t3 = analyzeColor('blue');
 let t4 = analyzeColor('cyan');
-console.log({ t1, t2, t3, t4 });
+console.log({t1, t2, t3, t4});
 
 // Don't change the next two lines!
 // These lines create two variables for you:
@@ -240,16 +240,25 @@ let confirmResponse = confirm("Would you like to enter a number?");
 if (confirmResponse) {
     let aNumber = prompt("What number?", "22");
     if (!isNaN(aNumber) && aNumber != null && aNumber != '') { // Added this extra special check, if they hit cancel on # entry
-        alert(`The number isEven(${aNumber}) returned ${isEven(aNumber)}`);
-        alert(`The number addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
-        alert(`The number positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
+        alert(`The function isEven(${aNumber}) returned ${isEven(aNumber)}`);
+        alert(`The function addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
+        alert(`The function positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
     } else {
         alert("You didn't enter a valid number.");
     }
 }
 
 function isEven(num) {
-    return (Number(num) % 2 === 0);
+    if (num === false) {
+        return false;
+    } // booleans can't be odd or even
+    if (num === true) {
+        return false;
+    }
+    if (num == 0) { // 0 is regarded as even
+        return true;
+    }
+    return ((Number(num) % 2) == 0); // even if can divide by 2 evenly
 }
 
 
@@ -312,9 +321,9 @@ const askToAddNumber = () => {
 }
 
 const evaluateNumber = (aNumber) => {
-    alert(`The number isEven(${aNumber}) returned ${isEven(aNumber)}`);
-    alert(`The number addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
-    alert(`The number positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
+    alert(`The function isEven(${aNumber}) returned ${isEven(aNumber)}`);
+    alert(`The function addOneHundred(${aNumber}) returned ${addOneHundred(aNumber)}`);
+    alert(`The function positiveOrNegative(${aNumber}) returned ${positiveOrNegative(aNumber)}`);
     return true;
 }
 
