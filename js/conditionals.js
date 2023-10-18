@@ -150,7 +150,7 @@ function calculateTotal(luckyNumber, amount) {
         discountPercentage = 0;
     }
 
-    console.log(`Your lucky number is ${luckyNumber}, and your percentage discount is ${discountPercentage}.`);
+    console.log(`Your lucky number is ${luckyNumber}, and your percentage discount is ${discountPercentage}.\n\n Your discount amount is $${(discountPercentage * amount)}.`);
     return amount - (discountPercentage * amount);
 }
 
@@ -188,6 +188,9 @@ let messageForConsole = `
 console.log(messageForConsole);
 
 console.log(calculateTotal(0, 100));
+console.log(calculateTotal(1, 100));
+console.log(calculateTotal(2, 100));
+console.log(calculateTotal(3, 100));
 console.log(calculateTotal(4, 100));
 console.log(calculateTotal(5, 100));
 
