@@ -35,7 +35,7 @@ function analyzeColor(whichColor = '') {
 let r1 = analyzeColor('BLUE');
 let r2 = analyzeColor('red');
 let r3 = analyzeColor('CYAN');
-console.log({r1, r2, r3});
+console.log({ r1, r2, r3 });
 
 /**
  * TODO:
@@ -61,13 +61,13 @@ let test1 = analyzeColorOriginal('red');
 let test2 = analyzeColorOriginal('RED');
 let test3 = analyzeColorOriginal('blue');
 let test4 = analyzeColorOriginal('cyan');
-console.log({test1, test2, test3, test4})
+console.log({ test1, test2, test3, test4 })
 
 let t1 = analyzeColor('red');
 let t2 = analyzeColor('RED');
 let t3 = analyzeColor('blue');
 let t4 = analyzeColor('cyan');
-console.log({t1, t2, t3, t4});
+console.log({ t1, t2, t3, t4 });
 
 // Don't change the next two lines!
 // These lines create two variables for you:
@@ -179,6 +179,14 @@ function calculateTotalObjectReturned(luckyNumber, amount) {
     }
 }
 
+let messageForConsole = `
+* calculateTotal(0, 100) // returns 100
+* calculateTotal(4, 100) // returns 50
+* calculateTotal(5, 100) // returns 0
+`;
+
+console.log(messageForConsole);
+
 console.log(calculateTotal(0, 100));
 console.log(calculateTotal(4, 100));
 console.log(calculateTotal(5, 100));
@@ -194,13 +202,18 @@ console.log(calculateTotal(5, 100));
  */
 // Generate a random number between 0 and 6
 const luckyNumber = Math.floor(Math.random() * 6);
+
 let totalBill = prompt("What total bill to use ?", "100");
+
 totalBill = Number(totalBill);
+
 if (isNaN(totalBill) || totalBill === null || totalBill <= 0) {
     alert("You didn't enter a valid amount. Using 100 for default.");
     totalBill = 100;
 }
+
 let totalAfterRandomDiscount = calculateTotal(luckyNumber, Number(totalBill));
+
 alert(`Your lucky number ${luckyNumber} gave you a discount, your new price is ${totalAfterRandomDiscount.toFixed(2)}!`);
 
 console.log(calculateTotalObjectReturned(luckyNumber, 55));
@@ -245,20 +258,11 @@ function isEven(num) {
     return (Number(num) % 2 === 0);
 }
 
-/**
- *
- * @param num
- * @returns {number}
- */
+
 function addOneHundred(num) {
     return Number(num) + 100;
 }
 
-/**
- *
- * @param num
- * @returns {string}
- */
 function positiveOrNegative(num) {
     if (Number(num) < 0) {
         return '-';
@@ -277,8 +281,8 @@ function positiveOrNegative(num) {
  * @param max - not yet implemented
  * @returns {number|null}
  */
-const getNumber = (min, max) => {
-    let numberValue = prompt("What number?");
+const getNumber = (min = -Infinity, max = Infinity) => {
+    let numberValue = prompt("What number ? " + `(${min.toLocaleString()}-${max.toLocaleString()}) ? `);
 
     try {
         numberValue = numberValue.trim();
@@ -299,11 +303,15 @@ const getNumber = (min, max) => {
         return null;
     }
 
-    return Number(numberValue);
+    if (Number(numberValue) < min || Number(numberValue) > max) {
+        // number was out of range
+        return null;
+    }
 
+    return Number(numberValue);
 }
 
-const askForConfirm = () => {
+const askToAddNumber = () => {
     return confirm(`Would you like to add a number?`);
 }
 
@@ -322,11 +330,17 @@ const showMessage = (message) => {
 /**
  * This will continually loop until they cancel when asked if they want to add a number.
  */
-while (askForConfirm()) {
-    let aNumber = getNumber(-Infinity, Infinity); // prompt for a user entered number
+
+let minValue = -999999;
+let maxValue = +999999;
+
+while (askToAddNumber()) {
+    let aNumber = getNumber(minValue, maxValue); // prompt for a user entered number
     if (aNumber != null) {
         evaluateNumber(aNumber); // if a number was received, evaluate it.
     } else {
         showMessage("You didn't enter a valid number."); // not a valid number, show error message.
     }
 }
+
+showMessage("I guess you don't want to practice numbers anymore.");
