@@ -191,7 +191,6 @@ console.log(calculateTotal(0, 100));
 console.log(calculateTotal(4, 100));
 console.log(calculateTotal(5, 100));
 
-
 /**
  * TODO:
  * Uncomment the line below to generate a random number between 0 and 5.
@@ -249,11 +248,6 @@ if (confirmResponse) {
     }
 }
 
-/**
- *
- * @param num
- * @returns {boolean}
- */
 function isEven(num) {
     return (Number(num) % 2 === 0);
 }
@@ -274,21 +268,24 @@ function positiveOrNegative(num) {
 }
 
 /**
- * Prompts a user for a number
- * Note, normalizes null if no number, or not a valid number received.
- * Note, returns the value as a Number type
- * @param min - not yet implemented
- * @param max - not yet implemented
+ * Prompts a user for a What number ? (min-max) ?
+ * Note, normalizes to null if no number entered, or a valid number was not received.
+ * Note, returns the value as a Number type.
+ * Note, returns null if number is out of range.
+ * @param min
+ * @param max
  * @returns {number|null}
  */
 const getNumber = (min = -Infinity, max = Infinity) => {
-    let numberValue = prompt("What number ? " + `(${min.toLocaleString()}-${max.toLocaleString()}) ? `);
+    let numberValue = prompt("What number ? " + `(${min.toLocaleString()} - ${max.toLocaleString()}) ? `);
 
     try {
         numberValue = numberValue.trim();
     } catch {
         numberValue = null;
     }
+
+    console.log(numberValue);
 
     if (isNaN(Number(numberValue))) {
         console.log("isNaN");
@@ -304,8 +301,7 @@ const getNumber = (min = -Infinity, max = Infinity) => {
     }
 
     if (Number(numberValue) < min || Number(numberValue) > max) {
-        // number was out of range
-        return null;
+        return null; // number was out of range
     }
 
     return Number(numberValue);
@@ -331,15 +327,15 @@ const showMessage = (message) => {
  * This will continually loop until they cancel when asked if they want to add a number.
  */
 
-let minValue = -999999;
-let maxValue = +999999;
+let minValue = -1000000;
+let maxValue = +1000000;
 
 while (askToAddNumber()) {
     let aNumber = getNumber(minValue, maxValue); // prompt for a user entered number
     if (aNumber != null) {
         evaluateNumber(aNumber); // if a number was received, evaluate it.
     } else {
-        showMessage("You didn't enter a valid number."); // not a valid number, show error message.
+        showMessage("You didn't enter a valid number."); // not a valid number, show message.
     }
 }
 
