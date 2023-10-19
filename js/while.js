@@ -20,7 +20,8 @@
  */
 
 for (let i = 1; i < 17; i++) {
-    console.log(2 ** i);
+    // console.log(2 ** i);
+    logToWindow(2 ** i);
 }
 
 /**
@@ -51,7 +52,7 @@ let allCones = getRandomInt(50, 100);
 
 let salesNeeded = allCones; // for additional display later, keeping track of initial inventory amount
 
-console.log(`Cones to sell ${salesNeeded}.`);
+// console.log(`Cones to sell ${salesNeeded}.`);
 logToWindow(`Cones to sell ${salesNeeded}.`);
 
 let salesNumber = 0; // for additional display later, keeping track of the number of times a sale is made
@@ -60,24 +61,28 @@ do {
     let toBuy = getRandomInt(1, 5);
     if (allCones >= toBuy) {
         salesNumber++;
-        console.log(`${toBuy} cones sold...${salesNumber} transaction(s) completed.`);
+        // console.log(`${toBuy} cones sold...${salesNumber} transaction(s) completed.`);
         logToWindow(`${toBuy} cones sold...${salesNumber} transaction(s) completed.`);
         allCones -= toBuy;
     } else {
-        console.log(`Cannot sell you ${toBuy} cones, I only have ${allCones} cones remaining.`);
+        // console.log(`Cannot sell you ${toBuy} cones, I only have ${allCones} cones remaining.`);
         logToWindow(`Cannot sell you ${toBuy} cones, I only have ${allCones} cones remaining.`);
     }
 } while (allCones > 0);
 
-console.log(`Yay! I sold them all!`);
+// console.log(`Yay! I sold them all!`);
 logToWindow(`Yay! I sold them all!`);
 
-console.log(`Total ${salesNeeded} items sold: in ${salesNumber} transactions.`);
+// console.log(`Total ${salesNeeded} items sold: in ${salesNumber} transactions.`);
 logToWindow(`Total ${salesNeeded} items sold: in ${salesNumber} transactions.`);
 
 function logToWindow(str, newLine = '<br>') {
-    str += newLine;
-    document.getElementById('output').innerHTML += str;
+    try {
+        console.log(str);
+        document.getElementById('output').innerHTML += (str + newLine);
+    } catch {
+        // not running in web browser
+    }
 }
 
 /**
