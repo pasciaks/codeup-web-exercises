@@ -72,7 +72,7 @@ numberValue = Number(numberValue);
 
 console.log(`Number to skip is ${numberValue}.`);
 
-// ['a', 'e'].forEach((item) => {
+// ['a', 'e'].forEach((item,index,arr) => {
 //     console.log(item);
 // });
 
