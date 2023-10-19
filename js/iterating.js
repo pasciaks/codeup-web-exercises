@@ -33,7 +33,8 @@
      * array.
      */
 
-    for (let name in names) {
+    console.log(`for (let name of names) {`);
+    for (let name of names) {
         console.log(name);
     }
 
@@ -51,6 +52,7 @@
      * Refactor your above code to use a `forEach` loop
      */
 
+    console.log(`names.forEach((name) => {`);
     names.forEach((name) => {
         console.log(name);
     });
@@ -81,8 +83,13 @@
         return arr[arr.length - 1];
     }
 
+    console.log(`first[1,2,3,4,5]`);
     console.log(first([1, 2, 3, 4, 5]));
+
+    console.log(`second[1,2,3,4,5]`);
     console.log(second([1, 2, 3, 4, 5]));
+
+    console.log(`last[1,2,3,4,5]`);
     console.log(last([1, 2, 3, 4, 5]));
 
 })();
