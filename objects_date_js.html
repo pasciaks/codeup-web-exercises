@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sheldon - Objects Dates</title>
+</head>
+<body>
+
+<h1>Objects Dates</h1>
+
+<script>
+    'use strict';
+
+    // todo:
+    // Create an array of months for printing dates
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    // todo:
+    // Create the date corresponding to your birthday using the JavaScript Date object.
+
+    let jsBirthday = new Date(1970, 1, 15, 0, 0, 0);
+    console.log(jsBirthday.toISOString());
+
+    function formatBirthdate(date) {
+        return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+    }
+
+    // todo:
+    // Log your birthday in the format: January 1, 2014 using the JavaScript Date object.
+    // See link below for methods needed:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#Getter
+    console.log('Here is my birthday using JavaScript: ' + formatBirthdate(jsBirthday));
+</script>
+</body>
+</html>
