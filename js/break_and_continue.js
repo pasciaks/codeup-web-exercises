@@ -62,7 +62,11 @@ do {
         numberValue === '' ||
         Number(Math.floor(numberValue)) !== Number(numberValue);
 
-} while (invalidInput)
+    if (!invalidInput) {
+        break;
+    }
+
+} while (true); // alternative - while (invalidInput);
 
 numberValue = Number(numberValue);
 
