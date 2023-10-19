@@ -74,12 +74,11 @@ for (let i = 1; i <= 10; i++) {
  */
 
 function halfTree(num) {
-    for (let i = 1; i <= num; i++) {
-        for (let j = 1; j <= i; j++) {
-            console.log(`${j}`.repeat(j));
-        }
 
+    for (let j = 1; j <= num; j++) {
+        console.log(`${j}`.repeat(j));
     }
+
 }
 
 halfTree(9);
