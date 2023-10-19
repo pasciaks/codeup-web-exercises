@@ -93,6 +93,26 @@
      * > console.log(books[0].author.lastName) // "Adams"
      */
 
+    let books = [
+        {
+            title: 'The Salmon of Doubt',
+            author: {
+                firstName: 'Douglas',
+                lastName: 'Adams'
+            }
+        }
+    ]
+
+    books.push(createBook('This is a title', 'John Doe'));
+    books.push(createBook('This is a different title', 'Steve Williams Jr.'));
+    books.push(createBook('This is a similar Title', 'Ray Charles'));
+    books.push(createBook('This is not a good title!', 'Bill Jones'));
+    books.push(createBook('This is the last title.', 'Crystal Robbins'));
+
+    console.log(books[0].title) // "The Salmon of Doubt"
+    console.log(books[0].author.firstName) // "Douglas"
+    console.log(books[0].author.lastName) // "Adams"
+
     /**
      * TODO:
      * Loop through the books array and output the following information about
@@ -118,6 +138,15 @@
      *      ...
      */
 
+    books.forEach((book, index) => {
+        showBookInfo(book, index);
+
+        // console.log(`Book # ${index}`);
+        // console.log(`Title: ${book.title}`);
+        // console.log(`Author: ${book.author.firstName} ${book.author.lastName}`);
+        // console.log(`---`);
+    })
+
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
@@ -128,5 +157,26 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+
+    function showBookInfo(book, index) {
+        console.log(`Book # ${index}`);
+        console.log(`Title: ${book.title}`);
+        console.log(`Author: ${book.author.firstName} ${book.author.lastName}`);
+        console.log(`---`);
+    }
+
+    function createBook(title, author) {
+        return {
+            title,
+            author: {
+                firstName: author.split(' ')[0],
+                lastName: author.split(' ')[1],
+
+            }
+        }
+    }
+
+    books.push(createBook('Test book title.', 'George Washington'));
+    console.log(books);
 
 })();
