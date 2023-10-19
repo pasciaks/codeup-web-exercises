@@ -17,7 +17,10 @@
         lastName: 'Pasciak'
     }
 
-    console.log(JSON.stringify(person, 0, 2));
+    console.log(person.firstName);
+    console.log(person.lastName);
+
+    // console.log(JSON.stringify(person, 0, 2));
 
     /**
      * TODO:
@@ -30,10 +33,11 @@
      */
 
     person.sayHello = function () {
-        return `Hello, ${person.firstName} ${person.lastName}!`;
+        return `Hello, ${this.firstName} ${this.lastName}!`;
     }
 
     let sayHelloResult = person.sayHello();
+    console.log(`person.sayHello()`);
     console.log(sayHelloResult);
 
     /** TODO:
@@ -159,7 +163,7 @@
      */
 
     function showBookInfo(book, index) {
-        console.log(`Book # ${index}`);
+        console.log(`Book # ${index + 1}`);
         console.log(`Title: ${book.title}`);
         console.log(`Author: ${book.author.firstName} ${book.author.lastName}`);
         console.log(`---`);
