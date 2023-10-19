@@ -47,13 +47,13 @@ for (let i = 1; i < 17; i++) {
  * Finally, commit the changes to your git repository, and push to GitHub.
  */
 
-let allCones = Math.floor(Math.random() * 50) + 50;
+let allCones = getRandomInt(50, 100);
 
 let salesNeeded = allCones; // for additional display later, keeping track of initial inventory amount
 
 console.log(`Cones to sell ${salesNeeded}.`);
 
-let salesNumber = 0;
+let salesNumber = 0; // for additional display later, keeping track of the number of times a sale is made
 
 do {
     let toBuy = getRandomInt(1, 5);
@@ -64,7 +64,6 @@ do {
     } else {
         console.log(`Cannot sell you ${toBuy} cones, I only have ${allCones} cones remaining.`);
     }
-
 } while (allCones > 0);
 
 console.log(`Yay! I sold them all!`);

@@ -2,7 +2,8 @@
  Break and Continue
 
  Create a file named break_and_continue.js in the js directory.
- Prompt the user for an odd number between 1 and 50. Use a loop and a break statement to continue prompting the user if they enter invalid input.
+ Prompt the user for an odd number between 1 and 50.
+ Use a loop and a break statement to continue prompting the user if they enter invalid input.
  Use a loop and the continue statement to output all the odd numbers between 1 and 50, except for the number the user entered.
  */
 
@@ -37,21 +38,23 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-for (let jj = 0; jj < 10; jj++) {
-    let rInt = getRandomInt(1, 10);
-    console.log(rInt);
-    console.log(' is even ? ' + isEven(rInt));
-}
+// for (let jj = 0; jj < 10; jj++) {
+//     let rInt = getRandomInt(1, 10);
+//     console.log(rInt);
+//     console.log(' is even ? ' + isEven(rInt));
+// }
 
 let min = 1;
 let max = 50;
 let numberValue = null;
 
-let invalidInput = false;
+let invalidInput = true;
 
 do {
-    numberValue = prompt(`Enter an ODD number between ${min}-${max} ?`).trim();
+    numberValue = prompt(`Enter an ODD number between ${min}-${max} ?`);
+
     invalidInput =
+        numberValue === null ||
         isEven(numberValue) ||
         isNaN(numberValue) ||
         Number(numberValue) < min ||
