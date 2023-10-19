@@ -7,7 +7,26 @@
 
 <style>
 
-    img {
+    .row {
+        display: inline-block;
+    }
+
+    .top-left img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .top-right img {
+        width: 300px;
+        height: 200px;
+    }
+
+    .bottom-left img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .bottom-right img {
         width: 200px;
         height: 200px;
     }
@@ -15,6 +34,7 @@
     .guarantee {
         font-style: italic;
     }
+
 </style>
 
 <body>
@@ -53,24 +73,25 @@
     <hr>
     <section>
         <h1>Company Vision</h1>
-        <table>
-            <tr>
-                <td>
-                    <img alt="Laptops" src="images/free-photo-of-the-pyramids.jpeg"/>
-                </td>
-                <td>
-                    <img alt="Laptops" src="images/pexels-photo-11011373.jpeg"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img alt="Laptops" src="images/pexels-photo-18602628.webp"/>
-                </td>
-                <td>
-                    <img alt="Laptops" src="images/pexels-photo-18617044.webp"/>
-                </td>
-            </tr>
-        </table>
+
+        <div>
+            <div class="row">
+                <div class="top-left">
+                    <img alt="Laptops" src="images/topleft.png"/>
+                </div>
+                <div class="top-right">
+                    <img alt="Laptops" src="images/topright.png"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="bottom-left">
+                    <img alt="Laptops" src="images/bottomleft.png"/>
+                </div>
+                <div class="bottom-right">
+                    <img alt="Laptops" src="images/bottomright.png"/>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section>
