@@ -66,7 +66,7 @@ do {
         break;
     }
 
-} while (true); // alternative - while (invalidInput);
+} while (invalidInput); // alternative - while (invalidInput);
 
 numberValue = Number(numberValue);
 
