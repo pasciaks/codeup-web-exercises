@@ -27,7 +27,7 @@
 
 function showMultiplicationTable(num) {
     for (let i = 1; i <= 10; i++) {
-        console.log(`${num} x ${i} = ${num * i}`);
+        logToWindow(`${num} x ${i} = ${num * i}`);
     }
 }
 
@@ -57,7 +57,7 @@ function isEven(num) {
 for (let i = 1; i <= 10; i++) {
     let randomNumber = getRandom(20, 200);
     let isOddResult = isOdd(randomNumber);
-    console.log(`${randomNumber} is ${isOddResult ? 'odd' : 'even'}`);
+    logToWindow(`${randomNumber} is ${isOddResult ? 'odd' : 'even'}`);
 }
 
 /**
@@ -75,7 +75,7 @@ for (let i = 1; i <= 10; i++) {
 
 function halfTree(num) {
     for (let j = 1; j <= num; j++) {
-        console.log(`${j}`.repeat(j));
+        logToWindow(`${j}`.repeat(j));
     }
 }
 
@@ -106,6 +106,14 @@ halfTree(9);
  */
 
 for (let jj = 100; jj >= 5; jj -= 5) {
-    console.log(jj);
+    logToWindow(jj);
 }
 
+function logToWindow(str, newLine = '<br>') {
+    try {
+        console.log(str);
+        document.getElementById('output').innerHTML += (str + newLine);
+    } catch {
+        // not running in web browser
+    }
+}
