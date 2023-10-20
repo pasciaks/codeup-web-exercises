@@ -83,10 +83,10 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// ----- functions, from walk through -----
+// ---------- functions, from walk through ----------
 // these are specific to the lesson requirements
 // the truthy/falsy is specific in instructions
-// ----------------------------------------
+// --------------------------------------------------
 
 function iTrue(num) {
     return num === true;
