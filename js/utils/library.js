@@ -84,8 +84,6 @@ function getRandomInt(min, max) {
 }
 
 // ---------- functions, from walk through ----------
-// these are specific to the lesson requirements
-// the truthy/falsy is specific in instructions
 // --------------------------------------------------
 
 function iTrue(num) {
