@@ -34,7 +34,7 @@ function isEven(num) {
 
 function showMultiplicationTable(num) {
     for (let i = 1; i <= 10; i++) {
-        logToWindow(`${num} x ${i} = ${num * i}`);
+        console.log(`${num} x ${i} = ${num * i}`);
     }
 }
 
@@ -43,7 +43,7 @@ showMultiplicationTable((7));
 function showMultiplicationTableTwo(num) {
     let lines = '';
     for (let i = 1; i <= 10; i++) {
-        lines += `${num} x ${i} = ${num * i}`;
+        lines += `${num} x ${i} = ${num * i} \n`;
     }
     return lines;
 }
@@ -51,7 +51,12 @@ function showMultiplicationTableTwo(num) {
 console.log(showMultiplicationTableTwo((7)));
 
 function getRandom(min, max) {
-    return Math.floor((Math.random() * max) + min);
+    // Math.floor will always round down to Integer
+    // Math.round will round naturally
+    // Math.ceil will round up to Integer
+    // Math.random() will be > 0.0 (Math.floor()) < 1.0
+    // will not include 0 or 1
+    return Math.floor((Math.random() * (max - min + 1)) + min);
 }
 
 
@@ -60,7 +65,7 @@ console.log(isOdd(1), true);
 
 function halfTree(num) {
     for (let j = 1; j <= num; j++) {
-        logToWindow(`${j}`.repeat(j));
+        console.log(`${j}`.repeat(j));
     }
 }
 
@@ -70,4 +75,12 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+for (let ii = 0; ii < 99; ii++) {
+    console.log(getRandom(1, 5));
+}
+
+for (let ii = 0; ii < 99; ii++) {
+    console.log(getRandomInt(1, 5));
 }
