@@ -69,6 +69,18 @@ function halfTree(num) {
     }
 }
 
+function halfTreeTwo(num) {
+    for (let i = 1; i <= num; i++) {
+        let line = '';
+        for (let j = 0; j < i; j++) {
+            line += i;
+        }
+        console.log(line);
+    }
+}
+
+halfTreeTwo(9)
+
 halfTree(9);
 
 function getRandomInt(min, max) {
