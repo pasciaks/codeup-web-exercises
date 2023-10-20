@@ -30,3 +30,17 @@ for (let i = 0; i < falsy.length; i++) {
 }
 
 let cheeses = ['Cheddar', 'String', 'Wensleydale'];
+
+for (let i = 0; i < cheeses.length; i++) {
+    console.log(cheeses[i]);
+}
+
+cheeses.forEach((cheese) => {
+    console.log(cheese);
+})
+cheeses.forEach((cheese, index) => {
+    console.log(cheese, index);
+})
+cheeses.forEach((cheese, index, array) => {
+    console.log(cheese, index, array);
+})
