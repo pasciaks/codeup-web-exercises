@@ -56,7 +56,12 @@ showMultiplicationTable((7));
  */
 
 function getRandom(min, max) {
-    return Math.floor((Math.random() * max) + min);
+    // Math.floor will always round down to Integer
+    // Math.round will round naturally
+    // Math.ceil will round up to Integer
+    // Math.random() will be > 0.0 (Math.floor()) < 1.0
+    // will not include 0 or 1
+    return Math.floor((Math.random() * (max - min + 1)) + min);
 }
 
 function isOdd(num) {
@@ -64,7 +69,7 @@ function isOdd(num) {
 }
 
 function isEven(num) {
-    return num % 2 === 0;
+    return (num === 0) || (num % 2 === 0);
 }
 
 for (let i = 1; i <= 10; i++) {
