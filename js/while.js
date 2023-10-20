@@ -23,7 +23,9 @@
 //     // console.log(2 ** i);
 //     logToWindow(2 ** i);
 // }
+
 let i = 1;
+
 while (i < 17) {
     logToWindow(2 ** i);
     i++;

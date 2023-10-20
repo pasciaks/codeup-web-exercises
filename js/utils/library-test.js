@@ -1,5 +1,11 @@
 "use strict"
 
-let {isEven} = require('./library');
+const {isEven} = require("./library");
 
-console.log(isEven(2));
+(() => {
+
+
+    console.log(isEven(2));
+
+})();
+
