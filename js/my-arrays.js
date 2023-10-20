@@ -85,7 +85,9 @@ let sum = array.reduce(function (acc, value, index, arr) {
 console.log(sum);
 
 console.log('---- spread operator ----');
+console.log(cheeses);
 console.log(...cheeses);
+console.log([...cheeses]);
 console.log(JSON.stringify([...cheeses], 0, 2));
 
 const exampleVals = [5, 8];
