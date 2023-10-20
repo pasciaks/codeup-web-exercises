@@ -46,6 +46,12 @@ function showMultiplicationTableTwo(num) {
     return lines;
 }
 
+/**
+ * getRandom - Best implementation, min/max random integer, inclusive
+ * @param min
+ * @param max
+ * @returns {number}
+ */
 function getRandom(min, max) {
     // Math.floor will always round down to Integer
     // Math.round will round naturally
