@@ -32,5 +32,42 @@ function isEven(num) {
     return ((Number(num) % 2) == 0); // even if can divide by 2 evenly
 }
 
+function showMultiplicationTable(num) {
+    for (let i = 1; i <= 10; i++) {
+        logToWindow(`${num} x ${i} = ${num * i}`);
+    }
+}
+
+showMultiplicationTable((7));
+
+function showMultiplicationTableTwo(num) {
+    let lines = '';
+    for (let i = 1; i <= 10; i++) {
+        lines += `${num} x ${i} = ${num * i}`;
+    }
+    return lines;
+}
+
+console.log(showMultiplicationTableTwo((7)));
+
+function getRandom(min, max) {
+    return Math.floor((Math.random() * max) + min);
+}
+
 
 console.log(isOdd(1), true);
+
+
+function halfTree(num) {
+    for (let j = 1; j <= num; j++) {
+        logToWindow(`${j}`.repeat(j));
+    }
+}
+
+halfTree(9);
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
