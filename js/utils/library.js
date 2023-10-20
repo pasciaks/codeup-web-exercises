@@ -14,11 +14,11 @@ function isOdd(n) {
     return Math.abs(n % 2) == 1;
 }
 
-function isOdd(num) {
+function isOddTwo(num) {
     return !isEven(num);
 }
 
-function isEven(num) {
+function isEvenTwo(num) {
     if (typeof num === 'boolean') {
         return false;
     } // booleans can't be odd or even
@@ -38,8 +38,6 @@ function showMultiplicationTable(num) {
     }
 }
 
-showMultiplicationTable((7));
-
 function showMultiplicationTableTwo(num) {
     let lines = '';
     for (let i = 1; i <= 10; i++) {
@@ -48,20 +46,14 @@ function showMultiplicationTableTwo(num) {
     return lines;
 }
 
-console.log(showMultiplicationTableTwo((7)));
-
 function getRandom(min, max) {
     // Math.floor will always round down to Integer
     // Math.round will round naturally
     // Math.ceil will round up to Integer
     // Math.random() will be > 0.0 (Math.floor()) < 1.0
-    // will not include 0 or 1
+    // will not include 0 or 1, so (max-min+1) enables inclusive max
     return Math.floor((Math.random() * (max - min + 1)) + min);
 }
-
-
-console.log(isOdd(1), true);
-
 
 function halfTree(num) {
     for (let j = 1; j <= num; j++) {
@@ -79,20 +71,23 @@ function halfTreeTwo(num) {
     }
 }
 
-halfTreeTwo(9)
-
-halfTree(9);
-
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-for (let ii = 0; ii < 99; ii++) {
-    console.log(getRandom(1, 5));
-}
-
-for (let ii = 0; ii < 99; ii++) {
-    console.log(getRandomInt(1, 5));
+module.exports = {
+    isOddInteger,
+    isInteger,
+    isEven,
+    isOdd,
+    isOddTwo,
+    isEvenTwo,
+    showMultiplicationTable,
+    showMultiplicationTableTwo,
+    getRandom,
+    halfTree,
+    halfTreeTwo,
+    getRandomInt
 }
