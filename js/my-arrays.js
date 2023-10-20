@@ -156,6 +156,36 @@ console.log(slice); // ['yellow', 'green']
 console.log(colors); // colors is unchanged
 // ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
 
+console.log('colors array', JSON.stringify(colors));
 
 slice = colors.slice(3);
-console.log(slice); // ['green', 'blue', 'indigo', 'violet']
+
+console.log('colors.slice(3)', slice); // ['green', 'blue', 'indigo', 'violet']
+
+console.log('colors array', JSON.stringify(colors));
+
+let newColors = colors.sort(); // sort alpha
+
+console.log('sort by alpha numeric string value', JSON.stringify(newColors));
+
+// sort by length of string
+newColors = newColors.sort(function (item1, item2) {
+    // compares item1 & item2 and returns:
+    //  -1 if item1 is less than item2
+    //  0  if equal
+    //  +1 if item1 is greater than item2
+    return (item1.length < item2.length) ? -1 : 1;
+});
+
+console.log('sort by length of string', JSON.stringify(newColors));
+
+// sort by char in string
+newColors = newColors.sort(function (item1, item2) {
+    // compares item1 & item2 and returns:
+    //  -1 if item1 is less than item2
+    //  0  if equal
+    //  +1 if item1 is greater than item2
+    return (item1.charAt(1) < item2.charAt(1)) ? -1 : 1;
+});
+
+console.log('sort by 2nd char in each string', JSON.stringify(newColors));
