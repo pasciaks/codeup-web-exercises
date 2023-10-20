@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Create a file named for_loops.js inside the js directory and link it to your loops.html file.
  */
@@ -9,6 +11,17 @@
  * Each of the following sections will instruct you to create a new javascript file.
  * For each exercise, you should include a script tag on your html page that links the correct .js file.
  */
+
+// iife (immediately invoked function expression)
+// Prevents global scope variable access in console.
+
+(() => {
+    let inside = 'test';
+    console.log("Inside IIFE");
+    console.log(inside);
+})(); // <-- remember extra () to call the IIFE
+
+// console.log(inside); // not defined globally
 
 /**
  * Create a function named showMultiplicationTable that accepts a number and console.logs the multiplication table for that number (just multiply by the numbers 1 through 10)
