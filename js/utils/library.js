@@ -83,6 +83,64 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// ----- functions, from walk through -----
+// these are specific to the lesson requirements
+// the truthy/falsy is specific in instructions
+// ----------------------------------------
+
+function iTrue(num) {
+    return num === true;
+}
+
+function iFalse(num) {
+    return num === false;
+}
+
+function iNot(value) {
+    return !value;
+}
+
+function aOne(value) {
+    return parseFloat(value) + 1;
+}
+
+function iEven(num) {
+    return parseFloat(num) % 2 === 0;
+}
+
+function iIdentical(input1, input2) {
+    return input1 === input2
+}
+
+const isIdentical2 = (val1, val2) => {
+    return val1 === val2;
+}
+
+function iEqual(val1, val2) {
+    return val1 == val2;
+}
+
+function oOr(val1, val2) {
+    return val1 || val2;
+}
+
+console.log(oOr(true, true), true);
+console.log(oOr("hello", "world"), "hello");
+
+function aAnd(val1, val2) {
+    return val1 && val2;
+}
+
+console.log(aAnd(true, true), true);
+console.log(aAnd(false, false), false);
+
+function cConcat(val1, val2) {
+    return "" + val1 + val2; // coerce to string
+}
+
+console.log(cConcat("code", "up"), "codeup");
+console.log(cConcat("true", "true"), "truetrue");
+
 module.exports = {
     isOddInteger,
     isInteger,
