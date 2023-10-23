@@ -172,4 +172,25 @@
     let arr3 = arr1.concat(arr2);
     console.log({arr1, arr2, arr3});
 
+    function removeAtIndex(array, index) {
+        let arr1 = array.slice(0, index);
+        let arr2 = array.slice(index + 1);
+        return arr1.concat(arr2);
+    }
+
+    console.log('[1,2,3,4]');
+    let testExamples = [1, 2, 3, 4];
+    let result = removeAtIndex(testExamples, 2);
+    console.log(testExamples);
+    console.log(result);
+
+    // splice method - MUTATES original array - version of slice, works different
+
+    let spliceArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    let spliceResult = spliceArr.splice(3, 3);
+    console.log(spliceResult);
+    console.log(spliceArr);
+
+
 })();
