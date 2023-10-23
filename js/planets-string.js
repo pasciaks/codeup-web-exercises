@@ -29,11 +29,11 @@
     console.log(webDisplayString);
     console.log("Useful to generate templates/views for web pages.");
 
-    const mapList = (item) => {
+    const mapAsListItem = (item) => {
         return `<li>${item}</li>`;
     }
 
-    let webList = `<ul>${planetsArray.map(mapList).join('')}</ul>`;
+    let webList = `<ul>${planetsArray.map(mapAsListItem).join('')}</ul>`;
     console.log(webList);
 
     try {
