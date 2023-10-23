@@ -183,4 +183,12 @@
     books.push(createBook('Test book title.', 'George Washington'));
     console.log(books);
 
+    const testObject = {}
+    
+    // testObject['dateRightNow'] = Date().toString();
+    // testObject['Date Right Now'] = Date().toString();
+    // testObject['Date-Right-Now'] = Date().toString();
+
+    console.log(testObject);
+
 })();
