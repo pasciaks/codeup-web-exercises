@@ -143,4 +143,28 @@
 
     console.log(JSON.stringify(us));
 
+    function copyOfArray(arr) {
+        return arr.slice();
+    }
+
+    // reverse, sort - reverses,sorts an array - alters the array
+
+    let a = [0, 1, 2, 3, 4, 5];
+    console.log(JSON.stringify(a));
+    let newReverse = a.reverse(); // reverse changes original array
+    console.log({a, newReverse});
+
+    let b = [12, 55, 0, 2, 4, 5];
+    console.log(JSON.stringify(b));
+    let newSort = b.sort((a, b) => Number(a) < Number(b) ? -1 : 1); // sort changes original array
+    console.log({b, newSort});
+
+    // slice - does not alter original array
+
+    console.log(names);
+    let abc = names.slice(0, 2);
+    console.log({abc, names});
+
+    // splice - alters original array
+
 })();
