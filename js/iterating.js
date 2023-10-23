@@ -110,5 +110,17 @@
 
     console.log("last name in names array.");
     console.log(last(names));
-    
+
+    let testArray = ['one', 'two', 'three'];
+
+    console.log('--');
+    console.log(testArray.push("four")); // adds to end // returns length ?
+    console.log(testArray);
+    console.log(testArray.unshift("zero")); // adds to front // return length ?
+    console.log(testArray);
+    console.log(testArray.pop()); // returns from end
+    console.log(testArray);
+    console.log(testArray.shift()); // return from front
+    console.log(testArray);
+
 })();
