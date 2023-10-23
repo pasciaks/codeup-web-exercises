@@ -124,6 +124,8 @@ function concat(val1, val2) {
     return "" + val1 + val2; // coerce to string
 }
 
+// console.log(isOddInteger(3));
+
 module.exports = {
     isOddInteger,
     isInteger,
