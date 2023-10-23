@@ -102,4 +102,14 @@
     console.log(`last[1,2,3,4,5]`);
     console.log(last([1, 2, 3, 4, 5]));
 
+    console.log("first name in names array.");
+    console.log(first(names));
+
+    console.log("second name in names array.");
+    console.log(second(names));
+
+    console.log("last name in names array.");
+    console.log(last(names));
+
+
 })();
