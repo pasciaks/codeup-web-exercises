@@ -135,13 +135,12 @@
 
     let indexOfMe = us.indexOf(me);
     console.log(indexOfMe);
+    us[indexOfMe].age = 53;
 
     let indexOfYou = us.indexOf(you);
     console.log(indexOfYou);
-    
-    us[indexOfMe].age = 53;
+    you.age = 21;
 
     console.log(JSON.stringify(us));
-
 
 })();
