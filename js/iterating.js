@@ -123,4 +123,25 @@
     console.log(testArray.shift()); // return from front
     console.log(testArray);
 
+    let me = {
+        name: 'Sheldon'
+    }
+
+    let you = {
+        name: 'Someone'
+    }
+
+    let us = [me, you];
+
+    let indexOfMe = us.indexOf(me);
+    console.log(indexOfMe);
+
+    let indexOfYou = us.indexOf(you);
+    console.log(indexOfYou);
+    
+    us[indexOfMe].age = 53;
+
+    console.log(JSON.stringify(us));
+
+
 })();
