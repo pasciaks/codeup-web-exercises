@@ -167,4 +167,9 @@
 
     // splice - alters original array
 
+    let arr1 = ['sheldon', 'tom'];
+    let arr2 = ['mary', 'sue'];
+    let arr3 = arr1.concat(arr2);
+    console.log({arr1, arr2, arr3});
+
 })();
