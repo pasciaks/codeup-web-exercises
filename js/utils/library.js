@@ -2,6 +2,9 @@ function isOddInteger(n) {
     return isInteger(n) && (n % 2 !== 0);
 }
 
+// @todo - sort these functions alphabetically, add documentation, test them in the external file library-test.js
+// @todo - test them in actual test suite - jasmine
+
 function isInteger(n) {
     return n === parseInt(n, 10);
 }
