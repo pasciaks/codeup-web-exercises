@@ -6,9 +6,6 @@ function isInteger(n) {
     return n === parseInt(n, 10);
 }
 
-function isEven(n) {
-    return n % 2 == 0;
-}
 
 function isOdd(n) {
     return Math.abs(n % 2) == 1;
@@ -86,58 +83,46 @@ function getRandomInt(min, max) {
 // ---------- functions, from walk through ----------
 // --------------------------------------------------
 
-function iTrue(num) {
+function isTrue(num) {
     return num === true;
 }
 
-function iFalse(num) {
+function isFalse(num) {
     return num === false;
 }
 
-function iNot(value) {
+function not(value) {
     return !value;
 }
 
-function aOne(value) {
+function addOne(value) {
     return parseFloat(value) + 1;
 }
 
-function iEven(num) {
+function isEven(num) {
     return parseFloat(num) % 2 === 0;
 }
 
-function iIdentical(input1, input2) {
+function isIdentical(input1, input2) {
     return input1 === input2
 }
 
-const isIdentical2 = (val1, val2) => {
-    return val1 === val2;
-}
-
-function iEqual(val1, val2) {
+function isEqual(val1, val2) {
     return val1 == val2;
 }
 
-function oOr(val1, val2) {
+function or(val1, val2) {
     return val1 || val2;
 }
 
-console.log(oOr(true, true), true);
-console.log(oOr("hello", "world"), "hello");
 
-function aAnd(val1, val2) {
+function and(val1, val2) {
     return val1 && val2;
 }
 
-console.log(aAnd(true, true), true);
-console.log(aAnd(false, false), false);
-
-function cConcat(val1, val2) {
+function concat(val1, val2) {
     return "" + val1 + val2; // coerce to string
 }
-
-console.log(cConcat("code", "up"), "codeup");
-console.log(cConcat("true", "true"), "truetrue");
 
 module.exports = {
     isOddInteger,
