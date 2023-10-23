@@ -57,6 +57,11 @@
      * Refactor your above code to use a `forEach` loop
      */
 
+    console.log('names forEach(item)');
+    names.forEach(function (item, index, array) {
+        console.log(item);
+    });
+
     console.log(`names.forEach((name) => {`);
     names.forEach((name) => {
         console.log(name);
