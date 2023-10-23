@@ -195,4 +195,16 @@
     console.log(testObject);
     console.log(testObject.dateRightNow);
 
+    let d0 = new Date();
+    let d1 = new Date(1970, 1, 15);
+    let d2 = new Date(1970, 1, 15, 8, 0, 0, 0);
+    console.log({d0, d1, d2});
+
+    let todayDate = new Date();
+    console.log(todayDate.getDay());
+    console.log(todayDate.getFullYear());
+    console.log(todayDate.getMonth());
+    console.log(todayDate.getDate());
+
+
 })();
