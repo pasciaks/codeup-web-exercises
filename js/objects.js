@@ -184,11 +184,15 @@
     console.log(books);
 
     const testObject = {}
-    
-    // testObject['dateRightNow'] = Date().toString();
+
+    // prefer to use dot-notation, with valid js variable naming
+
+    testObject['dateRightNow'] = Date().toString();
+
     // testObject['Date Right Now'] = Date().toString();
     // testObject['Date-Right-Now'] = Date().toString();
 
     console.log(testObject);
+    console.log(testObject.dateRightNow);
 
 })();
