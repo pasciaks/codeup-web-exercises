@@ -34,6 +34,7 @@
     }
 
     let webList = `<ul>${planetsArray.map(mapAsListItem).join('')}</ul>`;
+
     console.log(webList);
 
     try {
@@ -41,5 +42,7 @@
     } catch {
 
     }
+
+    console.log(webList);
 
 })();
