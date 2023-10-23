@@ -110,6 +110,5 @@
 
     console.log("last name in names array.");
     console.log(last(names));
-
-
+    
 })();
