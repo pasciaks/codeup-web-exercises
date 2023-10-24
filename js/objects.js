@@ -80,7 +80,7 @@
             let discountPercentage = calculateDiscountIfAny(amount);
             let discountAmount = calculateDiscountAmount(amount, discountPercentage);
             let discountedPrice = calculateNewPrice(amount, discountAmount);
-            let displayLine = `${shopper.name} spent $${amount.toFixed(2)}, discount is: ${discountPercentage}%, $${discountAmount.toFixed(2)} discount, discounted price: $${discountedPrice.toFixed(2)}`
+            let displayLine = `${shopper.name} spent $${amount.toFixed(2)}, discount is: ${discountPercentage * 100}%, $${discountAmount.toFixed(2)} discount, discounted price: $${discountedPrice.toFixed(2)}`
             console.log(displayLine);
         })
 
