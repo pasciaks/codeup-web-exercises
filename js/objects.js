@@ -62,7 +62,7 @@
 
         function calculateDiscountIfAny(num, minPurchase = 200) {
             if (Number(num) > minPurchase) {
-                console.log(`Discount applied (12%) due to > $200 purchase.`);
+                console.log(`Discount applied (12%) due to > $${minPurchase.toFixed(2)} purchase.`);
                 return 0.12;
             }
             return 0;
