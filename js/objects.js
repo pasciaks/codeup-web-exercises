@@ -61,7 +61,7 @@
         ];
 
         function calculateDiscountIfAny(num, minPurchase = 200) {
-            if (Number(num) >= minPurchase) {
+            if (Number(num) > minPurchase) {
                 return 0.12;
             }
             return 0;
