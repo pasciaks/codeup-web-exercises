@@ -58,3 +58,20 @@ do {
         break;
     }
 } while (++currentIteration < maxIterations);
+
+for (var ii = 0; ii < 99; ii++) {
+    let a = Math.random();
+
+    let b = a.toFixed(0);
+    console.log(b);
+    b = a.toFixed(1);
+    console.log(b);
+    b = a.toFixed(2);
+    console.log(b);
+    b = a.toFixed(3);
+    console.log(b);
+    b = a.toFixed(4);
+    console.log(b);
+
+    console.log(a);
+}
