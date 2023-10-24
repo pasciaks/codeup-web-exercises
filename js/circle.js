@@ -49,7 +49,6 @@
         }
     };
 
-
     // log info about the circle
     console.log("Raw circle information");
     circle.logInfo(false);
@@ -67,6 +66,26 @@
     // log info about the circle
     console.log("Raw circle information");
     circle.logInfo(false);
+
     console.log("Circle information rounded to the nearest whole number");
     circle.logInfo(true);
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.fillStyle = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    ctx.strokeStyle = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    ctx.lineWidth = 2;
+
+    for (let radi = 0; radi < 10; radi += .1) {
+        for (let zz = -100; zz <= 100; zz += Math.random()) {
+            let xx = Math.sin(zz) * radi * 10 + 150;
+            let yy = Math.cos(zz) * radi * 10 + 150;
+            let r = Math.random() * (30 - 5 + 1) + 5;
+            ctx.fillRect(xx - r / 2, yy - r / 2, r, r);
+            ctx.strokeRect(xx - r / 2, yy - r / 2, r, r);
+        }
+    }
+
+
 })();
