@@ -84,6 +84,10 @@
             console.log(displayLine);
         })
 
+        for (let shopper of shoppers) {
+            console.log("This works too.", shopper);
+        }
+
         /** TODO:
          * Create an array of objects that represent books and store it in a
          * variable named `books`. Each object should have a title and an author
