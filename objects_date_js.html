@@ -20,6 +20,17 @@
 
     let jsBirthday = new Date(1970, 1, 15, 0, 0, 0); // note the month is set here, zero based!
     console.log(jsBirthday.toISOString());
+    // console.log(jsBirthday.toLocaleString());
+    // console.log(jsBirthday.toLocaleDateString());
+    // console.log(jsBirthday.toLocaleTimeString());
+
+    // console.log("");
+
+    // let dateTest = new Date(Date.UTC(1970, 1, 15, 8, 0, 0, 0)); // assign date as UTC
+    // console.log(dateTest); // see that UTC date in local time zone
+
+    // console.log("");
+    // console.log(new Date(1970, 1, 15, 8, 0, 0, 0).toISOString());
 
     function formatBirthdate(date) {
         return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
@@ -29,6 +40,7 @@
     // Log your birthday in the format: January 1, 2014 using the JavaScript Date object.
     // See link below for methods needed:
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#Getter
+    console.log("");
     console.log('Here is my birthday using JavaScript: ' + formatBirthdate(jsBirthday));
 </script>
 </body>
