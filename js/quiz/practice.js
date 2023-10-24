@@ -35,3 +35,15 @@ user.calcAge = function () {
 console.log(user);
 user.calcAge();
 console.log(user);
+
+/**
+ * getRandomInt (min/max inclusive get random integer in range min,max)
+ * @param min
+ * @param max
+ * @returns {number}
+ */
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+console.log(getRandomInt(20, 200));
