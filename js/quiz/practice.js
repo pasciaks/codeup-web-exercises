@@ -47,3 +47,14 @@ function getRandomInt(min, max) {
 }
 
 console.log(getRandomInt(20, 200));
+
+let maxIterations = 9999;
+let currentIteration = 0;
+
+do {
+    if ((getRandomInt(20, 200) == 200) || (getRandomInt(20, 200) == 20)) {
+        console.log('got 20 or 200');
+        console.log(currentIteration);
+        break;
+    }
+} while (++currentIteration < maxIterations);
