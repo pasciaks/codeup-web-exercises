@@ -1,3 +1,5 @@
+# section 1
+
 ```javascript
 
 var shoppers = [
