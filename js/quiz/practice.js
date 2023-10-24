@@ -59,19 +59,36 @@ do {
     }
 } while (++currentIteration < maxIterations);
 
-for (var ii = 0; ii < 99; ii++) {
+for (let ii = 0; ii < 99; ii++) {
     let a = Math.random();
 
     let b = a.toFixed(0);
-    console.log(b);
+    let c = Math.ceil(a);
+    let d = Math.floor(a);
+
+    console.log(c, b, d);
+    d = Math.floor(a);
+    console.log(c, b, d);
+
     b = a.toFixed(1);
-    console.log(b);
+    c = Math.ceil(a);
+    d = Math.floor(a);
+    console.log(c, b, d);
+
     b = a.toFixed(2);
-    console.log(b);
+    c = Math.ceil(a);
+    d = Math.floor(a);
+    console.log(c, b, d);
+
     b = a.toFixed(3);
-    console.log(b);
+    c = Math.ceil(a);
+    d = Math.floor(a);
+    console.log(c, b, d);
+
     b = a.toFixed(4);
-    console.log(b);
+    c = Math.ceil(a);
+    d = Math.floor(a);
+    console.log(c, b, d);
 
     console.log(a);
 }
