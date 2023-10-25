@@ -3,6 +3,17 @@
 <head>
     <meta charset="utf-8">
     <title>Sheldon's - Github</title>
+
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 
 <style>
@@ -36,6 +47,12 @@
         color: #fff;
     }
 
+    ul, li {
+
+        list-style-type: none;
+        display: inline-block;
+    }
+
     table {
         width: 100%;
         border: 1px solid green;
@@ -55,19 +72,38 @@
         width: 40px;
         border: 1px solid red;
     }
+
+    .footer {
+
+        display: inline-block;
+    }
+
+    .footer-left {
+
+        text-align: left;
+    }
+
+    .footer-right {
+        text-align: right;
+    }
+
+
 </style>
 
 <body>
+
+<script crossorigin="anonymous"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
 <header>
-    <!--    <div>-->
-    <!--        <img alt="user-icon" src="https://fer-uig.glitch.me"/>-->
-    <!--        <img alt="user-icon" src="https://fer-uig.glitch.me"/>-->
-    <!--        <svg aria-hidden="true" class="octicon octicon-mark-github v-align-middle color-fg-default"-->
-    <!--             data-view-component="true" height="32" version="1.1" viewBox="0 0 16 16"-->
-    <!--             width="32">-->
-    <!--            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>-->
-    <!--        </svg>-->
-    <!--    </div>-->
+
     <nav>
         <ul>
             <li>
@@ -85,158 +121,199 @@
     </nav>
 </header>
 <main>
-    <section>
-        <div>
-            Part Two
+    <div class="container">
 
-            Recreate Github's teams page layout in a file named github.html.
+        <hr>
+        <section>
+            <section>
+                <p>
+                    <img alt="organization logo" src=""/>
+                    Codeup
+                </p>
+            </section>
+        </section>
+        <section>
+            <div class="container">
 
-            At this point how the page looks is not as important as how the page is structured. What are the most
-            appropriate semantic elements to be used in a layout like this one?.
-        </div>
-    </section>
-    <hr>
-    <section>
-        <p>
-            <img alt="organization logo" src=""/>
-            Codeup
-        </p>
-    </section>
-    <section>
-        <p>
-            Respositories
-            <badge>38</badge>
-        </p>
-        <p>
-            People
-            <badge>15</badge>
-        </p>
-        <p>
-            Teams
-            <badge>7</badge>
-        </p>
-        <p>
-            Projects
-            <badge>0</badge>
-        </p>
-        <p>
-            Settings
-        </p>
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a data-toggle="tab" href="#repositories">
+                            Respositories
+                            <badge>38</badge>
+                        </a>
+                    </li>
 
-    </section>
-    <section>
-        <div>Codeup's dev team</div>
-        <div>
-            <table>
-                <tr>
-                    <td>
-                        <img alt="User Icon" src=""/>
-                    </td>
-                    <td>
-                        <div>Kent Beck</div>
-                        <p>KentBeck</p>
-                    </td>
-                    <td>
-                        Member
-                    </td>
-                    <td>
-                        1 team
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img alt="User Icon" src=""/>
-                    </td>
-                    <td>
-                        <div>Kent Beck</div>
-                        <p>KentBeck</p>
-                    </td>
-                    <td>
-                        Member
-                    </td>
-                    <td>
-                        1 team
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img alt="User Icon" src=""/>
-                    </td>
-                    <td>
-                        <div>Kent Beck</div>
-                        <p>KentBeck</p>
-                    </td>
-                    <td>
-                        Member
-                    </td>
-                    <td>
-                        1 team
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </section>
-    <footer>
-        <div>
-            <div>
-                <ul>
-                    <li>(c) 2018 GitHub, Inc</li>
-                    <li>Terms</li>
-                    <li>Policy</li>
-                    <li>Security</li>
-                    <li>Status</li>
-                    <li>Help</li>
+                    <li class="active">
+                        <a data-toggle="tab" href="#people">
+                            People
+                            <badge>15</badge>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a data-toggle="tab" href="#teams">
+                            Teams
+                            <badge>7</badge>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a data-toggle="tab" href="#projects">
+                            Projects
+                            <badge>0</badge>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a data-toggle="tab" href="#settings">
+                            Settings
+                        </a>
+                    </li>
+
                 </ul>
 
-            </div>
-            <div>
-                <ul>
-                    <li>Connect GitHub</li>
-                    <li>API</li>
-                    <li>Training</li>
-                    <li>Shop</li>
-                    <li>Blog</li>
-                    <li>About</li>
-                </ul>
-            </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="repositories">
+                        <h3></h3>
+                        <p></p>
+                    </div>
 
-        </div>
+                    <div class="tab-pane fade in active" id="people">
+                        <section>
+                            <div>Codeup's dev team</div>
+                            <div>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <img alt="User Icon" src=""/>
+                                        </td>
+                                        <td>
+                                            <div>Kent Beck</div>
+                                            <p>KentBeck</p>
+                                        </td>
+                                        <td>
+                                            Member
+                                        </td>
+                                        <td>
+                                            1 team
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img alt="User Icon" src=""/>
+                                        </td>
+                                        <td>
+                                            <div>Kent Beck</div>
+                                            <p>KentBeck</p>
+                                        </td>
+                                        <td>
+                                            Member
+                                        </td>
+                                        <td>
+                                            1 team
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img alt="User Icon" src=""/>
+                                        </td>
+                                        <td>
+                                            <div>Kent Beck</div>
+                                            <p>KentBeck</p>
+                                        </td>
+                                        <td>
+                                            Member
+                                        </td>
+                                        <td>
+                                            1 team
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
 
-    </footer>
+                    <div class="tab-pane fade" id="teams">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+
+                    <div class="tab-pane fade" id="projects">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+
+                    <div class="tab-pane fade" id="settings">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+
+        <footer class="footer">
+            <row>
+                <col>
+                <ul class="footer-left">
+                <li>(c) 2018 GitHub, Inc</li>
+                <li>Terms</li>
+                <li>Policy</li>
+                <li>Security</li>
+                <li>Status</li>
+                <li>Help</li>
+            </ul></col>
+                <col>
+                <ul class="footer-right">
+                <li>Connect GitHub</li>
+                <li>API</li>
+                <li>Training</li>
+                <li>Shop</li>
+                <li>Blog</li>
+                <li>About</li>
+            </ul></col>
+
+            </row>
+
+
+        </footer>
+    </div>
 </main>
-<section>
-    <hr>
-    <p>
-        Hint: The element titled 'Codeup dev team' is a table element!
-    </p>
-    <p>
-        For the example user avatars you can use this random user avatar generator
-        For the logos you can use placeholder.pics. The following examples will create 2 placeholder images, 30 and 48
-        pixels each.
-    </p>
-    <p>
-        http://placeholder.pics/svg/30 # Use this one for the 2 first images
-        http://placeholder.pics/svg/48 # Use this one for the images in the table
-        Copy the URLs in your browser and save the images in your project's img directory (30x30.svg and 48x48.svg).
-        This
-        will speed up the loading time of your page.
-    </p>
-    <p>
-        Finally, commit the changes to your git repository, and push to GitHub.
-    </p>
-</section>
-<section>
-    <img alt="" src="http://placeholder.pics/svg/30"/>
-    <img alt="" src="http://placeholder.pics/svg/48"/>
+<!--<section>-->
+<!--    <hr>-->
+<!--    <p>-->
+<!--        Hint: The element titled 'Codeup dev team' is a table element!-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        For the example user avatars you can use this random user avatar generator-->
+<!--        For the logos you can use placeholder.pics. The following examples will create 2 placeholder images, 30 and 48-->
+<!--        pixels each.-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        http://placeholder.pics/svg/30 # Use this one for the 2 first images-->
+<!--        http://placeholder.pics/svg/48 # Use this one for the images in the table-->
+<!--        Copy the URLs in your browser and save the images in your project's img directory (30x30.svg and 48x48.svg).-->
+<!--        This-->
+<!--        will speed up the loading time of your page.-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        Finally, commit the changes to your git repository, and push to GitHub.-->
+<!--    </p>-->
+<!--</section>-->
+<!--<section>-->
+<!--    <img alt="" src="http://placeholder.pics/svg/30"/>-->
+<!--    <img alt="" src="http://placeholder.pics/svg/48"/>-->
 
-</section>
-<section>
-    <img alt="user-icon" src="https://fer-uig.glitch.me"/>
-    <img alt="user-icon" src="https://fer-uig.glitch.me?uuid=2"/>
-    <img alt="user-icon" src="https://fer-uig.glitch.me?uuid=23"/>
-    <img alt="user-icon" src="https://fer-uig.glitch.me?uuid=32"/>
-    <img alt="user-icon" src="https://fer-uig.glitch.me?uuid=999"/>
-</section>
+<!--</section>-->
+<!--<section>-->
+<!--    <img alt="user-icon" src="https://fer-uig.glitch.me"/>-->
+<!--    <img alt="user-icon" src="https://fer-uig.glitch.me?uuid=2"/>-->
+<!--    <img alt="user-icon" src="https://fer-uig.glitch.me?uuid=23"/>-->
+<!--    <img alt="user-icon" src="https://fer-uig.glitch.me?uuid=32"/>-->
+<!--    <img alt="user-icon" src="https://fer-uig.glitch.me?uuid=999"/>-->
+<!--</section>-->
 </body>
 
 </html>
