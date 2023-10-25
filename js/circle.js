@@ -44,14 +44,20 @@
 
         logInfo: function (doRounding) {
             // TODO: complete this method.
-            let localArea = this.getArea();
+            let localArea = this.getArea(); // note: variable assignment means memory and time
             // If doRounding is true, round the result to the nearest integer.
             // Otherwise, output the complete value
             if (doRounding) {
                 localArea = Math.round(localArea);
             }
             console.log("Area of a circle with radius: " + this.radius + ", is: " + `${localArea}`);
+        },
+
+        logInfo2: function (doRounding) { // note: more 'optimized' but harder to read
+            // TODO: complete this method.
+            console.log("Area of a circle with radius: " + this.radius + ", is: " + `((doRounding) ? Math.round(this.getArea()) : this.getArea())`);
         }
+
     };
 
     // log info about the circle
