@@ -75,6 +75,7 @@
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
             ctx.fillStyle = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            ctx.fillStyle = '#' + Math.floor(Math.random() * 16777215).toString(16);
             ctx.strokeStyle = '#' + Math.floor(Math.random() * 16777215).toString(16);
             ctx.lineWidth = 2;
             let offx = Math.random() * canvas.width / 2;
