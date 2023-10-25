@@ -1,0 +1,44 @@
+/** {*/
+/*    border: 2px solid red;*/
+/*}*/
+
+.fancy-header {
+    color: purple; /* single line comment */
+    text-decoration: underline;
+}
+
+.row {
+    display: inline-block;
+}
+
+.top-left img {
+    width: 300px;
+    height: 200px;
+    /*border: 1px solid red;*/
+}
+
+.top-right img {
+    width: 300px;
+    height: 200px;
+    /*border: 1px solid yellow;*/
+}
+
+.bottom-left img {
+    width: 300px;
+    height: 160px;
+    /*border: 1px solid green;*/
+}
+
+.bottom-right img {
+    width: 300px;
+    height: 200px;
+    /*border: 1px solid blue;*/
+}
+
+.guarantee {
+    font-style: italic;
+}
+
+.fancy-header {
+    color: red;
+}
