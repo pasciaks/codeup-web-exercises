@@ -42,6 +42,8 @@
             // return Math.PI * (Math.pow(this.radius, 2)); // TODO: return the proper value
         },
 
+        // curl -LO https://raw.githubusercontent.com/pasciaks/codeup-web-exercises/main/js/circle.js
+
         logInfo: function (doRounding) {
             // TODO: complete this method.
             let localArea = this.getArea(); // note: variable assignment means memory and time
