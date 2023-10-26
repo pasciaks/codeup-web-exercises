@@ -9,6 +9,7 @@
 
     .container {
         margin: 10px 10px;
+        padding: 5px 5px;
         border: 1px solid grey;
     }
 
@@ -19,8 +20,10 @@
     }
 
     textarea {
-        width: 250px;
+        width: 325px;
         height: 75px;
+        background-color: lightgray;
+        border: 1px solid green;
     }
 
 </style>
@@ -58,12 +61,12 @@ What happens if you leave off the id attribute on a form input?
 Finally, commit the changes to your git repository, and push to GitHub.
 -->
 
-<form action="https://request-inspector.glitch.me/" method="POST">
 
-    <input name="user_id" type="hidden" value="432">
+<div class="container">
 
-    <div class="container form-container">
+    <form action="https://request-inspector.glitch.me/" method="POST">
 
+        <input name="user_id" type="hidden" value="432">
 
         <div class="form-control">
             <div>
@@ -104,9 +107,7 @@ Finally, commit the changes to your git repository, and push to GitHub.
                 <label class="form-check-label" for="otherCheck">
                     Other
                 </label>
-
             </div>
-
         </div>
 
         <div class="form-control">
@@ -143,54 +144,55 @@ Finally, commit the changes to your git repository, and push to GitHub.
 
         <hr>
 
-        <div class="container">
-            <h2>Q & A</h2>
-            <div class="form-control">
-                <p>
-                    <em>
-                        What do you notice when changing the form's request method from GET to POST?
-                    </em>
-                    <strong>
-                        Get is query string returned in the url.
-                    </strong>
-                    <br>
-                    <em>
-                        What happens if you leave off the name attribute on an input?
-                    </em>
-                    <strong>
-                        The value doesn't get sent by the form submission.
-                    </strong>
-                    <br>
-                    <em>
-                        What happens if you leave off the id attribute on a form input?
-                    </em>
-                    <strong>
-                        Label error, doesn't allow label to interact with element.
-                    </strong>
-                    <br>
-                </p>
+    </form>
 
+    <div class="container">
+        <h2>Q & A</h2>
+        <div class="form-control">
+            <p>
+                <em>
+                    What do you notice when changing the form's request method from GET to POST?
+                </em>
+                <strong>
+                    Get is query string returned in the url.
+                </strong>
+                <br>
+                <em>
+                    What happens if you leave off the name attribute on an input?
+                </em>
+                <strong>
+                    The value doesn't get sent by the form submission.
+                </strong>
+                <br>
+                <em>
+                    What happens if you leave off the id attribute on a form input?
+                </em>
+                <strong>
+                    Label error, doesn't allow label to interact with element.
+                </strong>
+                <br>
+            </p>
 
-            </div>
-            <div class="form-control">
-                <dl>
-                    <dt>What happens if the radio inputs are given different name attributes?
-                    </dt>
-                    <dd>The browser allows you to select more than 1 radio. Having the same name ensures only 1 radio of
-                        the
-                        name is selected.
-                    </dd>
-
-                    <dt>
-                        Change these inputs so that multiple answers are allowed to be selected.
-                    </dt>
-                    <dd>Adapted to use checkboxes.</dd>
-                </dl>
-            </div>
 
         </div>
+        <div class="form-control">
+            <dl>
+                <dt>What happens if the radio inputs are given different name attributes?
+                </dt>
+                <dd>The browser allows you to select more than 1 radio. Having the same name ensures only 1 radio of
+                    the
+                    name is selected.
+                </dd>
 
+                <dt>
+                    Change these inputs so that multiple answers are allowed to be selected.
+                </dt>
+                <dd>Adapted to use checkboxes.</dd>
+            </dl>
+        </div>
     </div>
-</form>
+
+</div>
+
 </body>
 </html>
