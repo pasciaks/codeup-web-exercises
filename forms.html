@@ -4,23 +4,38 @@
     <meta charset="UTF-8">
     <title>Register With Us</title>
 </head>
+
+<style>
+    .form-control {
+        display: block;
+    }
+</style>
+
 <body>
 
 <!--
 Exercises
 
-For this exercise, we will be building a registration page for Veridian Dynamics. We will be utilizing Request Inspector to view the resulting data that our form submits. Throughout this exercise, you should be submitting your form and viewing the resulting data on the Request Inspector page.
+For this exercise, we will be building a registration page for Veridian Dynamics.
+We will be utilizing Request Inspector to view the resulting data that our form submits.
+Throughout this exercise, you should be submitting your form and viewing the
+resulting data on the Request Inspector page.
 
 Create a file named forms.html.
-Using what you have learned in the previous lessons, add the necessary HTML document structure to the page with a title of: "Register With Us".
+Using what you have learned in the previous lessons, add the necessary HTML
+document structure to the page with a title of: "Register With Us".
 Create an empty form element. We will be adding to this throughout the exercise.
 Below is an example of using the Request Inspector.
 <form method="POST" action="https://request-inspector.glitch.me/">
 Create text fields for email and password with appropriate placeholder values.
 Create a textarea named "bio". This is for the user to fill out a short description of themselves.
-Create a "How did you hear about us" section that contains radio buttons. The values should be "billboard", "radio advertisement", "internet advertisement", and "other". Only one of the values should be allowed to be selected at a time.
+Create a "How did you hear about us" section that contains radio buttons.
+The values should be "billboard", "radio advertisement", "internet advertisement", and "other".
+Only one of the values should be allowed to be selected at a time.
 What happens if the inputs are given different name attributes?
 Change these inputs so that multiple answers are allowed to be selected.
+
+
 Create a dropdown that asks the user what web browser they are using.
 As you work through the steps above, you should:
 Make sure all of your form elements have labels.
@@ -41,69 +56,109 @@ Finally, commit the changes to your git repository, and push to GitHub.
 
     <div class="form-control">
         <label for="email">Email</label>
-        <input id="email" name="email" type="email">
+        <input id="email" name="email" placeholder="someone@somewhere.com" type="email">
     </div>
 
     <br>
 
     <div class="form-control">
         <label for="password">Password</label>
-        <input id="password" name="password" type="password">
+        <input id="password" name="password" placeholder="DJ32!ahkOq8U" type="password">
     </div>
 
     <br>
 
     <div class="form-control">
-        <label for="bio">Bio</label>
+        <label for="bio">Bio - Short Description</label>
         <textarea cols="40" id="bio" name="bio" rows="5"></textarea>
     </div>
 
     <div class="form-control">
-        <p>
-            What happens if the inputs are given different name attributes? allow additional selection.
-            Change these inputs so that multiple answers are allowed to be selected.
-        </p>
+
+        <dl>
+            <dt>What happens if the radio inputs are given different name attributes?
+            </dt>
+            <dd>The browser allows you to select more than 1 radio. Having the same name ensures only 1 radio of the
+                name is selected.
+            </dd>
+
+            <dt>
+                Change these inputs so that multiple answers are allowed to be selected.
+            </dt>
+            <dd>Adapted to use checkboxes.</dd>
+        </dl>
 
         <p>How did you hear about us?</p>
 
-        <input id="billboard" name="billboard" type="radio" value="billboard">
-        <label for="billboard">billboard</label>
-        <br>
-        <input id="radio" name="radio" type="radio" value="radio advertisement">
-        <label for="radio">radio advertisement</label>
-        <br>
-        <input id="internet" name="internet" type="radio" value="internet advertisement">
-        <label for="internet">internet advertisement</label>
-        <br>
-        <input id="other" name="other" type="radio" value="other">
-        <label for="other">other</label>
-        <br>
+        <div class="form-check">
+            <input class="form-check-input" id="billboardCheck" name="billboardCheck" type="checkbox" value="">
+            <label class="form-check-label" for="billboardCheck">
+                Billboard
+            </label>
 
-        <br>
+            <input class="form-check-input" id="radioCheck" name="radioCheck" type="checkbox" value="">
+            <label class="form-check-label" for="radioCheck">
+                Radio
+            </label>
+
+            <input class="form-check-input" id="internetCheck" name="internetCheck" type="checkbox" value="">
+            <label class="form-check-label" for="internetCheck">
+                Internet
+            </label>
+
+            <input class="form-check-input" id="otherCheck" name="otherCheck" type="checkbox" value="">
+            <label class="form-check-label" for="otherCheck">
+                Other
+            </label>
+
+        </div>
+
+        <div class="container" style="background-color: #666666">
+            <p>Not needed, extra!</p>
+            <input id="billboard" name="contactMethod" type="radio" value="billboard">
+            <label for="billboard">billboard</label>
+            <br>
+            <input id="radio" name="contactMethod" type="radio" value="radio advertisement">
+            <label for="radio">radio advertisement</label>
+            <br>
+            <input id="internet" name="contactMethod" type="radio" value="internet advertisement">
+            <label for="internet">internet advertisement</label>
+            <br>
+            <input id="other" name="contactMethod" type="radio" value="other">
+            <label for="other">other</label>
+        </div>
 
     </div>
 
     <div class="form-control">
         <p>
-            What do you notice when changing the form's request method from GET to POST?
+            <em>
+                What do you notice when changing the form's request method from GET to POST?
+            </em>
+            <strong>
+                Get is query string returned in the url.
+            </strong>
             <br>
-            get is query string
+            <em>
+                What happens if you leave off the name attribute on an input?
+            </em>
+            <strong>
+                The value doesn't get sent by the form submission.
+            </strong>
             <br>
-            What happens if you leave off the name attribute on an input?
-            <br>
-            value doesn't get posted
-            <br>
-            What happens if you leave off the id attribute on a form input?
-            <br>
-            label for error, intelliJ notices missing
-            name attr
-            <br>
+            <em>
+                What happens if you leave off the id attribute on a form input?
+            </em>
+            <strong>
+                Label error, doesn't allow label to interact with element.
+            </strong>
+
         </p>
 
-        <label for="browser">Choose your browser:</label>
+        <label for="browser">What is your preferred internet browser ?</label>
 
-        <select id="browser" name="browser" required>
-            <option disabled selected value="">-make a selection-</option>
+        <select id="browser" name="browser">
+            <option disabled selected value="">Default None Selected</option>
             <option value="Chrome">Chrome</option>
             <option value="Firefox">Firefox</option>
             <option value="Safari">Safari</option>
@@ -112,9 +167,8 @@ Finally, commit the changes to your git repository, and push to GitHub.
 
     </div>
 
-    <br>
-
     <input type="submit">
+
 </form>
 </body>
 </html>
