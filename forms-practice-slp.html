@@ -24,25 +24,200 @@
 
 </head>
 <body>
-<h1>Hello, world!</h1>
+
+<h1>https://getbootstrap.com/docs/5.0</h1>
+
+<section>
+    <form action="https://request-inspector.glitch.me/" method="POST">
+        <div class="container checkbox">
+            <div class="form-group form-check">
+                <input class="form-check-input" id="exampleCheck1" name="exampleCheck1" type="checkbox" value='1'>
+                <label class="form-check-label" for="exampleCheck1">Check me out1</label>
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" id="exampleCheck2" name="exampleCheck1" type="checkbox" value='2'>
+                <label class="form-check-label" for="exampleCheck2">Check me out2</label>
+            </div>
+        </div>
+        <div class="container select">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+        </div>
+        <div class="container">
+            <input type="submit" value="ok"/>
+        </div>
+    </form>
+</section>
+
+
+<div class="container">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+        <input aria-describedby="basic-addon1" aria-label="Username" class="form-control" placeholder="Username"
+               type="text">
+    </div>
+
+    <div class="input-group mb-3">
+        <input aria-describedby="basic-addon2" aria-label="Recipient's username" class="form-control"
+               placeholder="Recipient's username"
+               type="text">
+        <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">@example.com</span>
+        </div>
+    </div>
+
+    <label for="basic-url">Your vanity URL</label>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+        </div>
+        <input aria-describedby="basic-addon3" class="form-control" id="basic-url" type="text">
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+        </div>
+        <input aria-label="Amount (to the nearest dollar)" class="form-control" type="text">
+        <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">With textarea</span>
+        </div>
+        <textarea aria-label="With textarea" class="form-control"></textarea>
+    </div>
+</div>
+
 
 <div class="container">
 
+    <div class="form-check">
+        <input checked class="form-check-input" id="exampleRadios1" name="exampleRadios" type="radio" value="option1">
+        <label class="form-check-label" for="exampleRadios1">
+            Default radio
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" id="exampleRadios2" name="exampleRadios" type="radio" value="option2">
+        <label class="form-check-label" for="exampleRadios2">
+            Second default radio
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" disabled id="exampleRadios3" name="exampleRadios" type="radio" value="option3">
+        <label class="form-check-label" for="exampleRadios3">
+            Disabled radio
+        </label>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col">
+            <input aria-label="First name" class="form-control" placeholder="First name" type="text">
+        </div>
+        <div class="col">
+            <input aria-label="Last name" class="form-control" placeholder="Last name" type="text">
+        </div>
+    </div>
+
+    <hr>
+
+
+    <div class="form-check form-switch">
+        <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+    </div>
+    <div class="form-check form-switch">
+        <input checked class="form-check-input" id="flexSwitchCheckChecked" type="checkbox">
+        <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" disabled id="flexSwitchCheckDisabled" type="checkbox">
+        <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch checkbox input</label>
+    </div>
+    <div class="form-check form-switch">
+        <input checked class="form-check-input" disabled id="flexSwitchCheckCheckedDisabled" type="checkbox">
+        <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox
+            input</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" id="flexCheckDefault" type="checkbox" value="">
+        <label class="form-check-label" for="flexCheckDefault">
+            Default checkbox
+        </label>
+    </div>
+    <div class="form-check">
+        <input checked class="form-check-input" id="flexCheckChecked" type="checkbox" value="">
+        <label class="form-check-label" for="flexCheckChecked">
+            Checked checkbox
+        </label>
+    </div>
+
     <form>
+
+        <div class="form-group">
+            <label for="textInput">text input</label>
+            <input class="form-control"
+                   id="textInput"
+                   pattern="https?://.+"
+                   placeholder="Placeholder text..."
+                   type="text"
+                   value="This is a value.">
+        </div>
+
         <div class="form-group">
             <label for="exampleFormControlInput1">Email address</label>
             <input class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" type="email">
         </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Example select</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
+
+        <ul class="list-group">
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+
+
+            <li class="list-group-item list-group-item-primary">A simple primary list group item</li>
+            <li class="list-group-item list-group-item-secondary">A simple secondary list group item</li>
+            <li class="list-group-item list-group-item-success">A simple success list group item</li>
+            <li class="list-group-item list-group-item-danger">A simple danger list group item</li>
+            <li class="list-group-item list-group-item-warning">A simple warning list group item</li>
+            <li class="list-group-item list-group-item-info">A simple info list group item</li>
+            <li class="list-group-item list-group-item-light">A simple light list group item</li>
+            <li class="list-group-item list-group-item-dark">A simple dark list group item</li>
+        </ul>
+
+        <hr>
+
+        <ul class="list-group list-group-horizontal-md">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+        </ul>
+
+        <div class="card" style="width: 18rem;">
+            <img alt="..." class="card-img-top" src="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a class="btn btn-primary" href="#">Go somewhere</a>
+            </div>
         </div>
+
         <div class="form-group">
             <label for="exampleFormControlSelect2">Example multiple select</label>
             <select class="form-control" id="exampleFormControlSelect2" multiple>
