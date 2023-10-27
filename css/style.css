@@ -97,6 +97,7 @@ table, td, tr {
     margin: 5px;
     font-size: 8px;
     color: blue;
+    text-align: left;
 }
 
 img {
@@ -138,3 +139,15 @@ a:active {
     color: red;
     /* Change the link color when active */
 }
+
+/* make second-level headers green */
+h2 {
+    color: green;
+}
+
+/* ...but leave those in the sidebar alone so they use their parent's color */
+#sidebar h2 {
+    color: inherit;
+}
+
+
