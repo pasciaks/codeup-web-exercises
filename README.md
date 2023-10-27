@@ -15,12 +15,6 @@ tree
 Here is what my tree structure and naming currently looks like. By running those terminal commands, you can see your
 directory compared to mine and possibly identify any naming or missing file, exercises issues.
 
-I may create code to programmatically compare my results (file naming, structure), to yours, but that hasn't been done
-yet.
-
-If you are interested in that, run the following commands and then email me your .mytree file. Note in the commands
-below, replace 'githubusername.mytree' with your github username followed by .mytree.
-
 Example:
 
 tree > pasciaks.mytree
