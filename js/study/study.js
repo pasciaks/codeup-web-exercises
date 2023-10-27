@@ -104,7 +104,7 @@ console.log(2.1, '\n(2.1).toFixed(2)\n', (2.1).toFixed(2));
 
 console.log(2.16, '\n(2.16).toFixed(1)\n', (2.16).toFixed(1));
 
-for (var jj = 0; jj < 10; jj++) {
+for (let jj = 0; jj < 10; jj++) {
     if (jj === 2) {
         break;
     }
@@ -146,3 +146,4 @@ let arrOfObjs = [
 for (let {price} of arrOfObjs) {
     console.log(price);
 }
+
