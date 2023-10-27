@@ -113,8 +113,9 @@ img:hover {
 a:link {
     color: #007bff;
     /* Change the link color */
-    text-decoration: none;
+    /*text-decoration: none;*/
     /* Remove underline */
+    text-decoration: overline;
 }
 
 /* Visited link styles */
