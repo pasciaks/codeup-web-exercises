@@ -2,11 +2,11 @@
 /*    border: 2px solid red;*/
 /*}*/
 
-/*Included master-styles for google font for all of page, see welcome.html*/
-
 /** {*/
 /*    font-family: 'Courier New', Courier, monospace;*/
 /*}*/
+
+@import url('https://fonts.googleapis.com/css?family=Kumar+One');
 
 html {
     margin: 5px 10px 15px 20px;
@@ -26,6 +26,7 @@ body {
 }
 
 .fancy-header {
+    font-family: "Kumar One", serif;
     color: purple; /* single line comment */
     text-decoration: underline;
     text-align: center;
