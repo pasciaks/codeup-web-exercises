@@ -126,3 +126,23 @@ for (var jj = 0; jj < 10; jj++) {
 // - [ ] I can create and use objects in JavaScript.
 // - [ ] I can add methods and properties to objects in JavaScript.
 // - [ ] I know how to use the methods and properties from an object in JavaScript.
+
+
+let ttt = [1, 2, 3, 4];
+
+for (const item of ttt) {
+    console.log(item);
+}
+
+let arrOfObjs = [
+    {item: 'Item', price: 0},
+    {item: 'Item', price: 1},
+    {item: 'Item', price: 2},
+    {item: 'Item', price: 3},
+    {item: 'Item', price: 4},
+    {item: 'Item', price: 5},
+]
+
+for (let {price} of arrOfObjs) {
+    console.log(price);
+}
