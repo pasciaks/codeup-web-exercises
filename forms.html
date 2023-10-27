@@ -63,53 +63,52 @@ Finally, commit the changes to your git repository, and push to GitHub.
 
 
 <div class="container">
-
-    <form action="https://request-inspector.glitch.me/" method="POST">
-
+    <!--Just demonstrating below that a post also has query string ability.-->
+    <form action="https://request-inspector.glitch.me/?myNameIs=Sheldon" method="POST">
         <input name="user_id" type="hidden" value="432">
-
         <div class="form-control">
             <div>
                 <label for="email">Email</label>
             </div>
             <input id="email" name="email" placeholder="someone@somewhere.com" type="email">
         </div>
-
         <div class="form-control">
             <label for="password">Password</label>
             <input id="password" name="password" placeholder="DJ32!ahkOq8U" type="password">
         </div>
-
         <div class="form-control">
             <label for="bio">Bio - Short Description</label>
-            <textarea cols="40" id="bio" name="bio" rows="5"></textarea>
+            <textarea cols="40" id="bio" name="bio" rows="5" style="resize:none;"></textarea>
         </div>
-
         <div class="form-control">
             <h3>How did you hear about us?</h3>
             <div class="form-check">
-                <input class="form-check-input" id="billboardCheck" name="billboardCheck" type="checkbox" value="">
-                <label class="form-check-label" for="billboardCheck">
-                    Billboard
-                </label>
-
-                <input class="form-check-input" id="radioCheck" name="radioCheck" type="checkbox" value="">
-                <label class="form-check-label" for="radioCheck">
-                    Radio
-                </label>
-
-                <input class="form-check-input" id="internetCheck" name="internetCheck" type="checkbox" value="">
-                <label class="form-check-label" for="internetCheck">
-                    Internet
-                </label>
-
-                <input class="form-check-input" id="otherCheck" name="otherCheck" type="checkbox" value="">
-                <label class="form-check-label" for="otherCheck">
-                    Other
-                </label>
+                <div class="form-check">
+                    <input class="form-check-input" id="billboardCheck" name="billboardCheck" type="checkbox" value="">
+                    <label class="form-check-label" for="billboardCheck">
+                        Billboard
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" id="radioCheck" name="radioCheck" type="checkbox" value="">
+                    <label class="form-check-label" for="radioCheck">
+                        Radio
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" id="internetCheck" name="internetCheck" type="checkbox" value="">
+                    <label class="form-check-label" for="internetCheck">
+                        Internet
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" id="otherCheck" name="otherCheck" type="checkbox" value="">
+                    <label class="form-check-label" for="otherCheck">
+                        Other
+                    </label>
+                </div>
             </div>
         </div>
-
         <div class="form-control">
             <div class="container">
                 <input id="billboard" name="contactMethod" type="radio" value="billboard">
@@ -125,7 +124,6 @@ Finally, commit the changes to your git repository, and push to GitHub.
                 <label for="other">other</label>
             </div>
         </div>
-
         <div class="form-control">
             <label for="browser">What is your preferred internet browser ?</label>
             <hr>
