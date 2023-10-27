@@ -7,5 +7,7 @@
 }
 
 .title {
-    
+    color: steelblue;
+    text-decoration: line-through;
 }
+
