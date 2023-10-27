@@ -2,6 +2,10 @@
     css comments
  */
 
+* {
+    border: 1px solid red;
+}
+
 .overline {
     text-decoration: overline;
 }
@@ -23,3 +27,12 @@ h2, h3, h4, h5, h6 {
     text-decoration: line-through;
 }
 
+/*// @todo var in css*/
+/*body {*/
+/*    font: 1rem/1.5 var(--bs-font-sans-serif);*/
+/*}*/
+
+/*// @todo var in css*/
+/*a {*/
+/*    color: var(--bs-blue);*/
+/*}*/

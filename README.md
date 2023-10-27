@@ -71,7 +71,7 @@ exercises.
 ├── inline_js.html
 ├── iterating_arrays_js.html
 ├── js
-│___ ├── Objects-2.js
+│___ ├── objects-2.js
 │___ ├── break_and_continue.js
 │___ ├── circle.js
 │___ ├── conditionals.js
