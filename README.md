@@ -17,19 +17,18 @@ directory compared to mine and possibly identify any naming or missing file, exe
 
 Example:
 
-tree > pasciaks.mytree
-
 ```bash
 brew install tree
 cd
 cd IdeaProjects/
 cd codeup-web-exercises
 tree
-tree > githubusername.mytree
+
 
 ```
 
-This is my my tree currently looks like.
+This is what my tree currently looks like. I have more files because I added some of my own and worked ahead in
+exercises.
 
 ```bash
 
