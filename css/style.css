@@ -2,15 +2,33 @@
 /*    border: 2px solid red;*/
 /*}*/
 
+/*Included master-styles for google font for all of page, see welcome.html*/
+
+/** {*/
+/*    font-family: 'Courier New', Courier, monospace;*/
+/*}*/
+
+html {
+    margin: 5px 10px 15px 20px;
+    padding: 5px 10px 15px 20px;
+    background-image: url("../images/background.jpeg");
+    border: 2px solid gold;
+}
+
 body {
     background-color: #abc;
-    /*background-size: cover;*/
-    /*background-image: url("../images/git-inverted.png");*/
+    padding: 5px 10px 15px 20px;
+    border-top: 5px solid red;
+    border-right: 10px solid blue;
+    border-bottom: 15px solid green;
+    border-left: 20px solid cyan;
+
 }
 
 .fancy-header {
     color: purple; /* single line comment */
     text-decoration: underline;
+    text-align: center;
 }
 
 .row {
@@ -50,7 +68,71 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: underline;
 }
 
-/*.fancy-header {*/
-/*    color: red;*/
-/*    text-align: center;*/
+
+/*ul {*/
+/*    !*list-style-type: circle;*!*/
+/*    list-style-image: url('../images/git.png');*/
+
 /*}*/
+
+li {
+    list-style: none;
+}
+
+li::before {
+    content: '';
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin: 10px;
+    border: 1px solid gold;
+    background-image: url('../images/git.png');
+    /*background-size: cover;*/
+    background-size: contain
+}
+
+table, td, tr {
+    padding: 5px;
+    margin: 5px;
+    font-size: 8px;
+    color: blue;
+}
+
+img {
+    opacity: .5;
+    border: 2px solid transparent;
+}
+
+img:hover {
+    opacity: 1;
+    border: 2px solid red;
+}
+
+
+/* Default link styles */
+a:link {
+    color: #007bff;
+    /* Change the link color */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+/* Visited link styles */
+a:visited {
+    color: black;
+    /* Change the visited link color */
+}
+
+/* Hover link styles */
+a:hover {
+    color: green;
+    /* Change the link color on hover */
+    text-decoration: underline;
+    /* Underline on hover */
+}
+
+/* Active link styles (when clicked) */
+a:active {
+    color: red;
+    /* Change the link color when active */
+}
