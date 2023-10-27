@@ -1,0 +1,25 @@
+body {
+    background: #534B52;
+    color: #E0DDCF;
+}
+
+.subtitle {
+    color: #bdbbb0;
+}
+
+button {
+    background: #383237;
+    border: 1px solid #bdbbb0;
+    color: #E0DDCF;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+input, textarea, select {
+    background: #383237;
+    color:#E0DDCF;
+    border: 1px solid #bdbbb0;
+    padding: 5px;
+    border-radius: 5px;
+}

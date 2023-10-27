@@ -1,0 +1,26 @@
+@font-face {
+    font-family: NewRodin;
+    src: url("../media/FOT-NewRodin Pro M.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: NewRodin;
+    src: url("../media/FOT-NewRodin Pro B.otf");
+    font-weight: bold;
+    font-style: normal;
+}
+
+* {
+    font-family: NewRodin, sans-serif;
+    line-height: 1.35;
+}
+
+.main-title {
+    margin: .5em 0;
+}
+
+.subtitle {
+    margin: 0;
+}
