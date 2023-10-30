@@ -109,7 +109,7 @@ li::before {
 table, td, tr {
     padding: 5px;
     margin: 5px;
-    font-size: 12px;
+    font-size: 14px;
     color: blue;
     text-align: left;
 }
