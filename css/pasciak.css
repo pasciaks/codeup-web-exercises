@@ -2,15 +2,24 @@
     css comments
  */
 
+* {
+    border: 1px solid red;
+    font-style: italic;
+}
+
 /** {*/
-/*    border: 1px solid red;*/
+/*    font-family: 'Fjalla One', sans-serif;*/
+/*    !*font-family: 'Rubik', sans-serif;*!*/
 /*}*/
 
-
-* {
-    font-family: 'Fjalla One', sans-serif;
-    /*font-family: 'Rubik', sans-serif;*/
-}
+/** {*/
+/*    @font-face {*/
+/*        font-family: NewRodin;*/
+/*        src: url("../media/FOT-NewRodin Pro M.otf");*/
+/*        font-weight: normal;*/
+/*        font-style: normal;*/
+/*    }*/
+/*}*/
 
 .overline {
     text-decoration: overline;
