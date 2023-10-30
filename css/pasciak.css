@@ -7,9 +7,10 @@
 /*}*/
 
 
-/** {*/
-/*    font-family: "Kumar One", serif*/
-/*}*/
+* {
+    font-family: 'Fjalla One', sans-serif;
+    /*font-family: 'Rubik', sans-serif;*/
+}
 
 .overline {
     text-decoration: overline;
