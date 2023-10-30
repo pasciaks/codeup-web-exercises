@@ -2,9 +2,9 @@
     css comments
  */
 
-* {
-    border: 1px solid red;
-}
+/** {*/
+/*    border: 1px solid red;*/
+/*}*/
 
 .overline {
     text-decoration: overline;
@@ -52,7 +52,6 @@ h2, h3, h4, h5, h6 {
 
 /*pseudo class*/
 a {
-
     transition: .5s;
 }
 
@@ -62,8 +61,10 @@ a:active {
 
 a:hover {
     font-size: 26px;
+    text-decoration: overline red;
 }
 
 a:link {
-    font-style: 12px;
+    font-size: 12px;
 }
+
