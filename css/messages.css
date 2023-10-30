@@ -44,3 +44,15 @@ body, html {
     border-color: #ebccd1;
     color: #a94442;
 }
+
+.testclass {
+    color: rgba(55, 55, 55, .2);
+}
+
+.testclass2 {
+    color: rgba(55, 55, 55, .4);
+}
+
+.testclass3 {
+    color: rgba(55, 55, 55, .6);
+}
