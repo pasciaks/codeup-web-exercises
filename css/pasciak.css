@@ -21,6 +21,11 @@
 /*    }*/
 /*}*/
 
+html {
+    background-image: url("../images/background.jpeg");
+    background-attachment: fixed;
+}
+
 .overline {
     text-decoration: overline;
 }
