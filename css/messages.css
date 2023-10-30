@@ -7,25 +7,33 @@ body, html {
 }
 
 .message {
-    width: 100%;
     border-radius: 5px;
-    margin: 4px 0;
+    margin: 4px;
     height: 24px;
-    padding: 5px;
+    padding: 4px 0 0 2px;
+    vertical-align: bottom;
 }
 
 .message.message-success {
-    background-color: blue;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
 }
 
 .message.message-warning {
-    background-color: blue;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
 }
 
 .message.message-info {
-    background-color: lightblue;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
 }
 
 .message.message-error {
-    background-color: blue;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
 }
