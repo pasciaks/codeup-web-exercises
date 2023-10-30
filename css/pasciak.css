@@ -49,3 +49,21 @@ h2, h3, h4, h5, h6 {
 .section > ul {
     background-color: blue;
 }
+
+/*pseudo class*/
+a {
+
+    transition: .5s;
+}
+
+a:active {
+    text-decoration: overline;
+}
+
+a:hover {
+    font-size: 26px;
+}
+
+a:link {
+    font-style: 12px;
+}
