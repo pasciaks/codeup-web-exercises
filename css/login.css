@@ -27,6 +27,7 @@ fieldset {
     border: none;
     /* Its background should be white */
     background-color: white;
+    /*background-color: #fff;*/
 }
 
 .width-80 {
@@ -50,7 +51,8 @@ fieldset {
 
 .btn-block {
     /* This element should use 100% of the width */
-    display: block;
+    /*display: block;*/
+    width: 100%;
 }
 
 .btn {
@@ -74,7 +76,7 @@ fieldset {
     /* See the example at: https://developer.mozilla.org/en-US/docs/Web/CSS/calc */
     /* HINT: Examples are available at: https://glitch.com/~input-button-width */
     /* MY NOTE: The login button has a 1px border */
-    width: calc(100% - 2px);
+    width: calc(100% - 4px);
 
 }
 
