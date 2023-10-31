@@ -6,13 +6,20 @@
 
     <style>
 
+        .border-box-image {
+            box-sizing: border-box;
+        }
+
         img {
+            /*box-sizing: content-box;*/ /* default */
+            /*box-sizing: border-box;*/
             background: #0d0789;
             /*width: 50dvw;*/
             width: 250px;
             padding: 25px;
             /*margin: 10px;*/
             border: 1px solid red;
+            margin: 50px;
         }
 
         p {
@@ -27,6 +34,7 @@
             height: 20px;
             border-radius: 50%;
             background-color: cyan;
+            margin: 10px;
         }
 
         div {
@@ -40,6 +48,7 @@
 <body>
 
 <img alt="none" src="http://lostwords.org/images/penguin.png">
+<img alt="none" class="border-box-image" src="http://lostwords.org/images/penguin.png">
 
 <div class="div">
     <p>This is some text.</p>
@@ -49,6 +58,7 @@
 
 <hr>
 
+<div class="test"></div>
 <div class="test"></div>
 
 </body>
