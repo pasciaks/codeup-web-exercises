@@ -40,24 +40,34 @@ h2, h3 {
     padding: 1em;
     margin: 0 auto;
     /* enter needed declarations here */
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /*border: 1px solid red;*/
 }
 
+/* this is all sections */
 section {
     /* enter needed declarations here */
     display: flex;
+    /*border: 1px solid red;*/
 }
 
+/* this is the first section green, with 4 boxes */
 section:nth-of-type(1) {
     height: 3em;
     background: lightgreen;
     /* enter needed declarations here */
+    /*border: 2px solid red;*/
     justify-content: space-between;
     align-items: center;
 }
 
+/* 1st section, last green box */
 section:nth-of-type(1) div:last-child {
     /* enter needed declarations here */
+    /*border: 2px solid blue;*/
+    align-self: flex-start;
 }
 
 .purple-box {
@@ -66,12 +76,18 @@ section:nth-of-type(1) div:last-child {
     height: 1em;
 }
 
+/* 1st purple box */
 .purple-box:nth-of-type(1) {
     /* enter needed declarations here */
+    /*border: 2px solid red;*/
+    flex-grow: 2;
 }
 
+/* 2nd purple box */
 .purple-box:nth-of-type(2) {
+    /*border: 2px solid red;*/
     /* enter needed declarations here */
+    flex-grow: 1;
 }
 
 .blue-box {
@@ -80,13 +96,17 @@ section:nth-of-type(1) div:last-child {
     height: 10em;
 }
 
+/* section with A Smaller Heading! */
 section:nth-of-type(3) {
     /* enter needed declarations here */
+    /*border: 1px solid red;*/
+    align-items: center;
 }
 
+/* the h3 --  A Smaller Heading! */
 section:nth-of-type(3) h3 {
     /* enter needed declarations here */
-
+    flex-grow: 1;
 }
 
 .orange-circle {
@@ -97,19 +117,26 @@ section:nth-of-type(3) h3 {
     margin: .5em;
 }
 
+/* each of the three brown boxes */
 .large-brown-box {
     height: 5em;
     width: 5em;
     background: brown;
     /* enter needed declarations here */
+    flex-grow: 1;
 }
 
+/* 2nd brown box on that line */
 .large-brown-box:nth-of-type(2) {
     margin: 0 1em;
+    /*border: 2px solid red;*/
 }
 
+/* section with yellow boxes */
 section:nth-of-type(5) {
+    /*border: 1px solid red;*/
     /* enter needed declarations here */
+    justify-content: space-around;
 }
 
 .yellow-box {
@@ -118,10 +145,14 @@ section:nth-of-type(5) {
     height: 2em;
 }
 
+/* last section with all the boxes */
 section:nth-of-type(6) {
     background: coral;
     height: 14em;
     /* enter needed declarations here */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .grey-box {
@@ -130,6 +161,8 @@ section:nth-of-type(6) {
     height: 3em;
 }
 
+/*  odd box #'s in last section */
 .grey-box:nth-of-type(odd) {
     height: 4em;
+    /*border: 11px solid gold;*/
 }

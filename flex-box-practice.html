@@ -5,61 +5,36 @@
     <title>Flex Box Practice</title>
 
     <style>
-
-        .border-box-image {
+        * {
             box-sizing: border-box;
         }
 
-        img {
-            /*box-sizing: content-box;*/ /* default */
-            /*box-sizing: border-box;*/
-            background: #0d0789;
-            /*width: 50dvw;*/
-            width: 250px;
-            padding: 25px;
-            /*margin: 10px;*/
-            border: 1px solid red;
-            margin: 50px;
+        body {
+            margin: 0;
+            font-family: Helvetica, sans-serif;
+            font-weight: bold;
         }
 
-        p {
-            border: 2px solid red;
-            border-bottom-width: 10px;
-            border-right: 20px solid blue;
-
+        .flex-container {
+            width: 100%;
+            border: 3px solid goldenrod;
+            display: flex;
         }
 
-        div.test {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: cyan;
-            margin: 10px;
+        .flex-item {
+            background: #BFD45D;
+            border: 2px solid #F9EFD6;
+            padding: 1em;
         }
-
-        div {
-            background-color: #666666;
-            border-radius: 5px;
-            border: 22px solid green;
-        }
-
     </style>
 </head>
 <body>
 
-<img alt="none" src="http://lostwords.org/images/penguin.png">
-<img alt="none" class="border-box-image" src="http://lostwords.org/images/penguin.png">
-
-<div class="div">
-    <p>This is some text.</p>
+<div class="flex-container">
+    <div class="flex-item">Item 1</div>
+    <div class="flex-item">Item 2</div>
+    <div class="flex-item">Item 3</div>
 </div>
-
-<br>
-
-<hr>
-
-<div class="test"></div>
-<div class="test"></div>
 
 </body>
 </html>
