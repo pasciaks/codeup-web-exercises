@@ -3,6 +3,20 @@
     /*--success-background-color: #dff0d8;*/
     /*--success-border-color: #d6e9c6;*/
 
+    /*Use the following naming convention for the variables bg-info, text-info, bg-success, text-success, etc.*/
+
+    --bg-info: #cddeff;
+    --text-info: #47419e;
+
+    --bg-success: #cff3da;
+    --text-success: #277d4b;
+
+    --bg-warning: #fcfbc9;
+    --text-warning: #92801b;
+
+    --bg-error: #fad3d7;
+    --text-error: #8d2941;
+
     --success-color: #277d4b;
     --success-background-color: #cff3da;
     --success-border-color: #d0e2d6;
@@ -34,9 +48,7 @@ body, html {
     margin: 6px;
     height: 20px;
     padding: 6px 5px 2px 5px;
-    vertical-align: bottom;
     font-size: 12px;
-
 }
 
 .message.message-success {
@@ -70,6 +82,27 @@ body, html {
     /*background-color: #f2dede;*/
     /*border-color: #ebccd1;*/
     /*color: #a94442;*/
+}
+
+
+.message.message-success2 {
+    background-color: var(--bg-success);
+    color: var(--text-success);
+}
+
+.message.message-warning2 {
+    background-color: var(--bg-warning);
+    color: var(--text-warning);
+}
+
+.message.message-info2 {
+    background-color: var(--bg-info);
+    color: var(--text-info);
+}
+
+.message.message-error2 {
+    background-color: var(--bg-error);
+    color: var(--text-error);
 }
 
 
