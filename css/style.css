@@ -84,11 +84,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/*ul {*/
-/*    !*list-style-type: circle;*!*/
-/*    list-style-image: url('../images/git.png');*/
+ul {
+    list-style-type: circle;
+    margin: 0 auto;
 
-/*}*/
+}
 
 li {
     list-style: none;
@@ -102,7 +102,6 @@ li::before {
     margin: 10px;
     border: 1px solid gold;
     background-image: url('../images/git.png');
-    /*background-size: cover;*/
     background-size: contain
 }
 
