@@ -1,7 +1,23 @@
 :root {
-    --success-color: #3c763d;
-    --success-background-color: #dff0d8;
-    --success-border-color: #d6e9c6;
+    /*--success-color: #3c763d;*/
+    /*--success-background-color: #dff0d8;*/
+    /*--success-border-color: #d6e9c6;*/
+
+    --success-color: #277d4b;
+    --success-background-color: #cff3da;
+    --success-border-color: #d0e2d6;
+
+    --info-color: #47419e;
+    --info-background-color: #cddeff;
+    --info-border-color: #cfd8e8;
+
+    --warning-color: #92801b;
+    --warning-background-color: #fcfbc9;
+    --warning-border-color: #e6e6cd;
+
+    --error-color: #8d2941;
+    --error-background-color: #fad3d7;
+    --error-border-color: #e6d2d4;
 }
 
 body, html {
@@ -13,12 +29,14 @@ body, html {
 }
 
 .message {
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid;
-    margin: 4px;
-    height: 24px;
-    padding: 4px 0 0 2px;
+    margin: 6px;
+    height: 20px;
+    padding: 6px 5px 2px 5px;
     vertical-align: bottom;
+    font-size: 12px;
+
 }
 
 .message.message-success {
@@ -28,31 +46,31 @@ body, html {
 }
 
 .message.message-warning {
-    background-color: #fcf8e3;
-    border-color: #faebcc;
-    color: #8a6d3b;
+    background-color: var(--warning-background-color);
+    border-color: var(--warning-border-color);
+    color: var(--warning-color);
+    /*background-color: #fcf8e3;*/
+    /*border-color: #faebcc;*/
+    /*color: #8a6d3b;*/
 }
 
 .message.message-info {
-    background-color: #d9edf7;
-    border-color: #bce8f1;
-    color: #31708f;
+    background-color: var(--info-background-color);
+    border-color: var(--info-border-color);
+    color: var(--info-color);
+    /*background-color: #d9edf7;*/
+    /*border-color: #bce8f1;*/
+    /*color: #31708f;*/
 }
 
 .message.message-error {
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    color: #a94442;
+    background-color: var(--error-background-color);
+    border-color: var(--error-border-color);
+    color: var(--error-color);
+    /*background-color: #f2dede;*/
+    /*border-color: #ebccd1;*/
+    /*color: #a94442;*/
 }
 
-.testclass {
-    color: rgba(55, 55, 55, .2);
-}
 
-.testclass2 {
-    color: rgba(55, 55, 55, .4);
-}
 
-.testclass3 {
-    color: rgba(55, 55, 55, .6);
-}
