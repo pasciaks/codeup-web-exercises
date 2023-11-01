@@ -1,0 +1,21 @@
+* {
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.container {
+    border: 2px solid black;
+    background: #7D84B2;
+    display: flex;
+    flex-direction: row;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*align-content: center;*/
+    /*align-self: center;*/
+}
+
+div {
+    border: 2px solid red;
+    padding: 2em;
+    background: #A2D729;
+}
