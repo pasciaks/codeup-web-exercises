@@ -55,6 +55,11 @@ div {
     background-color: orangered;
     order: 1;
     align-self: flex-start;
+    flex-grow: 1;
+}
+
+.stretch {
+    flex-grow: 1;
 }
 
 .small {
