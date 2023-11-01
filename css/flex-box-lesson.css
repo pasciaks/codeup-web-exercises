@@ -3,23 +3,39 @@
     font-size: 12px;
 }
 
+.container.center-y {
+    display: flex;
+    align-items: center;
+}
+
+.container.center-x {
+    display: flex;
+    justify-content: center;
+}
+
 .container {
+    height: 200px;
     border: 2px solid black;
     background: #7D84B2;
     display: flex;
     flex-direction: row;
-    /*align-items: center;*/
+    align-items: stretch; /* default */
+    align-items: flex-start;
+    /*align-items: center; !* stretch *!*/
+    /*align-items: flex-end;*/
+    /*align-items: flex-start;*/
+    /*align-content: space-around;*/
     /*justify-content: center;*/
     /*align-content: center;*/
     /*align-self: center;*/
-    flex-wrap: wrap;
-    justify-content: flex-start; /* default */
+    /*flex-wrap: wrap;*/
+    /*justify-content: flex-start; !* default *!*/
     /*justify-content: flex-end;*/
     /*justify-content: space-between;*/
     /*justify-content: space-around;*/
     /*justify-content: space-evenly;*/
-    justify-content: center;
-    gap: 1em;
+    /*justify-content: center;*/
+    /*gap: 1em;*/
 
 }
 
@@ -27,4 +43,13 @@ div {
     border: 2px solid red;
     padding: 2em;
     background: #A2D729;
+    box-sizing: border-box;
+}
+
+.big {
+    padding: 5em;
+}
+
+.small {
+    padding: 1em;
 }
