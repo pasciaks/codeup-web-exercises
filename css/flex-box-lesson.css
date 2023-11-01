@@ -44,10 +44,17 @@ div {
     padding: 2em;
     background: #A2D729;
     box-sizing: border-box;
+    order: 0; /* default */
 }
 
 .big {
     padding: 5em;
+}
+
+.special {
+    background-color: orangered;
+    order: 1;
+    align-self: flex-start;
 }
 
 .small {
