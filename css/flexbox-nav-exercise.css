@@ -1,0 +1,81 @@
+/*Remember that extra space can be created between flex items by setting margin to auto.*/
+
+/*The navbar must have the following:*/
+
+/*box-sizing: border-box for all elements*/
+/*link text, the logo, and icons are surrounded by anchor tags*/
+/*links turn blue on hover*/
+/*anchor tags are display: inline-block*/
+/*clickable area of links immediately flow from one link to the next (padding will help achieve this)*/
+/*Google Fonts used for logo and link text ("Montserrat" and "Work Sans", respectively)*/
+/*the "Logo" text is 3em with .2em of padding above and below*/
+/*                              no explicit height given to the navbar*/
+/*                              default styling is removed as needed from the body, unordered list and anchor tag elements*/
+/*logo is horizontally centered on the navbar (automatic margins will help achieve this)*/
+/*Finally, commit the changes to your git repository, and push to GitHub.*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    /*border: 1px solid red;*/
+}
+
+img {
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    padding: .2em 0;
+    margin: auto;
+}
+
+a {
+    display: inline-block;
+    color: black;
+    font-family: 'Work Sans', sans-serif;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}
+
+ul {
+    list-style: none;
+}
+
+ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    display: inline-block;
+    padding: 10px;
+}
+
+.container {
+    background-color: lightgrey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.left-inner {
+    display: flex;
+}
+
+.middle-inner {
+    display: flex;
+}
+
+.right-inner {
+    display: flex;
+}
+

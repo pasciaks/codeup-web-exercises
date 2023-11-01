@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nested Container Example</title>
+    <style>
+        .nested-container {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-evenly;
+            background: cornflowerblue;
+        }
+
+        .flex-container {
+            border: 3px solid goldenrod;
+        }
+
+        .nested-container .flex-container {
+            display: flex;
+            flex-direction: row !important;
+        }
+
+        .flex-item {
+            background: #BFD45D;
+            border: 2px solid #F9EFD6;
+            padding: 1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="nested-container">
+    <h3>Some Heading</h3>
+    <p>Some Other Text</p>
+    <div class="flex-container">
+        <div class="flex-item">Flex Item 1</div>
+        <div class="flex-item">Flex Item 2</div>
+        <div class="flex-item">Flex Item 3</div>
+    </div>
+</div>
+</body>
+</html>
