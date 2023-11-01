@@ -12,6 +12,15 @@
     /*justify-content: center;*/
     /*align-content: center;*/
     /*align-self: center;*/
+    flex-wrap: wrap;
+    justify-content: flex-start; /* default */
+    /*justify-content: flex-end;*/
+    /*justify-content: space-between;*/
+    /*justify-content: space-around;*/
+    /*justify-content: space-evenly;*/
+    justify-content: center;
+    gap: 1em;
+
 }
 
 div {
