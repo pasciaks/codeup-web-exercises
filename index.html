@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- displays site properly based on user's device -->
+    <link href="./images/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <title>Login Page with absolute positioning</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+    <!-- Stylesheets -->
+    <link href="css/resets.css" rel="stylesheet">
+    <link href="css/layout.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="page-wrapper justify-center align-center">
+    <!-- ADD ABSOLUTE POSITIONED IMAGES HERE -->
+    <img alt="dots-1" class="dots-1" src="images/dots-1.svg">
+    <img alt="dots-2" class="dots-2" src="images/dots-2.svg">
+    <img alt="footer-wave-bottom" class="footer-wave-bottom" src="images/footer-wave-bottom.svg">
+    <img alt="footer-wave-top" class="footer-wave-top" src="images/footer-wave-top.svg">
+
+    <img alt="times-icon" class="times-icon" src="images/times-icon.svg">
+    <img alt="wavy-lines-1" class="wavy-lines-1" src="images/wavy-lines-1.svg">
+    <img alt="wavy-lines-2" class="wavy-lines-2" src="images/wavy-lines-2.svg">
+
+    <div class="container login">
+        <!-- ADD CANCEL BUTTON HERE -->
+        <button class="btn btn-cancel" name="cancel" type="button">Cancel</button>
+
+        <div class="row">
+            <form class="column gap-20" method="POST">
+                <h1>Login into Your Account</h1>
+                <label class="input-group">
+                    <span class="input-label">Email</span>
+                    <input name="email" placeholder="yourname@company.com" required type="email">
+                </label>
+                <div class="d-flex flex-column">
+                    <label class="input-group">
+                        <span class="input-label">Password*</span>
+                        <input name="password" placeholder="****************" required type="password">
+                    </label>
+                    <div class="d-flex align-center justify-space-between">
+                        <label class="checkbox">
+                            <input checked name="remember" type="checkbox">
+                            <span class="checkbox-label">Keep me signed in</span>
+                        </label>
+                        <a class="link" href="#">Forgot password?</a>
+                    </div>
+                </div>
+                <button class="btn btn-login" name="login" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

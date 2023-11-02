@@ -1,26 +1,146 @@
-@import url('https://fonts.googleapis.com/css?family=Kumar+One');
+/* All your custom styles for this site go here */
 
-
-h1 {
-    font-family: "Kumar One", serif;
+.dots-1 {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    z-index: 0;
 }
 
-/* unvisited link (:link) */
-/*a:link {*/
-/*    color:red;*/
-/*}*/
+.dots-2 {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    right: 40px;
+    top: 0;
+    z-index: 0;
+}
 
-/* visited link (:visited) */
-/*a:visited {*/
-/*    color:black;*/
-/*}*/
+.footer-wave-top {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
 
-/* mouse hover over link (:hover) */
-/*a:hover {*/
-/*    color:blue;*/
-/*}*/
+.footer-wave-bottom {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -2;
+}
 
-/* active/selected link (:active) */
-/*a:active {*/
-/*    color:green;*/
-/*}*/
+.times-icon {
+    position: relative;
+    background-color: white;
+    border: 1px solid grey;
+    z-index: 0;
+    border-radius: 100px;
+    padding: 5px;
+}
+
+.wavy-lines-1 {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: 10px;
+    top: 10%;
+    z-index: 1;
+}
+
+.wavy-lines-2 {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    right: 10px;
+    top: 40%;
+    z-index: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.page-wrapper {
+    background-color: #D9D9D9;
+}
+
+.container.login {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 45px 25px;
+    width: calc(100% - 40px);
+    max-width: 530px;
+    box-shadow: 0 0 104px -40px rgba(0, 0, 0, 0.25);
+}
+
+.container.login h1 {
+    font-size: 22px;
+    text-align: center;
+}
+
+input {
+    min-height: 55px;
+    border: 1px solid #DDDFE1;
+    padding: 0 10px;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+input::placeholder {
+    color: #ABAFB3;
+}
+
+label.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label.input-group span {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+label.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+label.checkbox span {
+    font-size: 13px;
+    color: #ABAFB3;
+}
+
+a.link {
+    font-size: 13px;
+}
+
+button.btn {
+    min-height: 55px;
+    border: none;
+    border-radius: 99px;
+    background-color: #AA04F9;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button.btn.btn-login {
+    align-self: center;
+    flex: 0 1 auto;
+    min-width: 250px;
+}
+
+button.btn.btn-cancel {
+    align-self: center;
+    flex: 0 1 auto;
+    min-width: 250px;
+}
+
+
