@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex in Flex</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Righteous', sans-serif;
+        }
+
+        .container {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            border: 1px solid black;
+            justify-content: space-between;
+        }
+
+        .left-inner {
+            display: flex;
+            justify-content: start;
+        }
+
+        .middle-inner {
+            display: flex;
+            justify-content: center;
+        }
+
+        .right-inner {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: inline-flex;
+            border: 1px solid red;
+        }
+
+        .bounce-zone {
+            border: 1px solid red;
+            width: 80dvw;
+            height: 80dvh;
+            margin: auto;
+        }
+
+        #ball {
+            width: 25px;
+            height: 25px;
+            background-color: #0d0789;
+            border-radius: 100%;
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+    </style>
+
+    <script defer>
+        let x = 10;
+        let y = 10;
+
+        setInterval(function () {
+            console.log('tick...');
+        }, 1000);
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="left-inner">
+        <ul>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+        </ul>
+    </div>
+    <div class="middle-inner">
+        <ul>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+        </ul>
+    </div>
+    <div class="right-inner">
+        <ul>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+        </ul>
+    </div>
+</div>
+
+<div class="bounce-zone">
+    <div id="ball"></div>
+</div>
+
+</body>
+</html>
