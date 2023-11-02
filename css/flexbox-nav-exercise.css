@@ -24,7 +24,7 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 3em;
     padding: .2em 0;
-    margin: auto;
+    /*margin: auto;*/
 }
 
 a {
@@ -32,6 +32,7 @@ a {
     color: black;
     font-family: 'Work Sans', sans-serif;
     text-decoration: none;
+    padding: 1em;
 }
 
 a:hover {
@@ -46,7 +47,7 @@ ul {
 
 li {
     display: inline-block;
-    padding: 10px;
+    /*padding: 10px;*/
 }
 
 .top-navigation-bar {
