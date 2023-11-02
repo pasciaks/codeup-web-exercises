@@ -6,7 +6,6 @@
     position: absolute;
     left: 30px;
     top: 50%;
-    z-index: 0;
 }
 
 .dots-2 {
@@ -15,7 +14,6 @@
     position: absolute;
     right: 40px;
     top: 0;
-    z-index: 0;
 }
 
 .footer-wave-top {
@@ -23,7 +21,6 @@
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: -1;
 }
 
 .footer-wave-bottom {
@@ -31,16 +28,18 @@
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: -2;
 }
 
 .times-icon {
-    position: relative;
+    cursor: pointer;
+    position: absolute;
     background-color: white;
     border: 1px solid grey;
     z-index: 0;
     border-radius: 100px;
     padding: 5px;
+    right: -10px;
+    top: -10px;
 }
 
 .wavy-lines-1 {
@@ -49,7 +48,6 @@
     position: absolute;
     left: 10px;
     top: 10%;
-    z-index: 1;
 }
 
 .wavy-lines-2 {
@@ -58,7 +56,6 @@
     position: absolute;
     right: 10px;
     top: 40%;
-    z-index: 0;
 }
 
 body {
@@ -70,6 +67,7 @@ body {
 }
 
 .container.login {
+    position: relative;
     background-color: #FFFFFF;
     border-radius: 20px;
     padding: 45px 25px;
