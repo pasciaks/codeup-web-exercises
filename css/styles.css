@@ -1,5 +1,6 @@
 /* All your custom styles for this site go here */
 
+/*left side 2x6 dots*/
 .dots-1 {
     width: 70px;
     height: 70px;
@@ -8,6 +9,7 @@
     top: 50%;
 }
 
+/*right side 4x3 dots*/
 .dots-2 {
     width: 70px;
     height: 70px;
@@ -16,20 +18,21 @@
     top: 0;
 }
 
+/*dark purple, top wave*/
 .footer-wave-top {
     position: absolute;
     left: 0;
     bottom: 0;
-    right: 0;
 }
 
+/*light purple, bottom wave*/
 .footer-wave-bottom {
     position: absolute;
     left: 0;
     bottom: 0;
-    right: 0;
 }
 
+/*cancel 'button'*/
 .times-icon {
     cursor: pointer;
     position: absolute;
@@ -42,6 +45,7 @@
     top: -10px;
 }
 
+/*left blue horizontal wave image*/
 .wavy-lines-1 {
     width: 80px;
     height: 80px;
@@ -50,6 +54,7 @@
     top: 10%;
 }
 
+/*right, pink vertical wave image*/
 .wavy-lines-2 {
     width: 80px;
     height: 80px;
