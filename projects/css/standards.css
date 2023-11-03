@@ -6,6 +6,12 @@ section {
     padding: 1em;
 }
 
+header {
+    background: white;
+    text-align: center;
+}
+
 header a {
     color: black;
+    display: block;
 }
