@@ -1,132 +1,132 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
+<head>
+    <meta charset="UTF-8">
     <title>My First HTML Form</title>
-  </head>
-  <body>
-    <h1>User Login</h1>
-    <form method="POST" action="http://request-inspector.glitch.me/">
-      <div>
+</head>
+<body>
+<h1>User Login</h1>
+<form action="http://request-inspector.glitch.me/" method="POST">
+    <div>
         <label for="username">Username</label>
         <input
-          placeholder="Username"
-          id="username"
-          name="username"
-          type="text"
+                id="username"
+                name="username"
+                placeholder="Username"
+                type="text"
         />
-      </div>
-      <div>
+    </div>
+    <div>
         <label for="password">Password</label>
         <input
-          placeholder="Password"
-          id="password"
-          name="password"
-          type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"
         />
-      </div>
-      <div>
+    </div>
+    <div>
         <!-- <input value="OK" name="form-button" type="submit"> -->
         <button type="submit">OK</button>
-      </div>
-    </form>
-    <h1>Compose an Email</h1>
-    <form method="POST" action="http://request-inspector.glitch.me/">
-      <div>
+    </div>
+</form>
+<h1>Compose an Email</h1>
+<form action="http://request-inspector.glitch.me/" method="POST">
+    <div>
         <input
-          type="checkbox"
-          id="save-a-copy"
-          name="save-a-copy"
-          value="yes"
-          checked
+                checked
+                id="save-a-copy"
+                name="save-a-copy"
+                type="checkbox"
+                value="yes"
         />
         <label for="save-a-copy"
-          >Do you want to save a copy to your sent folder?</label
+        >Do you want to save a copy to your sent folder?</label
         >
-      </div>
-      <div>
+    </div>
+    <div>
         <label for="to">To:</label>
-        <input type="email" id="to" name="to" required />
-      </div>
-      <div>
+        <input id="to" name="to" required type="email"/>
+    </div>
+    <div>
         <label for="from">From:</label>
-        <input type="email" id="from" name="from" required />
-      </div>
-      <div>
+        <input id="from" name="from" required type="email"/>
+    </div>
+    <div>
         <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required />
-      </div>
-      <div>
+        <input id="subject" name="subject" required type="text"/>
+    </div>
+    <div>
         <label for="body">Body:</label>
         <textarea id="body" name="body" required></textarea>
-      </div>
-      <div>
-        <input type="submit" value="Send" />
-      </div>
-    </form>
-    <h1>Multiple Choice Test</h1>
-    <form method="POST" action="http://request-inspector.glitch.me/">
-      <p>What is your gender?</p>
-      <label>
-        <input type="radio" name="q1" value="male" />
+    </div>
+    <div>
+        <input type="submit" value="Send"/>
+    </div>
+</form>
+<h1>Multiple Choice Test</h1>
+<form action="http://request-inspector.glitch.me/" method="POST">
+    <p>What is your gender?</p>
+    <label>
+        <input name="q1" type="radio" value="male"/>
         Male
-      </label>
-      <label>
-        <input type="radio" name="q1" value="female" />
+    </label>
+    <label>
+        <input name="q1" type="radio" value="female"/>
         Female
-      </label>
-      <label>
-        <input type="radio" name="q1" value="none" />
+    </label>
+    <label>
+        <input name="q1" type="radio" value="none"/>
         Prefer not to answer
-      </label>
-      <p>What is your age?</p>
-      <label>
-        <input type="radio" name="a1" value="young" />
+    </label>
+    <p>What is your age?</p>
+    <label>
+        <input name="a1" type="radio" value="young"/>
         Young
-      </label>
-      <label>
-        <input type="radio" name="a1" value="old" />
+    </label>
+    <label>
+        <input name="a1" type="radio" value="old"/>
         Old
-      </label>
-      <label>
-        <input type="radio" name="a1" value="none" />
+    </label>
+    <label>
+        <input name="a1" type="radio" value="none"/>
         Prefer not to answer
-      </label>
-      <p>What programming languages do you know?</p>
-      <label>
-        <input type="checkbox" id="os1" name="os[]" value="Javascript" />
+    </label>
+    <p>What programming languages do you know?</p>
+    <label>
+        <input id="os1" name="os[]" type="checkbox" value="Javascript"/>
         Javascript
-      </label>
-      <label>
-        <input type="checkbox" id="os2" name="os[]" value="C#" />
+    </label>
+    <label>
+        <input id="os2" name="os[]" type="checkbox" value="C#"/>
         C#
-      </label>
-      <label>
-        <input type="checkbox" id="os3" name="os[]" value="JAVA" />
+    </label>
+    <label>
+        <input id="os3" name="os[]" type="checkbox" value="JAVA"/>
         JAVA
-      </label>
-      <div>
+    </label>
+    <div>
         <label for="letter">Which words begin with the letter B?</label>
-        <select id="letter" name="letter[]" multiple>
-          <option value="Banana">Banana</option>
-          <option value="Car">Car</option>
-          <option value="Boat">Boat</option>
-          <option value="Zoo">Zoo</option>
+        <select id="letter" multiple name="letter[]">
+            <option value="Banana">Banana</option>
+            <option value="Car">Car</option>
+            <option value="Boat">Boat</option>
+            <option value="Zoo">Zoo</option>
         </select>
-      </div>
-      <div>
-        <input type="submit" value="Send your Answers" />
-      </div>
-    </form>
-    <h1>Select Testing</h1>
-    <form method="POST" action="http://request-inspector.glitch.me/">
-      <label for="happy">Are you happy with this exercise? YES/no? </label>
-      <select id="happy" name="happy">
+    </div>
+    <div>
+        <input type="submit" value="Send your Answers"/>
+    </div>
+</form>
+<h1>Select Testing</h1>
+<form action="http://request-inspector.glitch.me/" method="POST">
+    <label for="happy">Are you happy with this exercise? YES/no? </label>
+    <select id="happy" name="happy">
         <option value="1">Yes</option>
-        <option value="0" selected>No</option>
-      </select>
-      <div>
-        <input type="submit" value="Send" />
-      </div>
-    </form>
-  </body>
+        <option selected value="0">No</option>
+    </select>
+    <div>
+        <input type="submit" value="Send"/>
+    </div>
+</form>
+</body>
 </html>
