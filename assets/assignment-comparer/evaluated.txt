@@ -1,0 +1,82 @@
+.
+├── conditionals.html
+├── cover
+│   ├── puppiness.mp4
+│   ├── puppiness.ogv
+│   └── puppiness.webm
+├── css
+│   ├── flex-form.css
+│   ├── flexbox-cards.css
+│   ├── flexbox-fundamentals-exercise.css
+│   ├── flexbox-nav-exercise.css
+│   ├── footer.css
+│   ├── layout.css
+│   ├── login.css
+│   ├── messages.css
+│   ├── resets.css
+│   ├── selectors.css
+│   ├── style.css
+│   └── styles.css
+├── css_selectors.html
+├── external_js.html
+├── flex-form.html
+├── flexbox-cards.html
+├── flexbox-cards.zip
+├── flexbox-fundamentals-exercise.html
+├── flexbox-nav-exercise.html
+├── footer-exercise.html
+├── forms.html
+├── fuctionsLecture.html
+├── functions_js.html
+├── github.html
+├── images
+│   ├── 30x30.svg
+│   ├── 48x48.svg
+│   ├── bullet.png
+│   ├── chick1.jpeg
+│   ├── dots-1.svg
+│   ├── dots-2.svg
+│   ├── dude1.jpeg
+│   ├── dude2.jpeg
+│   ├── footer-wave-bottom.svg
+│   ├── footer-wave-top.svg
+│   ├── github-icon.png
+│   ├── noise-article.png
+│   ├── pexels-chepté-cormani-1570146.jpg
+│   ├── pexels-joyston-judah-933054.jpg
+│   ├── pexels-sueda-dilli-18724175.jpg
+│   ├── pexels-vojtech-okenka-392018.jpg
+│   ├── times-icon.svg
+│   ├── wavy-lines-1.svg
+│   └── wavy-lines-2.svg
+├── index.html
+├── inline_js.html
+├── iterating_arrays_js.html
+├── js
+│   ├── break_and_continue.js
+│   ├── circle.js
+│   ├── conditionals.js
+│   ├── exercise-js-example.js
+│   ├── external.js
+│   ├── for_loops.js
+│   ├── functions-notes.js
+│   ├── functions.js
+│   ├── iterating.js
+│   ├── objects.js
+│   ├── planets-array.js
+│   ├── planets-string.js
+│   └── while.js
+├── js-with-html-lec.html
+├── login-form.html
+├── loops.html
+├── math-js.html
+├── messages.html
+├── objects.html
+├── objects_date_js.html
+├── planets-js.html
+├── positioning-exercise.fig
+├── split-join.html
+├── welcome.html
+└── workout-tracker.html
+
+5 directories, 75 files

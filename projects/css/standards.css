@@ -5,3 +5,7 @@
 section {
     padding: 1em;
 }
+
+header a {
+    color: black;
+}

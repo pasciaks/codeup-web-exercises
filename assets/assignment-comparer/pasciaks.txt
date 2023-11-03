@@ -1,0 +1,4 @@
+[
+  "--- --- logo.png",
+  "5 directories, 57 files"
+]
