@@ -1,19 +1,53 @@
+* {
+    box-sizing: border-box;
+}
+
 /* Small devices (phones and pocket devices, 576 and up) */
 @media screen and (min-width: 576px) {
     /* ... */
+    body {
+        background-color: salmon;
+    }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media screen and (min-width: 768px) {
     /* ... */
+    body {
+        background-color: magenta;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media screen and (min-width: 992px) {
     /* ... */
+    body {
+        background-color: lime;
+    }
+
+    main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    section {
+        width: 50%;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media screen and (min-width: 1200px) {
     /* ... */
+    body {
+        background-color: blue;
+    }
+
+    main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    section {
+        width: 25%;
+    }
 }
