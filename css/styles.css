@@ -5,7 +5,7 @@
     width: 70px;
     height: 70px;
     position: absolute;
-    left: 30px;
+    left: 5em;
     top: 50%;
 }
 
@@ -15,7 +15,7 @@
     height: 70px;
     position: absolute;
     right: 40px;
-    top: 0;
+    top: 2em;
 }
 
 /*dark purple, top wave*/
@@ -23,6 +23,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
+    width: 100%;
 }
 
 /*light purple, bottom wave*/
@@ -30,6 +31,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
+    width: 100%;
 }
 
 /*cancel 'button'*/
@@ -37,12 +39,13 @@
     cursor: pointer;
     position: absolute;
     background-color: white;
-    border: 1px solid grey;
     z-index: 0;
-    border-radius: 100px;
+    border-radius: 100%;
     padding: 5px;
     right: -10px;
     top: -10px;
+    border: 1px solid lightgrey;
+
 }
 
 /*left blue horizontal wave image*/
@@ -62,6 +65,14 @@
     right: 10px;
     top: 40%;
 }
+
+/*img[src='images/wavy-lines-1.svg'] {*/
+/*    border: 1px solid red;*/
+/*}*/
+
+/*img[src*='wavy-lines-1.svg'] {*/
+/*    border: 1px solid red;*/
+/*}*/
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -143,7 +154,7 @@ button.btn.btn-login {
 button.btn.btn-cancel {
     align-self: center;
     flex: 0 1 auto;
-    min-width: 250px;
+    padding: 1em;
 }
 
 
