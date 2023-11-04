@@ -26,6 +26,7 @@ for (let i = 0; i < fileContentLines.length; i++) {
 
     let sourceLine = fileContentLines[i];
     sourceLine = sourceLine.replaceAll('`', '|');
+    // sourceLine = sourceLine.replaceAll('|', '');
 
     // sourceLine = sourceLine.replaceAll('├', '-');
     // sourceLine = sourceLine.replaceAll('└', '-');
@@ -42,6 +43,7 @@ for (let i = 0; i < fileContentLines.length; i++) {
     for (let j = 0; j < compareContentLines.length; j++) {
         let searchline = compareContentLines[j];
         searchline = searchline.replaceAll('`', '|');
+        // searchline = searchline.replaceAll('|', '');
 
         // searchline = searchline.replaceAll('├', '-');
         // searchline = searchline.replaceAll('└', '-');
