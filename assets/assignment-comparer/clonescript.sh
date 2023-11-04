@@ -22,13 +22,13 @@ EVALUATED=$2
 rm -rf correct
 git clone git@github.com:$SOURCE/codeup-web-exercises.git correct
 cd correct
-tree > ../correct.txt
+tree --charset=ascii > ../correct.txt
 cd ..
 rm -rf correct
 rm -rf evaluated
 git clone git@github.com:$EVALUATED/codeup-web-exercises.git evaluated
 cd evaluated
-tree > ../evaluated.txt
+tree --charset=ascii > ../evaluated.txt
 cd ..
 rm -rf evaluated
 node compare $EVALUATED

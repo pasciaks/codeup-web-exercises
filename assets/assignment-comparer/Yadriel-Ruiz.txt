@@ -1,11 +1,11 @@
 [
-  "--- cover",
-  "--- --- puppiness.mp4",
-  "--- --- puppiness.ogv",
-  "--- --- puppiness.webm",
-  "--- --- styles.css",
-  "--- images",
-  "--- --- do_while.js",
-  "--- js-html.html",
+  "|-- cover",
+  "|   |-- puppiness.mp4",
+  "|   |-- puppiness.ogv",
+  "|   |-- puppiness.webm",
+  "|   |-- styles.css",
+  "|-- images",
+  "|   |-- do_while.js",
+  "|-- js-html.html",
   "5 directories, 57 files"
 ]

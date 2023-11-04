@@ -1,12 +1,12 @@
 [
-  "--- external_js.html",
-  "--- --- logo.png",
-  "--- inline_js.html",
-  "--- --- do_while.js",
-  "--- --- external.js",
-  "--- js-html.html",
-  "--- objects_date_js.html",
-  "--- planets-js.html",
-  "--- split-join.html",
+  "|-- external_js.html",
+  "|   |-- logo.png",
+  "|-- inline_js.html",
+  "|   |-- do_while.js",
+  "|   |-- external.js",
+  "|-- js-html.html",
+  "|-- objects_date_js.html",
+  "|-- planets-js.html",
+  "|-- split-join.html",
   "5 directories, 57 files"
 ]
