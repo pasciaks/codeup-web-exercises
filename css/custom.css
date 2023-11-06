@@ -1,6 +1,11 @@
 .jumbotron {
-    background-image: url("images/pizza.png");
+    background-image: url("../images/pizza.png");
     height: 346px;
     background-size: cover;
+
+}
+
+.jumbotron h1 {
+    text-align: center;
 }
 

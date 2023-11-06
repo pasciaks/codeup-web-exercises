@@ -21,12 +21,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
                     <li class="nav-item">
                         <a class="nav-link" href="#">Order Online</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Menu</a>
+                        <a class="nav-link">Menu</a>
                     </li>
                     <li>
                         <form class="d-flex">
@@ -42,10 +41,51 @@
 </header>
 
 <div class="container">
-    <div class="jumbotron">
-        <h1>test</h1>
+    <div class="jumbotron d-sm-none d-md-block">
+        <h1 class="bg-white opacity-50">Welcome to Pizza World!</h1>
     </div>
     <h1>Build your own pizza!</h1>
+
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button aria-controls="home" aria-selected="true" class="nav-link active" data-bs-target="#home"
+                    data-bs-toggle="tab"
+                    id="home-tab" role="tab" type="button">
+                <span class="badge bg-secondary rounded-circle">1</span>
+                Size and Crust
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button aria-controls="profile" aria-selected="false" class="nav-link" data-bs-target="#profile"
+                    data-bs-toggle="tab"
+                    id="profile-tab" role="tab" type="button">
+                <span class="badge bg-secondary rounded-circle">2</span>
+                Cheese and Sauce
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button aria-controls="contact" aria-selected="false" class="nav-link" data-bs-target="#contact"
+                    data-bs-toggle="tab"
+                    id="contact-tab" role="tab" type="button">
+                <span class="badge bg-secondary rounded-circle">3</span>
+                Toppings
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
+            aaa
+        </div>
+        <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">
+            bbb
+        </div>
+        <div aria-labelledby="contact-tab" class="tab-pane fade" id="contact" role="tabpanel">
+            ccc
+        </div>
+    </div>
+
 </div>
 
 <script crossorigin="anonymous"
