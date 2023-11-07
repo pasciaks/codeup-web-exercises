@@ -294,22 +294,18 @@
 
 <script>
     function setStep(whichStep) {
-        let selectedTabElement = null;
         switch (whichStep) {
             case 1:
                 console.log("Moving to step 1.");
-                selectedTabElement = document.getElementById('size-and-crust');
-                console.log(selectedTabElement);
+                new bootstrap.Tab('#size-and-crust-tab').show();
                 break;
             case 2:
                 console.log("Moving to step 2.");
-                selectedTabElement = document.getElementById('cheese-and-sauce');
-                console.log(selectedTabElement);
+                new bootstrap.Tab('#cheese-and-sauce-tab').show();
                 break;
             case 3:
                 console.log("Moving to step 3.");
-                selectedTabElement = document.getElementById('toppings');
-                console.log(selectedTabElement);
+                new bootstrap.Tab('#toppings-tab').show();
                 break;
             case 4:
                 console.log("Finishing step 3, Checkout!");
