@@ -9,7 +9,8 @@
 .jumbotron h1 {
     text-align: center;
     position: absolute;
-    top: 157px;
+    top: 150px;
     width: 100%;
+    padding: .25em;
 }
 
