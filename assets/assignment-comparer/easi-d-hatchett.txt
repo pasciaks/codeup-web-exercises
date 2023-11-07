@@ -1,12 +1,16 @@
 [
+  "|   |-- custom.css",
   "|-- external_js.html",
   "|   |-- logo.png",
+  "|   |-- pizza.png",
   "|-- inline_js.html",
   "|   |-- do_while.js",
   "|   |-- external.js",
+  "|   |-- pizza.js",
   "|-- js-html.html",
   "|-- objects_date_js.html",
+  "|-- order-pizza.html",
   "|-- planets-js.html",
   "|-- split-join.html",
-  "5 directories, 57 files"
+  "5 directories, 61 files"
 ]

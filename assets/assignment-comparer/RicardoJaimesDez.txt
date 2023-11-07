@@ -1,4 +1,5 @@
 [
+  "|   |-- custom.css",
   "|   |-- layout.css",
   "|   |-- resets.css",
   "|   |-- selectors.css",
@@ -9,12 +10,15 @@
   "|   |-- footer-wave-bottom.svg",
   "|   |-- footer-wave-top.svg",
   "|   |-- logo.png",
+  "|   |-- pizza.png",
   "|   |-- times-icon.svg",
   "|   |-- wavy-lines-1.svg",
   "|   |-- wavy-lines-2.svg",
   "|-- index.html",
   "|   |-- do_while.js",
+  "|   |-- pizza.js",
   "|-- js-html.html",
   "|-- objects_date_js.html",
-  "5 directories, 57 files"
+  "|-- order-pizza.html",
+  "5 directories, 61 files"
 ]

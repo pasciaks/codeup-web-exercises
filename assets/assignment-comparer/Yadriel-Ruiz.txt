@@ -3,9 +3,13 @@
   "|   |-- puppiness.mp4",
   "|   |-- puppiness.ogv",
   "|   |-- puppiness.webm",
+  "|   |-- custom.css",
   "|   |-- styles.css",
   "|-- images",
+  "|   |-- pizza.png",
   "|   |-- do_while.js",
+  "|   |-- pizza.js",
   "|-- js-html.html",
-  "5 directories, 57 files"
+  "|-- order-pizza.html",
+  "5 directories, 61 files"
 ]

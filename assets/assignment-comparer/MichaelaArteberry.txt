@@ -5,7 +5,8 @@
   "|   |-- logo.png",
   "|-- index.html",
   "|   |-- do_while.js",
+  "|   |-- pizza.js",
   "|-- js-html.html",
   "|-- split-join.html",
-  "5 directories, 57 files"
+  "5 directories, 61 files"
 ]

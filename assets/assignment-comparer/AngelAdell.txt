@@ -1,11 +1,15 @@
 [
+  "|   |-- custom.css",
   "|   |-- layout.css",
   "|   |-- resets.css",
   "|   |-- styles.css",
   "|-- images",
   "|   |-- logo.png",
+  "|   |-- pizza.png",
   "|-- iterating_arrays_js.html",
   "|   |-- do_while.js",
+  "|   |-- pizza.js",
   "|-- js-html.html",
-  "5 directories, 57 files"
+  "|-- order-pizza.html",
+  "5 directories, 61 files"
 ]

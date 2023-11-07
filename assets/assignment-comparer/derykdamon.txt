@@ -1,5 +1,6 @@
 [
   "|-- conditionals.html",
+  "|   |-- custom.css",
   "|   |-- flexbox-fundamentals-exercise.css",
   "|   |-- layout.css",
   "|   |-- login.css",
@@ -16,6 +17,7 @@
   "|   |-- footer-wave-bottom.svg",
   "|   |-- footer-wave-top.svg",
   "|   |-- logo.png",
+  "|   |-- pizza.png",
   "|   |-- times-icon.svg",
   "|   |-- wavy-lines-1.svg",
   "|   |-- wavy-lines-2.svg",
@@ -28,6 +30,7 @@
   "|   |-- for_loops.js",
   "|   |-- iterating.js",
   "|   |-- objects.js",
+  "|   |-- pizza.js",
   "|   |-- planets-array.js",
   "|   |-- planets-string.js",
   "|   |-- while.js",
@@ -38,8 +41,9 @@
   "|-- messages.html",
   "|-- objects.html",
   "|-- objects_date_js.html",
+  "|-- order-pizza.html",
   "|-- planets-js.html",
   "|-- split-join.html",
   "|-- welcome.html",
-  "5 directories, 57 files"
+  "5 directories, 61 files"
 ]

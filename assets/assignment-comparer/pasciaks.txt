@@ -1,4 +1,5 @@
 [
   "|   |-- logo.png",
-  "5 directories, 57 files"
+  "|   |-- pizza.js",
+  "5 directories, 61 files"
 ]

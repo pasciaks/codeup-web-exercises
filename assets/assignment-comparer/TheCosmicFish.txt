@@ -1,7 +1,9 @@
 [
-  "|   |-- flexbox-nav-exercise.css",
+  "|   |-- custom.css",
   "|   |-- logo.png",
+  "|   |-- pizza.png",
   "|   |-- do_while.js",
+  "|   |-- pizza.js",
   "|-- js-html.html",
-  "5 directories, 57 files"
+  "5 directories, 61 files"
 ]

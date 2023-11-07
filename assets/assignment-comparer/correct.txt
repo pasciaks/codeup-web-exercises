@@ -5,6 +5,7 @@
 |   |-- puppiness.ogv
 |   `-- puppiness.webm
 |-- css
+|   |-- custom.css
 |   |-- flex-form.css
 |   |-- flexbox-cards.css
 |   |-- flexbox-fundamentals-exercise.css
@@ -31,6 +32,7 @@
 |   |-- footer-wave-bottom.svg
 |   |-- footer-wave-top.svg
 |   |-- logo.png
+|   |-- pizza.png
 |   |-- times-icon.svg
 |   |-- wavy-lines-1.svg
 |   `-- wavy-lines-2.svg
@@ -47,6 +49,7 @@
 |   |-- functions.js
 |   |-- iterating.js
 |   |-- objects.js
+|   |-- pizza.js
 |   |-- planets-array.js
 |   |-- planets-string.js
 |   `-- while.js
@@ -57,8 +60,9 @@
 |-- messages.html
 |-- objects.html
 |-- objects_date_js.html
+|-- order-pizza.html
 |-- planets-js.html
 |-- split-join.html
 `-- welcome.html
 
-5 directories, 57 files
+5 directories, 61 files
