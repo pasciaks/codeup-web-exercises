@@ -45,34 +45,32 @@
     <div class="jumbotron d-sm-none d-md-block">
         <h1 class="bg-white bg-opacity-50">Welcome to Pizza World!</h1>
     </div>
-    <h2>Build your own pizza!</h2>
 
-    <!--    <div style="background-color: lightblue;height:100px;z-index:0;"></div>-->
-    <!--    <h1 style="margin-top:-25px;opacity:.5;z-index: 1;text-align:center;width:100%">-->
-    <!--        Now is the time for negative margin!-->
-    <!--    </h1>-->
+    <h2>Build your own pizza!</h2>
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button aria-controls="home" aria-selected="true" class="nav-link active" data-bs-target="#home"
+            <button aria-controls="size-and-crust" aria-selected="true" class="nav-link active"
+                    data-bs-target="#size-and-crust"
                     data-bs-toggle="tab"
-                    id="home-tab" role="tab" type="button">
+                    id="size-and-crust-tab" role="tab" type="button">
                 <span class="badge bg-secondary rounded-circle">1</span>
                 Size and Crust
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button aria-controls="profile" aria-selected="false" class="nav-link" data-bs-target="#profile"
+            <button aria-controls="cheese-and-sauce" aria-selected="false" class="nav-link"
+                    data-bs-target="#cheese-and-sauce"
                     data-bs-toggle="tab"
-                    id="profile-tab" role="tab" type="button">
+                    id="cheese-and-sauce-tab" role="tab" type="button">
                 <span class="badge bg-secondary rounded-circle">2</span>
                 Cheese and Sauce
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button aria-controls="contact" aria-selected="false" class="nav-link" data-bs-target="#contact"
+            <button aria-controls="toppings" aria-selected="false" class="nav-link" data-bs-target="#toppings"
                     data-bs-toggle="tab"
-                    id="contact-tab" role="tab" type="button">
+                    id="toppings-tab" role="tab" type="button">
                 <span class="badge bg-secondary rounded-circle">3</span>
                 Toppings
             </button>
@@ -80,8 +78,7 @@
     </ul>
 
     <div class="tab-content" id="myTabContent">
-        <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
-
+        <div aria-labelledby="size-and-crust-tab" class="tab-pane fade show active" id="size-and-crust" role="tabpanel">
             <div class="card">
                 <div class="card-header bg-primary text-white">
                     Choose Size and Crust
@@ -137,13 +134,12 @@
                 </div>
                 <div class="card-footer text-muted d-flex justify-content-end">
                     <div aria-label="Basic example" class="btn-group" role="group">
-                        <button class="btn btn-primary" type="button">Next Step ></button>
+                        <button class="btn btn-primary" onclick="setStep(2)" type="button">Next Step ></button>
                     </div>
                 </div>
             </div>
-
         </div>
-        <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">
+        <div aria-labelledby="cheese-and-sauce-tab" class="tab-pane fade" id="cheese-and-sauce" role="tabpanel">
             <div class="card">
                 <div class="card-header bg-primary text-white">
                     Choose Cheese and Sauce
@@ -187,13 +183,13 @@
                 </div>
                 <div class="card-footer text-muted d-flex justify-content-end">
                     <div aria-label="Basic example" class="btn-group" role="group">
-                        <button class="btn btn-primary" type="button">< Previous</button>
-                        <button class="btn btn-primary" type="button">Next ></button>
+                        <button class="btn btn-primary" onclick="setStep(1)" type="button">< Previous</button>
+                        <button class="btn btn-primary" onclick="setStep(3)" type="button">Next ></button>
                     </div>
                 </div>
             </div>
         </div>
-        <div aria-labelledby="contact-tab" class="tab-pane fade" id="contact" role="tabpanel">
+        <div aria-labelledby="toppings-tab" class="tab-pane fade" id="toppings" role="tabpanel">
             <div class="card">
                 <div class="card-header bg-primary text-white">
                     Choose Toppings
@@ -289,7 +285,7 @@
                 </div>
                 <div class="card-footer text-muted d-flex justify-content-end">
                     <div aria-label="Basic example" class="btn-group" role="group">
-                        <button class="btn btn-primary" type="button">
+                        <button class="btn btn-primary" onclick="setStep(4)" type="button">
                             Checkout
                             <i class="fa-solid fa-cart-shopping"></i>
                         </button>
@@ -297,11 +293,39 @@
                 </div>
 
             </div>
-
         </div>
     </div>
 
 </div>
+
+<script>
+    function setStep(whichStep) {
+        let selectedTabElement, target;
+        switch (whichStep) {
+            case 1:
+                console.log("Moving to step 1, choose toppings.");
+                selectedTabElement = document.getElementById('size-and-crust');
+                console.log(selectedTabElement);
+                break;
+            case 2:
+                console.log("Moving to step 2, cheese and sauce.");
+                selectedTabElement = document.getElementById('cheese-and-sauce');
+                console.log(selectedTabElement);
+                break;
+            case 3:
+                console.log("Moving to step 3, toppings.");
+                selectedTabElement = document.getElementById('toppings');
+                console.log(selectedTabElement);
+                break;
+            case 4:
+                console.log("Finishing step 3, checkout");
+                alert("Thank you for your order!");
+                break;
+            default:
+                break;
+        }
+    }
+</script>
 
 <script crossorigin="anonymous"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
