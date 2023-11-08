@@ -1,5 +1,0 @@
-[
-  "|   |-- logo.png",
-  "|   |-- pizza.js",
-  "5 directories, 61 files"
-]
