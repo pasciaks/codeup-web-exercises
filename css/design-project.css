@@ -1,0 +1,62 @@
+:root {
+    --red-dot: #E6563B;
+    --yellow-dot: #EB9D3A;
+    --green-dot: #7CB06C;
+    --blue-dot: #00ABA9;
+    --light-grey: #F0F0F0;
+    --dark-grey: #E6E6E6;
+}
+
+.logo {
+    height: 105px;
+    width: 105px;
+}
+
+.icons {
+    width: 18px;
+    height: 18px;
+}
+
+.dot {
+    border-radius: 100%;
+}
+
+.red-dot {
+    background-color: var(--red-dot);
+}
+
+.yellow-dot {
+    background-color: var(--yellow-dot);
+}
+
+.green-dot {
+    background-color: var(--green-dot);
+}
+
+.blue-dot {
+    background-color: var(--blue-dot);
+}
+
+.light-grey-dot {
+    background-color: var(--light-grey);
+}
+
+.dark-grey-dot {
+    background-color: var(--dark-grey);
+}
+
+.big-dot {
+    width: 140px;
+    height: 140px;
+    border: 10px solid var(--light-grey)
+}
+
+.little-dot {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--light-grey)
+}
+
+body {
+    background-color: lightgrey;
+}
