@@ -32,8 +32,19 @@
 
     <div class="container">
         <div class="card">
+            <br>
 
             <button onClick="generate(prompt('Team Size?','2'))">Make Partners</button>
+            <br>
+
+            <p>Note: There is little to no error catching for data, so please enter any data changes correctly as a
+                comma separated list.</p>
+            <br>
+
+            <br>
+
+            <button onClick="collectData()">Adjust Git Profiles, comma separated list data.</button>
+            <br>
         </div>
     </div>
 
@@ -45,11 +56,73 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Your custom JS goes here -->
 <script>
+    let global_gitProfiles = [
+        "radiancelux",
+        "pasciaks",
+        "derykdamon",
+        "eltownes",
+        "GBowman1",
+        "psykter",
+        "mventura14",
+        "ByronLuke",
+        "mbcodepractice",
+        "RicardoJaimesDez",
+        "cteriipaia",
+        "Santoszls3",
+        "AngelAdell",
+        "IraHuff",
+        "AmritLee",
+        "TheCosmicFish",
+        "MichaelaArteberry",
+        "Cmgrowald",
+        "Yadriel-Ruiz",
+        "easi-d-hatchett",
+        "sethcrist",
+        "Geoffrey-m-rendon",
+        "ben-w-martin"
+    ];
+
+
+    function collectData() {
+
+        global_gitProfiles = [
+            "radiancelux",
+            "pasciaks",
+            "derykdamon",
+            "eltownes",
+            "GBowman1",
+            "psykter",
+            "mventura14",
+            "ByronLuke",
+            "mbcodepractice",
+            "RicardoJaimesDez",
+            "cteriipaia",
+            "Santoszls3",
+            "AngelAdell",
+            "IraHuff",
+            "AmritLee",
+            "TheCosmicFish",
+            "MichaelaArteberry",
+            "Cmgrowald",
+            "Yadriel-Ruiz",
+            "easi-d-hatchett",
+            "sethcrist",
+            "Geoffrey-m-rendon",
+            "ben-w-martin"
+        ];
+
+
+        let str = global_gitProfiles.join(',');
+        let adjust = prompt("Comma separated list of git profiles.", str);
+        global_gitProfiles = adjust.split(',');
+        generate(prompt('Team Size?', '2'))
+    }
+
     function generate(ts) {
         if (!ts) {
             return;
         }
-        let a = parterMaker(ts);
+        let a = parterMaker(ts, [...global_gitProfiles]);
 
         let s = '';
         Object.keys(a).forEach((i) => {
