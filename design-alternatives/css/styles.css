@@ -1,15 +1,3 @@
-/*NOTE: Alternate import method for google fonts*/
-/*@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');*/
-/*!*@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');*!
-*{
-    border: 1px solid grey;
-}*/
-.align-content {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2em;
-}
-
 :root {
     --red-dot: #E6563B;
     --yellow-dot: #EB9D3A;
@@ -17,6 +5,24 @@
     --blue-dot: #00ABA9;
     --light-grey: #F0F0F0;
     --dark-grey: #E6E6E6;
+}
+
+.featured {
+    display: flex;
+    padding-left: .5em;
+    padding-bottom: .5em;
+    padding-top: .5em;
+}
+
+.card {
+    background-color: var(--light-grey);
+    border: transparent;
+}
+
+.align-content {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
 }
 
 .heading {
@@ -31,10 +37,6 @@
     font-size: 2.5em;
     margin: auto;
     width: 70%;
-}
-
-.last-tweet {
-    /*border: 1px solid red;*/
 }
 
 .brand-title {
@@ -56,7 +58,7 @@
 }
 
 .image-border {
-    border: 1em solid var(--dark-grey);
+    border: .5em solid var(--dark-grey);
     height: 100%;
 }
 
@@ -131,6 +133,7 @@ html, body {
 .side-image {
     width: 75px;
     height: 75px;
+    border: .2em solid var(--dark-grey);
 }
 
 
@@ -150,50 +153,8 @@ html, body {
     background-image: url("../images/security.jpg");
 }
 
-
-.debugger .d-xs-block {
-    position: absolute;
-    bottom: 10px;
-    left: 50px;
-    background-color: #00ABA9;
-    color: black;
-}
-
-.debugger .d-sm-block {
-    position: absolute;
-    bottom: 10px;
-    left: 100px;
-    background-color: #00ABA9;
-    color: black;
-}
-
-.debugger .d-md-block {
-    position: absolute;
-    bottom: 10px;
-    left: 150px;
-    background-color: #00ABA9;
-    color: black;
-}
-
-.debugger .d-lg-block {
-    position: absolute;
-    bottom: 10px;
-    left: 200px;
-    background-color: #00ABA9;
-    color: black;
-}
-
-.debugger .d-xl-block {
-    position: absolute;
-    bottom: 10px;
-    left: 250px;
-    background-color: #00ABA9;
-    color: black;
-}
-
 .the-dots {
     flex-wrap: wrap;
-    /*Note: Dots need to be 2x2 here*/
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
@@ -212,6 +173,16 @@ html, body {
 }
 
 /*// Extra large devices (large desktops, 1200px and up)*/
-@media (min-width: 1200px) {
+@media (min-width: 1100px) {
 
+}
+
+@media (min-width: 992px) and (max-width: 1200px){
+    #right-column{
+        display: none !important;
+    }
+
+    #left-column{
+        width:100%;
+    }
 }
