@@ -1,0 +1,217 @@
+/*NOTE: Alternate import method for google fonts*/
+/*@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');*/
+/*!*@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');*!
+*{
+    border: 1px solid grey;
+}*/
+.align-content {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+:root {
+    --red-dot: #E6563B;
+    --yellow-dot: #EB9D3A;
+    --green-dot: #7CB06C;
+    --blue-dot: #00ABA9;
+    --light-grey: #F0F0F0;
+    --dark-grey: #E6E6E6;
+}
+
+.heading {
+    /*border: 1px solid red;*/
+    font-size: 4em;
+    margin: auto;
+    width: 70%;
+}
+
+.sub-heading {
+    /*border: 1px solid red;*/
+    font-size: 2.5em;
+    margin: auto;
+    width: 70%;
+}
+
+.last-tweet {
+    /*border: 1px solid red;*/
+}
+
+.brand-title {
+    font-size: 28px;
+}
+
+.abel {
+    font-family: 'Abel', sans-serif;
+}
+
+.anton {
+    font-family: 'Anton', sans-serif;
+}
+
+.navbar-brand img {
+    height: 105px;
+    width: 105px;
+    padding: .5em;
+}
+
+.image-border {
+    border: 1em solid var(--dark-grey);
+    height: 100%;
+}
+
+#nav-title {
+    margin-left: -1em;
+}
+
+#navbar img {
+    border: none;
+}
+
+.dot {
+    border-radius: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.red-dot {
+    background-color: var(--red-dot);
+}
+
+.yellow-dot {
+    background-color: var(--yellow-dot);
+}
+
+.green-dot {
+    background-color: var(--green-dot);
+}
+
+.blue-dot {
+    background-color: var(--blue-dot);
+}
+
+.light-grey-dot {
+    background-color: var(--light-grey);
+}
+
+.dark-grey-dot {
+    background-color: var(--dark-grey);
+}
+
+.big-dot {
+    width: 140px;
+    height: 140px;
+    border: 10px solid white;
+    color: white;
+    text-transform: uppercase;
+}
+
+.little-dot {
+    font-size: small;
+    display: flex;
+    width: 18px;
+    height: 18px;
+    color: black;
+}
+
+html, body {
+    background-color: var(--light-grey);
+}
+
+#navbar {
+    background-color: var(--light-grey);
+}
+
+.side {
+    gap: 1em;
+}
+
+.side-image {
+    width: 75px;
+    height: 75px;
+}
+
+
+#i1 {
+    background-image: url("../images/apple-ipad.jpg");
+}
+
+#i2 {
+    background-image: url("../images/macbook.jpg");
+}
+
+#i3 {
+    background-image: url("../images/man.jpg");
+}
+
+#i4 {
+    background-image: url("../images/security.jpg");
+}
+
+
+.debugger .d-xs-block {
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+    background-color: #00ABA9;
+    color: black;
+}
+
+.debugger .d-sm-block {
+    position: absolute;
+    bottom: 10px;
+    left: 100px;
+    background-color: #00ABA9;
+    color: black;
+}
+
+.debugger .d-md-block {
+    position: absolute;
+    bottom: 10px;
+    left: 150px;
+    background-color: #00ABA9;
+    color: black;
+}
+
+.debugger .d-lg-block {
+    position: absolute;
+    bottom: 10px;
+    left: 200px;
+    background-color: #00ABA9;
+    color: black;
+}
+
+.debugger .d-xl-block {
+    position: absolute;
+    bottom: 10px;
+    left: 250px;
+    background-color: #00ABA9;
+    color: black;
+}
+
+.the-dots {
+    flex-wrap: wrap;
+    /*Note: Dots need to be 2x2 here*/
+}
+
+/*// Small devices (landscape phones, 576px and up)*/
+@media (max-width: 576px) {
+
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+}
+
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+}
+
+/*// Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+}
