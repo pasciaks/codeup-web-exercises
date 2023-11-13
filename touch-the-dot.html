@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Touch the dot!</title>
+</head>
+
+<h1 id="body">Target Detection</h1>
+
+<body>
+
+<h1 id="message"> Please stand by while we sample the video ... </h1>
+
+<p>Note: Need to update user media code for Safari support, etc.</p>
+
+<p>
+    https://stackoverflow.com/questions/63672276/navigator-getusermedia-not-working-on-safari-but-working-on-other-browsers</p>
+
+<canvas height="480" id="canvas" width="640"></canvas>
+
+<div style="display: none">
+    <video autoplay height="480" id="player" width="640"></video>
+</div>
+
+</body>
+
+<script>
+
+    let sampled = false;
+
+    let tx = 50;
+    let ty = 50;
+    let sx = 20;
+    let sy = 20;
+
+    let arrayOfValues = [];
+    let boxArray = [];
+
+    let isStopped = false;
+
+    let compareAverage = 0;
+
+    setTimeout(() => {
+        isStopped = true;
+    }, 5000);
+
+    const player = document.getElementById("player");
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+
+    function videoCompare() {
+        context.scale(-1, 1);
+        context.drawImage(player, 0, 0, canvas.width * -1, canvas.height);
+        context.scale(1, 1);
+
+        context.stroke = "red";
+        context.strokeRect(tx - 1, ty - 1, 1 + sx / 4, 1 + sy / 4);
+
+        if (isStopped) return;
+
+        let allImagePixelData = context.getImageData(tx, ty, sx, sy);
+
+        let pix = allImagePixelData.data;
+
+        for (let i = 0, n = pix.length; i < n; i += 4) {
+
+            boxArray.push(pix[i]);
+
+            compareAverage = boxArray.reduce((a, b) => a + b) / boxArray.length;
+
+            if (boxArray.length > 1000) {
+                boxArray.shift();
+            }
+        }
+    }
+
+    function videoSource() {
+
+        context.scale(-1, 1);
+
+        context.drawImage(player, 0, 0, canvas.width * -1, canvas.height);
+
+        let allImagePixelData = context.getImageData(tx, ty, sx, sy);
+
+        context.scale(1, 1);
+
+        let pix = allImagePixelData.data;
+
+        for (let i = 0, n = pix.length; i < n; i += 4) {
+
+            arrayOfValues.push(pix[i]);
+
+            if (arrayOfValues.length >= 50) {
+                arrayOfValues.shift();
+
+                let avg =
+                    arrayOfValues.reduce((a, b) => a + b) / arrayOfValues.length;
+
+                let diff = Math.abs(avg - compareAverage);
+
+                if (diff > 15 && sampled) {
+                    document.getElementById("body").style.backgroundColor = "red";
+                }
+            }
+        }
+    }
+
+    navigator.mediaDevices.getUserMedia({video: true}).then((stream) => {
+        player.srcObject = stream;
+        player.addEventListener("playing", () => {
+            console.log(player.videoWidth);
+            console.log(player.videoHeight);
+        });
+
+
+    });
+
+    setInterval(() => {
+        document.getElementById("body").style.backgroundColor = "white";
+    }, 100);
+
+    setInterval(() => {
+        videoSource();
+        videoCompare();
+    }, 15);
+
+    setInterval(() => {
+        document.getElementById('message').innerHTML = " Ready for you to (wiggle/wave at/touch) the dot! ";
+        sampled = true;
+        isStopped = false;
+    }, 2500);
+
+</script>
+
+</html>
