@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
-    <title>Flex in Flex</title>
+    <title>Bounce - BOM - DOM - Events</title>
+
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
@@ -34,6 +38,7 @@
             left: 0;
             top: 0;
         }
+
     </style>
 
     <script defer>
@@ -51,19 +56,15 @@
 
         let isRunning = false;
 
-        // set to running after 3000 milliseconds = (3 seconds)
-        setTimeout(function () {
-            isRunning = true;
-        }, 3000);
-
-        // update position every 10 milliseconds
-        setInterval(function () {
+        function runActions() {
 
             if (!isRunning) {
                 return
             }
 
             let element = document.getElementById('ball');
+
+            element.style.background = '#' + Math.floor(Math.random() * 16777215).toString(16);
 
             element.style.left = `${x - 10}px`;
             element.style.top = `${y - 10}px`;
@@ -81,17 +82,56 @@
                 y += dirY;
             }
 
-        }, 10);
+        }
+
+        // update position every 10 milliseconds
+        let intervalInstance = setInterval(runActions, 10);
+
+        function start() {
+            isRunning = true;
+        }
+
+        function stop() {
+            isRunning = false;
+        }
+
+        function destroy() {
+            if (intervalInstance) {
+
+                // BOM - browser object model ( window.clearInterval )
+                clearInterval(intervalInstance);
+
+                // DOM - document object model ( document.querySelectorAll )
+                document.querySelectorAll("button").forEach((item) => {
+                    item.disabled = true;
+                });
+
+                // window.location = "https://pasciak.com";
+
+                location.reload();
+
+            }
+        }
 
     </script>
 </head>
-<body>
 
-<p>Action starts in 3 seconds...</p>
+<body style="text-align: center">
+
+<p>The BOM and the DOM!</p>
+
+<div class="container py-3">
+
+    <button onclick="start()">start</button>
+    <button onclick="stop()">stop</button>
+    <button onclick="destroy()">destroy</button>
+
+</div>
 
 <div class="bounce-zone">
     <div id="ball"></div>
 </div>
 
 </body>
+
 </html>
