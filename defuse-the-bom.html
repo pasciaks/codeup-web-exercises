@@ -41,9 +41,15 @@
         function defuseTheBOM() {
             clearInterval(interval);
 
-            setTimeout(function () {
+            // extra testing
+
+            let timeOutRef = setTimeout(function () {
                 window.location = "https://pasciak.com/imugi/bounce.html";
             }, 3000);
+
+            // extra testing
+            
+            // clearTimeout(timeOutRef);
 
             document.write("Good job! Wait 3 seconds for more fun!");
 
