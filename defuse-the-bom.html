@@ -28,9 +28,11 @@
             detonationTimer--;
         }
 
-        let interval = setInterval(function () {
-            updateTimer();
-        }, 1000);
+        // let interval = setInterval(function () {
+        //     updateTimer();
+        // }, 1000);
+
+        let interval = setInterval(updateTimer, 1000);
 
         // Exercise!
 
