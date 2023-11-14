@@ -16,7 +16,7 @@
 </ul>
 <h2 id="sub-header">Hello Again.</h2>
 <p class="sub-paragraph">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    ONE - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
     aliquip ex ea commodo consequat. Duis aute irure dolor in
@@ -25,7 +25,7 @@
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
 <p class="sub-paragraph">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    TWO - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
     aliquip ex ea commodo consequat. Duis aute irure dolor in
@@ -70,6 +70,17 @@
         element.style.color = "blue";
     });
 
+
+    // NOTES ---------------------------------------------------------------------------------------------------------
+    // However, this will not work if we use .getElementsByClassName() or .getElementsByTagName().
+    // In these cases, we can only use a forEach loop if we modify the returned collection with the spread operator.
+    // document.getElementsByClassName("sub-paragraph").forEach((element) => {
+    //     element.style.color = "blue";
+    // });
+    [...document.getElementsByClassName("sub-paragraph")].forEach(item => console.log(item.innerText));
+    // NOTES ---------------------------------------------------------------------------------------------------------
+
+
     // TODO: Uncomment the next line and get all elements with class name sub-paragraph
     const subParagraphs = document.getElementsByClassName("sub-paragraph");
 
@@ -78,6 +89,9 @@
 
     // The below alternative also works.
     // document.querySelector('.sub-paragraph').innerText = "Mission Accomplished!";
+
+    let testElements = document.getElementsByClassName("not-gonna-find-any");
+    console.log(testElements); // length = 0
 
 </script>
 </body>
