@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .border {
+            border: 1px solid black;
+            border-radius: 7px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .sans-serif {
+            font-family: "Helvetica Neue", Helvetica, sans-serif;
+        }
+
+        .background-color {
+            background-color: antiquewhite;
+        }
+    </style>
+
+</head>
+<body>
+
+<header>
+    <h1>Attributes and CSS in JS</h1>
+</header>
+
+<form name="login">
+    <div>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text">
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password">
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+
+<br>
+
+<p id="text">Hello World!</p>
+
+<br>
+
+<script>
+    let textElement = document.getElementById('text');
+
+    // Change the color of the text
+    textElement.style.color = "red";
+
+    // Add a background color
+    textElement.style.backgroundColor = "black";
+
+    // Change the font-size
+    textElement.style.fontSize = "20px";
+</script>
+
+<script>
+    "use strict";
+
+    setInterval(function () {
+        const usernameInput = document.forms.login.username;
+        console.log(usernameInput.value);
+        const passwordInput = document.forms.login.password;
+        console.log(passwordInput.value);
+    }, 1000);
+
+    let header;
+
+    header = document.querySelector("header");
+    console.log(header.innerHTML);
+    header.innerHTML = "<h1>The uses of InnerHTML!</h1>" +
+        "<p>You can get and set HTML with innerHTML</p>";
+
+    header = document.querySelector("header");
+    console.log(header.hasAttribute("id"));
+
+    header = document.querySelector("header");
+    console.log(header.hasAttribute("id"));
+    header.setAttribute("id", "pageHeader");
+    console.log(header.hasAttribute("id"));
+    console.log(header.getAttribute("id"));
+
+    header = document.querySelector("header");
+    console.log(header.classList);
+
+    header = document.querySelector("header");
+    console.log(header.classList);
+    header.classList.add("background-color");
+
+    header = document.querySelector("header");
+    console.log(header.classList);
+    header.classList.add("background-color");
+    header.classList.remove("sans-serif");
+
+    header = document.querySelector("header");
+    console.log(header.classList);
+    header.classList.add("background-color");
+    header.classList.remove("sans-serif");
+    header.classList.toggle("background-color");
+
+</script>
+</body>
+</html>
