@@ -17,6 +17,7 @@ Write code that toggles a class on the "profile-card" that changes its backgroun
 */
 
 (() => {
+
     setTimeout(function () {
         document.getElementById('profile-pic').src = "http://lostwords.org/images/penguin.png";
     }, 2000);
@@ -72,5 +73,16 @@ Write code that toggles a class on the "profile-card" that changes its backgroun
         currentColorIndex = Math.floor(Math.random() * colors.length);
         document.getElementById('profile-card').style.background = colors[currentColorIndex];
     }, 2000);
+
+    let textScroller = " Sheldon Pasciak ";
+
+    setTimeout(function () {
+        setInterval(function () {
+            let firstChar = textScroller.charAt(0);
+            let restOfChars = textScroller.substring(1);
+            textScroller = `${restOfChars}${firstChar}`;
+            document.getElementById('profile-name').innerHTML = textScroller;
+        }, 100);
+    }, 8000)
 
 })()
