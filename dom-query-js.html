@@ -7,6 +7,7 @@
 <body>
 
 <h1 id="main-header">Hello World!</h1>
+
 <ul>
     <li data-dbid="1">Item 1</li>
     <li data-dbid="2">Item 2</li>
@@ -14,7 +15,9 @@
     <li data-dbid="4">Item 4</li>
     <li data-dbid="5">Item 5</li>
 </ul>
+
 <h2 id="sub-header">Hello Again.</h2>
+
 <p class="sub-paragraph">
     ONE - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -24,6 +27,7 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
+
 <p class="sub-paragraph">
     TWO - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -33,6 +37,11 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
+
+<!--<h1 id="h1-id">This is a test!</h1>-->
+
+<p>Note: There may be some extra test code in this file, please ignore for grading purposes if that is ok!</p>
+
 <script>
 
     // Exercise
@@ -90,8 +99,13 @@
     // The below alternative also works.
     // document.querySelector('.sub-paragraph').innerText = "Mission Accomplished!";
 
-    let testElements = document.getElementsByClassName("not-gonna-find-any");
-    console.log(testElements); // length = 0
+    // More testing, experimentation
+    // let testElements = document.getElementsByClassName("not-gonna-find-any");
+    // console.log(testElements); // length = 0
+
+    // NOTE - the below demonstrates being SAFE with HTML -vs- TEXT
+    // document.getElementById('h1-id').innerHTML = "<h2><strong><em>test</em> test</strong> test</h2>";
+    // document.getElementById('h1-id').innerText = "<h2><strong><em>test</em> test</strong> test</h2>";
 
 </script>
 </body>
