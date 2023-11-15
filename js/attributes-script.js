@@ -20,7 +20,9 @@ Write code that toggles a class on the "profile-card" that changes its backgroun
 
     setTimeout(function () {
         let intRandom = 1 + Math.floor(Math.random() * 50);
+        // NOTE: Both of the below work
         document.getElementById('profile-pic').src = `https://randomuser.me/api/portraits/men/${intRandom}.jpg`;
+        document.getElementById('profile-pic').setAttribute('src', `https://randomuser.me/api/portraits/men/${intRandom}.jpg`);
     }, 2000);
 
     setTimeout(function () {
