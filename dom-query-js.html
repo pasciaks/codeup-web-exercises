@@ -28,19 +28,19 @@
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
 
-<p class="sub-paragraph">
-    TWO - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-    aliquip ex ea commodo consequat. Duis aute irure dolor in
-    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-    culpa qui officia deserunt mollit anim id est laborum.
-</p>
+<!--<p class="sub-paragraph">-->
+<!--    TWO - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do-->
+<!--    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim-->
+<!--    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut-->
+<!--    aliquip ex ea commodo consequat. Duis aute irure dolor in-->
+<!--    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla-->
+<!--    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in-->
+<!--    culpa qui officia deserunt mollit anim id est laborum.-->
+<!--</p>-->
 
 <!--<h1 id="h1-id">This is a test!</h1>-->
 
-<p>Note: There may be some extra test code in this file, please ignore for grading purposes if that is ok!</p>
+<!--<p>Note: There may be some extra test code in this file, please ignore for grading purposes if that is ok!</p>-->
 
 <script>
 
@@ -120,7 +120,11 @@
 
 
     // TODO: Uncomment the next line and get all elements with class name sub-paragraph
-    const subParagraphs = document.getElementsByClassName("sub-paragraph");
+
+    // ** Note: alternative way of getting elements by class name **
+    // const subParagraphs = document.getElementsByClassName("sub-paragraph");
+
+    const subParagraphs = document.querySelectorAll(".sub-paragraph");
 
     // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
     subParagraphs[0].innerText = "Mission Accomplished!";
