@@ -74,7 +74,8 @@
     arrayOfElements[randomIndex].addEventListener('mousemove', function () {
         if (!alreadyLost) {
             alert("You win!");
-            document.write('');
+            arrayOfElements[randomIndex].style.left = (Math.floor(Math.random() * 490) + 10) + 'px';
+            arrayOfElements[randomIndex].style.top = (Math.floor(Math.random() * 490) + 10) + 'px';
         }
     });
 
