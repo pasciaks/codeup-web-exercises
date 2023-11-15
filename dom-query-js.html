@@ -100,7 +100,14 @@
 
     // document.querySelector("[data-dbid='1']").style.color = "blue";
 
-    document.querySelector("li[data-dbid='1']").style.color = "blue";
+    // document.querySelector("li[data-dbid='1']").style.color = "blue";
+
+    for (let i = 0; i < listItems.length; i++) {
+        if (listItems[i].dataset.dbid === "1") {
+            listItems[i].style.color = "blue";
+        }
+    }
+
 
     // NOTES ---------------------------------------------------------------------------------------------------------
     // However, this will not work if we use .getElementsByClassName() or .getElementsByTagName().
