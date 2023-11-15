@@ -68,17 +68,39 @@
     const listItems = document.querySelectorAll("li");
 
     // TODO: Set text color on every other list item to grey
-    listItems.forEach((item, index) => {
-        if (index % 2 !== 0) {
-            item.style.color = "grey";
+
+    // ** the following are alternative ways to accomplish this **
+
+    // listItems.forEach((item, index) => {
+    // all the even items
+    // if (index % 2 === 0) {
+    //     item.style.color = "grey";
+    // }
+
+    // all the odd items
+    // if (index % 2 !== 0) {
+    //     item.style.color = "grey";
+    // }
+    // });
+
+    // TODO: Set text color on every other list item to grey
+    for (let i = 0; i < listItems.length; i++) {
+        if (i % 2 !== 0) {
+            listItems[i].style.color = 'grey';
         }
-    });
+    }
 
     // TODO: Set text color of li with dbid = 1 to blue
-    document.querySelectorAll("[data-dbid='1']").forEach((element) => {
-        element.style.color = "blue";
-    });
 
+    // ** the following are alternative ways to accomplish this **
+
+    // document.querySelectorAll("[data-dbid='1']").forEach((element) => {
+    //     element.style.color = "blue";
+    // });
+
+    // document.querySelector("[data-dbid='1']").style.color = "blue";
+
+    document.querySelector("li[data-dbid='1']").style.color = "blue";
 
     // NOTES ---------------------------------------------------------------------------------------------------------
     // However, this will not work if we use .getElementsByClassName() or .getElementsByTagName().
