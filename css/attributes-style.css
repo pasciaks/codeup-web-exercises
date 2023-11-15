@@ -41,3 +41,8 @@
 #toggle-btn:hover {
     background-color: #0056b3;
 }
+
+.new-color-and-font {
+    color: black;
+    font-family: Courier, sans-serif;
+}

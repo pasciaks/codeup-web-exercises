@@ -28,9 +28,11 @@ Write code that toggles a class on the "profile-card" that changes its backgroun
     }, 4000);
 
     setTimeout(function () {
-        let profileDescElement = document.getElementById('profile-desc')
-        profileDescElement.style.color = 'black';
-        profileDescElement.style.fontFamily = "Courier,sans-serif";
+        let profileDescElement = document.getElementById('profile-desc');
+        profileDescElement.classList.add('new-color-and-font');
+        // NOTE: careful reading identified need to change the below implementation to that which is above.
+        // profileDescElement.style.color = 'black';
+        // profileDescElement.style.fontFamily = "Courier, sans-serif";
     }, 6000);
 
     // [x] Instead of toggling the background color every two seconds, see below in bonus section
