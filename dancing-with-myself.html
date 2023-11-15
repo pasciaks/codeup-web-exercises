@@ -62,6 +62,7 @@
         }
     }
 
+
     function manipulateImage() {
         let allImagePixelData = ctx.getImageData(0, 0, 400, 400);
         let pix = allImagePixelData.data;
@@ -93,12 +94,14 @@
 
             pix[i + 3] = a - 1;
 
-            if (pix[i + 3] < 0) {
-                pix[i + 3] = 0
-            }
+            pix[i + 3] = Math.floor(Math.random() * 255);
+
+            // if (pix[i + 3] < 0) {
+            //     pix[i + 3] = 0
+            // }
 
         }
-        
+
         ctx.putImageData(allImagePixelData, 0, 0);
     }
 
@@ -108,8 +111,7 @@
         drawClock();
     });
 
-    setInterval(manipulateImage, 100);
-
+    setInterval(manipulateImage, 1000);
 
 </script>
 </body>
