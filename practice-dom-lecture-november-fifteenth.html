@@ -12,14 +12,14 @@
         }
 
         div {
-            background-color: grey;
+            /*background-color: grey;*/
         }
 
         #main-container {
             height: 100px;
             margin: 0;
             padding: 0;
-            background-color: cyan;
+            /*background-color: cyan;*/
         }
 
     </style>
@@ -71,15 +71,18 @@
 
     let arrayOfElements = [];
 
-    let randomIndex = Math.floor(Math.random() * 555);
+    let randomIndex = Math.floor(Math.random() * 222);
 
-    for (let i = 0; i < 555; i++) {
+    for (let i = 0; i < 222; i++) {
         createAndAdd(i);
     }
 
     arrayOfElements[randomIndex].classList.remove('target');
     arrayOfElements[randomIndex].style.background = "green";
     arrayOfElements[randomIndex].style.zIndex = "1000";
+
+    arrayOfElements[randomIndex].style.width = '50px';
+    arrayOfElements[randomIndex].style.height = '50px';
 
     arrayOfElements[randomIndex].addEventListener('mousemove', function (e) {
         if (!alreadyLost) {
