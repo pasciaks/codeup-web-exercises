@@ -31,14 +31,18 @@
 
 <script defer>
 
+    let alreadyLost = false;
+
     function mouseMoveOnElement(e) {
-        console.log(JSON.stringify(e.target.id));
+        console.log(JSON.stringify(e.target.id, null, 2));
         document.querySelectorAll('.target').forEach((element) => {
             element.style.background = 'blue';
+            alreadyLost = true;
+            // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
         })
     }
 
-    function createAndAdd() {
+    function createAndAdd(index) {
         let element = document.createElement('div');
         element.id = `${arrayOfElements.length}`;
         element.style.position = 'absolute';
@@ -48,20 +52,31 @@
         element.style.height = '10px';
         element.style.background = 'red';
         element.classList.add('target');
-
         document.body.append(element);
-
-        element.addEventListener('mousemove', mouseMoveOnElement);
-
+        if (index !== randomIndex) {
+            element.addEventListener('mousemove', mouseMoveOnElement);
+        }
         arrayOfElements.push(element);
     }
 
     let arrayOfElements = [];
 
+    let randomIndex = Math.floor(Math.random() * 555);
+
     for (let i = 0; i < 555; i++) {
-        createAndAdd();
+        createAndAdd(i);
     }
 
+    arrayOfElements[randomIndex].classList.remove('target');
+    arrayOfElements[randomIndex].style.background = "green";
+    arrayOfElements[randomIndex].style.zIndex = "1000";
+
+    arrayOfElements[randomIndex].addEventListener('mousemove', function () {
+        if (!alreadyLost) {
+            alert("You win!");
+            document.write('');
+        }
+    });
 
     // document.getElementsByTagName('h1')[0].innerText = "School is cool!";
 
