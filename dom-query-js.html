@@ -152,6 +152,62 @@
     // [...document.getElementsByClassName("sub-paragraph")].forEach(item => console.log(item.innerText));
     // NOTES ---------------------------------------------------------------------------------------------------------
 
+    let confirmResult = confirm("Do you want to remove listeners for other exercise ?");
+    if (confirmResult) {
+        document.getElementById('btn-1').removeEventListener('click', action1);
+        document.getElementById('btn-2').removeEventListener('click', action2);
+        document.getElementById('btn-3').removeEventListener('click', action3);
+        document.getElementById('btn-4').removeEventListener('click', action4);
+    }
+    
+    //---------------------------------------------------------------
+    let allH1 = document.querySelectorAll('h1');
+
+    function h1Clicked(event) {
+        event.target.style.background = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+    for (let i = 0; i < allH1.length; i++) {
+        allH1[i].addEventListener('click', h1Clicked);
+    }
+    //---------------------------------------------------------------
+    let allP = document.querySelectorAll('p');
+
+    function pDoubleClicked(event) {
+        event.target.style.fontSize = '18px';
+    }
+
+    for (let i = 0; i < allP.length; i++) {
+        allP[i].addEventListener('dblclick', pDoubleClicked);
+    }
+    //---------------------------------------------------------------
+
+    let allLi = document.querySelectorAll('li');
+
+    function liEnter(event) {
+        event.target.style.color = 'red';
+    }
+
+    function liLeave(event) {
+        event.target.style.color = 'black';
+    }
+
+    for (let i = 0; i < allLi.length; i++) {
+        allLi[i].addEventListener('mouseenter', liEnter);
+        allLi[i].addEventListener('mouseleave', liLeave);
+    }
+
 </script>
 </body>
 </html>
+
+<!--Use the file dom-query-js.html for these exercises. Commit your changes to GitHub.-->
+
+<!--Remove your custom event listener code from previous exercises.-->
+
+<!--Add code that will change the background color of an h1 element when clicked.-->
+
+<!--Make all paragraphs have a font size of 18px when they are double clicked.-->
+
+<!--Set all li text color to red when the mouse is hovering; reset to black when it is not.-->
+
