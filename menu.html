@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Imugi</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<style>
+    body {
+        background-color: lightblue;
+    }
+
+    tr,
+    td {
+        border: 1px dotted lightgray;
+    }
+
+    section {
+        border: 1px solid red;
+        margin: 10px auto;
+    }
+</style>
+
+<body>
+<div class="container">
+    <!-- <h1>Imugi - codeup-web-exercises</h1> -->
+
+    <!-- <div class="display:none;">
+        <div class="accordion py-2" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Notes
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <div class="container">
+                            <div class="container">
+                                <p>
+                                    I created a bash script and some JS code that compares your
+                                    codeup-web-exercises to that of a chosen classmate who (more likely
+                                    than not) has completed all the assignments with proper naming, etc.
+                                    If you click the link that corresponds to your Github username
+                                    below, you'll see a list of files that I believe you might be
+                                    missing, either because you didn't complete the exercise or because
+                                    of file naming or folder location, etc. Remember exact naming,
+                                    capitalization, etc matters.
+                                    No guarantees that the source of these comparisons is totally
+                                    correct, (use at own risk), but hopefully this might help for those
+                                    of you looking to recheck your assignment work this weekend.
+                                    No worries either way, but hope this helps if you are using this
+                                    weekend to investigate your assignments -- They are all going to be
+                                    due at the end of next week I believe.
+                                </p>
+                            </div>
+                            <div class="container">
+                                <p>
+                                    Also, this information is as of the last time I ran and published the results -
+                                    If
+                                    you
+                                    update your assignments after that, I'll need to re run the script
+                                    so it can re-evaluate my comparison. Feel free to DM me in slack and
+                                    I can do that sometime again if you like.
+                                </p>
+                            </div>
+                        </div>
+                        <section style="padding: 5px; border: 2px solid red">
+                            <ul>
+                                <li>
+                                    <p>
+                                        By the way, if your list is missing the following, it might not be a
+                                        thing. It is likely these are extra files that chosen source/student
+                                        created/used in his/her assignments.
+                                    </p>
+                                    <p>"--- --- logo.png", "--- --- do_while.js", "--- js-html.html"</p>
+                                </li>
+                                <li>
+                                    <p>Note: Some folder naming might result in additional (false negative) issues,
+                                        like
+                                        using (img) as
+                                        a folder
+                                        name instead of
+                                        (images)</p>
+                                </li>
+                                <li>
+                                    <p>Regretfully, since one student folder was selected as a source to compare
+                                        from,
+                                        deviations of
+                                        folder
+                                        naming
+                                        will appear to be issues where they might not actually be true issues in
+                                        these
+                                        cases.</p>
+                                </li>
+                                <li>
+                                    <p>Note: This script/comparison doesn't check that you completed the assignment
+                                        correctly, it just
+                                        looks to see if you have the appropriately named files as a way to help
+                                        identify
+                                        any missing
+                                        assignments perhaps.</p>
+                                </li>
+                            </ul>
+
+
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col">
+            <!-- <h4>Updated 8 Nov, 11:50am Central Time - html view</h4> -->
+
+            <!-- <section>
+                <a target="_blank" href="https://pasciak.com/imugi/radiancelux.html">radiancelux</a>
+                <a target="_blank" href="https://pasciak.com/imugi/pasciaks.html">pasciaks</a>
+                <a target="_blank" href="https://pasciak.com/imugi/derykdamon.html">derykdamon</a>
+                <a target="_blank" href="https://pasciak.com/imugi/eltownes.html">eltownes</a>
+                <a target="_blank" href="https://pasciak.com/imugi/GBowman1.html">GBowman1</a>
+                <a target="_blank" href="https://pasciak.com/imugi/psykter.html">psykter</a>
+                <a target="_blank" href="https://pasciak.com/imugi/mventura14.html">mventura14</a>
+                <a target="_blank" href="https://pasciak.com/imugi/ByronLuke.html">ByronLuke</a>
+                <a target="_blank" href="https://pasciak.com/imugi/mbcodepractice.html">mbcodepractice</a>
+                <a target="_blank" href="https://pasciak.com/imugi/RicardoJaimesDez.html">RicardoJaimesDez</a>
+                <a target="_blank" href="https://pasciak.com/imugi/cteriipaia.html">cteriipaia</a>
+                <a target="_blank" href="https://pasciak.com/imugi/Santoszls3.html">Santoszls3</a>
+                <a target="_blank" href="https://pasciak.com/imugi/AngelAdell.html">AngelAdell</a>
+                <a target="_blank" href="https://pasciak.com/imugi/IraHuff.html">IraHuff</a>
+                <a target="_blank" href="https://pasciak.com/imugi/AmritLee.html">AmritLee</a>
+                <a target="_blank" href="https://pasciak.com/imugi/TheCosmicFish.html">TheCosmicFish</a>
+                <a target="_blank" href="https://pasciak.com/imugi/MichaelaArteberry.html">MichaelaArteberry</a>
+                <a target="_blank" href="https://pasciak.com/imugi/Cmgrowald.html">Cmgrowald</a>
+                <a target="_blank" href="https://pasciak.com/imugi/Yadriel-Ruiz.html">Yadriel-Ruiz</a>
+                <a target="_blank" href="https://pasciak.com/imugi/easi-d-hatchett.html">easi-d-hatchett</a>
+                <a target="_blank" href="https://pasciak.com/imugi/sethcrist.html">sethcrist</a>
+                <a target="_blank" href="https://pasciak.com/imugi/Geoffrey-m-rendon.html">Geoffrey-m-rendon</a>
+                <a target="_blank" href="https://pasciak.com/imugi/ben-w-martin.html">ben-w-martin</a>
+            </section> -->
+
+            <hr>
+            <hr>
+            <hr>
+
+
+            <h4>Github links</h4>
+            <section>
+                <a href="https://github.com/radiancelux/codeup-web-exercises" target="_blank">radiancelux</a>
+                <a href="https://github.com/pasciaks/codeup-web-exercises" target="_blank">pasciaks</a>
+                <a href="https://github.com/derykdamon/codeup-web-exercises" target="_blank">derykdamon</a>
+                <a href="https://github.com/eltownes/codeup-web-exercises" target="_blank">eltownes</a>
+                <a href="https://github.com/GBowman1/codeup-web-exercises" target="_blank">GBowman1</a>
+                <a href="https://github.com/psykter/codeup-web-exercises" target="_blank">psykter</a>
+                <a href="https://github.com/mventura14/codeup-web-exercises" target="_blank">mventura14</a>
+                <a href="https://github.com/ByronLuke/codeup-web-exercises" target="_blank">ByronLuke</a>
+                <a href="https://github.com/mbcodepractice/codeup-web-exercises" target="_blank">mbcodepractice</a>
+                <a href="https://github.com/RicardoJaimesDez/codeup-web-exercises"
+                   target="_blank">RicardoJaimesDez</a>
+                <a href="https://github.com/cteriipaia/codeup-web-exercises" target="_blank">cteriipaia</a>
+                <a href="https://github.com/Santoszls3/codeup-web-exercises" target="_blank">Santoszls3</a>
+                <a href="https://github.com/AngelAdell/codeup-web-exercises" target="_blank">AngelAdell</a>
+                <a href="https://github.com/IraHuff/codeup-web-exercises" target="_blank">IraHuff</a>
+                <a href="https://github.com/AmritLee/codeup-web-exercises" target="_blank">AmritLee</a>
+                <a href="https://github.com/TheCosmicFish/codeup-web-exercises" target="_blank">TheCosmicFish</a>
+                <a href="https://github.com/MichaelaArteberry/codeup-web-exercises"
+                   target="_blank">MichaelaArteberry</a>
+                <a href="https://github.com/Cmgrowald/codeup-web-exercises" target="_blank">Cmgrowald</a>
+                <a href="https://github.com/Yadriel-Ruiz/codeup-web-exercises" target="_blank">Yadriel-Ruiz</a>
+                <a href="https://github.com/easi-d-hatchett/codeup-web-exercises"
+                   target="_blank">easi-d-hatchett</a>
+                <a href="https://github.com/sethcrist/codeup-web-exercises" target="_blank">sethcrist</a>
+                <a href="https://github.com/Geoffrey-m-rendon/codeup-web-exercises"
+                   target="_blank">Geoffrey-m-rendon</a>
+                <a href="https://github.com/ben-w-martin/codeup-web-exercises" target="_blank">ben-w-martin</a>
+            </section>
+
+
+            <!-- <section style="text-align: center; font: 14px Courier">
+                <div class="row">
+                    <div class="col">
+                        <h3>P.S. Now that we are moving into the next grading period, this comparison will no longer
+                            be updated</h3>
+                    </div>
+                </div>
+            </section> -->
+        </div>
+
+    </div>
+
+
+    <hr>
+    <hr>
+    <hr>
+
+    <div class="container text-center">
+        <h1>Partner Maker</h1>
+        <a href="https://pasciak.com/imugi/partner.html">Partner Maker</a>
+        <p>The link above will randomly generate partners based on our list of Imugi GitHub profiles.</p>
+    </div>
+
+    <div class="container">
+        <a href="https://pasciak.com/imugi/bounce.html" target="_blank">Bounce!</a>
+    </div>
+
+    <div class="container">
+        <a href="https://pasciak.com/imugi/practice-dom-lecture-november-fifteenth.html" target="_blank">DOM
+            Practice!</a>
+    </div>
+
+
+    <hr>
+    <hr>
+    <hr>
+
+    <div class="col text-center" style="text-align: center;">
+        <div class="container center">
+
+            <a href="http://lostwords.org">lostwords.org - Go make your mark on the world, one word at a time!</a>
+
+        </div>
+    </div>
+
+
+</div>
+<br/>
+<br/>
+
+
+</body>
+
+
+</html>
