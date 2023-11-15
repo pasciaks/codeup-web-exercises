@@ -14,7 +14,7 @@
 }
 
 .selected {
-    background-color: #E6563B;
+    background-color: #E6563B !important;
 }
 
 #profile-name {

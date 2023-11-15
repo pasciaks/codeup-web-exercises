@@ -86,6 +86,13 @@ Write code that toggles a class on the "profile-card" that changes its backgroun
             textScroller = `${restOfChars}${firstChar}`;
             document.getElementById('profile-name').innerHTML = textScroller;
         }, 100);
-    }, 8000)
+    }, 8000);
+
+    setInterval(function () {
+        let hasSelectedClass = document.getElementById('profile-card').classList.contains('selected');
+        if (hasSelectedClass) {
+            console.log("Class background is locked!");
+        }
+    }, 100);
 
 })()
