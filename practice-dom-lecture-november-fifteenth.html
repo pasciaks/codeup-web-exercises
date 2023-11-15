@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+
+    <style>
+        /*NOTE: style tag must be in head, but should be in external files*/
+    </style>
+
+</head>
+
+<body>
+
+<div id="main-container">
+
+    <h1>Hello there!</h1>
+
+</div>
+
+<!--Note: script tag should be in body, but better if external file-->
+
+<script defer>
+
+    // document.getElementsByTagName('h1')[0].innerText = "School is cool!";
+
+    const h1 = document.querySelector("h1");
+    const container = document.querySelector('#main-container');
+
+    h1.innerHTML = `<strong>H</strong>ello <em>T</em>here!`;
+
+    let containerHasAnId = container.hasAttribute("id");
+    let theContainerId = container.getAttribute("id");
+
+    console.log({containerHasAnId, theContainerId});
+
+    // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild
+
+</script>
+
+</body>
+
+</html>
