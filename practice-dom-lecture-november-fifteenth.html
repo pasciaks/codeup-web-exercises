@@ -6,6 +6,11 @@
 
     <style>
         /*NOTE: style tag must be in head, but should be in external files*/
+
+        div {
+            border: 1px dotted grey;
+        }
+
     </style>
 
 </head>
@@ -16,7 +21,11 @@
 
     <h1>Hello there!</h1>
 
+    <button id="btn-ok">Ok</button>
+
 </div>
+
+<div id="info"></div>
 
 <!--Note: script tag should be in body, but better if external file-->
 
@@ -34,7 +43,33 @@
 
     console.log({containerHasAnId, theContainerId});
 
+    container.setAttribute('data-dbid', '1');
+
+    let okButton = document.getElementById('btn-ok');
+    okButton.setAttribute('disabled', "true");
+    okButton.removeAttribute('disabled');
+
+    let result = container.dataset;
+    console.log(result);
+
     // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild
+
+    container.addEventListener('mousemove', (event) => {
+        let {screenX, screenY, clientX, clientY, isTrusted} = event;
+        console.log({screenX, screenY, clientX, clientY, isTrusted});
+        document.getElementById('info').innerHTML = JSON.stringify({
+            screenX,
+            screenY,
+            clientX,
+            clientY,
+            isTrusted
+        }, null, 2)
+        container.style.background = 'red';
+    });
+
+    container.addEventListener('mouseleave', (event) => {
+        container.style.background = 'white';
+    });
 
 </script>
 
