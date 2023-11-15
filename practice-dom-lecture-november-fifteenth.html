@@ -7,8 +7,19 @@
     <style>
         /*NOTE: style tag must be in head, but should be in external files*/
 
+        * {
+            box-sizing: border-box;
+        }
+
         div {
-            border: 1px dotted grey;
+            background-color: grey;
+        }
+
+        #main-container {
+            height: 100px;
+            margin: 0;
+            padding: 0;
+            background-color: cyan;
         }
 
     </style>
@@ -21,8 +32,6 @@
 
 <div id="main-container">
 
-    <h1>Hello there!</h1>
-
 </div>
 
 <div id="info"></div>
@@ -33,12 +42,13 @@
 
     let alreadyLost = false;
 
+    // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
+
     function mouseMoveOnElement(e) {
         console.log(JSON.stringify(e.target.id, null, 2));
         document.querySelectorAll('.target').forEach((element) => {
             element.style.background = 'blue';
             alreadyLost = true;
-            // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
         })
     }
 
@@ -71,7 +81,7 @@
     arrayOfElements[randomIndex].style.background = "green";
     arrayOfElements[randomIndex].style.zIndex = "1000";
 
-    arrayOfElements[randomIndex].addEventListener('mousemove', function () {
+    arrayOfElements[randomIndex].addEventListener('mousemove', function (e) {
         if (!alreadyLost) {
             alert("You win!");
             arrayOfElements[randomIndex].style.left = (Math.floor(Math.random() * 490) + 10) + 'px';
@@ -79,12 +89,8 @@
         }
     });
 
-    // document.getElementsByTagName('h1')[0].innerText = "School is cool!";
-
     const h1 = document.querySelector("h1");
     const container = document.querySelector('#main-container');
-
-    h1.innerHTML = `<strong>H</strong>ello <em>T</em>here!`;
 
     let containerHasAnId = container.hasAttribute("id");
     let theContainerId = container.getAttribute("id");
@@ -104,6 +110,11 @@
 
     container.addEventListener('mousemove', (event) => {
 
+        var rect = event.target.getBoundingClientRect();
+        var x = event.clientX - rect.left; //x position within the element.
+        var y = event.clientY - rect.top;  //y position within the element.
+        console.log("Left? : " + x + " ; Top? : " + y + ".");
+
         let {screenX, screenY, clientX, clientY, isTrusted} = event;
 
         document.getElementById('info').innerHTML = JSON.stringify({
@@ -111,7 +122,9 @@
             screenY,
             clientX,
             clientY,
-            isTrusted
+            isTrusted,
+            x,
+            y
         }, null, 2)
 
         // container.style.background = 'red';
