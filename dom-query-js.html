@@ -28,86 +28,120 @@
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
 
-<!--<p class="sub-paragraph">-->
-<!--    TWO - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do-->
-<!--    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim-->
-<!--    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut-->
-<!--    aliquip ex ea commodo consequat. Duis aute irure dolor in-->
-<!--    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla-->
-<!--    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in-->
-<!--    culpa qui officia deserunt mollit anim id est laborum.-->
-<!--</p>-->
+<button id="btn-1" title="Perform...Javascript is Cool">Perform JAVASCRIPT is Cool action!</button>
 
-<!--<h1 id="h1-id">This is a test!</h1>-->
+<button id="btn-2" title="Perform...Hello Again">Perform Hello Again action!</button>
 
-<!--<p>Note: There may be some extra test code in this file, please ignore for grading purposes if that is ok!</p>-->
+<button id="btn-3" title="Perform...Grey list items">Perform Grey List Items action!</button>
+
+<button id="btn-4" title="Perform...1st ListItem to blue and Mission Accomplished">Perform 1st ListItem Blue & Mission
+    Accomplished!
+</button>
 
 <script>
 
-    // Exercise
-
-    // @TODO // note: // NodeList and array specifics regarding query selector all, etc, see below:
-    // Looping Over DOM Selections
-    // Whereas .querySelectorAll() returns a NodeList, .getElementsByTagName() and .getElementsByClassName() return an HTMLCollection.
-    // The difference is small but subtle. We can loop over a NodeList with a forEach loop, but we cannot use forEach directly on an HTMLCollection.
-
     "use strict";
-    // TODO: Uncomment next line and get the main header element by id
-    const mainHeader = document.getElementById("main-header");
 
-    // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-    mainHeader.innerHTML = "JavaScript is Cool";
+    document.getElementById('btn-1').addEventListener('click', action1);
+    document.getElementById('btn-2').addEventListener('click', action2);
+    document.getElementById('btn-3').addEventListener('click', action3);
+    document.getElementById('btn-4').addEventListener('click', action4);
 
-    // TODO: Uncomment the next line and get the sub header element by id
-    const subHeader = document.getElementById("sub-header");
+    function action1() {
 
-    // TODO: Set the text color of subHeader to blue
-    subHeader.style.color = "blue";
+        // Exercise
 
-    // TODO: Uncomment the next line and get all list items
-    const listItems = document.querySelectorAll("li");
+        // @TODO // note: // NodeList and array specifics regarding query selector all, etc, see below:
+        // Looping Over DOM Selections
+        // Whereas .querySelectorAll() returns a NodeList, .getElementsByTagName() and .getElementsByClassName() return an HTMLCollection.
+        // The difference is small but subtle. We can loop over a NodeList with a forEach loop, but we cannot use forEach directly on an HTMLCollection.
 
-    // TODO: Set text color on every other list item to grey
+        // TODO: Uncomment next line and get the main header element by id
+        const mainHeader = document.getElementById("main-header");
 
-    // ** the following are alternative ways to accomplish this **
+        // TODO: Set inner html of mainHeader to "JavaScript is Cool"
+        mainHeader.innerHTML = "JavaScript is Cool";
+    }
 
-    // listItems.forEach((item, index) => {
-    // all the even items
-    // if (index % 2 === 0) {
-    //     item.style.color = "grey";
-    // }
+    function action2() {
+        // TODO: Uncomment the next line and get the sub header element by id
+        const subHeader = document.getElementById("sub-header");
 
-    // all the odd items
-    // if (index % 2 !== 0) {
-    //     item.style.color = "grey";
-    // }
-    // });
+        // TODO: Set the text color of subHeader to blue
+        subHeader.style.color = "blue";
+    }
 
-    // TODO: Set text color on every other list item to grey
-    for (let i = 0; i < listItems.length; i++) {
-        if (i % 2 !== 0) {
-            listItems[i].style.color = 'grey';
+    function action3() {
+
+        // TODO: Uncomment the next line and get all list items
+        const listItems = document.querySelectorAll("li");
+
+        // TODO: Set text color on every other list item to grey
+
+        // ** the following are alternative ways to accomplish this **
+
+        // listItems.forEach((item, index) => {
+        // all the even items
+        // if (index % 2 === 0) {
+        //     item.style.color = "grey";
+        // }
+
+        // all the odd items
+        // if (index % 2 !== 0) {
+        //     item.style.color = "grey";
+        // }
+        // });
+
+        // TODO: Set text color on every other list item to grey
+        for (let i = 0; i < listItems.length; i++) {
+            if (i % 2 !== 0) {
+                listItems[i].style.color = 'grey';
+            }
         }
     }
 
-    // TODO: Set text color of li with dbid = 1 to blue
+    function action4() {
 
-    // ** the following are alternative ways to accomplish this **
+        const listItems = document.querySelectorAll("li");
 
-    // document.querySelectorAll("[data-dbid='1']").forEach((element) => {
-    //     element.style.color = "blue";
-    // });
+        // TODO: Uncomment the next line and get all elements with class name sub-paragraph
 
-    // document.querySelector("[data-dbid='1']").style.color = "blue";
+        // ** Note: alternative way of getting elements by class name **
+        // const subParagraphs = document.getElementsByClassName("sub-paragraph");
 
-    // document.querySelector("li[data-dbid='1']").style.color = "blue";
+        const subParagraphs = document.querySelectorAll(".sub-paragraph");
 
-    for (let i = 0; i < listItems.length; i++) {
-        if (listItems[i].dataset.dbid === "1") {
-            listItems[i].style.color = "blue";
+        // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+        subParagraphs[0].innerText = "Mission Accomplished!";
+
+        // The below alternative also works.
+        // document.querySelector('.sub-paragraph').innerText = "Mission Accomplished!";
+
+        // More testing, experimentation
+        // let testElements = document.getElementsByClassName("not-gonna-find-any");
+        // console.log(testElements); // length = 0
+
+        // NOTE - the below demonstrates being SAFE with HTML -vs- TEXT
+        // document.getElementById('h1-id').innerHTML = "<h2><strong><em>test</em> test</strong> test</h2>";
+        // document.getElementById('h1-id').innerText = "<h2><strong><em>test</em> test</strong> test</h2>";
+
+        // TODO: Set text color of li with dbid = 1 to blue
+
+        // ** the following are alternative ways to accomplish this **
+
+        // document.querySelectorAll("[data-dbid='1']").forEach((element) => {
+        //     element.style.color = "blue";
+        // });
+
+        // document.querySelector("[data-dbid='1']").style.color = "blue";
+        // document.querySelector("li[data-dbid='1']").style.color = "blue";
+
+        for (let i = 0; i < listItems.length; i++) {
+            if (listItems[i].dataset.dbid === "1") {
+                listItems[i].style.color = "blue";
+            }
         }
     }
-
 
     // NOTES ---------------------------------------------------------------------------------------------------------
     // However, this will not work if we use .getElementsByClassName() or .getElementsByTagName().
@@ -115,30 +149,8 @@
     // document.getElementsByClassName("sub-paragraph").forEach((element) => {
     //     element.style.color = "blue";
     // });
-    [...document.getElementsByClassName("sub-paragraph")].forEach(item => console.log(item.innerText));
+    // [...document.getElementsByClassName("sub-paragraph")].forEach(item => console.log(item.innerText));
     // NOTES ---------------------------------------------------------------------------------------------------------
-
-
-    // TODO: Uncomment the next line and get all elements with class name sub-paragraph
-
-    // ** Note: alternative way of getting elements by class name **
-    // const subParagraphs = document.getElementsByClassName("sub-paragraph");
-
-    const subParagraphs = document.querySelectorAll(".sub-paragraph");
-
-    // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
-    subParagraphs[0].innerText = "Mission Accomplished!";
-
-    // The below alternative also works.
-    // document.querySelector('.sub-paragraph').innerText = "Mission Accomplished!";
-
-    // More testing, experimentation
-    // let testElements = document.getElementsByClassName("not-gonna-find-any");
-    // console.log(testElements); // length = 0
-
-    // NOTE - the below demonstrates being SAFE with HTML -vs- TEXT
-    // document.getElementById('h1-id').innerHTML = "<h2><strong><em>test</em> test</strong> test</h2>";
-    // document.getElementById('h1-id').innerText = "<h2><strong><em>test</em> test</strong> test</h2>";
 
 </script>
 </body>
