@@ -18,13 +18,21 @@
     </style>
 </head>
 
+<audio id="audio" preload="auto" src="assets/duck.mp3"></audio>
+
 <body style="overflow: hidden">
 
-<div id="info" style="position:absolute;left:0;top:0;right:0;text-align: center;"></div>
+<div id="info">
+
+</div>
 
 <img alt="" src="images/cody.webp" style="z-index: 10">
 
 <script defer>
+
+    let audio = document.getElementById('audio');
+
+    let startTime = Date.now();
 
     let totalCollisions = 0;
     let collisionsEnabled = false;
@@ -67,6 +75,7 @@
 
     function checkCollisions() {
 
+
         if (!collisionsEnabled) {
             return;
         }
@@ -103,7 +112,11 @@
                 clearInterval(shootInterval);
                 clearInterval(gameInterval);
                 clearInterval(intervalSpeed);
-                document.write('Game Over, your 30 lives are up!');
+                document.querySelectorAll('.bullet').forEach((item) => {
+                    item.parentNode.removeChild(item);
+                })
+                audio.play();
+                alert('Game Over, your 30 lives are up! \n\n' + `${((Date.now() - startTime) / 1000).toFixed(2)} seconds of survival`);
             }
         } else {
             image.style.border = 'none';
@@ -216,14 +229,26 @@
 
         if (x < window.innerWidth / 2) {
             shoot(x, y, -1, getRandomDirection());
+            shoot(x, y, -1, getRandomDirection());
+            shoot(x, y, -1, getRandomDirection());
+            shoot(x, y, -1, getRandomDirection());
         }
         if (x > window.innerWidth / 2) {
+            shoot(x, y, 1, getRandomDirection());
+            shoot(x, y, 1, getRandomDirection());
+            shoot(x, y, 1, getRandomDirection());
             shoot(x, y, 1, getRandomDirection());
         }
         if (y < window.innerHeight / 2) {
             shoot(x, y, getRandomDirection(), -1);
+            shoot(x, y, getRandomDirection(), -1);
+            shoot(x, y, getRandomDirection(), -1);
+            shoot(x, y, getRandomDirection(), -1);
         }
         if (y > window.innerHeight / 2) {
+            shoot(x, y, getRandomDirection(), 1);
+            shoot(x, y, getRandomDirection(), 1);
+            shoot(x, y, getRandomDirection(), 1);
             shoot(x, y, getRandomDirection(), 1);
         }
 
