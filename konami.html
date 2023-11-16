@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Konami Code</title>
+</head>
+
+<body>
+
+<h1>Konami Code</h1>
+
+<div id="keys"></div>
+
+<script>
+
+    "use strict";
+
+    let keys = '';
+
+    let successPattern = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightbaEnter'.toLowerCase();
+
+    function recordKeys(event) {
+
+        keys += event.key.toLowerCase();
+
+        if (keys.indexOf(successPattern) >= 0) {
+            window.location = "http://lostwords.org"
+        }
+
+    }
+
+    function keyDown(event) {
+        // console.log("keyDown");
+        // console.log(event);
+        // console.log(event.key);
+    }
+
+    function keyUp(event) {
+        // console.log("keyUp");
+        // console.log(event);
+        // console.log(event.key);
+    }
+
+    function keyPress(event) {
+        // console.log("keyPress");
+        // console.log(event);
+        // console.log(event.key);
+    }
+
+    document.addEventListener('keydown', keyDown);
+    document.addEventListener('keyup', keyUp);
+    document.addEventListener('keypress', keyPress);
+
+    document.addEventListener("keyup", event => recordKeys(event));
+
+</script>
+</body>
+</html>
+
+<!--Allow the user to enter the Konami Code: "↑ ↑ ↓ ↓ ← → ← → b a enter" (the return key)-->
+<!--Find the matching sequence using the code above for each key in the Konami Code.-->
+<!--Don't worry about capital a or b just check for lowercase.-->
+<!--After the correct Konami Code sequence is inputted, have the script alert the user: "You have added 30 lives! Other ideas:-->
+<!--Change the background screen.-->
+<!--Play a sound.-->
+<!--Be creative!-->
+<!--Happy Playing.-->
