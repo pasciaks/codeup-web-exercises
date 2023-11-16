@@ -17,14 +17,42 @@
 
     let keys = '';
 
+    let container = document.getElementById('keys');
+
     let successPattern = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightbaEnter'.toLowerCase();
 
     function recordKeys(event) {
 
-        keys += event.key.toLowerCase();
+        let key = event?.key?.toLowerCase();
+
+        keys += key;
+
+        switch (key) {
+            case 'arrowup':
+                container.innerHTML = "Arrow Up!";
+                break;
+            case 'arrowdown':
+                container.innerHTML = "Arrow Down!";
+                break;
+            case 'arrowleft':
+                container.innerHTML = "Arrow Left!";
+                break;
+            case 'arrowright':
+                container.innerHTML = "Arrow Right!";
+                break;
+            case 'b':
+                container.innerHTML = "b!";
+                break;
+            case 'a':
+                container.innerHTML = "a!";
+                break;
+            case 'enter':
+                container.innerHTML = "enter!";
+                break;
+        }
 
         if (keys.indexOf(successPattern) >= 0) {
-            window.location = "http://lostwords.org"
+            window.location = "konami-success.html"
         }
 
     }
@@ -36,6 +64,7 @@
     }
 
     function keyUp(event) {
+        container.innerHTML = "";
         // console.log("keyUp");
         // console.log(event);
         // console.log(event.key);
@@ -47,11 +76,16 @@
         // console.log(event.key);
     }
 
+    // keydown captures any keys, arrows, etc
     document.addEventListener('keydown', keyDown);
+
+    // keyup captures any keys, arrows, etc
     document.addEventListener('keyup', keyUp);
+
+    // keypress captures typed/visible keys
     document.addEventListener('keypress', keyPress);
 
-    document.addEventListener("keyup", event => recordKeys(event));
+    document.addEventListener("keydown", event => recordKeys(event));
 
 </script>
 </body>
