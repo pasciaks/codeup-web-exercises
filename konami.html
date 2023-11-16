@@ -11,9 +11,13 @@
 
 <div id="keys"></div>
 
+<audio id="audio" preload="auto" src="assets/duck.mp3"></audio>
+
 <script>
 
     "use strict";
+
+    let audio = document.getElementById('audio');
 
     let keys = '';
 
@@ -52,7 +56,10 @@
         }
 
         if (keys.indexOf(successPattern) >= 0) {
-            window.location = "konami-success.html"
+            audio.play();
+            setTimeout(function () {
+                window.location = "konami-success.html"
+            }, 1000);
         }
 
     }
