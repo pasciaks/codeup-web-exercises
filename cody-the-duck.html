@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Cody The Duck</title>
+    <style>
+        img {
+            width: 100px;
+        }
+    </style>
 </head>
 <body>
+
 <img alt="" src="images/cody.webp">
 
 <script defer>
 
     let image = document.querySelector('img');
 
-    function randomLocation() {
-
-        let x = Math.random() * window.innerWidth - image.width * 2 + image.width + image.width / 2;
-        let y = Math.random() * window.innerHeight - image.height * 2 + image.height + image.height / 2;
+    function setLocation(x, y) {
         image.style.position = 'absolute';
         image.style.left = `${x}px`;
         image.style.top = `${y}px`;
     }
 
+    function randomLocation() {
+        let x = Math.floor(Math.random() * window.innerWidth);
+        let y = Math.floor(Math.random() * window.innerHeight);
+        setLocation(x, y);
+    }
+
     randomLocation();
 
     image.addEventListener('mouseenter', randomLocation);
-    
+
+    setInterval(randomLocation, 2500);
+
 </script>
 </body>
 </html>
