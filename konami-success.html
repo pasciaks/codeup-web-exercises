@@ -8,6 +8,7 @@
         * {
             box-sizing: border-box;
             position: absolute;
+            user-select: none;
         }
 
         img {
@@ -19,7 +20,7 @@
 
 <p id="info"></p>
 
-<img alt="" src="images/cody.webp" style="z-index: 10;border:1px solid grey;">
+<img alt="" src="images/cody.webp" style="z-index: 10">
 
 <script defer>
 
@@ -72,6 +73,7 @@
 
         bullets.forEach((bullet) => {
             if (Date.now() - bullet.life > 1000) {
+                bullet.style.border = "3px solid red";
                 if (bullet.x > x - 50 - 5) {
                     if (bullet.x < x + 50 + 5) {
                         if (bullet.y > y - 50 - 5) {
@@ -216,27 +218,24 @@
 
     });
 
-    document.addEventListener('mousemove', (event) => {
-
-        let rect = event.target.getBoundingClientRect();
-        let x = event.clientX - rect.left; //x position within the element.
-        let y = event.clientY - rect.top;  //y position within the element.
-
-        if (x < window.innerWidth / 2) {
-            dx = -10;
-        }
-        if (x > window.innerWidth / 2) {
-            dx = 10;
-        }
-        if (y < window.innerHeight / 2) {
-            dy = -10;
-        }
-        if (y > window.innerHeight / 2) {
-            dy = 10;
-        }
-
-
-    });
+    // document.addEventListener('mousemove', (event) => {
+    //     let rect = event.target.getBoundingClientRect();
+    //     let x = event.clientX - rect.left; //x position within the element.
+    //     let y = event.clientY - rect.top;  //y position within the element.
+    //
+    //     if (x < window.innerWidth / 2) {
+    //         dx = -10;
+    //     }
+    //     if (x > window.innerWidth / 2) {
+    //         dx = 10;
+    //     }
+    //     if (y < window.innerHeight / 2) {
+    //         dy = -10;
+    //     }
+    //     if (y > window.innerHeight / 2) {
+    //         dy = 10;
+    //     }
+    // });
 
     function setLocation() {
         image.style.position = 'absolute';
