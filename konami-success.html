@@ -26,9 +26,11 @@
 
 </div>
 
-<img alt="" src="images/cody.webp" style="z-index: 10">
+<img alt="" hidden id="duck" src="images/cody.webp" style="z-index: 10">
 
 <script defer>
+
+    alert("You have 30 lives!");
 
     let audio = document.getElementById('audio');
 
@@ -304,6 +306,7 @@
         move();
         moveBullets();
         checkCollisions();
+        document.getElementById('duck').removeAttribute('hidden');
     }, startingSpeed);
 
     let gameInterval = setInterval(function () {

@@ -55,14 +55,6 @@
                 break;
         }
 
-        if (keys.indexOf(successPattern) >= 0) {
-            audio.play();
-            alert("You have 30 lives!");
-            setTimeout(function () {
-                window.location = "konami-success.html"
-            }, 1000);
-        }
-
     }
 
     function keyDown(event) {
@@ -76,6 +68,15 @@
         // console.log("keyUp");
         // console.log(event);
         // console.log(event.key);
+
+        if (keys.indexOf(successPattern) >= 0) {
+            audio.play();
+            // alert("You have 30 lives!");
+            setTimeout(function () {
+                window.location = "konami-success.html"
+            }, 1000);
+        }
+
     }
 
     function keyPress(event) {
