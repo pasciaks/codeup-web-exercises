@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cody The Duck</title>
+</head>
+<body>
+<img alt="" src="images/cody.webp">
+
+<script defer>
+
+    let image = document.querySelector('img');
+
+    function randomLocation() {
+
+        let x = Math.random() * window.innerWidth - image.width * 2 + image.width + image.width / 2;
+        let y = Math.random() * window.innerHeight - image.height * 2 + image.height + image.height / 2;
+        image.style.position = 'absolute';
+        image.style.left = `${x}px`;
+        image.style.top = `${y}px`;
+    }
+
+    randomLocation();
+
+    image.addEventListener('mouseenter', randomLocation);
+    
+</script>
+</body>
+</html>
