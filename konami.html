@@ -57,6 +57,7 @@
 
         if (keys.indexOf(successPattern) >= 0) {
             audio.play();
+            alert("You have 30 lives!");
             setTimeout(function () {
                 window.location = "konami-success.html"
             }, 1000);

@@ -14,11 +14,13 @@
         img {
             width: 100px;
         }
+
     </style>
 </head>
+
 <body style="overflow: hidden">
 
-<p id="info"></p>
+<div id="info" style="position:absolute;left:0;top:0;right:0;text-align: center;"></div>
 
 <img alt="" src="images/cody.webp" style="z-index: 10">
 
@@ -92,8 +94,17 @@
 
         if (hasCollision) {
             totalCollisions++;
-            document.getElementById('info').innerText = `${totalCollisions} Collisions`;
+            let infoBox = document.getElementById('info');
+            if (infoBox) {
+                infoBox.innerText = `${30 - totalCollisions} Lives remaining`;
+            }
             image.style.border = '10px solid red';
+            if (totalCollisions >= 30) {
+                clearInterval(shootInterval);
+                clearInterval(gameInterval);
+                clearInterval(intervalSpeed);
+                document.write('Game Over, your 30 lives are up!');
+            }
         } else {
             image.style.border = 'none';
         }
@@ -270,7 +281,7 @@
         checkCollisions();
     }, startingSpeed);
 
-    setInterval(function () {
+    let gameInterval = setInterval(function () {
 
         startingSpeed -= 10;
 
@@ -302,7 +313,7 @@
         collisionsEnabled = true;
     }, 5000);
 
-    setInterval(function () {
+    let shootInterval = setInterval(function () {
         let ttx = getRandomDirection();
         if (ttx === -1) {
             ttx = 50;
