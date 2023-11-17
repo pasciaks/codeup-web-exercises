@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cody The Duck</title>
+
     <style>
 
         * {
@@ -57,7 +58,6 @@
             height: 50px;
             transform: rotate(180deg) scaleY(-1);
         }
-
     </style>
 </head>
 
@@ -77,16 +77,13 @@
 </div>
 
 <div id="info">
-
 </div>
+
 <script defer>
 
     alert("You have added 30 lives!");
-
     let audio = document.getElementById('audio');
-
     let startTime = Date.now();
-
     let totalShots = 30;
     let totalCollisions = 0;
     let collisionsEnabled = false;
@@ -174,13 +171,10 @@
     }
 
     function checkCollisions() {
-
         if (!collisionsEnabled) {
             return;
         }
-
         let hasCollision = false;
-
         bullets.forEach((bullet) => {
             if (bullet.x > x - 50 - 5) {
                 if (bullet.x < x + 50 + 5) {
@@ -195,16 +189,13 @@
                     }
                 }
             }
-
         });
 
         if (hasCollision) {
+
             totalCollisions++;
-
             showInfoBox();
-
             image.style.border = '10px solid red';
-
 
             if (totalCollisions >= 30) {
                 clearInterval(shootInterval);
@@ -213,21 +204,16 @@
                 document.querySelectorAll('.bullet').forEach((item) => {
                     item.parentNode.removeChild(item);
                 })
-
                 playSound();
-
                 showEndOfGame('Game Over, your 30 lives are up! \n\n' + `${((Date.now() - startTime) / 1000).toFixed(2)} seconds of survival`);
-
-
             }
+
         } else {
             image.style.border = 'none';
         }
-
     }
 
     function shoot(sx = x, sy = y, directionX, directionY) {
-
         let bullet = document.createElement('div');
         bullet.classList.add('bullet');
         bullet.style.zIndex = "1";
@@ -245,7 +231,6 @@
         bullet.style.top = `${bullet.y}px`;
         bullet.style.borderRadius = '100%';
         bullet.style.background = 'pink';
-        // bullet.style.border = '1px solid white';
         bullet.dirX = directionX;
         bullet.dirY = directionY;
         document.body.append(bullet);
@@ -253,7 +238,6 @@
     }
 
     function keyDown(event) {
-
         switch (event.key) {
             case "a":
             case "A":
@@ -281,54 +265,11 @@
                 dy = 10;
                 dx = 0;
                 break;
-
             case " ":
                 dx = 0;
                 dy = 0;
                 break;
-
-            // case "a":
-            // case "A":
-            //     shoot(x, y, -1, 0);
-            //     break;
-
-            // case "d":
-            // case "D":
-            //     shoot(x, y, 1, 0);
-            //     break;
-
-            // case "w":
-            // case "W":
-            //     shoot(x, y, 0, -1);
-            //     break;
-
-            // case "x":
-            // case "X":
-            //     shoot(x, y, 0, 1);
-            //     break;
-
-            // case "q":
-            // case "Q":
-            //     shoot(x, y, -1, -1);
-            //     break;
-
-            // case "e":
-            // case "E":
-            //     shoot(x, y, 1, -1);
-            //     break;
-
-            // case "z":
-            // case "Z":
-            //     shoot(x, y, -1, 1);
-            //     break;
-
-            // case "c":
-            // case "C":
-            //     shoot(x, y, 1, 1);
-            //     break;
-
         }
-
     }
 
     document.addEventListener("keydown", event => keyDown(event));
@@ -351,7 +292,7 @@
         } else {
             showInfoBox();
         }
-        
+
         let rect = event.target.getBoundingClientRect();
         let x1 = event.clientX - rect.left; //x position within the element.
         let y1 = event.clientY - rect.top;  //y position within the element.
@@ -366,10 +307,6 @@
             console.log(index, Date.now() - bullet.life, d);
         })
 
-        // shoot(50, 50, 1 + Math.random(), 1 + Math.random());
-        // shoot(window.innerWidth - 50, 50, -1 + Math.random(), 1 + Math.random());
-        // shoot(50, window.innerHeight - 50, 1 + Math.random(), -1 + Math.random());
-        // shoot(window.innerWidth - 50, window.innerHeight - 50, -1 + Math.random(), -1 + Math.random());
     });
 
     document.addEventListener('mousemove', (event) => {
@@ -377,18 +314,6 @@
         let x1 = event.clientX - rect.left; //x position within the element.
         let y1 = event.clientY - rect.top;  //y position within the element.
 
-        // if (x1 < x) {
-        //     dx = -5;
-        // }
-        // if (x1 > x) {
-        //     dx = 5;
-        // }
-        // if (y1 < y) {
-        //     dy = -5;
-        // }
-        // if (y1 > y) {
-        //     dy = 5;
-        // }
     });
 
     function setLocation() {
@@ -425,17 +350,13 @@
     }, startingSpeed);
 
     let gameInterval = setInterval(function () {
-
         startingSpeed -= 10;
-
         if (startingSpeed < 30) {
             startingSpeed = 30;
         }
-
         if (intervalSpeed) {
             clearInterval(intervalSpeed);
         }
-
         intervalSpeed = setInterval(function () {
             move();
             moveBullets();
@@ -457,9 +378,7 @@
     }, 1000);
 
     let shootInterval = setInterval(function () {
-
         let random = Math.floor(Math.random() * 4);
-
         switch (random) {
             case 0:
                 shoot(50, 50, 1 + Math.random(), 1 + Math.random());
@@ -474,7 +393,6 @@
                 shoot(window.innerWidth - 50, window.innerHeight - 50, -1 - Math.random(), -1 - Math.random());
                 break;
         }
-
     }, shootSpeed);
 
 </script>
