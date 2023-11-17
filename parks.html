@@ -263,6 +263,8 @@
         });
     }
 
+    // currentTarget is useful for event delegation. Event delegation is a technique where you attach an event listener to a parent element, and then use the e. target property to determine which child element was clicked. This is useful when you have a large number of child elements that all need the same event listener.
+
     let allListItems = document.querySelectorAll('li');
 
     for (let listItem of allListItems) {
