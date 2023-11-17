@@ -28,128 +28,143 @@
 
 <body>
 
-<div style="height:500px;width:500px;border:1px solid green;"></div>
+<p>No DOM exercise for you today!</p>
 
-<div id="main-container">
+<div style="display:none;">
+
+    <div style="height:500px;width:500px;border:1px solid green;"></div>
+
+    <div id="main-container">
+
+    </div>
+
+    <div id="info"></div>
+
+    <!--Note: script tag should be in body, but better if external file-->
+
+    <script defer>
+
+        (() => {
+
+            if (1) {
+                return false;
+            }
+
+            let alreadyLost = false;
+
+            // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
+
+            function mouseMoveOnElement(e) {
+                console.log(JSON.stringify(e.target.id, null, 2));
+                document.querySelectorAll('.target').forEach((element) => {
+                    element.style.background = 'blue';
+                    alreadyLost = true;
+                })
+            }
+
+            function createAndAdd(index) {
+                let element = document.createElement('div');
+                element.id = `${arrayOfElements.length}`;
+                element.style.position = 'absolute';
+                element.style.left = (Math.floor(Math.random() * 490) + 10) + 'px';
+                element.style.top = (Math.floor(Math.random() * 490) + 10) + 'px';
+                element.style.width = '10px';
+                element.style.height = '10px';
+                element.style.background = 'red';
+                element.classList.add('target');
+                document.body.append(element);
+                if (index !== randomIndex) {
+                    element.addEventListener('mousemove', mouseMoveOnElement);
+                }
+                arrayOfElements.push(element);
+            }
+
+            let arrayOfElements = [];
+
+            let randomIndex = Math.floor(Math.random() * 222);
+
+            for (let i = 0; i < 222; i++) {
+                createAndAdd(i);
+            }
+
+            arrayOfElements[randomIndex].classList.remove('target');
+            arrayOfElements[randomIndex].style.background = "green";
+            arrayOfElements[randomIndex].style.zIndex = "1000";
+
+            arrayOfElements[randomIndex].style.width = '50px';
+            arrayOfElements[randomIndex].style.height = '50px';
+
+            arrayOfElements[randomIndex].addEventListener('mousemove', function (e) {
+                if (!alreadyLost) {
+                    alert("You win!");
+                    arrayOfElements[randomIndex].style.left = (Math.floor(Math.random() * 490) + 10) + 'px';
+                    arrayOfElements[randomIndex].style.top = (Math.floor(Math.random() * 490) + 10) + 'px';
+                }
+            });
+
+            const h1 = document.querySelector("h1");
+            const container = document.querySelector('#main-container');
+
+            let containerHasAnId = container.hasAttribute("id");
+            let theContainerId = container.getAttribute("id");
+
+            console.log({containerHasAnId, theContainerId});
+
+            container.setAttribute('data-dbid', '1');
+
+            // let okButton = document.getElementById('btn-ok');
+            // okButton.setAttribute('disabled', "true");
+            // okButton.removeAttribute('disabled');
+
+            let result = container.dataset;
+            console.log(result);
+
+            // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild
+
+            container.addEventListener('mousemove', (event) => {
+
+                var rect = event.target.getBoundingClientRect();
+                var x = event.clientX - rect.left; //x position within the element.
+                var y = event.clientY - rect.top;  //y position within the element.
+                console.log("Left? : " + x + " ; Top? : " + y + ".");
+
+                let {screenX, screenY, clientX, clientY, isTrusted} = event;
+
+                document.getElementById('info').innerHTML = JSON.stringify({
+                    screenX,
+                    screenY,
+                    clientX,
+                    clientY,
+                    isTrusted,
+                    x,
+                    y
+                }, null, 2)
+
+                // container.style.background = 'red';
+
+            });
+
+            container.addEventListener('mouseenter', (event) => {
+                container.style.background = 'yellow';
+            });
+
+            container.addEventListener('mouseleave', (event) => {
+                container.style.background = 'white';
+            });
+
+            // Mouse buttons
+            document.addEventListener('mousedown', e => console.log(e.buttons))
+
+            // Keyboard keys
+            document.addEventListener('keydown', e => console.log(e.key))
+
+        })()
+
+    </script>
 
 </div>
 
-<div id="info"></div>
-
-<!--Note: script tag should be in body, but better if external file-->
-
-<script defer>
-
-    let alreadyLost = false;
-
-    // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
-
-    function mouseMoveOnElement(e) {
-        console.log(JSON.stringify(e.target.id, null, 2));
-        document.querySelectorAll('.target').forEach((element) => {
-            element.style.background = 'blue';
-            alreadyLost = true;
-        })
-    }
-
-    function createAndAdd(index) {
-        let element = document.createElement('div');
-        element.id = `${arrayOfElements.length}`;
-        element.style.position = 'absolute';
-        element.style.left = (Math.floor(Math.random() * 490) + 10) + 'px';
-        element.style.top = (Math.floor(Math.random() * 490) + 10) + 'px';
-        element.style.width = '10px';
-        element.style.height = '10px';
-        element.style.background = 'red';
-        element.classList.add('target');
-        document.body.append(element);
-        if (index !== randomIndex) {
-            element.addEventListener('mousemove', mouseMoveOnElement);
-        }
-        arrayOfElements.push(element);
-    }
-
-    let arrayOfElements = [];
-
-    let randomIndex = Math.floor(Math.random() * 222);
-
-    for (let i = 0; i < 222; i++) {
-        createAndAdd(i);
-    }
-
-    arrayOfElements[randomIndex].classList.remove('target');
-    arrayOfElements[randomIndex].style.background = "green";
-    arrayOfElements[randomIndex].style.zIndex = "1000";
-
-    arrayOfElements[randomIndex].style.width = '50px';
-    arrayOfElements[randomIndex].style.height = '50px';
-
-    arrayOfElements[randomIndex].addEventListener('mousemove', function (e) {
-        if (!alreadyLost) {
-            alert("You win!");
-            arrayOfElements[randomIndex].style.left = (Math.floor(Math.random() * 490) + 10) + 'px';
-            arrayOfElements[randomIndex].style.top = (Math.floor(Math.random() * 490) + 10) + 'px';
-        }
-    });
-
-    const h1 = document.querySelector("h1");
-    const container = document.querySelector('#main-container');
-
-    let containerHasAnId = container.hasAttribute("id");
-    let theContainerId = container.getAttribute("id");
-
-    console.log({containerHasAnId, theContainerId});
-
-    container.setAttribute('data-dbid', '1');
-
-    // let okButton = document.getElementById('btn-ok');
-    // okButton.setAttribute('disabled', "true");
-    // okButton.removeAttribute('disabled');
-
-    let result = container.dataset;
-    console.log(result);
-
-    // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_appendchild
-
-    container.addEventListener('mousemove', (event) => {
-
-        var rect = event.target.getBoundingClientRect();
-        var x = event.clientX - rect.left; //x position within the element.
-        var y = event.clientY - rect.top;  //y position within the element.
-        console.log("Left? : " + x + " ; Top? : " + y + ".");
-
-        let {screenX, screenY, clientX, clientY, isTrusted} = event;
-
-        document.getElementById('info').innerHTML = JSON.stringify({
-            screenX,
-            screenY,
-            clientX,
-            clientY,
-            isTrusted,
-            x,
-            y
-        }, null, 2)
-
-        // container.style.background = 'red';
-
-    });
-
-    container.addEventListener('mouseenter', (event) => {
-        container.style.background = 'yellow';
-    });
-
-    container.addEventListener('mouseleave', (event) => {
-        container.style.background = 'white';
-    });
-
-    // Mouse buttons
-    document.addEventListener('mousedown', e => console.log(e.buttons))
-
-    // Keyboard keys
-    document.addEventListener('keydown', e => console.log(e.key))
-
-</script>
-
 </body>
+
 
 </html>
