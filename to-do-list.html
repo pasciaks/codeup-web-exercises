@@ -35,6 +35,7 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script defer>
 
+    let arrayOfTodos = [];
 
     let theForm = document.querySelector('#to-do-form');
 
@@ -54,21 +55,54 @@
         button.classList.add('btn', 'btn-danger');
         button.innerText = 'Done';
         button.addEventListener('click', (e) => {
-            console.log(e.currentTarget);
-            e.currentTarget.parentElement.remove();
+            let deleteThis = e.target.parentElement;
+
+            let theClickedTodoLi = e.target.parentElement.firstChild;
+            console.log("-----");
+            console.log(theClickedTodoLi.textContent);
+
+            let whichTodo = arrayOfTodos.indexOf(theClickedTodoLi.textContent);
+            console.log(whichTodo);
+            arrayOfTodos.splice(whichTodo, 1);
+            console.log(arrayOfTodos);
+
+            deleteThis.remove();
         });
 
         li.appendChild(button);
 
         theUl.appendChild(li);
 
+        arrayOfTodos.push(text);
     }
 
     function formSubmit(e) {
         e.preventDefault();
+
+        if (arrayOfTodos.length >= 10) {
+            alert("You cannot more than 10 todo items, please complete some todo's in order to add another.");
+            return;
+        }
+
         let newTodoString = theForm['to-do'].value;
-        console.log(theForm['to-do'].value);
+
+        newTodoString = newTodoString.trim();
+
+        if (!newTodoString) {
+            alert("You cannot add an empty todo item.");
+            return;
+        }
+
+        if (arrayOfTodos.indexOf(newTodoString) >= 0) {
+            alert("You already have a todo with that text, try another!");
+            return;
+        }
+
         createElement(newTodoString);
+
+        console.log(arrayOfTodos);
+
+        theForm.reset();
     }
 
     theForm.addEventListener('submit', formSubmit);
