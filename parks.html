@@ -9,7 +9,6 @@
         img {
             border: 2px solid saddlebrown;
             height: 150px;
-            height: 150px;
         }
 
         * {
@@ -31,24 +30,46 @@
             display: table;
         }
 
-        .flex {
+        div.one {
+            width: 200px;
+            height: 200px;
+            background-image: url("images/100x300.svg");
+            background-color: #cccccc;
+            padding: 5px;
+            margin: 5px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        div.two {
+            width: 200px;
+            height: 200px;
+            background-image: url("images/200x300.svg");
+            background-color: #cccccc;
+            padding: 5px;
+            margin: 5px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        div.three {
+            width: 200px;
+            height: 200px;
+            background-image: url("images/300x300.svg");
+            background-color: #cccccc;
+            padding: 5px;
+            margin: 5px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .frame-container {
             display: flex;
-            justify-content: space-around;
-        }
-
-        .bg1 {
-            background-image: url("images/100x300.svg");
-            background-size: cover;
-        }
-
-        .bg2 {
-            background-image: url("images/100x300.svg");
-            background-size: cover;
-        }
-
-        .bg3 {
-            background-image: url("images/100x300.svg");
-            background-size: cover;
+            gap: 1em;
+            justify-content: space-between
         }
 
     </style>
@@ -93,18 +114,32 @@
 
 <br>
 
+<hr>
+
+<p>Optional: Bonus -- Hating the sizing, etc...</p>
+
+<div class="frame-container">
+
+    <div class='one'></div>
+    <div class='two'></div>
+    <div class='three'></div>
+
+</div>
+
+<br>
+
 <div class="row">
-    <div class="column">
+    <div class="left column">
         <img alt="Snow" src="images/200x300.svg">
         <br>
         <button id="leftButton">Swap</button>
     </div>
-    <div class="column">
+    <div class="middle column">
         <img alt="Forest" src="images/100x300.svg">
         <br>
         <button id="middleButton">Swap</button>
     </div>
-    <div class="column">
+    <div class="right column">
         <img alt="Mountains" src="images/300x300.svg">
         <br>
         <button id="rightButton">Swap</button>
