@@ -3,6 +3,39 @@
 
 <head>
     <title>Konami Code</title>
+
+    <style>
+
+        #pointer {
+            position: absolute;
+            display: none;
+        }
+
+        #controller-container {
+            position: relative;
+            display: inline-block;
+            margin: auto 0;
+            background-image: url("images/controller.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 600px;
+            height: 300px;
+        }
+
+        body {
+            text-align: center;
+            align-items: center;
+        }
+
+        .pointer {
+            position: absolute;
+            z-index: 0;
+            padding: 5px;
+            right: -10px;
+            top: 50px;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -13,17 +46,25 @@
 
 <audio id="audio" preload="auto" src="assets/duck.mp3"></audio>
 
+<div id="controller-container">
+    <img alt="pointer" class="pointer" height="50" id="pointer" src="images/pointer.png" width="50">
+</div>
+
 <script>
 
     "use strict";
 
     let audio = document.getElementById('audio');
 
+    let pointer = document.getElementById('pointer');
+
     let keys = '';
 
     let container = document.getElementById('keys');
 
-    let successPattern = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightbaEnter'.toLowerCase();
+    let successPatternDodge = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightbaEnter'.toLowerCase();
+    let successPatternSnake = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightabEnter'.toLowerCase();
+    let successPatternDuck = 'ArrowUpArrowDownArrowLeftArrowRightEnter'.toLowerCase();
 
     function recordKeys(event) {
 
@@ -33,47 +74,76 @@
 
         switch (key) {
             case 'arrowup':
-                container.innerHTML = "Arrow Up!";
+                pointer.style.top = '150px';
+                pointer.style.left = '90px';
                 break;
             case 'arrowdown':
-                container.innerHTML = "Arrow Down!";
+                pointer.style.top = '210px';
+                pointer.style.left = '90px';
                 break;
             case 'arrowleft':
-                container.innerHTML = "Arrow Left!";
+                pointer.style.top = '180px';
+                pointer.style.left = '50px';
                 break;
             case 'arrowright':
-                container.innerHTML = "Arrow Right!";
+                pointer.style.top = '180px';
+                pointer.style.left = '110px';
                 break;
             case 'b':
-                container.innerHTML = "b!";
+                pointer.style.top = '200px';
+                pointer.style.left = '380px';
                 break;
             case 'a':
-                container.innerHTML = "a!";
+                pointer.style.top = '200px';
+                pointer.style.left = '450px';
                 break;
             case 'enter':
-                container.innerHTML = "enter!";
+                pointer.style.top = '200px';
+                pointer.style.left = '280px';
+                break;
+            default:
+                keys = ''; // reset stored keys, invalid key entered
                 break;
         }
 
     }
 
     function keyDown(event) {
+        pointer.style.display = 'inline-block';
     }
 
     function keyUp(event) {
-        container.innerHTML = "";
+        pointer.style.display = 'none';
 
-        if (keys.indexOf(successPattern) >= 0) {
+        if (keys.indexOf(successPatternDodge) >= 0) {
             audio.play();
+            keys = '';
             setTimeout(function () {
                 window.location = "konami-success.html"
             }, 1000);
         }
 
+        if (keys.indexOf(successPatternSnake) >= 0) {
+            audio.play();
+            keys = '';
+            setTimeout(function () {
+                window.location = "konami-success-snake.html"
+            }, 1000);
+        }
+
+        if (keys.indexOf(successPatternDuck) >= 0) {
+            audio.play();
+            keys = '';
+            setTimeout(function () {
+                window.location = "cody-the-duck.html"
+            }, 1000);
+        }
+
     }
 
-    function keyPress(event) {
-    }
+    // function keyPress(event) {
+    //     console.log(event);
+    // }
 
     // keydown captures any keys, arrows, etc
     document.addEventListener('keydown', keyDown);
@@ -81,14 +151,25 @@
     // keyup captures any keys, arrows, etc
     document.addEventListener('keyup', keyUp);
 
-    // keypress captures typed/visible keys
-    document.addEventListener('keypress', keyPress);
+    // // keypress captures typed/visible keys
+    // document.addEventListener('keypress', keyPress);
 
     // keydown captures any keys, arrows, etc
     document.addEventListener("keydown", event => recordKeys(event));
 
 </script>
+
+<h3>Touch the Duck</h3>
+<p>up down left right enter</p>
+
+<h3>Duck Duck Dodge</h3>
+<p>up up down down left right left right b a enter</p>
+
+<h3>Snakes Hate Ducks</h3>
+<p>up up down down left right left right a b enter</p>
+
 </body>
+
 </html>
 
 <!--Allow the user to enter the Konami Code: "↑ ↑ ↓ ↓ ← → ← → b a enter" (the return key)-->

@@ -22,42 +22,6 @@
             font: 28px Courier, sans-serif;
         }
 
-        #s1 {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 50px;
-            height: 50px;
-            transform: rotate(90deg);
-        }
-
-        #s2 {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 50px;
-            height: 50px;
-            transform: rotate(270deg) scaleX(-1);
-        }
-
-        #s3 {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 50px;
-            transform: rotate(0deg);
-        }
-
-        #s4 {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 50px;
-            height: 50px;
-            transform: rotate(180deg) scaleY(-1);
-        }
-
     </style>
 </head>
 
@@ -66,11 +30,6 @@
 <body style="overflow: hidden">
 
 <img alt="" hidden id="duck" src="images/cody.webp" style="z-index: 100">
-
-<img alt="" id="s1" src="images/s1.jpg" style="z-index: 10">
-<img alt="" id="s2" src="images/s1.jpg" style="z-index: 10">
-<img alt="" id="s3" src="images/s1.jpg" style="z-index: 10">
-<img alt="" id="s4" src="images/s1.jpg" style="z-index: 10">
 
 <div id="end-of-game"
      style="z-index:500;display:none;border:3px solid red;left:100px;right:100px;top:100px;bottom:100px;text-align:center;font:28px Verdana;background-color:black;color:gold">
@@ -87,22 +46,23 @@
 
     let startTime = Date.now();
 
-    let totalShots = 30;
     let totalCollisions = 0;
     let collisionsEnabled = false;
     let startingSpeed = 100;
     let bullets = [];
-    let bulletSpeed = 5;
-    let shootSpeed = 1000 + Math.random() * 500;
+    let bulletSpeed = 10;
+
     let image = document.querySelector('img');
 
-    image.width = 100;
-    image.height = 100;
+    let maxLife = 5000;
 
-    let x = Math.floor(window.innerWidth / 2);
+    image.width = 50;
+    image.height = 50;
+
+    let x = Math.floor(window.innerWidth / 10);
     let y = Math.floor(window.innerHeight / 2);
 
-    let dx = 0;
+    let dx = 10;
     let dy = 0;
 
     function showEndOfGame(message) {
@@ -119,19 +79,13 @@
     }
 
     function moveBullets() {
-        if (bullets.length > 1000) {
+        if (bullets.length > 9999) {
             bullets = [];
             document.querySelectorAll('.bullet').forEach((item) => {
                 item.parentNode.removeChild(item);
             })
         }
-
         bullets.forEach((bullet, index) => {
-            if (bullet.dirX === 0) {
-                if (bullet.y >= window.innerHeight - 100) {
-                    bullet.y = 9999;
-                }
-            }
             bullet.x += bullet.dirX * bullet.bulletSpeedX;
             bullet.y += bullet.dirY * bullet.bulletSpeedY;
             if (bullet.x < 0 || bullet.x > window.innerWidth) {
@@ -142,35 +96,8 @@
                 bullet.dirY *= -1;
                 bullet.y += bullet.dirY * bulletSpeed;
             }
-            if (Date.now() - bullet.life > 0) {
-                bullet.style.border = "3" + "px solid gold";
-            }
-
-            if (bullet.exploding) {
-                bullet.style.border = `${Math.floor(bullet.exploding / 10)}` + "px solid red";
-                bullet.exploding -= 15;
-                if (bullet.exploding < 0) {
-                    bullet.exploding = 0;
-                }
-            }
-
-            if ((bullet.dirX === 0) && (bullet.dirY === 0)) {
-                bullet.dirY = 5;
-                bullet.style.border = "5" + "px solid " + "rgba(255, 0, 0, bullet.exploding)";
-            }
-
             setElementLocation(bullet, bullet.x, bullet.y);
         })
-    }
-
-    function showInfoBox(flag) {
-        let infoBox = document.getElementById('info');
-        if (infoBox) {
-            infoBox.innerText = `${30 - totalCollisions} Lives remaining, ${totalShots} Shot(s) remaining`;
-            if (flag) {
-                infoBox.style.background = 'red';
-            }
-        }
     }
 
     function checkCollisions() {
@@ -182,59 +109,64 @@
         let hasCollision = false;
 
         bullets.forEach((bullet) => {
-            if (bullet.x > x - 50 - 5) {
-                if (bullet.x < x + 50 + 5) {
-                    if (bullet.y > y - 50 - 5) {
-                        if (bullet.y < y + 50 + 5) {
-                            if (!bullet.exploding) {
+            if (Date.now() - bullet.life > maxLife) {
+                bullet.x = -1000;
+                bullet.y = -1000;
+            }
+            if (Date.now() - bullet.life > 1000) {
+                bullet.style.border = "2" + "px solid red";
+                if (bullet.x > x - image.width / 2 - 5) {
+                    if (bullet.x < x + image.width / 2 + 5) {
+                        if (bullet.y > y - image.width / 2 - 5) {
+                            if (bullet.y < y + image.width / 2 + 5) {
                                 hasCollision = true;
-                                bullet.x = -1000;
-                                bullet.y = -1000;
+                                // bullet.life = 0;
+                                // bullet.x = -1000;
+                                // bullet.y = -1000;
                             }
                         }
                     }
                 }
             }
-
         });
 
         if (hasCollision) {
             totalCollisions++;
-
-            showInfoBox();
-
-            image.style.border = '10px solid red';
-
+            let infoBox = document.getElementById('info');
+            if (infoBox) {
+                infoBox.innerText = `${30 - totalCollisions} Lives remaining`;
+            }
 
             if (totalCollisions >= 30) {
-                clearInterval(shootInterval);
+                //clearInterval(shootInterval);
                 clearInterval(gameInterval);
                 clearInterval(intervalSpeed);
                 document.querySelectorAll('.bullet').forEach((item) => {
                     item.parentNode.removeChild(item);
                 })
-
                 playSound();
-
                 showEndOfGame('Game Over, your 30 lives are up! \n\n' + `${((Date.now() - startTime) / 1000).toFixed(2)} seconds of survival`);
-
-
             }
+
+            image.style.border = 'none';
+
         } else {
+
             image.style.border = 'none';
         }
 
     }
 
     function shoot(sx = x, sy = y, directionX, directionY) {
-
+        // dx = 0;
+        // dy = 0;
         let bullet = document.createElement('div');
         bullet.classList.add('bullet');
         bullet.style.zIndex = "1";
-        bullet.bulletSpeedX = bulletSpeed + (1.5 - Math.random() * 3) / 4;
-        bullet.bulletSpeedY = bulletSpeed + (1.5 - Math.random() * 3) / 4;
-        let bulletStartX = sx;
-        let bulletStartY = sy;
+        bullet.bulletSpeedX = bulletSpeed + 1.5 - Math.random() * 3;
+        bullet.bulletSpeedY = bulletSpeed + 1.5 - Math.random() * 3;
+        let bulletStartX = sx;// + directionX * bullet.bulletSpeedX * 2;
+        let bulletStartY = sy;// + directionY * bullet.bulletSpeedY * 2;
         bullet.x = Math.floor(bulletStartX);
         bullet.y = Math.floor(bulletStartY);
         bullet.life = Date.now();
@@ -245,7 +177,7 @@
         bullet.style.top = `${bullet.y}px`;
         bullet.style.borderRadius = '100%';
         bullet.style.background = 'pink';
-        // bullet.style.border = '1px solid white';
+        bullet.style.border = '1px solid white';
         bullet.dirX = directionX;
         bullet.dirY = directionY;
         document.body.append(bullet);
@@ -255,37 +187,27 @@
     function keyDown(event) {
 
         switch (event.key) {
-            case "a":
-            case "A":
             case "ArrowLeft":
                 dx = -10;
                 dy = 0;
                 break;
-            case "d":
-            case "D":
             case "ArrowRight":
                 dx = 10;
                 dy = 0;
                 break;
-            case "w":
-            case "W":
             case "ArrowUp":
                 dy = -10;
                 dx = 0;
                 break;
-            case "x":
-            case "X":
-            case "s":
-            case "S":
             case "ArrowDown":
                 dy = 10;
                 dx = 0;
                 break;
 
-            case " ":
-                dx = 0;
-                dy = 0;
-                break;
+            // case " ":
+            //     dx = 0;
+            //     dy = 0;
+            //     break;
 
             // case "a":
             // case "A":
@@ -333,68 +255,11 @@
 
     document.addEventListener("keydown", event => keyDown(event));
 
-    function getDistance(xA, yA, xB, yB) {
-        let xDiff = xA - xB;
-        let yDiff = yA - yB;
-
-        return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
-    }
-
-    document.addEventListener('mousedown', (event) => {
-
-        totalShots--;
-
-        if (totalShots <= 0) {
-            totalShots = 0;
-            showInfoBox(true)
-            return
-        } else {
-            showInfoBox();
-        }
-        
-        let rect = event.target.getBoundingClientRect();
-        let x1 = event.clientX - rect.left; //x position within the element.
-        let y1 = event.clientY - rect.top;  //y position within the element.
-
-        bullets.forEach((bullet, index) => {
-            let d = getDistance(x1, y1, bullet.x, bullet.y);
-            if (d < 25) {
-                bullet.dirX = 0;
-                bullet.dirY = 0;
-                bullet.exploding = 255;
-            }
-            console.log(index, Date.now() - bullet.life, d);
-        })
-
-        // shoot(50, 50, 1 + Math.random(), 1 + Math.random());
-        // shoot(window.innerWidth - 50, 50, -1 + Math.random(), 1 + Math.random());
-        // shoot(50, window.innerHeight - 50, 1 + Math.random(), -1 + Math.random());
-        // shoot(window.innerWidth - 50, window.innerHeight - 50, -1 + Math.random(), -1 + Math.random());
-    });
-
-    document.addEventListener('mousemove', (event) => {
-        let rect = event.target.getBoundingClientRect();
-        let x1 = event.clientX - rect.left; //x position within the element.
-        let y1 = event.clientY - rect.top;  //y position within the element.
-
-        // if (x1 < x) {
-        //     dx = -5;
-        // }
-        // if (x1 > x) {
-        //     dx = 5;
-        // }
-        // if (y1 < y) {
-        //     dy = -5;
-        // }
-        // if (y1 > y) {
-        //     dy = 5;
-        // }
-    });
 
     function setLocation() {
         image.style.position = 'absolute';
-        image.style.left = `${Math.floor(x - 50)}px`;
-        image.style.top = `${Math.floor(y - 50)}px`;
+        image.style.left = `${Math.floor(x - image.width / 2)}px`;
+        image.style.top = `${Math.floor(y - image.width / 2)}px`;
     }
 
     function setElementLocation(element, x, y, sizeX = 5, sizeY = 5) {
@@ -406,16 +271,21 @@
     function move() {
         x += dx;
         y += dy;
-        if (x < 50 || x > window.innerWidth - 50) {
+        if (x < image.width / 2 || x > window.innerWidth - image.width / 2) {
             dx *= -1;
             x += dx;
         }
-        if (y < 50 || y > window.innerHeight - 50) {
+        if (y < image.width / 2 || y > window.innerHeight - image.width / 2) {
             dy *= -1;
             y += dy;
         }
         setLocation();
+        shoot(x, y, 0, 0);
     }
+
+    setInterval(function () {
+        maxLife += 100;
+    }, 1000);
 
     let intervalSpeed = setInterval(function () {
         move();
@@ -442,7 +312,7 @@
             checkCollisions();
         }, startingSpeed);
 
-    }, 5000); // speed up every 5 seconds
+    }, 3000); // speed up every 5 seconds
 
     function getRandomDirection() {
         if (Math.random() > .5) {
@@ -456,26 +326,23 @@
         collisionsEnabled = true;
     }, 1000);
 
-    let shootInterval = setInterval(function () {
-
-        let random = Math.floor(Math.random() * 4);
-
-        switch (random) {
-            case 0:
-                shoot(50, 50, 1 + Math.random(), 1 + Math.random());
-                break;
-            case 1:
-                shoot(window.innerWidth - 50, 50, -1 - Math.random(), 1 + Math.random());
-                break;
-            case 2:
-                shoot(50, window.innerHeight - 50, 1 + Math.random(), -1 - Math.random());
-                break;
-            case 3:
-                shoot(window.innerWidth - 50, window.innerHeight - 50, -1 - Math.random(), -1 - Math.random());
-                break;
-        }
-
-    }, shootSpeed);
+    // let shootInterval = setInterval(function () {
+    //     let random = Math.floor(Math.random() * 4);
+    //     switch (random) {
+    //         case 0:
+    //             // shoot(50, 50, 1 + Math.random(), 1 + Math.random());
+    //             break;
+    //         case 1:
+    //             // shoot(window.innerWidth - 50, 50, -1 - Math.random(), 1 + Math.random());
+    //             break;
+    //         case 2:
+    //             // shoot(50, window.innerHeight - 50, 1 + Math.random(), -1 - Math.random());
+    //             break;
+    //         case 3:
+    //             // shoot(window.innerWidth - 50, window.innerHeight - 50, -1 - Math.random(), -1 - Math.random());
+    //             break;
+    //     }
+    // }, shootSpeed);
 
 </script>
 </body>
