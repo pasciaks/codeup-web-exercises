@@ -30,8 +30,7 @@
     }
 
     function randomLocation() {
-        totalCollisions++;
-        document.querySelector('h2').innerText = `${31 - totalCollisions}`;
+        document.querySelector('h2').innerText = `${30 - totalCollisions}`;
         if (totalCollisions >= 30) {
             location = "konami.html";
         }
@@ -41,7 +40,13 @@
     }
 
     randomLocation();
-    image.addEventListener('mouseenter', randomLocation);
+
+    function mouseOverCode() {
+        totalCollisions++;
+        randomLocation();
+    }
+
+    image.addEventListener('mouseenter', mouseOverCode);
 
     setInterval(randomLocation, 2500);
 

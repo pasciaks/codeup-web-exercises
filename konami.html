@@ -70,6 +70,15 @@
 
         let key = event?.key?.toLowerCase();
 
+        if (clearKeysInterval) {
+            clearInterval(clearKeysInterval);
+        }
+
+        clearKeysInterval = setInterval(function () {
+            keys = '';
+            console.log("keys cleared...too slow...");
+        }, 1000);
+
         keys += key;
 
         switch (key) {
@@ -103,13 +112,26 @@
                 break;
             default:
                 keys = ''; // reset stored keys, invalid key entered
-                break;
-        }
+                if (clearKeysInterval) {
+                    clearInterval(clearKeysInterval);
+                }
+                console.log("Cleared keys... unsupported key entered...");
 
+                clearKeysInterval = setInterval(function () {
+                    keys = '';
+                    console.log("keys cleared...too slow...");
+                }, 1000);
+                return;
+        }
+        pointer.style.display = 'inline-block';
     }
 
+    setInterval(function () {
+        console.log(keys);
+    }, 500);
+
     function keyDown(event) {
-        pointer.style.display = 'inline-block';
+        // pointer.style.display = 'inline-block';
     }
 
     function keyUp(event) {
@@ -141,9 +163,10 @@
 
     }
 
-    // function keyPress(event) {
-    //     console.log(event);
-    // }
+    let clearKeysInterval = setInterval(function () {
+        keys = '';
+        console.log("keys cleared...too slow...");
+    }, 1000);
 
     // keydown captures any keys, arrows, etc
     document.addEventListener('keydown', keyDown);
