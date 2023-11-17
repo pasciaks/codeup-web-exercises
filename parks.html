@@ -233,10 +233,15 @@
 
     function yellowButtonAction() {
         let allUnorderedLists = document.querySelectorAll('ul');
-        allUnorderedLists.forEach((ulElement) => {
-            let allListItems = ulElement.children;
-            allListItems[allListItems.length - 1].style.background = 'yellow';
-        })
+        // allUnorderedLists.forEach((ulElement) => {
+        //     let allListItems = ulElement.children;
+        //     allListItems[allListItems.length - 1].style.background = 'yellow';
+        // });
+
+        // better alternative!
+        allUnorderedLists.forEach((ulItem) => {
+            ulItem.lastElementChild.style.background = 'yellow';
+        });
     }
 
     let btnYellow = document.getElementById('yellowButton');
@@ -246,20 +251,28 @@
 
     for (let h3 of h3Elements) {
         h3.addEventListener('click', (e) => {
-            let lis = e.currentTarget.nextElementSibling.children
-            for (let i = 0; i < lis.length; i++) {
-                lis[i].style.fontWeight = 'bold';
-            }
+
+            // better solution!
+            let h3Ul = e.currentTarget.nextElementSibling;
+            h3Ul.style.fontWeight = 'bold';
+
+            // let lis = e.currentTarget.nextElementSibling.children
+            // for (let i = 0; i < lis.length; i++) {
+            //     lis[i].style.fontWeight = 'bold';
+            // }
         });
     }
 
     let allListItems = document.querySelectorAll('li');
 
     for (let listItem of allListItems) {
-        listItem.addEventListener("click", () => {
-            listItem.parentElement.querySelectorAll('li')[0].style.color = 'blue';
+        listItem.addEventListener("click", (e) => {
+            console.log(e);
+            e.currentTarget.parentElement.firstElementChild.style.color = 'blue';
+            // listItem.parentElement.querySelectorAll('li')[0].style.color = 'blue';
         })
     }
+
 
 </script>
 </body>
