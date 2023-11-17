@@ -116,13 +116,13 @@
                     clearInterval(clearKeysInterval);
                 }
                 console.log("Cleared keys... unsupported key entered...");
-
                 clearKeysInterval = setInterval(function () {
                     keys = '';
                     console.log("keys cleared...too slow...");
                 }, 1000);
                 return;
         }
+        // only show if valid key
         pointer.style.display = 'inline-block';
     }
 
@@ -130,9 +130,9 @@
         console.log(keys);
     }, 500);
 
-    function keyDown(event) {
-        // pointer.style.display = 'inline-block';
-    }
+    // function keyDown(event) {
+    //     pointer.style.display = 'inline-block';
+    // }
 
     function keyUp(event) {
         pointer.style.display = 'none';
@@ -169,7 +169,7 @@
     }, 1000);
 
     // keydown captures any keys, arrows, etc
-    document.addEventListener('keydown', keyDown);
+    // document.addEventListener('keydown', keyDown);
 
     // keyup captures any keys, arrows, etc
     document.addEventListener('keyup', keyUp);
