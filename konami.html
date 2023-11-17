@@ -58,20 +58,13 @@
     }
 
     function keyDown(event) {
-        // console.log("keyDown");
-        // console.log(event);
-        // console.log(event.key);
     }
 
     function keyUp(event) {
         container.innerHTML = "";
-        // console.log("keyUp");
-        // console.log(event);
-        // console.log(event.key);
 
         if (keys.indexOf(successPattern) >= 0) {
             audio.play();
-            // alert("You have 30 lives!");
             setTimeout(function () {
                 window.location = "konami-success.html"
             }, 1000);
@@ -80,9 +73,6 @@
     }
 
     function keyPress(event) {
-        // console.log("keyPress");
-        // console.log(event);
-        // console.log(event.key);
     }
 
     // keydown captures any keys, arrows, etc
@@ -94,6 +84,7 @@
     // keypress captures typed/visible keys
     document.addEventListener('keypress', keyPress);
 
+    // keydown captures any keys, arrows, etc
     document.addEventListener("keydown", event => recordKeys(event));
 
 </script>

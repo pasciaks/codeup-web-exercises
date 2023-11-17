@@ -7,12 +7,55 @@
 
         * {
             box-sizing: border-box;
-            position: absolute;
             user-select: none;
+            cursor: crosshair;
         }
 
-        img {
-            width: 100px;
+        #info {
+            position: absolute;
+            left: 100px;
+            right: 100px;
+            bottom: 0;
+            text-align: center;
+            background-color: lightgray;
+            z-index: 200;
+            font: 28px Courier, sans-serif;
+        }
+
+        #s1 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            transform: rotate(90deg);
+        }
+
+        #s2 {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            transform: rotate(270deg) scaleX(-1);
+        }
+
+        #s3 {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 50px;
+            transform: rotate(0deg);
+        }
+
+        #s4 {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 50px;
+            height: 50px;
+            transform: rotate(180deg) scaleY(-1);
         }
 
     </style>
@@ -22,12 +65,20 @@
 
 <body style="overflow: hidden">
 
+<img alt="" hidden id="duck" src="images/cody.webp" style="z-index: 100">
+
+<img alt="" id="s1" src="images/s1.jpg" style="z-index: 10">
+<img alt="" id="s2" src="images/s1.jpg" style="z-index: 10">
+<img alt="" id="s3" src="images/s1.jpg" style="z-index: 10">
+<img alt="" id="s4" src="images/s1.jpg" style="z-index: 10">
+
+<div id="end-of-game"
+     style="z-index:500;display:none;border:3px solid red;left:100px;right:100px;top:100px;bottom:100px;text-align:center;font:28px Verdana;background-color:black;color:gold">
+</div>
+
 <div id="info">
 
 </div>
-
-<img alt="" hidden id="duck" src="images/cody.webp" style="z-index: 10">
-
 <script defer>
 
     alert("You have 30 lives!");
@@ -41,7 +92,7 @@
     let startingSpeed = 100;
     let bullets = [];
     let bulletSpeed = 10;
-    let shootSpeed = 1500;
+    let shootSpeed = 1000 + Math.random() * 500;
     let image = document.querySelector('img');
 
     image.width = 100;
@@ -52,6 +103,18 @@
 
     let dx = 0;
     let dy = 0;
+
+    function showEndOfGame(message) {
+        document.addEventListener('click', function () {
+            location.reload();
+        })
+        document.getElementById('end-of-game').innerText = message;
+        document.getElementById('end-of-game').style.display = 'block';
+    }
+
+    function playSound() {
+        audio.play();
+    }
 
     function moveBullets() {
         if (bullets.length > 1000) {
@@ -77,7 +140,6 @@
 
     function checkCollisions() {
 
-
         if (!collisionsEnabled) {
             return;
         }
@@ -85,8 +147,8 @@
         let hasCollision = false;
 
         bullets.forEach((bullet) => {
-            if (Date.now() - bullet.life > 1000) {
-                bullet.style.border = "3px solid red";
+            if (Date.now() - bullet.life > 100) {
+                bullet.style.border = "2" + "px solid red";
                 if (bullet.x > x - 50 - 5) {
                     if (bullet.x < x + 50 + 5) {
                         if (bullet.y > y - 50 - 5) {
@@ -117,8 +179,12 @@
                 document.querySelectorAll('.bullet').forEach((item) => {
                     item.parentNode.removeChild(item);
                 })
-                audio.play();
-                alert('Game Over, your 30 lives are up! \n\n' + `${((Date.now() - startTime) / 1000).toFixed(2)} seconds of survival`);
+
+                playSound();
+
+                showEndOfGame('Game Over, your 30 lives are up! \n\n' + `${((Date.now() - startTime) / 1000).toFixed(2)} seconds of survival`);
+
+
             }
         } else {
             image.style.border = 'none';
@@ -134,10 +200,10 @@
         bullet.style.zIndex = "1";
         bullet.bulletSpeedX = bulletSpeed + 1.5 - Math.random() * 3;
         bullet.bulletSpeedY = bulletSpeed + 1.5 - Math.random() * 3;
-        let bstartx = sx + directionX * bullet.bulletSpeedX * 2;
-        let bstarty = sy + directionY * bullet.bulletSpeedY * 2;
-        bullet.x = Math.floor(bstartx);
-        bullet.y = Math.floor(bstarty);
+        let bulletStartX = sx;// + directionX * bullet.bulletSpeedX * 2;
+        let bulletStartY = sy;// + directionY * bullet.bulletSpeedY * 2;
+        bullet.x = Math.floor(bulletStartX);
+        bullet.y = Math.floor(bulletStartY);
         bullet.life = Date.now();
         bullet.style.width = '10px';
         bullet.style.height = '10px';
@@ -145,8 +211,8 @@
         bullet.style.left = `${bullet.x}px`;
         bullet.style.top = `${bullet.y}px`;
         bullet.style.borderRadius = '100%';
-        bullet.style.background = 'red';
-        bullet.style.border = '1px solid blue';
+        bullet.style.background = 'pink';
+        bullet.style.border = '1px solid white';
         bullet.dirX = directionX;
         bullet.dirY = directionY;
         document.body.append(bullet);
@@ -178,45 +244,45 @@
                 dy = 0;
                 break;
 
-            case "a":
-            case "A":
-                shoot(x, y, -1, 0);
-                break;
+            // case "a":
+            // case "A":
+            //     shoot(x, y, -1, 0);
+            //     break;
 
-            case "d":
-            case "D":
-                shoot(x, y, 1, 0);
-                break;
+            // case "d":
+            // case "D":
+            //     shoot(x, y, 1, 0);
+            //     break;
 
-            case "w":
-            case "W":
-                shoot(x, y, 0, -1);
-                break;
+            // case "w":
+            // case "W":
+            //     shoot(x, y, 0, -1);
+            //     break;
 
-            case "x":
-            case "X":
-                shoot(x, y, 0, 1);
-                break;
+            // case "x":
+            // case "X":
+            //     shoot(x, y, 0, 1);
+            //     break;
 
-            case "q":
-            case "Q":
-                shoot(x, y, -1, -1);
-                break;
+            // case "q":
+            // case "Q":
+            //     shoot(x, y, -1, -1);
+            //     break;
 
-            case "e":
-            case "E":
-                shoot(x, y, 1, -1);
-                break;
+            // case "e":
+            // case "E":
+            //     shoot(x, y, 1, -1);
+            //     break;
 
-            case "z":
-            case "Z":
-                shoot(x, y, -1, 1);
-                break;
+            // case "z":
+            // case "Z":
+            //     shoot(x, y, -1, 1);
+            //     break;
 
-            case "c":
-            case "C":
-                shoot(x, y, 1, 1);
-                break;
+            // case "c":
+            // case "C":
+            //     shoot(x, y, 1, 1);
+            //     break;
 
         }
 
@@ -224,56 +290,35 @@
 
     document.addEventListener("keydown", event => keyDown(event));
 
-    document.addEventListener('mousedown', (event) => {
-        let rect = event.target.getBoundingClientRect();
-        let x = event.clientX - rect.left; //x position within the element.
-        let y = event.clientY - rect.top;  //y position within the element.
-
-        if (x < window.innerWidth / 2) {
-            shoot(x, y, -1, getRandomDirection());
-            shoot(x, y, -1, getRandomDirection());
-            shoot(x, y, -1, getRandomDirection());
-            shoot(x, y, -1, getRandomDirection());
-        }
-        if (x > window.innerWidth / 2) {
-            shoot(x, y, 1, getRandomDirection());
-            shoot(x, y, 1, getRandomDirection());
-            shoot(x, y, 1, getRandomDirection());
-            shoot(x, y, 1, getRandomDirection());
-        }
-        if (y < window.innerHeight / 2) {
-            shoot(x, y, getRandomDirection(), -1);
-            shoot(x, y, getRandomDirection(), -1);
-            shoot(x, y, getRandomDirection(), -1);
-            shoot(x, y, getRandomDirection(), -1);
-        }
-        if (y > window.innerHeight / 2) {
-            shoot(x, y, getRandomDirection(), 1);
-            shoot(x, y, getRandomDirection(), 1);
-            shoot(x, y, getRandomDirection(), 1);
-            shoot(x, y, getRandomDirection(), 1);
-        }
-
-    });
-
-    // document.addEventListener('mousemove', (event) => {
+    // document.addEventListener('mousedown', (event) => {
     //     let rect = event.target.getBoundingClientRect();
-    //     let x = event.clientX - rect.left; //x position within the element.
-    //     let y = event.clientY - rect.top;  //y position within the element.
+    //     let x1 = event.clientX - rect.left; //x position within the element.
+    //     let y1 = event.clientY - rect.top;  //y position within the element.
     //
-    //     if (x < window.innerWidth / 2) {
-    //         dx = -10;
-    //     }
-    //     if (x > window.innerWidth / 2) {
-    //         dx = 10;
-    //     }
-    //     if (y < window.innerHeight / 2) {
-    //         dy = -10;
-    //     }
-    //     if (y > window.innerHeight / 2) {
-    //         dy = 10;
-    //     }
+    //     shoot(50, 50, 1 + Math.random(), 1 + Math.random());
+    //     shoot(window.innerWidth - 50, 50, -1 + Math.random(), 1 + Math.random());
+    //     shoot(50, window.innerHeight - 50, 1 + Math.random(), -1 + Math.random());
+    //     shoot(window.innerWidth - 50, window.innerHeight - 50, -1 + Math.random(), -1 + Math.random());
     // });
+
+    document.addEventListener('mousemove', (event) => {
+        let rect = event.target.getBoundingClientRect();
+        let x1 = event.clientX - rect.left; //x position within the element.
+        let y1 = event.clientY - rect.top;  //y position within the element.
+
+        if (x1 < x) {
+            dx = -5;
+        }
+        if (x1 > x) {
+            dx = 5;
+        }
+        if (y1 < y) {
+            dy = -5;
+        }
+        if (y1 > y) {
+            dy = 5;
+        }
+    });
 
     function setLocation() {
         image.style.position = 'absolute';
@@ -282,7 +327,6 @@
     }
 
     function setElementLocation(element, x, y, sizeX = 5, sizeY = 5) {
-        // console.log(element, x, y);
         image.style.position = 'absolute';
         element.style.left = `${x - sizeX}px`;
         element.style.top = `${y - sizeY}px`;
@@ -291,11 +335,11 @@
     function move() {
         x += dx;
         y += dy;
-        if (x < 0 || x > window.innerWidth) {
+        if (x < 50 || x > window.innerWidth - 50) {
             dx *= -1;
             x += dx;
         }
-        if (y < 0 || y > window.innerHeight) {
+        if (y < 50 || y > window.innerHeight - 50) {
             dy *= -1;
             y += dy;
         }
@@ -327,7 +371,7 @@
             checkCollisions();
         }, startingSpeed);
 
-    }, 5000);
+    }, 5000); // speed up every 5 seconds
 
     function getRandomDirection() {
         if (Math.random() > .5) {
@@ -339,22 +383,27 @@
 
     setTimeout(function () {
         collisionsEnabled = true;
-    }, 5000);
+    }, 1000);
 
     let shootInterval = setInterval(function () {
-        let ttx = getRandomDirection();
-        if (ttx === -1) {
-            ttx = 50;
-        } else {
-            ttx = window.innerWidth - 50;
+
+        let random = Math.floor(Math.random() * 4);
+
+        switch (random) {
+            case 0:
+                shoot(50, 50, 1 + Math.random(), 1 + Math.random());
+                break;
+            case 1:
+                shoot(window.innerWidth - 50, 50, -1 - Math.random(), 1 + Math.random());
+                break;
+            case 2:
+                shoot(50, window.innerHeight - 50, 1 + Math.random(), -1 - Math.random());
+                break;
+            case 3:
+                shoot(window.innerWidth - 50, window.innerHeight - 50, -1 - Math.random(), -1 - Math.random());
+                break;
         }
-        let tty = getRandomDirection();
-        if (tty === -1) {
-            tty = 50;
-        } else {
-            tty = window.innerHeight - 50;
-        }
-        shoot(ttx, tty, getRandomDirection(), getRandomDirection());
+
     }, shootSpeed);
 
 </script>
