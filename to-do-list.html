@@ -53,15 +53,22 @@
         let button = document.createElement('button');
         button.classList.add('btn', 'btn-danger');
         button.innerText = 'Done';
+
         button.addEventListener('click', (e) => {
             let deleteThis = e.target.parentElement;
+
+            console.log("-----");
+            console.log(deleteThis);
+            console.log("-----");
 
             let theClickedTodoLi = e.target.parentElement.firstChild;
             console.log("-----");
             console.log(theClickedTodoLi.textContent);
+            console.log("-----");
 
             let whichTodo = arrayOfTodos.indexOf(theClickedTodoLi.textContent);
             console.log(whichTodo);
+
             arrayOfTodos.splice(whichTodo, 1);
             console.log(arrayOfTodos);
 
