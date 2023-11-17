@@ -7,17 +7,22 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" rel="stylesheet">
 </head>
 <body>
-<section class="container" id="newContent"></section>
-<!--<section>-->
-<!--    <ul id="numbers">-->
-<!--        <li id="one">One</li>-->
-<!--        <li id="two">Two</li>-->
-<!--        <li id="three">Three</li>-->
-<!--        <li id="four">Four</li>-->
-<!--        <li id="five">Five</li>-->
-<!--    </ul>-->
-<!--</section>-->
-<!--<button id="btn-howdy">Alert Howdy!</button>-->
+<div class="container">
+
+    <section class="container" id="newContent"></section>
+
+</div>
+
+<section>
+    <ul id="numbers">
+        <li id="one">One</li>
+        <li id="two">Two</li>
+        <li id="three">Three</li>
+        <li id="four">Four</li>
+        <li id="five">Five</li>
+    </ul>
+</section>
+<button id="btn-howdy">Alert Howdy!</button>
 <script crossorigin="anonymous"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
@@ -54,7 +59,6 @@
     // Element.append() has no return value,
     // whereas Node.appendChild() returns the appended
     // Node object.
-    //
 
     // document.body.append('<p>Test - not recommended this way</p>');
 
@@ -67,7 +71,11 @@
     pElement2.innerText = "New Paragraph";
     pElement2.classList.add('text-danger');
     document.body.appendChild(pElement2);
+
     // ====== Replacing DOM elements
+
+
+    /// NOTE ___ replaceChild(NewNode,oldNode);
 
     // const myAwesomeP = document.createElement("p");
     // myAwesomeP.innerText = "I'm an EVEN BETTER paragraph";
@@ -78,69 +86,70 @@
 
 
     // ====== After and Before
-    // const three = document.querySelector("#three");
+    const three = document.querySelector("#three");
     //
-    // const twoAndAHalf = document.createElement("li");
-    // twoAndAHalf.innerText = "Two and a half";
-    // three.before(twoAndAHalf); // or three.after(twoAndAHalf);
+    const twoAndAHalf = document.createElement("li");
+    twoAndAHalf.innerText = "Two and a half";
+    three.before(twoAndAHalf); // or three.after(twoAndAHalf);
 
     // ====== Creating More Complex Elements
-    // const card = document.createElement('article');
-    // card.classList.add(
-    //     'bg-primary',
-    //     'text-white',
-    //     'w-50',
-    //     'p-3',
-    //     'm-3',
-    //     'border',
-    //     'border-black',
-    //     'rounded-3');
-    // card.id = 'my-card';
-    // card.innerHTML = `
-    //     <div class="container-fluid">
-    //         <h3 class="text-center">My Card</h3>
-    //         <div class="row">
-    //             <div class="col">
-    //                 <p>This is some info about the card.</p>
-    //                 <hr>
-    //                 <ul>
-    //                     <li>Fact 1</li>
-    //                     <li>Fact 2</li>
-    //                     <li>Fact 3</li>
-    //                 </ul>
-    //             </div>
-    //             <div class="col">
-    //                 <table class="table text-white">
-    //                     <thead>
-    //                         <tr>
-    //                             <th>Column 1</th>
-    //                             <th>Column 2</th>
-    //                             <th>Column 3</th>
-    //                         </tr>
-    //                     </thead>
-    //                     <tbody>
-    //                         <tr>
-    //                             <td>One</td>
-    //                             <td>Two</td>
-    //                             <td>Three</td>
-    //                         </tr>
-    //                         <tr>
-    //                             <td>A</td>
-    //                             <td>B</td>
-    //                             <td>C</td>
-    //                         </tr>
-    //                     </tbody>
-    //                 </table>
-    //             </div>
-    //         </div>
-    //     </div>`;
-    // document.querySelector('body').appendChild(card);
+    const card = document.createElement('article');
+    card.classList.add(
+        'bg-primary',
+        'text-white',
+        'w-50',
+        'p-3',
+        'm-3',
+        'border',
+        'border-black',
+        'rounded-3');
+    card.id = 'my-card';
+    card.innerHTML = `
+        <div class="container-fluid">
+            <h3 class="text-center">My Card</h3>
+            <div class="row">
+                <div class="col">
+                    <p>This is some info about the card.</p>
+                    <hr>
+                    <ul>
+                        <li>Fact 1</li>
+                        <li>Fact 2</li>
+                        <li>Fact 3</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <table class="table text-white">
+                        <thead>
+                            <tr>
+                                <th>Column 1</th>
+                                <th>Column 2</th>
+                                <th>Column 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>One</td>
+                                <td>Two</td>
+                                <td>Three</td>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>B</td>
+                                <td>C</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>`;
+    document.querySelector('body').appendChild(card);
 
     // ====== Avoid use of innerHTML += 'some more HTML'
-    // document.querySelector('#btn-howdy').addEventListener('click', () => {
-    //     alert('Howdy!');
-    // });
-    // document.querySelector('body').innerHTML += '<button>Alert Hello!</button>';
+    document.querySelector('#btn-howdy').addEventListener('click', () => {
+        alert('Howdy!');
+    });
+    
+    //document.querySelector('body').innerHTML += '<button>Alert Hello!</button>';
 
 </script>
 </body>
