@@ -4,6 +4,54 @@
     <meta charset="UTF-8">
     <title>Parks</title>
 
+    <style>
+
+        img {
+            border: 2px solid saddlebrown;
+            height: 150px;
+            height: 150px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            text-align: center;
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+            border: 1px solid saddlebrown;
+        }
+
+        .row::after {
+
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .bg1 {
+            background-image: url("images/100x300.svg");
+            background-size: cover;
+        }
+
+        .bg2 {
+            background-image: url("images/100x300.svg");
+            background-size: cover;
+        }
+
+        .bg3 {
+            background-image: url("images/100x300.svg");
+            background-size: cover;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -39,7 +87,29 @@
     </ul>
 </div>
 
-<button id="yellowButton">Yellow</button>
+<div style="text-align: center">
+    <button id="yellowButton">Yellow</button>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="column">
+        <img alt="Snow" src="images/200x300.svg">
+        <br>
+        <button id="leftButton">Swap</button>
+    </div>
+    <div class="column">
+        <img alt="Forest" src="images/100x300.svg">
+        <br>
+        <button id="middleButton">Swap</button>
+    </div>
+    <div class="column">
+        <img alt="Mountains" src="images/300x300.svg">
+        <br>
+        <button id="rightButton">Swap</button>
+    </div>
+</div>
 
 <dl>
     <dt>How many people visit the national parks?</dt>
@@ -82,6 +152,50 @@
 </dl>
 
 <script>
+
+    function swap(e1, e2) {
+        let s1 = e1.getAttribute('src');
+        let s2 = e2.getAttribute('src');
+        e2.setAttribute('src', s1);
+        e1.setAttribute('src', s2);
+    }
+
+    document.querySelector('#leftButton').addEventListener('click', function (event) {
+        let container = event.currentTarget.previousElementSibling.parentElement;
+        let ps = container.previousElementSibling;
+        let ns = container.nextElementSibling;
+        let thisImage = container.querySelector('img');
+        let pimage = ps?.querySelector('img');
+        let nimage = ns.querySelector('img');
+        swap(thisImage, nimage);
+    });
+
+    document.querySelector('#middleButton').addEventListener('click', function (event) {
+        let container = event.currentTarget.previousElementSibling.parentElement;
+        let ps = container.previousElementSibling;
+        let ns = container.nextElementSibling;
+        let thisImage = container.querySelector('img');
+        let pimage = ps?.querySelector('img');
+        let nimage = ns?.querySelector('img');
+
+        // random swap
+        if (Math.random() > .5) {
+            swap(thisImage, nimage);
+        } else {
+            swap(thisImage, pimage);
+        }
+    });
+
+    document.querySelector('#rightButton').addEventListener('click', function (event) {
+        let container = event.currentTarget.previousElementSibling.parentElement;
+        let ps = container.previousElementSibling;
+        let ns = container.nextElementSibling;
+        let thisImage = container.querySelector('img');
+        let pimage = ps?.querySelector('img');
+        let nimage = ns?.querySelector('img');
+        swap(thisImage, pimage);
+    });
+
 
     function yellowButtonAction() {
         let allUnorderedLists = document.querySelectorAll('ul');
@@ -137,3 +251,14 @@ the first li of that list item's parent ul should have a
 font color of blue. Hint: you should again rely on this in
 the li event handler.-->
 
+<!--Bonus-->
+<!--Create 3 divs that each look like a picture frame. Each one should have a unique background image and a button underneath that swaps the image from the frame. Use traversing properties to accomplish this.-->
+
+<!--The rules are the following:-->
+
+<!--When the left picture's button is clicked, the left and center pictures swap images.-->
+<!--When the center picture's button is clicked, the center picture swaps randomly with either the left OR right pictures.-->
+<!--When the right picture's button is clicked, the right and center pictures swap images.-->
+<!--Hint: swap the values of the images' src attributes.-->
+
+<!--See here for a demonstration.-->
