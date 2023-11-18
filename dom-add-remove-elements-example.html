@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM - add and remove elements + events</title>
+    <style>
+      li {
+        line-height: 2em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>Unordered List #1</p>
+    <ul id="first-ul-unique-id">
+      <li id="first-list-item">1st List Item</li>
+      <li>2nd List Item</li>
+      <li>3rd List Item</li>
+    </ul>
+
+    <p>Unordered List #2</p>
+    <ul id="second-ul-unique-id">
+      <li>1st List Item</li>
+      <li>2nd List Item</li>
+      <li>3rd List Item</li>
+    </ul>
+
+    <hr />
+
+    <p>
+      It is helpful to have the console (developer tools) window open (f12)
+      normally opens/closes it.
+    </p>
+
+    <p id="any-id">This is a paragraph with an id of 'any-id'.</p>
+
+    <p id="unique-paragraph-id">
+      This is a pargraph with an id of 'unique-paragraph-id'.
+    </p>
+
+    <div id="text"></div>
+
+    <script defer>
+      // Note: document.querySelectorAll -- returns a NodeList with 0 or more elements
+      // Note: A NodeList can be thought of as a type of Array
+      let allListItems = document.querySelectorAll("li");
+
+      // Note: the following shows the results found by the querySelectorAll("li") selector
+      for (let i = 0; i < allListItems.length; i++) {
+        console.log("Item index:", i);
+        console.log("Item:", allListItems[i]);
+      }
+
+      //================================================================================================================
+      // Note: The following block assigns click event listeners to allListItems [currently] in the document
+      // These are the 1st, 2nd, 3rd (<li>) items in the 1st UL and the 1st, 2nd, 3rd (<li>) items in the 2nd UL
+      // These items are [currently] in the document and can be seen at the lines above ( Lines 17,18,19 and 24,25,26 above )
+      // Note: Dynamically added elements later will not be clickable unless you dynamically add the event listeners
+      //================================================================================================================
+
+      allListItems.forEach((item) => {
+        item.style.cursor = "pointer";
+        item.addEventListener("click", clickOnItem);
+      });
+
+      function clickOnItem(event) {
+        console.log(event.currentTarget);
+        console.log(event.currentTarget.innerText);
+      }
+
+      // NOTE: The lines above add a click event to each of the already existing list items.
+
+      //================================================================================================================
+
+      //--------------------------------------------------------------------------------------------------
+      //--------------------------------------------------------------------------------------------------
+      // Note: The following is an alternative way to walk through allListItems [currently]
+      // in the document and to dynamically add event listeners for the items currently in the document
+      //--------------------------------------------------------------------------------------------------
+      //--------------------------------------------------------------------------------------------------
+      Array.from(allListItems).forEach((listItemElement) => {
+        listItemElement.addEventListener("mouseenter", function (e) {
+          e.currentTarget.style.fontWeight = "bold";
+          e.currentTarget.style.color = "RED";
+        });
+
+        listItemElement.addEventListener("mouseleave", function (e) {
+          e.currentTarget.style.fontWeight = "normal";
+          e.currentTarget.style.color = "black";
+        });
+      });
+      //--------------------------------------------------------------------------------------------------
+      //--------------------------------------------------------------------------------------------------
+
+      // NOTE - The following uses a selector to obtain a reference to the UL element and stores in variable theFirstUlElement
+      let theFirstUlElement = document.getElementById("first-ul-unique-id");
+      console.log(theFirstUlElement);
+
+      // NOTE - create a new list item element for use in the document, store in a variable named firstNewListItem
+      let firstNewListItem = document.createElement("li");
+      firstNewListItem.innerText = "1st New List Item";
+
+      // NOTE - add the new list item to the document flow as a child of the UL element
+      theFirstUlElement.appendChild(firstNewListItem);
+
+      // NOTE - The listener events that were created above will not apply to this new element because
+      // it didn't exist when those listeners were added.
+
+      // NOTE - The following lines access the newly created list element and add listeners for it.
+
+      firstNewListItem.addEventListener("mouseenter", function (e) {
+        e.currentTarget.style.fontWeight = "bold";
+        e.currentTarget.style.color = "BLUE";
+      });
+
+      firstNewListItem.addEventListener("mouseleave", function (e) {
+        e.currentTarget.style.fontWeight = "normal";
+        e.currentTarget.style.color = "black";
+      });
+
+      // QUESTION YOURSELF - Why doesn't this '1st New List Item' respond to click event ?
+
+      // QUESTION YOURSELF - What does this code block do ?
+      let theSecondUlElement = document.getElementById("second-ul-unique-id");
+      console.log(theSecondUlElement);
+
+      // QUESTION YOURSELF - What does this code block do ?
+      let secondNewListItem = document.createElement("li");
+      secondNewListItem.innerText = "2nd New List Item";
+
+      // QUESTION YOURSELF - What does this code block do ?
+      theSecondUlElement.appendChild(secondNewListItem);
+
+      // QUESTION YOURSELF - Why doesn't this '2nd New List Item' respond to mouseenter or mouseleave ?
+
+      // NOTE: The following lines find the element by id and then removes it from the document
+      let uniqueParagraphItem = document.querySelector("#unique-paragraph-id");
+      uniqueParagraphItem.remove();
+
+      // NOTE: The following line removes the click event from the first list item.
+      // NOTE: This removal works because we can find the element by id and we can find the event function by the name clickOnItem
+      document
+        .getElementById("first-list-item")
+        .removeEventListener("click", clickOnItem);
+
+      //-----------------------------------------------------------------------------------------------------------------------------
+    </script>
+  </body>
+</html>
