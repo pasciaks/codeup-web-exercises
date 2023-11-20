@@ -443,13 +443,11 @@ renderCoffees(coffees);
 function filterCoffee() {
     let nameFilter = currentNameFilter.toLowerCase();
     let roastFilter = currentRoastFilter.toLowerCase();
-    let filteredCoffees = coffees.filter((coffee) => {
+    return coffees.filter((coffee) => {
         let cRoast = coffee.roast.toLowerCase();
         let cName = coffee.name.toLowerCase();
-        let result = (nameFilter === "" || cName.indexOf(nameFilter) >= 0) && (roastFilter === "" || cRoast === roastFilter);
-        return result;
+        return (nameFilter === "" || cName.indexOf(nameFilter) >= 0) && (roastFilter === "" || cRoast === roastFilter);
     });
-    return filteredCoffees;
 }
 
 let currentNameFilter = '';
