@@ -348,8 +348,6 @@ function createCard(title, content, imageUrl, defaultImageUrl) {
 
 function renderCoffees(theCoffees) {
 
-    otherCoffees = theCoffees;
-
     let myListItem;
 
     let theViewElement = document.getElementById('listContainer');
@@ -359,7 +357,7 @@ function renderCoffees(theCoffees) {
     });
 
     let defaultImageUrl = "https://via.placeholder.com/300";
-    otherCoffees.forEach((coffee) => {
+    theCoffees.forEach((coffee) => {
         myListItem = createListItem(coffee.name, coffee.roast, coffee.image, defaultImageUrl, coffee.description);
         theViewElement.appendChild(myListItem);
     });
@@ -416,14 +414,15 @@ const coffees = [
 coffees.forEach((coffee) => {
     coffee.description = "Nothing special.";
     coffee.image = "images/favicon.ico";
-})
+});
+
 otherCoffees.forEach((coffee) => {
     let newCoffee = {...coffee}
     newCoffee.id = coffees.length + 1;
     coffees.push(newCoffee);
 });
 
-console.log(coffees);
+// console.log(coffees);
 
 renderCoffees(coffees);
 
@@ -442,8 +441,8 @@ renderCoffees(coffees);
 
 
 function filterCoffee() {
-    let nameFilter = currentNameFilter;
-    let roastFilter = currentRoastFilter;
+    let nameFilter = currentNameFilter.toLowerCase();
+    let roastFilter = currentRoastFilter.toLowerCase();
     let filteredCoffees = coffees.filter((coffee) => {
         let cRoast = coffee.roast.toLowerCase();
         let cName = coffee.name.toLowerCase();
@@ -505,16 +504,18 @@ document.getElementById('btnSearch').addEventListener('click', (e) => {
 
 let addForm = document.getElementById('formAdd');
 
+// NOTE: Not needed, but could be used to update global variable
 document.getElementById('roastAdd').addEventListener('change', (e) => { // @todo - test if input works here instead of change
-    console.log(e);
-    console.log(e.target.value);
-    console.log(e.target.name);
+    // console.log(e);
+    // console.log(e.target.value);
+    // console.log(e.target.name);
 });
 
+// NOTE: Not needed, but could be used to update global variable
 document.getElementById('coffeeNameAdd').addEventListener('input', (e) => {
-    console.log(e);
-    console.log(e.target.value);
-    console.log(e.target.name);
+    // console.log(e);
+    // console.log(e.target.value);
+    // console.log(e.target.name);
 });
 
 function addCoffee(name, roast) {
