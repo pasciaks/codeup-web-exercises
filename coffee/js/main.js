@@ -346,22 +346,25 @@ function createCard(title, content, imageUrl, defaultImageUrl) {
     return card;
 }
 
-// Example usage:
-var myListItem;
+function renderCoffees(theCoffees) {
 
-let theViewElement = document.getElementById('listContainer');
+    otherCoffees = theCoffees;
 
-Array.from(theViewElement.childNodes).forEach((child) => {
-    child.remove();
-});
+    // Example usage:
+    var myListItem;
 
-let defaultImageUrl = "https://via.placeholder.com/300";
-otherCoffees.forEach((coffee) => {
-    myListItem = createListItem(coffee.name, coffee.roast, coffee.image, defaultImageUrl, coffee.description);
-    theViewElement.appendChild(myListItem);
+    let theViewElement = document.getElementById('listContainer');
 
-});
+    Array.from(theViewElement.childNodes).forEach((child) => {
+        child.remove();
+    });
 
+    let defaultImageUrl = "https://via.placeholder.com/300";
+    otherCoffees.forEach((coffee) => {
+        myListItem = createListItem(coffee.name, coffee.roast, coffee.image, defaultImageUrl, coffee.description);
+        theViewElement.appendChild(myListItem);
+    });
+}
 
 // function renderCoffee(coffee) {
 //     let html = '<tr class="coffee">';
@@ -395,21 +398,34 @@ otherCoffees.forEach((coffee) => {
 // // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
 
 const coffees = [
-    { id: 1, name: 'Light City', roast: 'light' },
-    { id: 2, name: 'Half City', roast: 'light' },
-    { id: 3, name: 'Cinnamon', roast: 'light' },
-    { id: 4, name: 'City', roast: 'medium' },
-    { id: 5, name: 'American', roast: 'medium' },
-    { id: 6, name: 'Breakfast', roast: 'medium' },
-    { id: 7, name: 'High', roast: 'dark' },
-    { id: 8, name: 'Continental', roast: 'dark' },
-    { id: 9, name: 'New Orleans', roast: 'dark' },
-    { id: 10, name: 'European', roast: 'dark' },
-    { id: 11, name: 'Espresso', roast: 'dark' },
-    { id: 12, name: 'Viennese', roast: 'dark' },
-    { id: 13, name: 'Italian', roast: 'dark' },
-    { id: 14, name: 'French', roast: 'dark' },
+    {id: 1, name: 'Light City', roast: 'light'},
+    {id: 2, name: 'Half City', roast: 'light'},
+    {id: 3, name: 'Cinnamon', roast: 'light'},
+    {id: 4, name: 'City', roast: 'medium'},
+    {id: 5, name: 'American', roast: 'medium'},
+    {id: 6, name: 'Breakfast', roast: 'medium'},
+    {id: 7, name: 'High', roast: 'dark'},
+    {id: 8, name: 'Continental', roast: 'dark'},
+    {id: 9, name: 'New Orleans', roast: 'dark'},
+    {id: 10, name: 'European', roast: 'dark'},
+    {id: 11, name: 'Espresso', roast: 'dark'},
+    {id: 12, name: 'Viennese', roast: 'dark'},
+    {id: 13, name: 'Italian', roast: 'dark'},
+    {id: 14, name: 'French', roast: 'dark'},
 ];
+
+coffees.forEach((coffee) => {
+    coffee.description = "Nothing special.";
+    coffee.image = "images/favicon.ico";
+})
+otherCoffees.forEach((coffee) => {
+    let newCoffee = {...coffee}
+    newCoffee.id = coffees.length + 1;
+    coffees.push(newCoffee);
+});
+
+console.log(coffees);
+renderCoffees(coffees);
 
 // const tbody = document.querySelector('#coffees');
 // const submitButton = document.querySelector('#submit');
@@ -444,15 +460,15 @@ let currentFilteredCoffees = [...coffees];
 let currentNameAdd = '';
 let currentRoastAdd = '';
 
-function renderCoffees(theCoffees) {
-    console.log('-------------------------');
-    if (!theCoffees || theCoffees.length === 0) {
-        console.log("No Coffees found.");
-    }
-    theCoffees.forEach((coffee) => {
-        console.log(JSON.stringify(coffee));
-    });
-}
+// function renderCoffees(theCoffees) {
+//     console.log('-------------------------');
+//     if (!theCoffees || theCoffees.length === 0) {
+//         console.log("No Coffees found.");
+//     }
+//     theCoffees.forEach((coffee) => {
+//         console.log(JSON.stringify(coffee));
+//     });
+// }
 
 // Search coffee form
 
@@ -483,7 +499,6 @@ document.getElementById('btnSearch').addEventListener('click', (e) => {
     currentFilteredCoffees = filterCoffee();
     renderCoffees(currentFilteredCoffees);
 });
-
 
 
 // Add coffee form
@@ -519,7 +534,7 @@ function addCoffee(name, roast) {
     // @todo - make sure current name and roast don't already exist
 
     let length = coffees.length;
-    coffees.push({ id: length + 1, name, roast });
+    coffees.push({id: length + 1, name, roast});
     renderCoffees(coffees);
 }
 
