@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 let otherCoffees = [
     {
@@ -208,16 +208,16 @@ let otherCoffees = [
 
 function createListItem(title, content, imageUrl, defaultImageUrl, description = "") {
     // Create the list item
-    var listItem = document.createElement("li");
-    listItem.className = "media col-lg-2 col-md-3 col-sm-4 p-1 m-1 border"; // Display side by side on larger screens
+    let listItem = document.createElement("li");
+    listItem.className = "media col-lg-2 col-md-3 col-sm-4 p-0 m-0 border"; // Display side by side on larger screens
 
     // Create the image preview
-    var imagePreview = document.createElement("img");
+    let imagePreview = document.createElement("img");
     imagePreview.src = imageUrl;
     imagePreview.className = "mr-3";
     imagePreview.alt = "Image Preview";
-    imagePreview.style.width = "64px"; // Set a fixed width
-    imagePreview.style.height = "64px"; // Set a fixed height
+    imagePreview.style.width = "32px"; // Set a fixed width
+    imagePreview.style.height = "32px"; // Set a fixed height
 
     // Set default image on error
     imagePreview.onerror = function () {
@@ -225,7 +225,7 @@ function createListItem(title, content, imageUrl, defaultImageUrl, description =
     };
 
     listItem.addEventListener('click', (e) => {
-        var imagePreview = document.createElement("img");
+        let imagePreview = document.createElement("img");
         imagePreview.src = imageUrl;
         imagePreview.className = "mr-3";
         imagePreview.alt = "Image Preview";
@@ -241,25 +241,25 @@ function createListItem(title, content, imageUrl, defaultImageUrl, description =
 
         document.getElementById('theModalBody').innerHTML = '';
 
-        var descElement = document.createElement('h6');
+        let descElement = document.createElement('h6');
         descElement.innerText = description;
         document.getElementById('theModalBody').append(imagePreview);
         document.getElementById('theModalBody').append(descElement);
     });
 
     // Create the media body
-    var mediaBody = document.createElement("div");
+    let mediaBody = document.createElement("div");
     mediaBody.className = "media-body";
 
     // Create the title
-    var titleElement = document.createElement("h6");
+    let titleElement = document.createElement("h6");
     titleElement.className = "mt-0";
     titleElement.textContent = title;
 
     // Create the content (in a span)
-    var contentElement = document.createElement("p");
+    let contentElement = document.createElement("p");
     contentElement.className = "text-right";
-    var contentSpan = document.createElement("span");
+    let contentSpan = document.createElement("span");
     contentSpan.textContent = content;
 
     // Set background color based on content
@@ -298,15 +298,15 @@ function createListItem(title, content, imageUrl, defaultImageUrl, description =
 
 function createCard(title, content, imageUrl, defaultImageUrl) {
     // Create the card element
-    var card = document.createElement('div');
+    let card = document.createElement('div');
     card.className = 'col-lg-2 col-md-4 col-sm-3 col-xs-2 m-0'; // Adjust the number of columns based on your design
 
     // Create the card component
-    var cardComponent = document.createElement('div');
+    let cardComponent = document.createElement('div');
     cardComponent.className = 'card h-100 m-0 p-0'; // Set a fixed height for the card body
 
     // Create the cover image
-    var coverImage = document.createElement('img');
+    let coverImage = document.createElement('img');
     coverImage.src = imageUrl;
     coverImage.className = 'card-img-top d-none'; //  d-xl-block
     coverImage.alt = 'Card Cover Image';
@@ -319,16 +319,16 @@ function createCard(title, content, imageUrl, defaultImageUrl) {
     };
 
     // Create the card body
-    var cardBody = document.createElement('div');
+    let cardBody = document.createElement('div');
     cardBody.className = 'card-body d-flex flex-column';
 
     // Create the card title
-    var cardTitle = document.createElement('h6');
+    let cardTitle = document.createElement('h6');
     cardTitle.className = 'card-title pb-0';
     cardTitle.textContent = title;
 
     // Create the card content
-    var cardContent = document.createElement('p');
+    let cardContent = document.createElement('p');
     cardContent.className = 'card-text flex-grow-1 pb-0';
     cardContent.textContent = content;
 
@@ -350,8 +350,7 @@ function renderCoffees(theCoffees) {
 
     otherCoffees = theCoffees;
 
-    // Example usage:
-    var myListItem;
+    let myListItem;
 
     let theViewElement = document.getElementById('listContainer');
 
@@ -425,6 +424,7 @@ otherCoffees.forEach((coffee) => {
 });
 
 console.log(coffees);
+
 renderCoffees(coffees);
 
 // const tbody = document.querySelector('#coffees');
@@ -522,12 +522,14 @@ function addCoffee(name, roast) {
     roast = roast.trim();
 
     if (!name) {
-        console.log("You cannot enter a coffee without a name.");
+        toastList.forEach(toast => toast.show());
+        alert("You cannot enter a coffee without a name.");
         return;
     }
 
     if (!roast) {
-        console.log("You cannot enter a coffee without a roast.");
+        toastList.forEach(toast => toast.show());
+        alert("You cannot enter a coffee without a roast.");
         return;
     }
 
@@ -540,7 +542,7 @@ function addCoffee(name, roast) {
 
 document.getElementById('formAdd').addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log("formAdd Submit...");
+    toastList.forEach(toast => toast.show());
     let name = addForm.coffeeNameAdd.value;
     let roast = addForm.roastAdd.value;
     addCoffee(name, roast);
@@ -548,10 +550,12 @@ document.getElementById('formAdd').addEventListener('submit', (e) => {
 
 document.getElementById('btnAdd').addEventListener('click', (e) => {
     e.preventDefault();
-    console.log("btnAdd Click...");
+    toastList.forEach(toast => toast.show());
     let name = addForm.coffeeNameAdd.value;
     let roast = addForm.roastAdd.value;
     addCoffee(name, roast);
 });
+
+
 
 
