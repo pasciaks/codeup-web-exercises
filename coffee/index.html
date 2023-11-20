@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <title>Coffee Project</title>
+    <link
+      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header class="text-center">
+      <h1>Coffee Project</h1>
+    </header>
+
+    <body>
+      <div class="container-fluid">
+        <ul class="list-unstyled row" id="listContainer">
+          <!-- List items will be dynamically generated here using JavaScript -->
+        </ul>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <form id="formSearch">
+              <p>Search For A Coffee</p>
+              <div class="form-floating">
+                <select
+                  class="form-select"
+                  id="roastSearch"
+                  aria-label="Floating label select example"
+                >
+                  <option value="" selected>All</option>
+                  <option value="light">Light</option>
+                  <option value="medium">Medium</option>
+                  <option value="dark">Dark</option>
+                </select>
+                <label for="roastSearch">Roast</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="name"
+                  class="form-control"
+                  id="coffeeNameSearch"
+                  placeholder="espresso"
+                />
+                <label for="coffeeNameSearch">Coffee Name</label>
+              </div>
+
+              <button
+                type="submit"
+                id="btnSearch"
+                class="btn btn-primary mb-3 w-100"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+          <div class="col">
+            <form id="formAdd">
+              <p>Add A Coffee</p>
+
+              <div class="form-floating">
+                <select
+                  class="form-select"
+                  id="roastAdd"
+                  aria-label="Floating label select example"
+                >
+                  <option value="light">Light</option>
+                  <option value="medium">Medium</option>
+                  <option value="dark">Dark</option>
+                </select>
+                <label for="roastAdd">Roast</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="name"
+                  class="form-control"
+                  id="coffeeNameAdd"
+                  placeholder="espresso"
+                />
+                <label for="coffeeNameAdd">Coffee Name</label>
+              </div>
+              <button
+                type="submit"
+                id="btnAdd"
+                class="btn btn-primary mb-3 w-100"
+              >
+                Submit a New Coffee
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div
+        aria-hidden="true"
+        aria-labelledby="staticBackdropLabel"
+        class="modal fade"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        id="staticBackdrop"
+        tabindex="-1"
+      >
+        <div id="exampleModal" class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+              <button
+                aria-label="Close"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                type="button"
+              ></button>
+            </div>
+            <div class="modal-body" id="theModalBody"></div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                type="button"
+              >
+                Close
+              </button>
+              <!-- <button class="btn btn-primary" type="button">Understood</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div
+        aria-hidden="true"
+        aria-labelledby="staticBackdropLabel"
+        class="modal fade"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        id="staticBackdrop"
+        tabindex="-1"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+              <button
+                aria-label="Close"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                type="button"
+              ></button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                type="button"
+              >
+                Close
+              </button>
+              <button class="btn btn-primary" type="button">Understood</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button trigger modal -->
+      <button
+        class="btn btn-primary d-none"
+        data-bs-target="#staticBackdrop"
+        data-bs-toggle="modal"
+        type="button"
+        id="modalButton"
+      >
+        Launch static backdrop modal
+      </button>
+
+      <script
+        crossorigin="anonymous"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      ></script>
+
+      <script
+        crossorigin="anonymous"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      ></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.js"></script>
+
+      <script src="js/main.js"></script>
+    </body>
+  </body>
+</html>

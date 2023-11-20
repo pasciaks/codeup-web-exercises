@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Responsive Card Layout</title>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <div class="row" id="cardContainer">
+        <!-- Cards will be dynamically generated here using JavaScript -->
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, for some features like carousel) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+      function createCard(title, content, imageUrl, defaultImageUrl) {
+        // Create the card element
+        var card = document.createElement("div");
+        card.className = "col-lg-4 col-md-6 mb-4"; // Adjust the number of columns based on your design
+
+        // Create the card component
+        var cardComponent = document.createElement("div");
+        cardComponent.className = "card h-100"; // Set a fixed height for the card body
+
+        // Create the cover image
+        var coverImage = document.createElement("img");
+        coverImage.src = imageUrl;
+        coverImage.className = "card-img-top d-none d-md-block";
+        coverImage.alt = "Card Cover Image";
+        coverImage.style.height = "150px"; // Set a fixed height
+        coverImage.style.objectFit = "cover"; // Resize image to cover the specified dimensions
+
+        // Set default image on error
+        coverImage.onerror = function () {
+          coverImage.src = defaultImageUrl;
+        };
+
+        // Create the card body
+        var cardBody = document.createElement("div");
+        cardBody.className = "card-body d-flex flex-column";
+
+        // Create the card title
+        var cardTitle = document.createElement("h5");
+        cardTitle.className = "card-title";
+        cardTitle.textContent = title;
+
+        // Create the card content
+        var cardContent = document.createElement("p");
+        cardContent.className = "card-text flex-grow-1";
+        cardContent.textContent = content;
+
+        // Append elements to the card body
+        cardBody.appendChild(cardTitle);
+        cardBody.appendChild(cardContent);
+
+        // Append cover image and card body to the card component
+        cardComponent.appendChild(coverImage);
+        cardComponent.appendChild(cardBody);
+
+        // Append card component to the card
+        card.appendChild(cardComponent);
+
+        return card;
+      }
+
+      // Example: Generate three cards
+      var numCards = 3;
+      var defaultImageUrl = "https://via.placeholder.com/300"; // Default image URL
+
+      for (var i = 1; i <= numCards; i++) {
+        var card = createCard(
+          "Card " + i + " Title",
+          "This is some content for Card " +
+            i +
+            ". You can add more details here.",
+          "https://nonexistent-image-url.com",
+          defaultImageUrl
+        );
+        document.getElementById("cardContainer").appendChild(card);
+      }
+    </script>
+  </body>
+</html>

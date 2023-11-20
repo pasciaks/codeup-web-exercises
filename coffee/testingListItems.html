@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Responsive List Layout</title>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <ul class="list-unstyled row" id="listContainer">
+        <!-- List items will be dynamically generated here using JavaScript -->
+      </ul>
+    </div>
+
+    <!-- Bootstrap JS (optional, for some features like carousel) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+      function createListItem(title, content, imageUrl, defaultImageUrl) {
+        // Create the list item
+        var listItem = document.createElement("li");
+        listItem.className = "media col-md-4 mb-4"; // Display side by side on larger screens
+
+        // Create the image preview
+        var imagePreview = document.createElement("img");
+        imagePreview.src = imageUrl;
+        imagePreview.className = "mr-3";
+        imagePreview.alt = "Image Preview";
+        imagePreview.style.width = "64px"; // Set a fixed width
+        imagePreview.style.height = "64px"; // Set a fixed height
+
+        // Set default image on error
+        imagePreview.onerror = function () {
+          imagePreview.src = defaultImageUrl;
+        };
+
+        // Create the media body
+        var mediaBody = document.createElement("div");
+        mediaBody.className = "media-body";
+
+        // Create the title
+        var titleElement = document.createElement("h5");
+        titleElement.className = "mt-0";
+        titleElement.textContent = title;
+
+        // Create the content (in a span)
+        var contentElement = document.createElement("p");
+        contentElement.className = "mb-0";
+        var contentSpan = document.createElement("span");
+        contentSpan.textContent = content;
+        contentElement.appendChild(contentSpan);
+
+        // Append elements to the media body
+        mediaBody.appendChild(titleElement);
+        mediaBody.appendChild(contentElement);
+
+        // Append image preview and media body to the list item
+        listItem.appendChild(imagePreview);
+        listItem.appendChild(mediaBody);
+
+        return listItem;
+      }
+
+      // Example: Generate three list items
+      var numItems = 3;
+      var defaultImageUrl = "https://via.placeholder.com/300"; // Default image URL
+
+      for (var i = 1; i <= numItems; i++) {
+        var listItem = createListItem(
+          "Item " + i + " Title",
+          "This is some content for Item " +
+            i +
+            ". You can add more details here.",
+          "https://nonexistent-image-url.com",
+          defaultImageUrl
+        );
+        document.getElementById("listContainer").appendChild(listItem);
+      }
+    </script>
+  </body>
+</html>
