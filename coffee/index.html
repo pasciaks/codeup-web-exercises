@@ -22,12 +22,6 @@
 </header>
 
 <div class="container-fluid">
-    <ul class="list-unstyled row" id="listContainer">
-        <!-- List items will be dynamically generated here using JavaScript -->
-    </ul>
-</div>
-
-<div class="container-fluid">
     <div class="row">
         <div class="col">
             <form id="formSearch">
@@ -75,6 +69,7 @@
                             class="form-select"
                             id="roastAdd"
                     >
+                        <option disabled selected value="">Please Choose A Roast</option>
                         <option value="light">Light</option>
                         <option value="medium">Medium</option>
                         <option value="dark">Dark</option>
@@ -101,6 +96,12 @@
             </form>
         </div>
     </div>
+</div>
+
+<div class="container-fluid">
+    <ul class="list-unstyled row" id="listContainer">
+        <!-- List items will be dynamically generated here using JavaScript -->
+    </ul>
 </div>
 
 <!-- Modal -->

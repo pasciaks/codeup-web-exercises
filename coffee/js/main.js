@@ -212,17 +212,17 @@ function createListItem(title, content, imageUrl, defaultImageUrl, description =
     listItem.className = "media col-lg-2 col-md-3 col-sm-4 p-0 m-0 border"; // Display side by side on larger screens
 
     // Create the image preview
-    // let imagePreview = document.createElement("img");
-    // imagePreview.src = imageUrl;
-    // imagePreview.className = "mr-3";
-    // imagePreview.alt = "Image Preview";
-    // imagePreview.style.width = "32px"; // Set a fixed width
-    // imagePreview.style.height = "32px"; // Set a fixed height
+    let imagePreview = document.createElement("img");
+    imagePreview.src = imageUrl;
+    imagePreview.className = "mr-3";
+    imagePreview.alt = "Image Preview";
+    imagePreview.style.width = "32px"; // Set a fixed width
+    imagePreview.style.height = "32px"; // Set a fixed height
 
     // Set default image on error
-    // imagePreview.onerror = function () {
-    //     imagePreview.src = defaultImageUrl;
-    // };
+    imagePreview.onerror = function () {
+        imagePreview.src = defaultImageUrl;
+    };
 
     listItem.addEventListener('click', (e) => {
         let imagePreview = document.createElement("img");
@@ -243,7 +243,7 @@ function createListItem(title, content, imageUrl, defaultImageUrl, description =
 
         let descElement = document.createElement('h6');
         descElement.innerText = description;
-        // document.getElementById('theModalBody').append(imagePreview);
+        document.getElementById('theModalBody').append(imagePreview);
         document.getElementById('theModalBody').append(descElement);
     });
 
@@ -521,18 +521,16 @@ function addCoffee(name, roast) {
     name = name.trim();
     roast = roast.trim();
 
-    if (!name) {
-
-        alert("You cannot enter a coffee without a name.");
-        return;
-    }
-
     if (!roast) {
-
         alert("You cannot enter a coffee without a roast.");
         return;
     }
 
+    if (!name) {
+        alert("You cannot enter a coffee without a name.");
+        return;
+    }
+    
     // @todo - make sure current name and roast don't already exist
 
     let length = coffees.length;
