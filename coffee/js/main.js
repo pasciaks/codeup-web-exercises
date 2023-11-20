@@ -530,12 +530,19 @@ function addCoffee(name, roast) {
         alert("You cannot enter a coffee without a name.");
         return;
     }
-    
+
     // @todo - make sure current name and roast don't already exist
 
     let length = coffees.length;
     coffees.push({id: length + 1, name, roast});
-    renderCoffees(coffees);
+    document.getElementById("roastAdd").value = '';
+    document.getElementById("coffeeNameAdd").value = '';
+    document.getElementById("roastSearch").value = '';
+    document.getElementById("coffeeNameSearch").value = '';
+    currentNameFilter = ''; // @todo - better with form reset, etc
+    currentRoastFilter = ''; // @todo - better with form reset, etc
+    currentFilteredCoffees = filterCoffee();
+    renderCoffees(currentFilteredCoffees);
 }
 
 document.getElementById('formAdd').addEventListener('submit', (e) => {
