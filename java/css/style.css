@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.table {
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+td,
+th {
+    border: 1px solid black;
+    padding: 5px 10px;
+}
+
+#page-title {
+    text-align: center;
+}
+
+#sub-title {
+    text-align: center;
+}
+
+.light {
+    color: rgb(180, 161, 114);
+}
+
+.medium {
+    color: rgb(131, 97, 11);
+}
+
+.dark {
+    color: rgb(63, 46, 5);
+}
+
+.coffee {
+    width: 140px;
+    margin: .25em;
+    padding: .25em;
+    position: relative;
+    cursor: pointer;
+}
+
+.btnDelete {
+    color: red;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
