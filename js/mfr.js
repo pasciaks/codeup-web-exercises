@@ -56,10 +56,11 @@ let sum = numbers.reduce((currentSum, currentNumber) => {
 }, 0);
 console.log({sum});
 
-let factorial = numbers.reduce((currentProduct, currentNumber) => {
+let factorialLikeProduct = numbers.reduce((currentProduct, currentNumber, index, array) => {
+    console.log({currentProduct, currentNumber, index, array});
     return currentProduct * currentNumber;
 }, 1);
-console.log({factorial});
+console.log({factorialLikeProduct});
 
 let evenNumbers = numbers.filter((oneNumber, index, array) => {
     return oneNumber % 2 === 0;
