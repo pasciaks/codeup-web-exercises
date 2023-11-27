@@ -54,5 +54,49 @@
 
      */
 
+    // Use .filter to create an array of user objects where each user object has at least 3 languages in the languages array.
+    let usersWithAtLeast3Languages = users.filter(user => user.languages.length >= 3);
+    console.log(usersWithAtLeast3Languages);
+
+    // Use .map to create an array of strings where each element is a user's email address
+    let userEmails = users.map(user => user.email);
+    console.log(userEmails);
+
+    // Use .reduce to get the total years of experience from the list of users. Once you get the total of years you can use the result to calculate the average.
+    let totalYearsOfExperience = users.reduce((total, user) => total + user.yearsOfExperience, 0);
+    console.log(totalYearsOfExperience);
+    let averageYearsOfExperience = totalYearsOfExperience / users.length;
+    console.log(averageYearsOfExperience);
+
+    // Use .reduce to get the longest email from the list of users.
+    let longestEmail = users.reduce((longestEmail, user) => {
+        if (user.email.length > longestEmail.length) {
+            longestEmail = user.email;
+        }
+        return longestEmail;
+    }, "");
+    console.log(longestEmail);
+
+    // Use .reduce to get the list of user's names in a single string. Example: Your instructors are: ryan, luis, zach, fernando, justin.
+    let usersNames = users.reduce((names, user) => {
+        if (names === "") {
+            names = user.name;
+        } else {
+            names = names + ", " + user.name;
+        }
+        return names;
+    }, "");
+    console.log(usersNames);
+
+    // Use .reduce to get the unique list of languages from the list of users.
+    let uniqueListOfLanguages = users.reduce((uniqueListOfLanguages, user) => {
+        user.languages.forEach(language => {
+            if (!uniqueListOfLanguages.includes(language)) {
+                uniqueListOfLanguages.push(language);
+            }
+        });
+        return uniqueListOfLanguages;
+    }, []);
+    console.log(uniqueListOfLanguages);
 
 })();
