@@ -67,3 +67,26 @@ let evenNumbers = numbers.filter((oneNumber, index, array) => {
 });
 console.log({evenNumbers});
 
+Array.prototype.doesNotInclude = function (valueToCheck) {
+    return !this.includes(valueToCheck);
+}
+
+if (numbers.doesNotInclude(5)) {
+    console.log("The [numbers] array does not include the number 5.");
+}
+
+// unique colors of all my jackets considering current and new jackets
+let colorsOfMyCurrentJackets = ["blue", "black", "grey"];
+let newJacketColors = ["blue", "red", "green", "black", "white", "grey"];
+
+let uniqueColors = newJacketColors.reduce((uniqueColors, currentColor) => {
+    if (!uniqueColors.includes(currentColor)) {
+        uniqueColors.push(currentColor);
+    }
+    return uniqueColors;
+}, [...colorsOfMyCurrentJackets]);
+
+console.log(uniqueColors);
+
+
+
