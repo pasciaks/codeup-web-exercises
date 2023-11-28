@@ -66,7 +66,21 @@
                 return data;
             })
             .then((data) => {
-                document.getElementById('fetch-from-repo-output').innerHTML = JSON.stringify(data, null, 2);
+
+                data.forEach((commit, index) => {
+                    if (index === 0) {
+                        console.log("Most recent commit:");
+                        console.log(commit);
+                        console.log(commit.commit.author.date);
+                    }
+                });
+
+                document.getElementById('fetch-from-repo-output').innerHTML = `
+                        <h2>Most recent commit:</h2>
+                        <p>Created at: ${data[0].commit.author.date}</p>
+                        <p>Commit message: ${data[0].commit.message}</p>
+                        `;
+
             })
             .catch((error) => {
                 return error;
