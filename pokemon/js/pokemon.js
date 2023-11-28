@@ -22,8 +22,8 @@
         let pokemonName = document.getElementById('pokemon-name');
         pokemonName.innerHTML = pokemon.name;
         let pokemonImage = document.getElementById('pokemon-image');
-        pokemonImage.src = pokemon.sprites.front_default;
         pokemonImage.title = JSON.stringify(pokemon.abilities);
+        pokemonImage.src = pokemon.sprites.front_default;
       })
       .catch(function (err) {
         console.log(err);
