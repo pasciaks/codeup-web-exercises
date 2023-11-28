@@ -2,6 +2,10 @@
 *.iml
 .DS_STORE
 
+keys.js
+keys.json
+.env
+
 # Logs
 logs
 *.log
