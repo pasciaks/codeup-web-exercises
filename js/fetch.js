@@ -109,6 +109,35 @@
             });
     });
 
+    function miscTesting() {
+
+        let githubUsername = 'pasciaks';
+        let url = `https://api.github.com/users/${githubUsername}`;
+        let personalAccessToken = ''; // prompt("Enter your GitHub token, Do not store this in your code!", "");
+
+        // after the image is loaded, remove the display none class
+        document.getElementById('user-avatar').addEventListener('load', () => {
+            document.getElementById('user-avatar').classList.remove('d-none');
+        });
+
+        fetch(url, {headers: {'Authorization': personalAccessToken}})
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                document.getElementById('user-avatar').src = data?.avatar_url || "http://lostwords.org/images/penguin.png";
+                return data;
+            })
+            .catch((error) => {
+                console.log(error);
+                return null;
+            });
+
+    }
+
+    miscTesting();
+
 })();
 
 
