@@ -16,9 +16,14 @@
 
         document.getElementById('fetch-from-repo-output').innerHTML = ``;
 
-        let githubUsername = prompt("Enter your GitHub username", "pasciaks");
-        let githubRepository = prompt("Enter your GitHub repository", "codeup-web-exercises");
-        let githubPersonalAccessToken = prompt("Enter your GitHub token, Do not store this in your code!", "");
+        let githubUsername;
+        let githubRepository;
+        let githubPersonalAccessToken;
+
+        githubUsername = GITHUB_USERNAME;
+        githubPersonalAccessToken = GITHUB_PERSONAL_ACCESS_TOKEN;
+        githubRepository = GITHUB_REPOSITORY
+
         let getData = readGithubUserDataFromRepo(githubUsername, githubRepository, githubPersonalAccessToken);
 
         getData
@@ -70,8 +75,13 @@
 
     document.getElementById('fetch-button').addEventListener('click', () => {
         document.getElementById('fetch-output').innerHTML = ``;
-        let githubUsername = prompt("Enter your GitHub username", "pasciaks");
-        let githubPersonalAccessToken = prompt("Enter your GitHub token, Do not store this in your code!", "");
+
+        let githubUsername;
+        let githubPersonalAccessToken;
+
+        githubUsername = GITHUB_USERNAME;
+        githubPersonalAccessToken = GITHUB_PERSONAL_ACCESS_TOKEN;
+        
         let getData = readGithubUserDataEvents(githubUsername, githubPersonalAccessToken);
         let events = {};
         getData

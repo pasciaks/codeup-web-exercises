@@ -2,7 +2,7 @@
 *.iml
 .DS_STORE
 
-keys.js
+js/keys.js
 keys.json
 .env
 
