@@ -1,0 +1,27 @@
+:root {
+    --my-headings-5: #E6563B;
+    --my-headings-6: #EB9D3A;
+    --my-paragraphs: #7CB06C;
+}
+
+h5 {
+    color: var(--my-headings-5);
+}
+
+h6 {
+    color: var(--my-headings-6);
+}
+
+p {
+    color: var(--my-paragraphs);
+}
+
+.blog-item {
+    max-height: 40dvh;
+    overflow-y: auto;
+    cursor: pointer;
+}
+
+.blog-item:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
