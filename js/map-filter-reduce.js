@@ -99,4 +99,18 @@
     }, []);
     console.log(uniqueListOfLanguages);
 
+    // bonus: Use .reduce to get the unique list of languages from the list of users, along with count of each language.
+
+    let uniqueListOfLanguagesWithCount = users.reduce((uniqueListOfLanguagesWithCount, user) => {
+        user.languages.forEach(language => {
+            if (uniqueListOfLanguagesWithCount[language] === undefined) {
+                uniqueListOfLanguagesWithCount[language] = 1;
+            } else {
+                uniqueListOfLanguagesWithCount[language]++;
+            }
+        });
+        return uniqueListOfLanguagesWithCount;
+    }, {});
+    console.log(uniqueListOfLanguagesWithCount);
+
 })();
