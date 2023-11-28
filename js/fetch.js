@@ -15,15 +15,22 @@
     //     });
 
 
-    function readGithubUserData(githubUsername, personalAccessToken) {
+    function readGithubUserDataFromRepo(githubUsername, repository, personalAccessToken) {
 
-        // https://api.github.com/users/pasciaks/events
-        // https://api.github.com/users/pasciaks/repos
-        // https://api.github.com/users/pasciaks/orgs
-        // https://api.github.com/users/pasciaks/starred
-        // https://api.github.com/users/pasciaks/subscriptions
-        // https://api.github.com/users/pasciaks/followers
-        // https://api.github.com/users/pasciaks/commits
+        let url;
+
+        url = `https://api.github.com/repos/${githubUsername}/${repository}/commits`;
+
+        return fetch(url, {
+            headers: {
+                'Authorization': personalAccessToken
+            }
+        });
+
+    }
+
+
+    function readGithubUserData(githubUsername, personalAccessToken) {
 
         let url;
 
@@ -37,6 +44,35 @@
 
 
     }
+
+    document.getElementById('fetch-from-repo-button').addEventListener('click', () => {
+        let githubUsername = prompt("Enter your GitHub username", "pasciaks");
+        let githubRepository = prompt("Enter your GitHub repository", "codeup-web-exercises");
+        let githubPersonalAccessToken = prompt("Enter your GitHub token, Do not store this in your code!", "");
+        let getData = readGithubUserDataFromRepo(githubUsername, githubRepository, githubPersonalAccessToken);
+
+        let events = {};
+
+        getData
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                alert(JSON.stringify(data, null, 2));
+                return data;
+            })
+            .then((data) => {
+                console.log(data);
+                return data;
+            })
+            .then((data) => {
+                document.getElementById('fetch-from-repo-output').innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch((error) => {
+                return error;
+            });
+    });
+
 
     document.getElementById('fetch-button').addEventListener('click', () => {
         let githubUsername = prompt("Enter your GitHub username", "pasciaks");
