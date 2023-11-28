@@ -109,7 +109,7 @@
             });
     });
 
-    function miscTesting() {
+    function initStartup() {
 
         let githubUsername = 'pasciaks';
         let url = `https://api.github.com/users/${githubUsername}`;
@@ -136,7 +136,8 @@
 
     }
 
-    miscTesting();
+    initStartup();
+
 
 })();
 
