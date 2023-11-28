@@ -15,11 +15,7 @@
 <h1 class="text-center">My Blog</h1>
 
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="d-flex flex-wrap justify-content-center" id="posts"></div>
-        </div>
-    </div>
+    <div id="posts"></div>
 </div>
 
 <script crossorigin="anonymous"
@@ -37,14 +33,13 @@
 
             data.forEach(blog => {
                 divTemplate = `
-                <div class="blog-item card m-2 p-2 border w-25">
-                    <div class="card-body bg-light border-bg-secondary" id="blogItem">
+                    <div class="blog-item">
                         <h5>${blog.title}</h5>
                         <p>${blog.content}</p>
                         <h6 class="mb-2">Categories: ${blog.categories}</h6>
                         <h6 class="mb-2">Date: ${blog.date}</h6>
                     </div>
-                </div>`;
+                `;
 
                 html += divTemplate;
             });

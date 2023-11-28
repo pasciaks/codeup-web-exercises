@@ -2,6 +2,7 @@
     --my-headings-5: #E6563B;
     --my-headings-6: #EB9D3A;
     --my-paragraphs: #7CB06C;
+    --border: #8f6c66;
 }
 
 h5 {
@@ -16,10 +17,18 @@ p {
     color: var(--my-paragraphs);
 }
 
+#posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .blog-item {
-    max-height: 40dvh;
-    overflow-y: auto;
     cursor: pointer;
+    margin: 10px;
+    border: 1px solid var(--border);
+    padding: 5px;
 }
 
 .blog-item:hover {
