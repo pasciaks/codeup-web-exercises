@@ -6,7 +6,7 @@
         let url = `https://api.github.com/users/${githubUsername}/events/public`;
         return fetch(url, {
             headers: {
-                'Authorization': personalAccessToken,
+                'Authorization': 'token ' + personalAccessToken,
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         });
@@ -59,7 +59,7 @@
         let url = `https://api.github.com/repos/${githubUsername}/${repository}/commits`;
         return fetch(url, {
             headers: {
-                'Authorization': personalAccessToken,
+                'Authorization': 'token ' + personalAccessToken,
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         });
@@ -113,7 +113,7 @@
         url = `https://api.github.com/users/${githubUsername}/events`;
         return fetch(url, {
             headers: {
-                'Authorization': personalAccessToken,
+                'Authorization': 'token ' + personalAccessToken,
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         });
@@ -179,7 +179,7 @@
 
         fetch(url, {
             headers: {
-                'Authorization': GITHUB_PERSONAL_ACCESS_TOKEN,
+                'Authorization': 'token ' + GITHUB_PERSONAL_ACCESS_TOKEN,
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         })
