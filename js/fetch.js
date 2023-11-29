@@ -30,6 +30,7 @@
                         resultContainer.innerHTML = `
                         <h2>Most recent commit:</h2>
                         <p>Created at: ${data[i].created_at}</p>
+                        <p>Repo: ${data[i].repo.name}</p>
                         `;
 
                         let arrayOfCommits = data[i].payload.commits;
@@ -41,8 +42,8 @@
                     }
                     console.log(data[i]);
                     console.log(data[i].created_at);
-                    console.log(data[i].type);
                     console.log(data[i].repo.name);
+                    console.log(data[i].payload.commits);
                 }
                 return data;
             })
@@ -90,6 +91,7 @@
                         console.log("Most recent commit:");
                         console.log(commit);
                         console.log(commit.commit.author.date);
+                        console.log(commit.commit.message);
                     }
                 });
                 resultContainer.innerHTML = `
@@ -147,6 +149,7 @@
                 return events['PushEvent'];
             })
             .then((pushEvents) => {
+                resultContainer.innerHTML = `<h2>Most recent commit:</h2>`;
                 pushEvents.forEach((pushEvent, index) => {
                     resultContainer.innerHTML += `
                         <p>Created at: ${pushEvent.created_at}</p>
