@@ -11,8 +11,27 @@ ul {
   padding: 0;
   max-height: 50dvh;
   overflow-y: scroll;
+  border: 1px solid transparent;
 }
 
 li {
   cursor: pointer;
+}
+
+#pokemon-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+#pokemon-list {
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#pokemon-image {
+  height: 200px;
+  display: none;
 }
