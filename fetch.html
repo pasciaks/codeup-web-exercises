@@ -12,32 +12,34 @@
 <body>
 
 <header>
-
+    <h1 class="text-center">GitHub Exercises</h1>
 </header>
 
-<div class="container">
+<main>
 
-    <h1 class="text-center">GitHub Exercises</h1>
+    <div class="container">
 
-    <img alt="User Avatar" class="d-none" id="user-avatar" src="">
+        <img alt="User Avatar" class="d-none" id="user-avatar" src="">
 
-    <hr>
+        <hr>
 
-    <div class="row">
-        <div class="col-6">
-            <h2>Fetch</h2>
-            <p>Fetch data from GitHub API - for latest commit</p>
-            <button class="btn btn-primary" id="fetch-from-repo-button">Fetch From Repo</button>
-            <div id="fetch-from-repo-output"></div>
+        <div class="row">
+            <div class="col-6">
+                <h2>Fetch</h2>
+                <p>Fetch data from GitHub API - for latest commit</p>
+                <button class="btn btn-primary" id="fetch-from-repo-button">Fetch From Repo</button>
+                <div id="fetch-from-repo-output"></div>
+            </div>
+            <div class="col-6">
+                <h2>Fetch My Own Experimentation</h2>
+                <button class="btn btn-primary" id="fetch-button">Fetch</button>
+                <pre id="fetch-output"></pre>
+            </div>
         </div>
-        <div class="col-6">
-            <h2>Fetch My Own Experimentation</h2>
-            <button class="btn btn-primary" id="fetch-button">Fetch</button>
-            <div id="fetch-output"></div>
-        </div>
+
     </div>
 
-</div>
+</main>
 
 <script crossorigin="anonymous"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
