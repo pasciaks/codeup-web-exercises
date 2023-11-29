@@ -2,9 +2,41 @@
 
 (() => {
 
+    function readPublic(githubUsername, personalAccessToken) {
+        let url = `https://api.github.com/users/${githubUsername}/events/public`;
+        return fetch(url, {
+            headers: {
+                'Authorization': personalAccessToken
+            }
+        });
+    }
+
+    document.getElementById('publicRepoVersion').addEventListener('click', () => {
+
+        let resultContainer = document.getElementById('publicRepoResult');
+
+        resultContainer.innerHTML = ``;
+
+        let getData = readPublic(GITHUB_USERNAME, GITHUB_PERSONAL_ACCESS_TOKEN);
+
+        getData
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                resultContainer.innerHTML = JSON.stringify(data, null, 2);
+                return data;
+            })
+            .catch((error) => {
+                console.log(error);
+                resultContainer.innerHTML = `${JSON.stringify(error, null, 2)}`;
+                return error;
+            });
+
+    });
+
     function readGithubUserDataFromRepo(githubUsername, repository, personalAccessToken) {
-        let url;
-        url = `https://api.github.com/repos/${githubUsername}/${repository}/commits`;
+        let url = `https://api.github.com/repos/${githubUsername}/${repository}/commits`;
         return fetch(url, {
             headers: {
                 'Authorization': personalAccessToken
@@ -14,28 +46,19 @@
 
     document.getElementById('fetch-from-repo-button').addEventListener('click', () => {
 
-        document.getElementById('fetch-from-repo-output').innerHTML = ``;
+        let resultContainer = document.getElementById('fetch-from-repo-output');
+        resultContainer.innerHTML = ``;
 
-        let githubUsername;
-        let githubRepository;
-        let githubPersonalAccessToken;
-
-        githubUsername = GITHUB_USERNAME;
-        githubPersonalAccessToken = GITHUB_PERSONAL_ACCESS_TOKEN;
-        githubRepository = GITHUB_REPOSITORY
-
-        let getData = readGithubUserDataFromRepo(githubUsername, githubRepository, githubPersonalAccessToken);
+        let getData = readGithubUserDataFromRepo(GITHUB_USERNAME, GITHUB_REPOSITORY, GITHUB_PERSONAL_ACCESS_TOKEN);
 
         getData
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
                 return data;
             })
             .then((data) => {
-                console.log(data);
                 if (data?.message === 'Not Found') {
                     throw new Error("Invalid username, repository, access key or possibly private repository.");
                 }
@@ -49,7 +72,7 @@
                         console.log(commit.commit.author.date);
                     }
                 });
-                document.getElementById('fetch-from-repo-output').innerHTML = `
+                resultContainer.innerHTML = `
                         <h2>Most recent commit:</h2>
                         <p>Created at: ${data[0].commit.author.date}</p>
                         <p>Commit message: ${data[0].commit.message}</p>
@@ -58,7 +81,7 @@
             })
             .catch((error) => {
                 console.log(error);
-                document.getElementById('fetch-from-repo-output').innerHTML = `${error}`;
+                resultContainer.innerHTML = `${JSON.stringify(error, null, 2)}`;
                 return error;
             });
     });
@@ -74,16 +97,14 @@
     }
 
     document.getElementById('fetch-button').addEventListener('click', () => {
-        document.getElementById('fetch-output').innerHTML = ``;
 
-        let githubUsername;
-        let githubPersonalAccessToken;
+        let resultContainer = document.getElementById('fetch-output');
+        resultContainer.innerHTML = ``;
 
-        githubUsername = GITHUB_USERNAME;
-        githubPersonalAccessToken = GITHUB_PERSONAL_ACCESS_TOKEN;
-        
-        let getData = readGithubUserDataEvents(githubUsername, githubPersonalAccessToken);
+        let getData = readGithubUserDataEvents(GITHUB_USERNAME, GITHUB_PERSONAL_ACCESS_TOKEN);
+
         let events = {};
+
         getData
             .then((response) => {
                 return response.json();
@@ -106,7 +127,7 @@
             })
             .then((pushEvents) => {
                 pushEvents.forEach((pushEvent, index) => {
-                    document.getElementById('fetch-output').innerHTML += `
+                    resultContainer.innerHTML += `
                         <p>Created at: ${pushEvent.created_at}</p>
                         <p>Repo name: ${pushEvent.repo.name}</p>
                         <p>Commit message: ${pushEvent.payload.commits[0].message}</p>
@@ -115,39 +136,39 @@
                 });
             })
             .catch((error) => {
+                console.log(error);
+                resultContainer.innerHTML = `${JSON.stringify(error, null, 2)}`;
                 return error;
             });
     });
 
-    function initStartup() {
+    function initialStartup() {
 
-        let githubUsername = 'pasciaks';
-        let url = `https://api.github.com/users/${githubUsername}`;
-        let personalAccessToken = ''; // prompt("Enter your GitHub token, Do not store this in your code!", "");
+        let url = `https://api.github.com/users/${GITHUB_USERNAME}`;
 
-        // after the image is loaded, remove the display none class
+        let userAvatar = document.getElementById('user-avatar');
+
+        // NOTE: after the image is loaded, remove the display none class
         document.getElementById('user-avatar').addEventListener('load', () => {
             document.getElementById('user-avatar').classList.remove('d-none');
         });
 
-        fetch(url, {headers: {'Authorization': personalAccessToken}})
+        fetch(url, {headers: {'Authorization': GITHUB_PERSONAL_ACCESS_TOKEN}})
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
-                document.getElementById('user-avatar').src = data?.avatar_url || "http://lostwords.org/images/penguin.png";
+                userAvatar.src = data?.avatar_url;
                 return data;
             })
             .catch((error) => {
                 console.log(error);
-                return null;
+                return error;
             });
 
     }
 
-    initStartup();
-
+    initialStartup();
 
 })();
 

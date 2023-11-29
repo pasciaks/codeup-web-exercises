@@ -11,29 +11,51 @@
 
 <body>
 
-<header>
+<header class="pt-2 d-flex justify-content-evenly align-items-center">
+    <img alt="User Avatar" class="d-none" id="user-avatar" src="">
     <h1 class="text-center">GitHub Exercises</h1>
 </header>
+
+<hr>
 
 <main>
 
     <div class="container">
 
-        <img alt="User Avatar" class="d-none" id="user-avatar" src="">
+        <div class="row">
+            <div class="col-6">
+                <h2>Fetch</h2>
+                <p>https://api.github.com/repos/${githubUsername}/${repository}/commits</p>
+                <button class="btn btn-primary" id="fetch-from-repo-button">Fetch</button>
+            </div>
+            <div class="col-6">
+                <pre id="fetch-from-repo-output"></pre>
+            </div>
+        </div>
 
         <hr>
 
         <div class="row">
             <div class="col-6">
                 <h2>Fetch</h2>
-                <p>Fetch data from GitHub API - for latest commit</p>
-                <button class="btn btn-primary" id="fetch-from-repo-button">Fetch From Repo</button>
-                <div id="fetch-from-repo-output"></div>
+                <p>https://api.github.com/users/${githubUsername}/events</p>
+                <button class="btn btn-primary" id="fetch-button">Fetch</button>
             </div>
             <div class="col-6">
-                <h2>Fetch My Own Experimentation</h2>
-                <button class="btn btn-primary" id="fetch-button">Fetch</button>
                 <pre id="fetch-output"></pre>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-6">
+                <h2>Fetch</h2>
+                <p>https://api.github.com/users/${githubUsername}/events/public</p>
+                <button class="btn btn-primary" id="publicRepoVersion">Fetch</button>
+            </div>
+            <div class="col-6">
+                <pre class="col" id="publicRepoResult"></pre>
             </div>
         </div>
 
