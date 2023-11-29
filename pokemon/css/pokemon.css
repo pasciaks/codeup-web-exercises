@@ -1,37 +1,33 @@
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --background-color: #f8f9fa;
-  --text-color: #212529;
-  --border-color: #ced4da;
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #212529;
+    --border-color: #ced4da;
 }
 
 ul {
-  list-style: none;
-  padding: 0;
-  max-height: 50dvh;
-  overflow-y: scroll;
-  border: 1px solid transparent;
+    cursor: crosshair;
 }
 
 li {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #pokemon-name {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0;
 }
 
 #pokemon-list {
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 #pokemon-image {
-  height: 200px;
-  display: none;
+    height: 200px;
+    display: none;
 }
