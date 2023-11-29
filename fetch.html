@@ -22,6 +22,21 @@
 
     <div class="container">
 
+        <hr>
+
+        <div class="row">
+            <div class="col-6">
+                <h2>Fetch</h2>
+                <p>https:// api.github.com/ users/ ${githubUsername}/ events/ public</p>
+                <button class="btn btn-primary" id="publicRepoVersion">Fetch</button>
+            </div>
+            <div class="col-6">
+                <pre class="col" id="publicRepoResult"></pre>
+            </div>
+        </div>
+
+        <hr>
+
         <div class="row">
             <div class="col-6">
                 <h2>Fetch</h2>
@@ -43,19 +58,6 @@
             </div>
             <div class="col-6">
                 <pre id="fetch-output"></pre>
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="row">
-            <div class="col-6">
-                <h2>Fetch</h2>
-                <p>https:// api.github.com/ users/ ${githubUsername}/ events/ public</p>
-                <button class="btn btn-primary" id="publicRepoVersion">Fetch</button>
-            </div>
-            <div class="col-6">
-                <pre class="col" id="publicRepoResult"></pre>
             </div>
         </div>
 

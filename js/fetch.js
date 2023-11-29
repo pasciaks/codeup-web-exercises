@@ -6,7 +6,8 @@
         let url = `https://api.github.com/users/${githubUsername}/events/public`;
         return fetch(url, {
             headers: {
-                'Authorization': personalAccessToken
+                'Authorization': personalAccessToken,
+                'X-GitHub-Api-Version': '2022-11-28'
             }
         });
     }
@@ -24,7 +25,25 @@
                 return response.json();
             })
             .then((data) => {
-                resultContainer.innerHTML = JSON.stringify(data, null, 2);
+                for (let i = 0; i < data.length; i++) {
+                    if (i === 0) {
+                        resultContainer.innerHTML = `
+                        <h2>Most recent commit:</h2>
+                        <p>Created at: ${data[i].created_at}</p>
+                        `;
+
+                        let arrayOfCommits = data[i].payload.commits;
+                        arrayOfCommits.forEach((commit) => {
+                            resultContainer.innerHTML += `
+                            <p>Commit message: ${commit.message}</p>
+                            `;
+                        });
+                    }
+                    console.log(data[i]);
+                    console.log(data[i].created_at);
+                    console.log(data[i].type);
+                    console.log(data[i].repo.name);
+                }
                 return data;
             })
             .catch((error) => {
@@ -39,7 +58,8 @@
         let url = `https://api.github.com/repos/${githubUsername}/${repository}/commits`;
         return fetch(url, {
             headers: {
-                'Authorization': personalAccessToken
+                'Authorization': personalAccessToken,
+                'X-GitHub-Api-Version': '2022-11-28'
             }
         });
     }
@@ -91,7 +111,8 @@
         url = `https://api.github.com/users/${githubUsername}/events`;
         return fetch(url, {
             headers: {
-                'Authorization': personalAccessToken
+                'Authorization': personalAccessToken,
+                'X-GitHub-Api-Version': '2022-11-28'
             }
         });
     }
@@ -153,7 +174,12 @@
             document.getElementById('user-avatar').classList.remove('d-none');
         });
 
-        fetch(url, {headers: {'Authorization': GITHUB_PERSONAL_ACCESS_TOKEN}})
+        fetch(url, {
+            headers: {
+                'Authorization': GITHUB_PERSONAL_ACCESS_TOKEN,
+                'X-GitHub-Api-Version': '2022-11-28'
+            }
+        })
             .then((response) => {
                 return response.json();
             })
