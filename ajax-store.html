@@ -14,34 +14,47 @@
 
 <h1 class="text-center">My Tool Store</h1>
 
-<div class="container">
-    <a href="ajax-store.html?category=">All</a> |
-    <a href="ajax-store.html?category=winter">Winter</a> |
-    <a href="ajax-store.html?category=spring">Spring</a> |
-    <a href="ajax-store.html?category=summer">Summer</a> |
-    <a href="ajax-store.html?category=fall">Fall</a> |
-    <a href="ajax-store.html?category=garden">Garden</a> |
-    <a href="ajax-store.html?category=wood">Wood</a> |
-    <a href="ajax-store.html?category=powered">Powered</a>
-</div>
+<header>
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <table class="table table-striped" id="products">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Categories</th>
-                </tr>
-                </thead>
-                <tbody id="insertProducts"></tbody>
-            </table>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Categories</h2>
+                <a href="ajax-store.html?category=">All</a> |
+                <a href="ajax-store.html?category=winter">Winter</a> |
+                <a href="ajax-store.html?category=spring">Spring</a> |
+                <a href="ajax-store.html?category=summer">Summer</a> |
+                <a href="ajax-store.html?category=fall">Fall</a> |
+                <a href="ajax-store.html?category=garden">Garden</a> |
+                <a href="ajax-store.html?category=wood">Wood</a> |
+                <a href="ajax-store.html?category=powered">Powered</a>
+            </div>
         </div>
     </div>
-</div>
+
+</header>
+
+<main>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped" id="products">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Categories</th>
+                    </tr>
+                    </thead>
+                    <tbody id="insertProducts"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</main>
 
 <script crossorigin="anonymous"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
