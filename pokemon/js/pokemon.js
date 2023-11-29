@@ -24,13 +24,10 @@
                 return response.json();
             })
             .then(function (data) {
-                console.log(data);
                 let pokemon = data;
                 let pokemonData = document.getElementById('pokemon-data');
                 pokemonData.style.display = 'block';
                 pokemonData.innerHTML = JSON.stringify(pokemon, null, 2);
-                console.log(pokemon.name);
-                console.log(pokemon.sprites.front_default);
                 let pokemonName = document.getElementById('pokemon-name');
                 pokemonName.innerHTML = pokemon.name;
                 let pokemonImage = document.getElementById('pokemon-image');
@@ -62,7 +59,6 @@
                 });
             })
             .catch(function (err) {
-                console.log(err);
                 document.getElementById('pokemon-name').innerHTML = selectedPokemon;
                 document.getElementById('pokemon-image').style.display = 'none';
                 document.getElementById('pokemon-types').innerHTML = '';
@@ -77,7 +73,7 @@
             return response.json();
         })
         .then(function (data) {
-            let pokemon = data.results;
+            let pokemon = data?.results || [];
             pokemon.sort(function (a, b) {
                 if (a.name < b.name) {
                     return -1;
@@ -105,7 +101,6 @@
         });
 
     if (selectedPokemon) {
-        console.log(selectedPokemon);
         showOnePokemon(selectedPokemon);
     } else {
         window.location = "?pokemon=pikachu";
