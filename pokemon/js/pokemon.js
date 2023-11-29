@@ -56,8 +56,6 @@
         document.getElementById('pokemon-types').innerHTML = '';
         document.getElementById('pokemon-data').innerHTML = 'Pokemon not found';
       });
-
-
   }
 
   // The following code will fetch the list of pokemon from the pokemon api at the url - https://pokeapi.co/api/v2/pokemon?limit=10000
@@ -68,6 +66,13 @@
     })
     .then(function (data) {
       let pokemon = data.results;
+      pokemon.sort(function (a, b) {
+        if (a.name < b.name) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
       let pokemonList = document.getElementById('pokemon-list');
       pokemon.forEach(function (p) {
         let optionItem = document.createElement('option');
