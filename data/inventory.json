@@ -51,5 +51,34 @@
       "garden"
     ],
     "price": 10
+  },
+  {
+    "title": "Rake",
+    "quantity": 11,
+    "categories": [
+      "tool",
+      "garden",
+      "fall"
+    ],
+    "price": 12.50
+  },
+  {
+    "title": "Hose",
+    "quantity": 23,
+    "categories": [
+      "tool",
+      "garden",
+      "summer"
+    ],
+    "price": 15
+  },
+  {
+    "title": "Shovel",
+    "quantity": 6,
+    "categories": [
+      "tool",
+      "winter"
+    ],
+    "price": 18
   }
 ]
