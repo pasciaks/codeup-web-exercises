@@ -6,8 +6,7 @@
         let url = `https://api.github.com/users/${githubUsername}/events/public`;
         return fetch(url, {
             headers: {
-                'Authorization': 'token ' + personalAccessToken,
-                'X-GitHub-Api-Version': '2022-11-28'
+                'Authorization': 'token ' + personalAccessToken, 'X-GitHub-Api-Version': '2022-11-28'
             }
         });
     }
@@ -25,6 +24,10 @@
                 return response.json();
             })
             .then((data) => {
+                console.log(data);
+                data = data.filter((event) => {
+                    return event.type === 'PushEvent';
+                });
                 for (let i = 0; i < data.length; i++) {
                     if (i === 0) {
                         resultContainer.innerHTML = `
@@ -59,8 +62,7 @@
         let url = `https://api.github.com/repos/${githubUsername}/${repository}/commits`;
         return fetch(url, {
             headers: {
-                'Authorization': 'token ' + personalAccessToken,
-                'X-GitHub-Api-Version': '2022-11-28'
+                'Authorization': 'token ' + personalAccessToken, 'X-GitHub-Api-Version': '2022-11-28'
             }
         });
     }
@@ -77,6 +79,10 @@
                 return response.json();
             })
             .then((data) => {
+                console.log(data);
+                data = data.filter((event) => {
+                    return event.type === 'PushEvent';
+                });
                 return data;
             })
             .then((data) => {
@@ -113,8 +119,7 @@
         url = `https://api.github.com/users/${githubUsername}/events`;
         return fetch(url, {
             headers: {
-                'Authorization': 'token ' + personalAccessToken,
-                'X-GitHub-Api-Version': '2022-11-28'
+                'Authorization': 'token ' + personalAccessToken, 'X-GitHub-Api-Version': '2022-11-28'
             }
         });
     }
@@ -179,8 +184,7 @@
 
         fetch(url, {
             headers: {
-                'Authorization': 'token ' + GITHUB_PERSONAL_ACCESS_TOKEN,
-                'X-GitHub-Api-Version': '2022-11-28'
+                'Authorization': 'token ' + GITHUB_PERSONAL_ACCESS_TOKEN, 'X-GitHub-Api-Version': '2022-11-28'
             }
         })
             .then((response) => {
