@@ -6,7 +6,7 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
     center: [-111.9462511, 40.6466734], // starting position [lng, lat]
-    zoom: 14, // starting zoom // 5 // 15 // 20 // 25
+    zoom: 5, // starting zoom // 5 // 15 // 20 // 25
 });
 
 /*
@@ -71,7 +71,7 @@ function markerExample() {
                 .setLngLat(result)
                 .addTo(map);
 
-            map.flyTo({center: result, zoom: 12})
+            map.flyTo({center: result, zoom: 15})
         });
 
 }
@@ -102,18 +102,12 @@ document.getElementById("btn-popup").addEventListener("click", function () {
     popupExample();
 });
 
-
 // Refactor your code to display at least three of your favorite restaurants with information about each.
 // Create an array of objects with information about each restaurant to accomplish this. Use a .forEach() loop rather than a for loop.
 
 function favoritesExample() {
 
     let favorites = [
-        {
-            "name": "Daytona Beach Taproom",
-            "address": "310 Seabreeze Blvd, Daytona Beach, FL 32118",
-            "htmlInfo": "<p>Daytona Beach Taproom!!</p>"
-        },
         {
             "name": "The Cellar",
             "address": "220 Magnolia Ave, Daytona Beach, FL 32114",
@@ -147,8 +141,8 @@ function favoritesExample() {
     });
 
     setTimeout(function () {
-        map.flyTo({center: [-81.016247, 29.233942], zoom: 10})
-    }, 5000);
+        map.flyTo({center: [-81.016247, 29.233942], zoom: 7})
+    }, 2500);
 
 }
 
@@ -159,7 +153,7 @@ document.getElementById("btn-favorites").addEventListener("click", function () {
 function init() {
     setTimeout(function () {
         setCurrentPosition();
-    }, 1500);
+    }, 500);
 }
 
 init();
