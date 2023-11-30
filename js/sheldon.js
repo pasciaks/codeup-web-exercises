@@ -25,7 +25,7 @@ const myFunction = function () {
  * @returns {object}
  */
 const fatArrow = () => {
-    return {'isObject': true};
+    return { 'isObject': true };
 }
 
 /**
@@ -44,7 +44,6 @@ const fatArrow = () => {
  * psykter
  * mventura14
  * BryonLuke
- * mbcodepractice
  * RicardoJaimesDez
  * cteriipaia
  * Santoszls3
