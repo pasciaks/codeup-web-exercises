@@ -40,6 +40,7 @@
                         arrayOfCommits.forEach((commit) => {
                             resultContainer.innerHTML += `
                             <p>Commit message: ${commit.message}</p>
+                             <pre>Commits: ${JSON.stringify(commit, null, 2)}</pre>
                             `;
                         });
                     }
