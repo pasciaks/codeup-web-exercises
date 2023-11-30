@@ -7,14 +7,14 @@
 
 // references: https://jsfiddle.net/jz08vuo4/
 
-mapboxgl.accessToken = MAPBOX_TOKEN;
+/*
 
-const map = new mapboxgl.Map({
-    container: 'map', // container ID
-    style: 'mapbox://styles/mapbox/streets-v12', // style URL
-    center: [-111.9462511, 40.6466734], // starting position [lng, lat]
-    zoom: 14, // starting zoom
-});
+Additional reference code:
+
+            map.setCenter(result);
+            map.setZoom(10);
+
+ */
 
 let dynamicallyAddedMapObjectsArray = [];
 
@@ -92,7 +92,6 @@ function reverseGeocode(coordinates, token) {
         // to get all the data from the request, comment out the following three lines...
         .then(data => data.features[0].place_name);
 }
-
 
 // the geocode method from mapbox-geocoder-utils.js
 // geocode("600 Navarro St #350, San Antonio, TX 78205", MAPBOX_TOKEN).then(result => {
@@ -221,32 +220,32 @@ function executeTests(id = 0) {
 
 let testId = 0;
 
-executeTests(testId);
+// executeTests(testId);
 
-setTimeout(function () {
-    dynamicallyAddedMapObjectsArray.forEach((mapObject) => {
-        console.log(mapObject);
-        let clickableItem = mapObject.marker.getElement();
-        console.log(clickableItem);
-        clickableItem.addEventListener('click', function (e) {
-            console.log("marker clicked:", mapObject);
-        });
-    });
-}, 2000);
+// setTimeout(function () {
+//     dynamicallyAddedMapObjectsArray.forEach((mapObject) => {
+//         console.log(mapObject);
+//         let clickableItem = mapObject.marker.getElement();
+//         console.log(clickableItem);
+//         clickableItem.addEventListener('click', function (e) {
+//             console.log("marker clicked:", mapObject);
+//         });
+//     });
+// }, 2000);
 
-setTimeout(function () {
-    dynamicallyAddedMapObjectsArray.forEach((mapObject) => {
-        console.log(mapObject);
-        mapObject.marker.togglePopup();
-    });
-}, 3000);
+// setTimeout(function () {
+//     dynamicallyAddedMapObjectsArray.forEach((mapObject) => {
+//         console.log(mapObject);
+//         mapObject.marker.togglePopup();
+//     });
+// }, 3000);
 
-setTimeout(function () {
-    dynamicallyAddedMapObjectsArray.forEach((mapObject) => {
-        console.log(mapObject);
-        mapObject.marker.togglePopup();
-    });
-}, 4000);
+// setTimeout(function () {
+//     dynamicallyAddedMapObjectsArray.forEach((mapObject) => {
+//         console.log(mapObject);
+//         mapObject.marker.togglePopup();
+//     });
+// }, 4000);
 
 
 
