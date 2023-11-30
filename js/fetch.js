@@ -147,19 +147,20 @@
                 });
                 return events;
             })
-            .then((events) => {
-                return events['PushEvent'];
-            })
             .then((pushEvents) => {
-                resultContainer.innerHTML = `<h2>Most recent commit:</h2>`;
-                pushEvents.forEach((pushEvent, index) => {
-                    resultContainer.innerHTML += `
-                        <p>Created at: ${pushEvent.created_at}</p>
-                        <p>Repo name: ${pushEvent.repo.name}</p>
-                        <p>Commit message: ${pushEvent.payload.commits[0].message}</p>
-                        <p>Event: ${JSON.stringify(pushEvent, null, 2)}</p>
+                resultContainer.innerHTML = `<h2>Categorized events:</h2>`;
+                let arrayOfKeys = Object.keys(pushEvents);
+                arrayOfKeys.forEach((key) => {
+                    resultContainer.innerHTML += `<h3>${key}</h3>`;
+                    pushEvents[key].forEach((event) => {
+                        resultContainer.innerHTML += `
+                        <p>Created at: ${event.created_at}: Repo: ${event.repo.name}</p>
+                        <pre>Message: ${JSON.stringify(event.payload.commits, null, 2)}</pre>
                         `;
+                    });
                 });
+
+                resultContainer.innerHTML += JSON.stringify(pushEvents, null, 2);
             })
             .catch((error) => {
                 console.log(error);
