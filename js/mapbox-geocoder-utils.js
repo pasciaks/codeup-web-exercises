@@ -58,11 +58,14 @@ function geocode(search, token) {
     let baseUrl = 'https://api.mapbox.com';
     let endPoint = '/geocoding/v5/mapbox.places/';
 
-    let uriEncodedSearch = encodeURIComponent(search);
-    let uriDecodedSearch = decodeURIComponent(uriEncodedSearch);
+    // The following lines are important utility considerations when building strings with parameters
+    // This is deliberate documentation.
+    
+    // let uriEncodedSearch = encodeURIComponent(search);
+    // let uriDecodedSearch = decodeURIComponent(uriEncodedSearch);
 
-    console.log("uriEncodedSearch: " + uriEncodedSearch);
-    console.log("uriDecodedSearch: " + uriDecodedSearch);
+    // console.log("uriEncodedSearch: " + uriEncodedSearch);
+    // console.log("uriDecodedSearch: " + uriDecodedSearch);
 
     return fetch(`${baseUrl}${endPoint}${encodeURIComponent(search)}.json?access_token=${token}`)
         .then(res => res.json())
