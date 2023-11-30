@@ -1,0 +1,150 @@
+:root {
+    --header-background: #642d06;
+    --header-text-color: rgba(255, 237, 158, 0.71);
+    --main-background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../img/coffeecup.png");
+    --body-text-color: #642d06;
+    --coffee-container-background: rgba(100, 45, 6, 0.42);
+    --coffee-container-hover-background: rgba(139, 69, 19, 0.53);
+    --coffee-container-hover-text-color: #FFED9EB5;
+    --light-background: rgba(255, 237, 158, 0.71);
+    --medium-background: rgba(189, 167, 75, 0.71);
+    --dark-background: rgba(131, 110, 3, 0.71);
+    --select-border: rgba(105, 47, 5, 0.61);
+    --btn-background: #642d06;
+    --btn-text-color: rgba(255, 237, 158, 0.71);
+    --btn-hover-background: rgba(255, 237, 158, 0.71);
+}
+
+/* header */
+#page-title {
+    text-align: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    z-index: 1000;
+    background: var(--header-background);
+    color: var(--header-text-color);
+}
+
+header img {
+    position: absolute;
+    left: 10px;
+    width: 70px;
+    height: auto;
+    margin-left: 10px;
+    justify-content: left;
+}
+
+/* main */
+main {
+    margin-top: 80px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    justify-content: center;
+    width: 100%;
+    font-family: 'Reggae One', cursive;
+    background-image: var(--main-background);
+    color: var(--body-text-color);
+}
+
+/* left side coffee container */
+h2 {
+    text-align: center;
+}
+
+#coffee-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.coffee {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 120px;
+    margin: .25em;
+    background-color: var(--coffee-container-background);
+    border-radius: 5px;
+    justify-content: center;
+    padding: 0 2px;
+    overflow: hidden;
+}
+
+.coffee:hover {
+    background: var(--coffee-container-hover-background);
+    color: var(--coffee-container-hover-text-color);
+}
+
+.deleteBtn {
+    background: var(--coffee-container-hover-background);
+    border: none;
+    color: var(--coffee-container-hover-text-color);
+    cursor: pointer;
+    margin: 2px 2px;
+}
+
+.deleteBtn:hover {
+    text-decoration: underline;
+}
+
+.light {
+    background: var(--light-background);
+    border: rgba(105, 47, 5, 0.89) solid 3px;
+}
+
+.medium {
+    background: var(--medium-background);
+    border: rgba(105, 47, 5, 0.89) solid 3px;
+}
+
+.dark {
+    background: var(--dark-background);
+    border: rgba(105, 47, 5, 0.89) solid 3px;
+}
+
+/* right side sub-title 'add coffee' */
+#sub-title {
+    text-align: center;
+}
+
+select {
+    border: var(--select-border) solid 3px !important;
+}
+
+.form-control {
+    border: rgba(105, 47, 5, 0.61) solid 2px !important;
+}
+
+/* btns */
+.btn {
+    font-size: x-large;
+    line-height: 19px;
+    padding: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    border: none;
+    color: var(--btn-text-color);
+    background: var(--btn-background);
+}
+
+.btn:hover {
+    background: var(--btn-hover-background);
+}
