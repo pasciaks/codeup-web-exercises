@@ -80,9 +80,6 @@
             })
             .then((data) => {
                 console.log(data);
-                data = data.filter((event) => {
-                    return event.type === 'PushEvent';
-                });
                 return data;
             })
             .then((data) => {
