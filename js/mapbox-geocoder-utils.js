@@ -33,7 +33,7 @@ const setCurrentPosition = /* async */ () => {
             sessionStorage.setItem('slp_nav_lng', navPosObj.coords.longitude);
             console.log("Latitude is :", navPosObj.coords.latitude);
             console.log("Longitude is :", navPosObj.coords.longitude);
-            map.flyTo({center: [navPosObj.coords.longitude, navPosObj.coords.latitude], zoom: 18});
+            map.flyTo({center: [navPosObj.coords.longitude, navPosObj.coords.latitude], zoom: 15});
         } catch {
             console.log("Not able to obtain geo coords.");
         }
@@ -123,8 +123,6 @@ function placeMarkerAndPopupUsingAddress(address, popupHTML, token, map, draggab
             if (draggable) {
                 function onDragEnd(e) {
                     const lngLat = e.target.getLngLat();
-                    console.log(e.target);
-                    console.log(lngLat);
                 }
 
                 marker.on('dragend', onDragEnd);
@@ -151,8 +149,6 @@ function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable
     if (draggable) {
         function onDragEnd(e) {
             const lngLat = e.target.getLngLat();
-            console.log(e.target);
-            console.log(lngLat);
         }
 
         marker.on('dragend', onDragEnd);
@@ -191,14 +187,12 @@ function executeTests(id = 0) {
         case 5:
             let popupLocationCoordsArray = [-111.9462511, 40.6466734];
             let popupCoordsHTML = `<div>${JSON.stringify(popupLocationCoordsArray, null, 2)}</div>\n`;
-            console.log(popupLocationCoordsArray, popupCoordsHTML);
             placeMarkerAndPopupUsingCoords(popupLocationCoordsArray, popupCoordsHTML, MAPBOX_TOKEN, map, false);
             break;
 
         case 6:
             geocode("548 W 4500 S, Murray, UT 84123", MAPBOX_TOKEN)
                 .then(result => {
-                    console.log(result, "548 W 4500 S, Murray, UT 84123");
                     map.setCenter(result);
                     map.setZoom(18);
                 });
@@ -207,7 +201,6 @@ function executeTests(id = 0) {
         case 7:
             reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_TOKEN)
                 .then(results => {
-                    console.log(results);
                     map.setCenter([-98.4861, 29.4260]);
                     map.setZoom(15);
                 });

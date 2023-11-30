@@ -38,24 +38,18 @@ Replace the generic marker icon with an image that is more appropriate for each 
 // [x] Generate a map that shows the city with your favorite restaurant using geocoding.
 
 function geocodeExample() {
-    geocode("310 Seabreeze Blvd, Daytona Beach, FL 32118", MAPBOX_TOKEN)
+    geocode("Main Street, Daytona Beach, FL 32118", MAPBOX_TOKEN)
         .then(result => {
 
-            console.log(result);
-
-            map.flyTo({center: result, zoom: 10})
+            map.flyTo({center: result, zoom: 5})
 
             // Redraw the map of the above location at zoom levels 5, 15, and 20.
             // Do this by simply changing the value of zoom level where the map properties are initially set and refresh the page to see the changes.
             // Can the zoom be changed programmatically after the initial map is drawn? Yes!
 
             setTimeout(function () {
-                map.flyTo({center: result, zoom: 15})
+                map.flyTo({center: result, zoom: 8})
             }, 5000);
-
-            setTimeout(function () {
-                map.flyTo({center: result, zoom: 20})
-            }, 1000);
 
         });
 }
@@ -68,14 +62,18 @@ document.getElementById("btn-geocode").addEventListener("click", function () {
 // Create a marker on your map of the exact location of your favorite restaurant set the zoom to allow for best viewing distance.
 
 function markerExample() {
-    let popup = new mapboxgl.Popup()
-        .setHTML(`<h1>Daytona Taproom<h1>`);
-    let marker = new mapboxgl.Marker({
-        draggable: false,
-    })
-        .setLngLat([-81.016247, 29.233942])
-        .addTo(map);
-    map.flyTo({center: [-81.016247, 29.233942], zoom: 10})
+
+    geocode("1200 Main St Bridge, Daytona Beach, FL 32118", MAPBOX_TOKEN)
+        .then(result => {
+            let marker = new mapboxgl.Marker({
+                draggable: false,
+            })
+                .setLngLat(result)
+                .addTo(map);
+
+            map.flyTo({center: result, zoom: 12})
+        });
+
 }
 
 document.getElementById("btn-marker").addEventListener("click", function () {
@@ -86,7 +84,18 @@ document.getElementById("btn-marker").addEventListener("click", function () {
 // Make sure the info window does not display until the marker has been clicked on.
 
 function popupExample() {
-    placeMarkerAndPopupUsingAddress("Daytona Beach Taproom", "<h1>Daytona Taproom<h1>", MAPBOX_TOKEN, map, false);
+
+    let tapRoomLocationMarker = new mapboxgl.Marker({
+        draggable: false,
+    })
+        .setLngLat([-81.016247, 29.233942])
+        .addTo(map);
+
+    const taproomPopup = new mapboxgl.Popup()
+        .setHTML("<p>Daytona Beach Taproom</p>");
+
+    tapRoomLocationMarker.setPopup(taproomPopup);
+
 }
 
 document.getElementById("btn-popup").addEventListener("click", function () {
@@ -98,10 +107,61 @@ document.getElementById("btn-popup").addEventListener("click", function () {
 // Create an array of objects with information about each restaurant to accomplish this. Use a .forEach() loop rather than a for loop.
 
 function favoritesExample() {
-    alert("favorites...");
+
+    let favorites = [
+        {
+            "name": "Daytona Beach Taproom",
+            "address": "310 Seabreeze Blvd, Daytona Beach, FL 32118",
+            "htmlInfo": "<p>Daytona Beach Taproom!!</p>"
+        },
+        {
+            "name": "The Cellar",
+            "address": "220 Magnolia Ave, Daytona Beach, FL 32114",
+            "htmlInfo": "<p>The Cellar!!</p>"
+        },
+        {
+            "name": "The Half Wall",
+            "address": "105 W Indiana Ave, DeLand, FL 32720",
+            "htmlInfo": "<p>The Half Wall!!</p>"
+        },
+        {
+            "name": "Ocean Deck",
+            "address": "127 S Ocean Ave, Daytona Beach, FL 32118",
+            "htmlInfo": "<p>Ocean Deck!!</p>"
+        }];
+
+    favorites.forEach(function (favorite) {
+        geocode(favorite.address, MAPBOX_TOKEN)
+            .then(result => {
+                let marker = new mapboxgl.Marker({
+                    draggable: false,
+                })
+                    .setLngLat(result)
+                    .addTo(map);
+
+                const popup = new mapboxgl.Popup()
+                    .setHTML(favorite.htmlInfo);
+
+                marker.setPopup(popup);
+            });
+    });
+
+    setTimeout(function () {
+        map.flyTo({center: [-81.016247, 29.233942], zoom: 10})
+    }, 5000);
+
 }
 
 document.getElementById("btn-favorites").addEventListener("click", function () {
     favoritesExample();
 });
+
+function init() {
+    setTimeout(function () {
+        setCurrentPosition();
+    }, 1500);
+}
+
+init();
+
 
