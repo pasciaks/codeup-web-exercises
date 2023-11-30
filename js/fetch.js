@@ -42,12 +42,29 @@
                             <p>Commit message: ${commit.message}</p>
                              <pre>Commits: ${JSON.stringify(commit, null, 2)}</pre>
                             `;
+
+                            let commitUrl = commit.url;
+                            console.log(commitUrl);
+                            fetch(commitUrl, {
+                                headers: {
+                                    'Authorization': 'token ' + GITHUB_PERSONAL_ACCESS_TOKEN,
+                                    'X-GitHub-Api-Version': '2022-11-28'
+                                }
+                            })
+                                .then((response) => {
+                                    return response.json();
+                                })
+                                .then((data) => {
+                                    console.log(data.commit.author.date);
+                                    resultContainer.innerHTML += `
+                                    <p>Dates..: ${new Date(data.commit.author.date).toISOString()}</p>
+                                    `;
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });
                         });
                     }
-                    console.log(data[i]);
-                    console.log(data[i].created_at);
-                    console.log(data[i].repo.name);
-                    console.log(data[i].payload.commits);
                 }
                 return data;
             })
