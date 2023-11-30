@@ -96,6 +96,8 @@ function popupExample() {
 
     tapRoomLocationMarker.setPopup(taproomPopup);
 
+    map.flyTo({center: [-81.016247, 29.233942], zoom: 18})
+
 }
 
 document.getElementById("btn-popup").addEventListener("click", function () {
@@ -141,7 +143,7 @@ function favoritesExample() {
     });
 
     setTimeout(function () {
-        map.flyTo({center: [-81.016247, 29.233942], zoom: 7})
+        map.flyTo({center: [-81.016247, 29.233942], zoom: 11})
     }, 2500);
 
 }
