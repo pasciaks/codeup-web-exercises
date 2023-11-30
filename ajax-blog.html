@@ -17,10 +17,53 @@
 <main>
 
     <div class="container">
-        <div id="posts"></div>
+        <div class="row">
+            <div class="col-7">
+                <h1>Welcome to the blog page!</h1>
+                <hr>
+                <p>This is the main page content, simply choose a blog from the left!</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus dolorum fugit quidem reiciendis
+                    tempora? Aspernatur delectus distinctio dolorem laudantium libero obcaecati quas quod! Beatae
+                    consequatur, dignissimos eum inventore maxime quod.
+                </p>
+                <img alt="penguin" class="img-fluid" id="pageImage" src="http://lostwords.org/images/penguin.png">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus dolorum fugit quidem reiciendis
+                    tempora? Aspernatur delectus distinctio dolorem laudantium libero obcaecati quas quod! Beatae
+                    consequatur, dignissimos eum inventore maxime quod.
+                </p>
+            </div>
+            <div class="col-5 blog-list">
+                <h3>Blog List</h3>
+                <div id="posts"></div>
+            </div>
+        </div>
+
     </div>
 
 </main>
+
+<section>
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1">
+        <div class="modal-dialog bg-danger">
+            <div class="modal-content modal-color">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="modalHead"></h1>
+                </div>
+                <div class="modal-body-container">
+                    <div class="modal-body" id="modalBody">
+                    </div>
+                </div>
+                <br>
+                <button class="btn btn-outline-warning fs-4" data-bs-dismiss="modal" id="modalClose" type="button">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script crossorigin="anonymous"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
