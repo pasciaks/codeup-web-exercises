@@ -9,6 +9,8 @@ const map = new mapboxgl.Map({
     zoom: 5, // starting zoom // 5 // 15 // 20 // 25
 });
 
+map.addControl(new mapboxgl.NavigationControl());
+
 /*
 
 Exercises
@@ -92,7 +94,7 @@ function popupExample() {
         .addTo(map);
 
     const taproomPopup = new mapboxgl.Popup()
-        .setHTML("<p>Daytona Beach Taproom</p>");
+        .setHTML("<img class='img-fluid' src='images/taproom.png' alt='Daytona Beach Taproom'><p>Daytona Beach Taproom</p>");
 
     tapRoomLocationMarker.setPopup(taproomPopup);
 
@@ -124,9 +126,14 @@ function favoritesExample() {
             "name": "Ocean Deck",
             "address": "127 S Ocean Ave, Daytona Beach, FL 32118",
             "htmlInfo": "<p>Ocean Deck!!</p>"
+        },
+        {
+            "name": "Tiki Hut Pub & Grill",
+            "address": "1010 Main St, Daytona Beach, FL 32118",
+            "htmlInfo": "<p>Tiki Hut Pub & Grill!!</p>"
         }];
 
-    favorites.forEach(function (favorite) {
+    favorites.forEach(function (favorite, index) {
         geocode(favorite.address, MAPBOX_TOKEN)
             .then(result => {
                 let marker = new mapboxgl.Marker({
@@ -143,8 +150,8 @@ function favoritesExample() {
     });
 
     setTimeout(function () {
-        map.flyTo({center: [-81.016247, 29.233942], zoom: 11})
-    }, 2500);
+        map.flyTo({center: [-81.016247, 29.233942], zoom: 11});
+    }, 100);
 
 }
 
@@ -152,12 +159,14 @@ document.getElementById("btn-favorites").addEventListener("click", function () {
     favoritesExample();
 });
 
-function init() {
+function goHome() {
     setTimeout(function () {
         setCurrentPosition();
     }, 500);
 }
 
-init();
+document.getElementById("btn-home").addEventListener("click", function () {
+    goHome();
+});
 
 
