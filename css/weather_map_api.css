@@ -1,0 +1,45 @@
+:root {
+    --border-color: red;
+    --border-size: 2px;
+    --border-style: solid;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    width: 95dvw;
+    height: 50dvh;
+    margin: 1em auto;
+}
+
+.marker {
+    width: 20px;
+    height: 20px;
+    display: block;
+    border: var(--border-size) var(--border-style) var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+.forecast-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    margin: auto;
+}
+
+.forecast-item {
+    width: 20vw;
+}
+
+.card-img-top {
+    height: 12vw;
+    object-fit: contain;
+}
