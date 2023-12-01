@@ -1576,6 +1576,8 @@ function forecastByCoords(lat, lon) {
         })
         .catch((e) => {
             console.error(e);
+            // @todo - show modal error
+
             return null;
         });
 }
@@ -1588,25 +1590,16 @@ function forecastByCity(city) {
         })
         .catch((e) => {
             console.error(e);
+            // @todo - show modal error
+
             return null;
         });
 }
 
 let forecastContainer = document.getElementById("forecast-container");
 
-let forecastItemTemplate = `
-            <div class="forecast-item card">
-            <img alt="Weather Image" class="img-responsive card-img-top" src="images/cody.webp">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a class="btn btn-primary" href="#">Go somewhere</a>
-            </div>
-        </div>
-    `;
-
 async function getForecastFromCurrentGpsPosition() {
+    document.title = `Your current GPS Location.`;
     const getCoords = async () => {
         const pos = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -1623,17 +1616,27 @@ async function getForecastFromCurrentGpsPosition() {
 }
 
 async function getForecastFromCity(city) {
+    document.title = `Weather for ${city}`;
     forecastData = await forecastByCity(city)
         .then((data) => {
             return data;
+        })
+        .catch((error) => {
+            console.error(error);
+            document.title = `Weather for ...`;
         })
     return forecastData;
 }
 
 async function getForecastFromSpecificGpsPosition(coords) {
+    document.title = `Weather for ${coords.lat}, ${coords.lng}`;
     forecastData = await forecastByCoords(coords.lat, coords.lng)
         .then((data) => {
             return data;
+        })
+        .catch((error) => {
+            console.error(error);
+            document.title = `Weather for ...`;
         })
     return forecastData;
 }
@@ -1648,7 +1651,6 @@ function renderForecast() {
         forecastItemElement.classList.add("forecast-item");
         forecastItemElement.classList.add("card");
         forecastItemElement.title = forecastItem.weather[0].description + "\n\n" + forecastItem.main.temp + "°F";
-
 
         let forecastItemImg = document.createElement("img");
         forecastItemImg.classList.add("img-responsive");
@@ -1726,7 +1728,6 @@ function renderForecast() {
 function getLiveForecastDataFromCurrentGpsLocation() {
     getForecastFromCurrentGpsPosition()
         .then((data) => {
-            console.log(data);
             renderForecast();
         })
         .catch((error) => {
@@ -1735,6 +1736,9 @@ function getLiveForecastDataFromCurrentGpsLocation() {
 }
 
 function getLiveForecastDataFromGpsCoords(coords) {
+
+    document.title = `Weather for ${coords.lat}, ${coords.lng}`;
+
     getForecastFromSpecificGpsPosition(coords)
         .then((data) => {
             renderForecast();
@@ -1745,6 +1749,9 @@ function getLiveForecastDataFromGpsCoords(coords) {
 }
 
 function getLiveForecastFromCity(city) {
+
+    document.title = `Weather for ${city}`;
+
     getForecastFromCity(city)
         .then((data) => {
             renderForecast();
