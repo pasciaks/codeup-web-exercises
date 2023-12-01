@@ -1855,4 +1855,8 @@ init();
 // todo: consider adding live 'sky' view or 'upload' view like gas buddy but for live weather views
 // todo: consider 'How Hot It Is... ' for indoor use of webcam to show the 'current capacity/clientele' of a place
 
+// todo: implement drop down menu or off canvas menu for accessing favorites
+// todo: allow re-query frequency to auto update from favorites and store in database
+// todo: show current forecast details or chart/graphs in popups
+
 // })();
