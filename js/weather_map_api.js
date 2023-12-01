@@ -20,6 +20,7 @@ map.addControl(new mapboxgl.NavigationControl());
 
 map.on('style.load', function () {
     map.on('dblclick', async function (e) {
+        setTitle("Loading...");
         let lngLat = e.lngLat;
         getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
         let address = await reverseGeocode(lngLat, MAPBOX_TOKEN);
