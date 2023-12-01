@@ -23,9 +23,11 @@
     <script src="js/keys.js"></script>
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js"></script>
+
 </head>
 
 <body>
+
 <header>
     <h1 class="text-center">Mapbox</h1>
 </header>
@@ -34,29 +36,33 @@
     <div id="map"></div>
 </div>
 
-<div class="container m-3">
-    <button class="btn btn-primary" id="btn-toggle-bounce" type="button">
-        -1. Bounce
-    </button>
-    <button class="btn btn-primary" id="btn-home" type="button">
-        0. Home
-    </button>
-    <button class="btn btn-primary" id="btn-geocode" type="button">
-        1. Geocode
-    </button>
-    <button class="btn btn-primary" id="btn-marker" type="button">
-        2. Marker
-    </button>
-    <button class="btn btn-primary" id="btn-popup" type="button">
-        3. Popup
-    </button>
-    <button class="btn btn-primary" id="btn-favorites" type="button">
-        4. Favorites
-    </button>
-    <button class="btn btn-primary" id="btn-toggle-all" type="button">
-        5. Clear Custom Makers
-    </button>
-</div>
+<main>
+
+    <div class="container m-3">
+        <button class="btn btn-primary" id="btn-toggle-bounce" type="button">
+            -1. Bounce
+        </button>
+        <button class="btn btn-primary" id="btn-home" type="button">
+            0. Home
+        </button>
+        <button class="btn btn-primary" id="btn-geocode" type="button">
+            1. Geocode
+        </button>
+        <button class="btn btn-primary" id="btn-marker" type="button">
+            2. Marker
+        </button>
+        <button class="btn btn-primary" id="btn-popup" type="button">
+            3. Popup
+        </button>
+        <button class="btn btn-primary" id="btn-favorites" type="button">
+            4. Favorites
+        </button>
+        <button class="btn btn-primary" id="btn-toggle-all" type="button">
+            5. Clear Custom Makers
+        </button>
+    </div>
+
+</main>
 
 <hr>
 
@@ -73,5 +79,7 @@
 <script defer src="js/mapbox-geocoder-utils.js"></script>
 
 <script src="js/mapbox_maps_api.js"></script>
+
 </body>
+
 </html>

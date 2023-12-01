@@ -11,68 +11,70 @@ const map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.NavigationControl());
 
+// NOTE: For future reference and development, ref: https://stackoverflow.com/questions/40859195/how-to-close-all-popups-programmatically-in-mapbox-gl
+
+/*
+
+    Given you have a popup:
+
+    // Create popup and add it to the map
+    const popup = new mapboxgl.Popup({ offset: 37, anchor: 'bottom' }).setDOMContent('<h5>Hello</h5>').setLngLat(feature.geometry.coordinates).addTo(map);
+
+    // Add a custom event listener to the map
+    map.on('closeAllPopups', () => {
+      popup.remove();
+    });
+
+    When you want to close all popups, fire the event:
+
+    map.fire('closeAllPopups');
+
+*/
+
+map.on('wheel', (e) => {
+    document.getElementById("message").innerHTML = "Mouse wheel, changing zoom: " + map.getZoom();
+    dynamicallyAddedMapObjectsArray.forEach((mapObject) => {
+        mapObject.popup.remove();
+    });
+// event type: wheel
+});
+
+map.on('zoom', (e) => {
+    document.getElementById("message").innerHTML = "Map Control, changing zoom: " + map.getZoom();
+    dynamicallyAddedMapObjectsArray.forEach((mapObject) => {
+        mapObject.popup.remove();
+    });
+// event type: zoom
+});
+
 // ref: https://jsfiddle.net/3tfsu51d/3/
 
 let geojson = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "properties": {
-                "message": "Wizard",
-                "iconSize": [35, 35]
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -111.9412411,
-                    40.6566634
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "message": "Drink",
-                "iconSize": [35, 35]
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -111.9312411,
-                    40.6426634
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "message": "Duck",
-                "iconSize": [35, 35]
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -111.9462411,
-                    40.6466634
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "message": "Food",
-                "iconSize": [35, 35]
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -111.9262411,
-                    40.6466634
-                ]
-            }
+    "type": "FeatureCollection", "features": [{
+        "type": "Feature", "properties": {
+            "message": "Wizard", "iconSize": [35, 35]
+        }, "geometry": {
+            "type": "Point", "coordinates": [-111.9412411, 40.6566634]
         }
-    ]
+    }, {
+        "type": "Feature", "properties": {
+            "message": "Drink", "iconSize": [35, 35]
+        }, "geometry": {
+            "type": "Point", "coordinates": [-111.9312411, 40.6426634]
+        }
+    }, {
+        "type": "Feature", "properties": {
+            "message": "Duck", "iconSize": [35, 35]
+        }, "geometry": {
+            "type": "Point", "coordinates": [-111.9462411, 40.6466634]
+        }
+    }, {
+        "type": "Feature", "properties": {
+            "message": "Food", "iconSize": [35, 35]
+        }, "geometry": {
+            "type": "Point", "coordinates": [-111.9262411, 40.6466634]
+        }
+    }]
 };
 
 let markers = [];
@@ -227,27 +229,17 @@ document.getElementById("btn-popup").addEventListener("click", function () {
 
 function favoritesExample() {
 
-    let favorites = [
-        {
-            "name": "The Cellar",
-            "address": "220 Magnolia Ave, Daytona Beach, FL 32114",
-            "htmlInfo": "<p>The Cellar!!</p>"
-        },
-        {
-            "name": "The Half Wall",
-            "address": "105 W Indiana Ave, DeLand, FL 32720",
-            "htmlInfo": "<p>The Half Wall!!</p>"
-        },
-        {
-            "name": "Ocean Deck",
-            "address": "127 S Ocean Ave, Daytona Beach, FL 32118",
-            "htmlInfo": "<p>Ocean Deck!!</p>"
-        },
-        {
-            "name": "Tiki Hut Pub & Grill",
-            "address": "1010 Main St, Daytona Beach, FL 32118",
-            "htmlInfo": "<p>Tiki Hut Pub & Grill!!</p>"
-        }];
+    let favorites = [{
+        "name": "The Cellar", "address": "220 Magnolia Ave, Daytona Beach, FL 32114", "htmlInfo": "<p>The Cellar!!</p>"
+    }, {
+        "name": "The Half Wall", "address": "105 W Indiana Ave, DeLand, FL 32720", "htmlInfo": "<p>The Half Wall!!</p>"
+    }, {
+        "name": "Ocean Deck", "address": "127 S Ocean Ave, Daytona Beach, FL 32118", "htmlInfo": "<p>Ocean Deck!!</p>"
+    }, {
+        "name": "Tiki Hut Pub & Grill",
+        "address": "1010 Main St, Daytona Beach, FL 32118",
+        "htmlInfo": "<p>Tiki Hut Pub & Grill!!</p>"
+    }];
 
     favorites.forEach(function (favorite, index) {
         geocode(favorite.address, MAPBOX_TOKEN)
@@ -362,10 +354,7 @@ function animateMarker(timestamp) {
     controls the animation speed.
     */
 
-    marker.setLngLat([
-        data.lng,
-        data.lat += dirY
-    ]);
+    marker.setLngLat([data.lng, data.lat += dirY]);
 
 
     /* 

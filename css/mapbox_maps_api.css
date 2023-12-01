@@ -1,7 +1,7 @@
-#map {
-    width: 80dvw;
-    height: 60dvh;
-    margin: auto;
+:root {
+    --border-color: red;
+    --border-size: 2px;
+    --border-style: solid;
 }
 
 body {
@@ -9,11 +9,17 @@ body {
     padding: 0;
 }
 
+#map {
+    width: 80dvw;
+    height: 60dvh;
+    margin: auto;
+}
+
 .marker {
     width: 20px;
     height: 20px;
     display: block;
-    border: 2px solid red;
+    border: var(--border-size) var(--border-style) var(--border-color);
     border-radius: 50%;
     cursor: pointer;
     padding: 0;
