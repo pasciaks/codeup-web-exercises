@@ -40,6 +40,12 @@ body {
     width: 15dvw;
 }
 
+.card {
+    width: 15dvw;
+    margin: .5em;
+
+}
+
 .card-img-top {
     height: 5dvw;
     object-fit: contain;

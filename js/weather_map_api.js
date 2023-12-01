@@ -13,7 +13,7 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
     center: [-111.9462511, 40.6466734], // starting position [lng, lat]
-    zoom: 12, // starting zoom // 5 // 15 // 20 // 25
+    zoom: 2, // starting zoom // 5 // 15 // 20 // 25
 });
 
 map.addControl(new mapboxgl.NavigationControl());
@@ -31,6 +31,10 @@ map.on('style.load', function () {
             true);
         favorites.push({address, lngLat});
         console.log(favorites);
+        map.flyTo({
+            center: lngLat,
+            zoom: 10
+        });
     });
 });
 
@@ -1616,27 +1620,31 @@ async function getForecastFromCurrentGpsPosition() {
 }
 
 async function getForecastFromCity(city) {
-    document.title = `Weather for ${city}`;
+    document.title = `${city}`;
     forecastData = await forecastByCity(city)
         .then((data) => {
             return data;
         })
         .catch((error) => {
             console.error(error);
-            document.title = `Weather for ...`;
+            document.title = ` ...`;
         })
     return forecastData;
 }
 
-async function getForecastFromSpecificGpsPosition(coords) {
-    document.title = `Weather for ${coords.lat}, ${coords.lng}`;
-    forecastData = await forecastByCoords(coords.lat, coords.lng)
+async function getForecastFromSpecificGpsPosition(lngLat) {
+    document.title = `${lngLat.lat}, ${lngLat.lng}`;
+    map.flyTo({
+        center: lngLat,
+        zoom: 10
+    });
+    forecastData = await forecastByCoords(lngLat.lat, lngLat.lng)
         .then((data) => {
             return data;
         })
         .catch((error) => {
             console.error(error);
-            document.title = `Weather for ...`;
+            document.title = `...`;
         })
     return forecastData;
 }
@@ -1737,7 +1745,7 @@ function getLiveForecastDataFromCurrentGpsLocation() {
 
 function getLiveForecastDataFromGpsCoords(coords) {
 
-    document.title = `Weather for ${coords.lat}, ${coords.lng}`;
+    document.title = `${coords.lat}, ${coords.lng}`;
 
     getForecastFromSpecificGpsPosition(coords)
         .then((data) => {
@@ -1750,7 +1758,7 @@ function getLiveForecastDataFromGpsCoords(coords) {
 
 function getLiveForecastFromCity(city) {
 
-    document.title = `Weather for ${city}`;
+    document.title = `${city}`;
 
     getForecastFromCity(city)
         .then((data) => {
@@ -1765,6 +1773,8 @@ function submitForm(event) {
     event.preventDefault();
 
     let city = findInput?.value || "";
+
+    document.title = `${city} ...`;
 
     placeMarkerAndPopupUsingAddress(
         city,
@@ -1832,5 +1842,11 @@ function init() {
 }
 
 init();
+
+// todo: trap all errors and show modal error
+// todo: consider implementing favorites
+// todo: consider implementing backend to store favorites and other user's search data
+// todo: consider adding live 'sky' view or 'upload' view like gas buddy but for live weather views
+// todo: consider 'How Hot It Is... ' for indoor use of webcam to show the 'current capacity/clientele' of a place
 
 // })();
