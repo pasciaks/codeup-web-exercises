@@ -1,71 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
     <title>Mapbox</title>
 
     <link
-      crossorigin="anonymous"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      rel="stylesheet"
+            crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            rel="stylesheet"
     />
 
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css"
-      rel="stylesheet"
+            href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css"
+            rel="stylesheet"
     />
 
-    <link href="css/mapbox_maps_api.css" rel="stylesheet" />
+    <link href="css/mapbox_maps_api.css" rel="stylesheet"/>
 
     <script src="js/keys.js"></script>
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js"></script>
-  </head>
+</head>
 
-  <body>
-    <header>
-      <h1 class="text-center">Mapbox</h1>
-    </header>
+<body>
+<header>
+    <h1 class="text-center">Mapbox</h1>
+</header>
 
-    <div class="container border py-3">
-      <div id="map"></div>
-    </div>
+<div class="container border py-3">
+    <div id="map"></div>
+</div>
 
-    <div class="container m-3">
-      <button class="btn btn-primary" id="btn-toggle-bounce" type="button">
+<div class="container m-3">
+    <button class="btn btn-primary" id="btn-toggle-bounce" type="button">
         -1. Bounce
-      </button>
-      <button class="btn btn-primary" id="btn-home" type="button">
+    </button>
+    <button class="btn btn-primary" id="btn-home" type="button">
         0. Home
-      </button>
-      <button class="btn btn-primary" id="btn-geocode" type="button">
+    </button>
+    <button class="btn btn-primary" id="btn-geocode" type="button">
         1. Geocode
-      </button>
-      <button class="btn btn-primary" id="btn-marker" type="button">
+    </button>
+    <button class="btn btn-primary" id="btn-marker" type="button">
         2. Marker
-      </button>
-      <button class="btn btn-primary" id="btn-popup" type="button">
+    </button>
+    <button class="btn btn-primary" id="btn-popup" type="button">
         3. Popup
-      </button>
-      <button class="btn btn-primary" id="btn-favorites" type="button">
+    </button>
+    <button class="btn btn-primary" id="btn-favorites" type="button">
         4. Favorites
-      </button>
-      <button class="btn btn-primary" id="btn-toggle-all" type="button">
-        5. Toggle All
-      </button>
-    </div>
+    </button>
+    <button class="btn btn-primary" id="btn-toggle-all" type="button">
+        5. Clear Custom Makers
+    </button>
+</div>
 
-    <script
-      crossorigin="anonymous"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    ></script>
+<script
+        crossorigin="anonymous"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+></script>
 
-    <script defer src="js/mapbox-geocoder-utils.js"></script>
+<script defer src="js/mapbox-geocoder-utils.js"></script>
 
-    <script src="js/mapbox_maps_api.js"></script>
-  </body>
+<script src="js/mapbox_maps_api.js"></script>
+</body>
 </html>
