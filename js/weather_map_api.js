@@ -1886,4 +1886,6 @@ init();
 // TODO: Trap for errors or not found cities ... {"cod":"404","message":"city not found"}
 // todo: lancaster PA, etc...
 
+// todo: consider the dataset and don't simply just show every 8, allow some type of use of all that data...
+
 // })();
