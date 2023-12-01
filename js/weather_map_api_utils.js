@@ -10,16 +10,21 @@ let dynamicallyAddedMapObjectsArray = [];
  * @returns {Promise<void>}
  */
 const getCurrentPosition = (allowMapFlyTo = true, setZoom = 15) => {
-    navigator.geolocation.getCurrentPosition(function (navPosObj) {
-        let resultObject = {
-            "lng": navPosObj.coords.longitude,
-            "lat": navPosObj.coords.latitude
-        }
-        if (allowMapFlyTo) {
-            map.flyTo({center: [resultObject.lng, resultObject.lat], zoom: setZoom});
-        }
-        return resultObject;
-    });
+    try {
+        navigator.geolocation.getCurrentPosition(function (navPosObj) {
+            let resultObject = {
+                "lng": navPosObj.coords.longitude,
+                "lat": navPosObj.coords.latitude
+            }
+            if (allowMapFlyTo) {
+                map.flyTo({center: [resultObject.lng, resultObject.lat], zoom: setZoom});
+            }
+            return resultObject;
+        });
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
 }
 
 /**
@@ -43,7 +48,11 @@ function geocode(search, token) {
     return fetch(`${baseUrl}${endPoint}${encodeURIComponent(search)}.json?access_token=${token}`)
         .then(res => res.json())
         // to get all the data from the request, comment out the following three lines...
-        .then(data => data.features[0].center);
+        .then(data => data.features[0].center)
+        .catch((error) => {
+            console.error('Error:', error);
+            return error;
+        });
 }
 
 /***
@@ -66,7 +75,11 @@ function reverseGeocode(coordinates, token) {
     return fetch(`${baseUrl}${endPoint}${coordinates.lng},${coordinates.lat}.json?access_token=${token}`)
         .then(res => res.json())
         // to get all the data from the request, comment out the following three lines...
-        .then(data => data.features[0].place_name);
+        .then(data => data.features[0].place_name)
+        .catch((error) => {
+            console.error('Error:', error);
+            return error;
+        });
 }
 
 function placeMarkerAndPopupUsingAddress(address, popupHTML, token, map, draggable = false) {
@@ -84,7 +97,10 @@ function placeMarkerAndPopupUsingAddress(address, popupHTML, token, map, draggab
             if (draggable) {
                 function onDragEnd(e) {
                     const lngLat = e.target.getLngLat();
-                    console.log(lngLat);
+                    getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
+                    popupHTML = `<div>${address}</div>`;
+                    popup.setHTML(popupHTML);
+                    popup.addTo(map);
                 }
 
                 marker.on('dragend', onDragEnd);
@@ -111,10 +127,10 @@ function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable
     if (draggable) {
         function onDragEnd(e) {
             const lngLat = e.target.getLngLat();
+            getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
             reverseGeocode(lngLat, MAPBOX_TOKEN)
                 .then((result) => {
-                    popupHTML = `<div>${JSON.stringify(lngLat, null, 2)}</div>\n`;
-                    popupHTML += `<div>${result}</div>\n`;
+                    popupHTML = `<div>${result}</div>`;
                     popup.setHTML(popupHTML);
                     popup.addTo(map);
                 })

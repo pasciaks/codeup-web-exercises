@@ -29,17 +29,35 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    width: 100vw;
+    width: 100dvw;
     margin: auto;
 }
 
 .forecast-item {
-    width: 20vw;
+    justify-content: center;
+    width: 15dvw;
 }
 
 .card-img-top {
-    height: 12vw;
+    height: 5dvw;
     object-fit: contain;
+}
+
+.card-body {
+    align-items: center;
+}
+
+header {
+    background-color: #00ABA9;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+}
+
+header form {
+    width: 50%;
 }
