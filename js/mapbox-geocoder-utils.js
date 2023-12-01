@@ -23,28 +23,52 @@ let dynamicallyAddedMapObjectsArray = [];
  *
  * @returns {Promise<void>}
  */
-const setCurrentPosition = /* async */ () => {
-    /* await */
-    navigator.geolocation.getCurrentPosition(function (navPosObj) {
-        try {
-            localStorage.setItem('slp_nav_lat', navPosObj.coords.latitude);
-            localStorage.setItem('slp_nav_lng', navPosObj.coords.longitude);
-            sessionStorage.setItem('slp_nav_lat', navPosObj.coords.latitude);
-            sessionStorage.setItem('slp_nav_lng', navPosObj.coords.longitude);
-            console.log("Latitude is :", navPosObj.coords.latitude);
-            console.log("Longitude is :", navPosObj.coords.longitude);
-            map.flyTo({center: [navPosObj.coords.longitude, navPosObj.coords.latitude], zoom: 15});
-            setTimeout(function () {
-                document.getElementById("message").innerHTML = "You've Arrived!";
-                placeMarkerAndPopupUsingCoords([navPosObj.coords.longitude, navPosObj.coords.latitude], `<p>You've Arrived!</p><br><pre>${JSON.stringify({"your-location": [navPosObj.coords.longitude, navPosObj.coords.latitude]}, null, 2)}</pre>`, MAPBOX_TOKEN, map, true);
-            }, 1500);
-            setTimeout(function () {
-                document.getElementById("message").innerHTML = "";
-            }, 2500);
-        } catch {
-            console.log("Not able to obtain geo coords.");
-        }
-    });
+const setCurrentPosition = async () => {
+    await
+        navigator.geolocation.getCurrentPosition(function (navPosObj) {
+            try {
+                localStorage.setItem('slp_nav_lat', navPosObj.coords.latitude);
+                localStorage.setItem('slp_nav_lng', navPosObj.coords.longitude);
+                sessionStorage.setItem('slp_nav_lat', navPosObj.coords.latitude);
+                sessionStorage.setItem('slp_nav_lng', navPosObj.coords.longitude);
+                console.log("Latitude is :", navPosObj.coords.latitude);
+                console.log("Longitude is :", navPosObj.coords.longitude);
+
+                let resultObject = {
+                    "lng": navPosObj.coords.longitude,
+                    "lat": navPosObj.coords.latitude
+                }
+
+                map.flyTo({center: [resultObject.lng, resultObject.lat], zoom: 15});
+
+                setTimeout(async function () {
+
+                    // @todo - optimize and cleanup - remove UI/UX code from this method
+
+                    document.getElementById("message").innerHTML = "You've Arrived!";
+
+                    placeMarkerAndPopupUsingCoords(
+                        resultObject,
+                        `<p>You've Arrived!</p><br>
+                         <pre>${JSON.stringify({"your-location": [navPosObj.coords.longitude, navPosObj.coords.latitude]}, null, 2)}</pre>`,
+                        MAPBOX_TOKEN,
+                        map,
+                        true);
+
+                    console.log(resultObject);
+                    let result = await reverseGeocode(resultObject, MAPBOX_TOKEN);
+                    console.log(result);
+                    document.getElementById("message").innerHTML = JSON.stringify(result, null, 2);
+                    return resultObject;
+
+                }, 1500);
+
+
+            } catch {
+                console.log("Not able to obtain geo coords.");
+                return null;
+            }
+        });
 }
 
 /***
@@ -159,6 +183,17 @@ function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable
     if (draggable) {
         function onDragEnd(e) {
             const lngLat = e.target.getLngLat();
+
+            reverseGeocode(lngLat, MAPBOX_TOKEN)
+                .then((result) => {
+                    popupHTML = `<div>${JSON.stringify(lngLat, null, 2)}</div>\n`;
+                    popupHTML += `<div>${result}</div>\n`;
+                    popup.setHTML(popupHTML);
+                    popup.addTo(map);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
         }
 
         marker.on('dragend', onDragEnd);

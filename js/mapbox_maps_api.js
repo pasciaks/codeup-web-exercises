@@ -277,7 +277,7 @@ document.getElementById("btn-favorites").addEventListener("click", function () {
 
 function goHome() {
     document.getElementById("message").innerHTML = "Standby...";
-    setTimeout(function () {
+    setTimeout(async function () {
         document.getElementById("message").innerHTML = "On the way...";
         setCurrentPosition();
     }, 500);
@@ -292,7 +292,7 @@ function toggleAll() {
 
 document.getElementById("btn-home").addEventListener("click", function () {
     goHome();
-    animation();
+    animateMarker();
 });
 
 document.getElementById("btn-toggle-all").addEventListener("click", function () {
