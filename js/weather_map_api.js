@@ -1886,4 +1886,7 @@ init();
 // todo: click on one box of forecast and show all the data for that day in a modal
 // todo: take away the title hover in the forecast boxes and show the data in a modal
 
+// todo: different icon if it is a draggable marker or not
+// todo: different icon based on the weather , temp, etc...
+
 // })();
