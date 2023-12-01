@@ -1,0 +1,64 @@
+:root {
+    --border-color: red;
+    --border-size: 2px;
+    --border-style: solid;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    width: 95dvw;
+    height: 50dvh;
+    margin: 1em auto;
+}
+
+.marker {
+    width: 20px;
+    height: 20px;
+    display: block;
+    border: var(--border-size) var(--border-style) var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+.forecast-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100dvw;
+    margin: auto;
+}
+
+.forecast-item {
+    justify-content: center;
+    width: 15dvw;
+}
+
+.card-img-top {
+    height: 5dvw;
+    object-fit: contain;
+}
+
+.card-body {
+    align-items: center;
+}
+
+header {
+    height: 10vh;
+    background-color: #00ABA9;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header form {
+    width: 50%;
+}
