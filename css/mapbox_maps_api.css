@@ -4,3 +4,21 @@
     margin: auto;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.marker {
+    width: 20px;
+    height: 20px;
+    display: block;
+    border: 2px solid red;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+.grown {
+    border: 5px solid green;
+}

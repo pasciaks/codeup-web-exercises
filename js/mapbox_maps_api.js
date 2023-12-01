@@ -6,10 +6,126 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
     center: [-111.9462511, 40.6466734], // starting position [lng, lat]
-    zoom: 5, // starting zoom // 5 // 15 // 20 // 25
+    zoom: 11, // starting zoom // 5 // 15 // 20 // 25
 });
 
 map.addControl(new mapboxgl.NavigationControl());
+
+// ref: https://jsfiddle.net/3tfsu51d/3/
+
+let geojson = {
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "message": "Wizard",
+                "iconSize": [35, 35]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -111.9412411,
+                    40.6566634
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "message": "Drink",
+                "iconSize": [35, 35]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -111.9312411,
+                    40.6426634
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "message": "Duck",
+                "iconSize": [35, 35]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -111.9462411,
+                    40.6466634
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "message": "Food",
+                "iconSize": [35, 35]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -111.9262411,
+                    40.6466634
+                ]
+            }
+        }
+    ]
+};
+
+let markers = [];
+
+geojson.features.forEach(function (marker, index) {
+
+    var el = document.createElement('div');
+    el.className = 'marker';
+
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundPosition = 'center';
+    el.style.backgroundRepeat = 'no-repeat';
+
+    let random = index % 4;
+
+    switch (random) {
+        case 0:
+            el.style.backgroundImage = 'url("images/bar.png")';
+            break;
+        case 1:
+            el.style.backgroundImage = 'url("images/drink.png")';
+            break;
+        case 2:
+            el.style.backgroundImage = 'url("images/duck.png")';
+            break;
+        case 3:
+            el.style.backgroundImage = 'url("images/food.png")';
+            break;
+    }
+
+    // el.style.backgroundImage = 'url("images/bar.png")';    
+    // el.style.backgroundImage = 'url("images/drink.png")';    
+    // el.style.backgroundImage = 'url("images/duck.png")';
+
+    el.style.width = marker.properties.iconSize[0] + 'px';
+    el.style.height = marker.properties.iconSize[1] + 'px';
+
+    el.addEventListener('click', function () {
+        console.log(marker.properties.message);
+    });
+
+    // add marker to map
+    var m = new mapboxgl.Marker(el, { offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2] });
+    m.setLngLat(marker.geometry.coordinates);
+    m.addTo(map);
+
+    const mPopup = new mapboxgl.Popup()
+        .setHTML(`<div style="width:200px;" class='text-center mt-3 border p-0'><p>${marker.properties.message}</p></div>`);
+
+    m.setPopup(mPopup);
+
+    markers.push(m);
+});
 
 /*
 
@@ -43,14 +159,14 @@ function geocodeExample() {
     geocode("Main Street, Daytona Beach, FL 32118", MAPBOX_TOKEN)
         .then(result => {
 
-            map.flyTo({center: result, zoom: 5})
+            map.flyTo({ center: result, zoom: 5 })
 
             // Redraw the map of the above location at zoom levels 5, 15, and 20.
             // Do this by simply changing the value of zoom level where the map properties are initially set and refresh the page to see the changes.
             // Can the zoom be changed programmatically after the initial map is drawn? Yes!
 
             setTimeout(function () {
-                map.flyTo({center: result, zoom: 8})
+                map.flyTo({ center: result, zoom: 8 })
             }, 5000);
 
         });
@@ -73,7 +189,7 @@ function markerExample() {
                 .setLngLat(result)
                 .addTo(map);
 
-            map.flyTo({center: result, zoom: 15})
+            map.flyTo({ center: result, zoom: 15 })
         });
 
 }
@@ -98,7 +214,7 @@ function popupExample() {
 
     tapRoomLocationMarker.setPopup(taproomPopup);
 
-    map.flyTo({center: [-81.016247, 29.233942], zoom: 18})
+    map.flyTo({ center: [-81.016247, 29.233942], zoom: 18 })
 
 }
 
@@ -150,7 +266,7 @@ function favoritesExample() {
     });
 
     setTimeout(function () {
-        map.flyTo({center: [-81.016247, 29.233942], zoom: 11});
+        map.flyTo({ center: [-81.016247, 29.233942], zoom: 11 });
     }, 100);
 
 }
@@ -165,8 +281,19 @@ function goHome() {
     }, 500);
 }
 
+function toggleAll() {
+    markers.forEach(function (marker) {
+        marker.remove();
+    });
+    markers = [];
+}
+
 document.getElementById("btn-home").addEventListener("click", function () {
     goHome();
+});
+
+document.getElementById("btn-toggle-all").addEventListener("click", function () {
+    toggleAll();
 });
 
 
