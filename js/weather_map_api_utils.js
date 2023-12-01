@@ -94,10 +94,14 @@ function placeMarkerAndPopupUsingAddress(address, popupHTML, token, map, draggab
                 .setLngLat(coords)
                 .addTo(map)
                 .setPopup(popup);
+            favorites.push({address, coords});
+            console.log(favorites);
             if (draggable) {
                 function onDragEnd(e) {
                     const lngLat = e.target.getLngLat();
                     getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
+                    favorites.push({address, lngLat});
+                    console.log(favorites);
                     popupHTML = `<div>${address}</div>`;
                     popup.setHTML(popupHTML);
                     popup.addTo(map);
@@ -129,8 +133,10 @@ function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable
             const lngLat = e.target.getLngLat();
             getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
             reverseGeocode(lngLat, MAPBOX_TOKEN)
-                .then((result) => {
-                    popupHTML = `<div>${result}</div>`;
+                .then((address) => {
+                    favorites.push({address, lngLat});
+                    console.log(favorites);
+                    popupHTML = `<div>${address}</div>`;
                     popup.setHTML(popupHTML);
                     popup.addTo(map);
                 })

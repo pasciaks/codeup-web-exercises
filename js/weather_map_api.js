@@ -5,6 +5,8 @@ let homeButton = null;
 let findInput = null;
 let findForm = null;
 
+let favorites = [];
+
 mapboxgl.accessToken = MAPBOX_TOKEN;
 
 const map = new mapboxgl.Map({
@@ -20,13 +22,15 @@ map.on('style.load', function () {
     map.on('dblclick', async function (e) {
         let lngLat = e.lngLat;
         getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
-        let result = await reverseGeocode(lngLat, MAPBOX_TOKEN);
+        let address = await reverseGeocode(lngLat, MAPBOX_TOKEN);
         placeMarkerAndPopupUsingCoords(
             lngLat,
-            `<div>${result}</div>`,
+            `<div>${address}</div>`,
             MAPBOX_TOKEN,
             map,
             true);
+        favorites.push({address, lngLat});
+        console.log(favorites);
     });
 });
 
@@ -1623,7 +1627,6 @@ async function getForecastFromCity(city) {
         .then((data) => {
             return data;
         })
-    console.log(forecastData);
     return forecastData;
 }
 
@@ -1632,7 +1635,6 @@ async function getForecastFromSpecificGpsPosition(coords) {
         .then((data) => {
             return data;
         })
-    console.log(forecastData);
     return forecastData;
 }
 
@@ -1716,6 +1718,8 @@ function renderForecast() {
         forecastItemElement.appendChild(forecastItemBody);
 
         forecastContainer.appendChild(forecastItemElement);
+
+        document.querySelector("#modalClose").click();
     }
 }
 
@@ -1733,7 +1737,6 @@ function getLiveForecastDataFromCurrentGpsLocation() {
 function getLiveForecastDataFromGpsCoords(coords) {
     getForecastFromSpecificGpsPosition(coords)
         .then((data) => {
-            console.log(data);
             renderForecast();
         })
         .catch((error) => {
@@ -1744,7 +1747,6 @@ function getLiveForecastDataFromGpsCoords(coords) {
 function getLiveForecastFromCity(city) {
     getForecastFromCity(city)
         .then((data) => {
-            console.log(data);
             renderForecast();
         })
         .catch((error) => {
@@ -1752,7 +1754,7 @@ function getLiveForecastFromCity(city) {
         });
 }
 
-async function submitForm(event) {
+function submitForm(event) {
     event.preventDefault();
 
     let city = findInput?.value || "";
@@ -1762,15 +1764,14 @@ async function submitForm(event) {
         `<div>${city}</div>`,
         MAPBOX_TOKEN,
         map,
-        true);
+        false);
 
     renderForecast(); // note: Temporary, don't make live api calls yet
 
     geocode(city, MAPBOX_TOKEN)
-        .then((result) => {
-            console.log(result);
+        .then((lngLat) => {
             map.flyTo({
-                center: result,
+                center: lngLat,
                 zoom: 10
             });
         })
@@ -1781,6 +1782,19 @@ async function submitForm(event) {
             console.log(error);
         });
 
+}
+
+function modal(mhead, mbody) {
+    let modalHead = document.querySelector("#modalHead");
+    let modalBody = document.querySelector("#modalBody");
+    modalHead.innerText = mhead;
+    modalBody.innerHTML = mbody;
+    document.querySelector("#modal").classList.add("show");
+    document.querySelector("#modal").style.display = "block";
+    document.querySelector("#modalClose").addEventListener("click", () => {
+        document.querySelector("#modal").classList.remove("show");
+        document.querySelector('#modal').removeAttribute("style");
+    }, {once: true});
 }
 
 function init() {
@@ -1800,6 +1814,14 @@ function init() {
 
     homeButton.addEventListener("click", (e) => {
         getLiveForecastDataFromCurrentGpsLocation();
+
+        let mHead = "Getting Home Weather"
+        let mBody = `<div class="modal-body">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        </div>`;
+        modal(mHead, mBody);
     });
 
 }

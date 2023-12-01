@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-    <title>Mapbox</title>
+    <title>Weather Buddy</title>
 
     <link
             crossorigin="anonymous"
@@ -28,22 +28,44 @@
 
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Weather Buddy</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://openweathermap.org/" target="_blank">Open Weather Maps
+                        Reference</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <header>
-    <h1 class="text-center">Weather Buddy</h1>
+    <h1 class="text-center align-baseline">Weather Buddy</h1>
     <form id="form-find">
-        <div class="input-group mb-3">
+        <div class="input-group align-baseline">
             <input
                     aria-describedby="btn-find"
                     aria-label="Find"
                     class="form-control"
                     id="input-find"
-                    placeholder="Find address..."
+                    placeholder="Find city..."
                     type="text"
             />
-            <button class="btn btn-primary" id="btn-find" type="submit">
+            <button class="btn btn-primary me-1" id="btn-find" type="submit">
                 Find
             </button>
-            <button class="btn btn-primary" id="btn-home" type="button">
+            <button class="btn btn-primary ms-2" id="btn-home" type="button">
                 Home
             </button>
         </div>
@@ -51,11 +73,32 @@
 </header>
 
 <main>
-    <div class="container-fluid forecast-container" id="forecast-container">
+    <div class="forecast-container flex flex-md-wrap" id="forecast-container">
     </div>
 </main>
 
 <div id="map"></div>
+
+<div id="about"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog bg-danger">
+        <div class="modal-content modal-color">
+            <div class="modal-header">
+                <h1 class="modal-title" id="modalHead"></h1>
+            </div>
+            <div class="modal-body-container">
+                <div class="modal-body" id="modalBody">
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-outline-warning fs-4" data-bs-dismiss="modal" id="modalClose" type="button">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
 
 <script
         crossorigin="anonymous"
