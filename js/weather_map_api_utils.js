@@ -48,9 +48,16 @@ function geocode(search, token) {
     return fetch(`${baseUrl}${endPoint}${encodeURIComponent(search)}.json?access_token=${token}`)
         .then(res => res.json())
         // to get all the data from the request, comment out the following three lines...
-        .then(data => data.features[0].center)
+        .then(data => {
+            let tempTitle = data?.features[0]?.place_name || "No results found";
+            setTitle(tempTitle);
+            return data.features[0].center;
+        })
         .catch((error) => {
             console.error('Error:', error);
+            let mHead = "ERROR"
+            let mBody = `${JSON.stringify(error, null, 2)}`;
+            modal(mHead, mBody);
             return error;
         });
 }
@@ -76,8 +83,9 @@ function reverseGeocode(coordinates, token) {
         .then(res => res.json())
         // to get all the data from the request, comment out the following three lines...
         .then(data => {
-            document.title = data.features[0].place_name;
-            return data.features[0].place_name;
+            let tempTitle = data?.features[0]?.place_name || "No results found";
+            setTitle(tempTitle);
+            return tempTitle; // data.features[0].place_name;
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -139,6 +147,7 @@ function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable
                 .then((address) => {
                     favorites.push({address, lngLat});
                     console.log(favorites);
+                    setTitle(address);
                     popupHTML = `<div>${address}</div>`;
                     popup.setHTML(popupHTML);
                     popup.addTo(map);

@@ -1581,7 +1581,9 @@ function forecastByCoords(lat, lon) {
         .catch((e) => {
             console.error(e);
             // @todo - show modal error
-
+            let mHead = "ERROR"
+            let mBody = `${JSON.stringify(error, null, 2)}`;
+            modal(mHead, mBody);
             return null;
         });
 }
@@ -1595,7 +1597,9 @@ function forecastByCity(city) {
         .catch((e) => {
             console.error(e);
             // @todo - show modal error
-
+            let mHead = "ERROR"
+            let mBody = `${JSON.stringify(error, null, 2)}`;
+            modal(mHead, mBody);
             return null;
         });
 }
@@ -1603,7 +1607,7 @@ function forecastByCity(city) {
 let forecastContainer = document.getElementById("forecast-container");
 
 async function getForecastFromCurrentGpsPosition() {
-    document.title = `Your current GPS Location.`;
+    setTitle("Your current GPS Location.")
     const getCoords = async () => {
         const pos = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -1615,25 +1619,28 @@ async function getForecastFromCurrentGpsPosition() {
     };
 
     const coords = await getCoords();
+    reverseGeocode(coords, MAPBOX_TOKEN).then((data) => {
+        setTitle(`${data}`);
+    });
     forecastData = await getForecastFromSpecificGpsPosition(coords);
     return forecastData;
 }
 
 async function getForecastFromCity(city) {
-    document.title = `${city}`;
+    setTitle(`${city}`);
     forecastData = await forecastByCity(city)
         .then((data) => {
             return data;
         })
         .catch((error) => {
             console.error(error);
-            document.title = ` ...`;
+            setTitle(`...`);
         })
     return forecastData;
 }
 
 async function getForecastFromSpecificGpsPosition(lngLat) {
-    document.title = `${lngLat.lat}, ${lngLat.lng}`;
+    setTitle(`${lngLat.lat}, ${lngLat.lng}`);
     map.flyTo({
         center: lngLat,
         zoom: 10
@@ -1644,7 +1651,7 @@ async function getForecastFromSpecificGpsPosition(lngLat) {
         })
         .catch((error) => {
             console.error(error);
-            document.title = `...`;
+            setTitle(`...`);
         })
     return forecastData;
 }
@@ -1745,7 +1752,7 @@ function getLiveForecastDataFromCurrentGpsLocation() {
 
 function getLiveForecastDataFromGpsCoords(coords) {
 
-    document.title = `${coords.lat}, ${coords.lng}`;
+    setTitle(`${coords.lat}, ${coords.lng}`);
 
     getForecastFromSpecificGpsPosition(coords)
         .then((data) => {
@@ -1758,7 +1765,7 @@ function getLiveForecastDataFromGpsCoords(coords) {
 
 function getLiveForecastFromCity(city) {
 
-    document.title = `${city}`;
+    setTitle(`${city}`);
 
     getForecastFromCity(city)
         .then((data) => {
@@ -1774,7 +1781,7 @@ function submitForm(event) {
 
     let city = findInput?.value || "";
 
-    document.title = `${city} ...`;
+    setTitle(`${city} ...`);
 
     placeMarkerAndPopupUsingAddress(
         city,
@@ -1795,6 +1802,9 @@ function submitForm(event) {
         })
         .catch((error) => {
             console.log(error);
+            let mHead = "ERROR"
+            let mBody = `${JSON.stringify(error, null, 2)}`;
+            modal(mHead, mBody);
         });
 
 }
@@ -1812,6 +1822,14 @@ function modal(mhead, mbody) {
     }, {once: true});
 }
 
+function setTitle(title) {
+    // set title in document
+    document.title = title;
+
+    // set h1 title on page
+    document.getElementById("title").innerText = title;
+}
+
 function init() {
 
     findForm = document.getElementById("form-find");
@@ -1820,6 +1838,7 @@ function init() {
     findInput = document.getElementById("input-find");
 
     findForm.addEventListener("submit", (e) => {
+        e.preventDefault();
         submitForm(e);
     });
 
@@ -1858,5 +1877,12 @@ init();
 // todo: implement drop down menu or off canvas menu for accessing favorites
 // todo: allow re-query frequency to auto update from favorites and store in database
 // todo: show current forecast details or chart/graphs in popups
+
+// todo: check for duplicate calls to title, document.getElementById("title").innerText = title, etc...
+
+// todo: optimize calls for data... don't call if already have data, much more, but lower priority.
+
+// TODO: Trap for errors or not found cities ... {"cod":"404","message":"city not found"}
+// todo: lancaster PA, etc...
 
 // })();
