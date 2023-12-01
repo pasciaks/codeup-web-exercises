@@ -1883,4 +1883,7 @@ init();
 // todo: lancaster PA, etc...
 // todo: consider the dataset and don't simply just show every 8, allow some type of use of all that data...
 
+// todo: click on one box of forecast and show all the data for that day in a modal
+// todo: take away the title hover in the forecast boxes and show the data in a modal
+
 // })();
