@@ -1766,8 +1766,6 @@ function submitForm(event) {
         map,
         false);
 
-    renderForecast(); // note: Temporary, don't make live api calls yet
-
     geocode(city, MAPBOX_TOKEN)
         .then((lngLat) => {
             map.flyTo({
