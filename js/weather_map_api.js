@@ -1828,6 +1828,9 @@ function init() {
     });
 
     homeButton.addEventListener("click", (e) => {
+
+        findInput.value = "";
+
         getLiveForecastDataFromCurrentGpsLocation();
 
         let mHead = "Getting Home Weather"
@@ -1843,6 +1846,9 @@ function init() {
 
 init();
 
+// todo: better formatting of weather data
+// todo: show wind direction and speed on map
+// todo: track own historical data from backend
 // todo: trap all errors and show modal error
 // todo: consider implementing favorites
 // todo: consider implementing backend to store favorites and other user's search data
