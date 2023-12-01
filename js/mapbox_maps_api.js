@@ -6,7 +6,7 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
     center: [-111.9462511, 40.6466734], // starting position [lng, lat]
-    zoom: 11, // starting zoom // 5 // 15 // 20 // 25
+    zoom: 12, // starting zoom // 5 // 15 // 20 // 25
 });
 
 map.addControl(new mapboxgl.NavigationControl());
@@ -290,10 +290,93 @@ function toggleAll() {
 
 document.getElementById("btn-home").addEventListener("click", function () {
     goHome();
+    animation();
 });
 
 document.getElementById("btn-toggle-all").addEventListener("click", function () {
     toggleAll();
 });
 
+// Add a new Marker.
+const marker = new mapboxgl.Marker({
+    color: '#F84C4C' // color it red
+});
+
+const mPopup = new mapboxgl.Popup()
+    .setHTML(`<div style="width:200px;" class='text-center mt-3 border p-0'><p>Bounce!!</p></div>`);
+
+marker.setPopup(mPopup);
+
+let counter = 0;
+let dirY = .0005;
+let stopLimit = 20;
+let currentLimit = 0;
+let isRunning = false;
+let intervalTimer = null;
+
+function animateMarker(timestamp) {
+
+    if (!isRunning) {
+        if (intervalTimer) {
+            cancelAnimationFrame(intervalTimer);;
+        }
+        return;
+    }
+
+    let data = marker.getLngLat();
+
+    if (!data) { return; }
+
+    counter++;
+
+    currentLimit++;
+
+    if (currentLimit > stopLimit) {
+        isRunning = false;
+    }
+
+    if (counter > 0) {
+        dirY = .0005;
+    }
+
+    if (counter > 10) {
+        dirY = -.0005;
+    }
+
+    if (counter > 30) {
+        counter = 0;
+        isRunning = false;
+    }
+
+    /* 
+    Update the data to a new position 
+    based on the animation timestamp. 
+    The divisor in the expression `timestamp / 1000` 
+    controls the animation speed.
+    */
+
+    marker.setLngLat([
+        data.lng,
+        data.lat += dirY
+    ]);
+
+
+    /* 
+    Ensure the marker is added to the map. 
+    This is safe to call if it's already added.
+    */
+    marker.addTo(map);
+
+    // Request the next frame of the animation.
+    intervalTimer = requestAnimationFrame(animateMarker);
+}
+
+document.getElementById("btn-toggle-bounce").addEventListener("click", function () {
+    isRunning = !isRunning;
+    marker.setLngLat([-111.9462511, 40.6446734]);
+    counter = 0;
+    dirY = .0005;
+    currentLimit = 0;
+    intervalTimer = requestAnimationFrame(animateMarker);
+});
 
