@@ -55,9 +55,8 @@ const setCurrentPosition = async () => {
                         map,
                         true);
 
-                    console.log(resultObject);
                     let result = await reverseGeocode(resultObject, MAPBOX_TOKEN);
-                    console.log(result);
+
                     document.getElementById("message").innerHTML = JSON.stringify(result, null, 2);
                     return resultObject;
 
@@ -145,7 +144,7 @@ function placeMarkerAndPopupUsingAddress(address, popupHTML, token, map, draggab
     let id = Date.now() + Math.floor(Math.random() * 99999);
     geocode(address, token)
         .then(coords => {
-            console.log(coords);
+
             let popup = new mapboxgl.Popup()
                 .setHTML(popupHTML);
             let marker = new mapboxgl.Marker({

@@ -11,6 +11,26 @@ const map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.NavigationControl());
 
+map.on('style.load', function () {
+    map.on('dblclick', function (e) {
+        let coordinates = e.lngLat;
+
+        let popup = new mapboxgl.Popup()
+            .setHTML(`<div>${coordinates}</div>`);
+        let marker = new mapboxgl.Marker({
+            draggable: false
+        })
+            .setLngLat(coordinates)
+            .addTo(map)
+            .setPopup(popup);
+
+        popup.addTo(map);
+
+        dynamicallyAddedMapObjectsArray.push({id: Date.now() + Math.floor(Math.random() * 99999), popup, marker});
+
+    });
+});
+
 // NOTE: For future reference and development, ref: https://stackoverflow.com/questions/40859195/how-to-close-all-popups-programmatically-in-mapbox-gl
 
 /*
@@ -275,11 +295,16 @@ function goHome() {
     }, 500);
 }
 
-function toggleAll() {
+function removeAll() {
     markers.forEach(function (marker) {
         marker.remove();
     });
     markers = [];
+
+    dynamicallyAddedMapObjectsArray.forEach((mapObject) => {
+        mapObject.marker.remove();
+    });
+    dynamicallyAddedMapObjectsArray = [];
 }
 
 document.getElementById("btn-home").addEventListener("click", function () {
@@ -287,8 +312,8 @@ document.getElementById("btn-home").addEventListener("click", function () {
     animateMarker();
 });
 
-document.getElementById("btn-toggle-all").addEventListener("click", function () {
-    toggleAll();
+document.getElementById("btn-remove-all").addEventListener("click", function () {
+    removeAll();
 });
 
 // Add a new Marker.
