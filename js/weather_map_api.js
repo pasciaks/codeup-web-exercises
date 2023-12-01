@@ -1874,18 +1874,13 @@ init();
 // todo: consider implementing backend to store favorites and other user's search data
 // todo: consider adding live 'sky' view or 'upload' view like gas buddy but for live weather views
 // todo: consider 'How Hot It Is... ' for indoor use of webcam to show the 'current capacity/clientele' of a place
-
 // todo: implement drop down menu or off canvas menu for accessing favorites
 // todo: allow re-query frequency to auto update from favorites and store in database
 // todo: show current forecast details or chart/graphs in popups
-
 // todo: check for duplicate calls to title, document.getElementById("title").innerText = title, etc...
-
 // todo: optimize calls for data... don't call if already have data, much more, but lower priority.
-
 // TODO: Trap for errors or not found cities ... {"cod":"404","message":"city not found"}
 // todo: lancaster PA, etc...
-
 // todo: consider the dataset and don't simply just show every 8, allow some type of use of all that data...
 
 // })();
