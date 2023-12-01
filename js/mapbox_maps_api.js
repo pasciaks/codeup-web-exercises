@@ -210,7 +210,7 @@ function popupExample() {
         .addTo(map);
 
     const taproomPopup = new mapboxgl.Popup()
-        .setHTML("<img class='img-fluid' src='images/taproom.png' alt='Daytona Beach Taproom'><p>Daytona Beach Taproom</p>");
+        .setHTML("<img class='img-fluid' src='images/taproom.png' alt='Daytona Beach Taproom'><p>Daytona Beach Taproom</p><a href='https://www.facebook.com/people/Daytona-Taproom/100044190082852/' target='_blank'>Daytona Beach Taproom</a>");
 
     tapRoomLocationMarker.setPopup(taproomPopup);
 
