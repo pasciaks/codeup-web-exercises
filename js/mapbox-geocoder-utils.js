@@ -34,6 +34,13 @@ const setCurrentPosition = /* async */ () => {
             console.log("Latitude is :", navPosObj.coords.latitude);
             console.log("Longitude is :", navPosObj.coords.longitude);
             map.flyTo({center: [navPosObj.coords.longitude, navPosObj.coords.latitude], zoom: 15});
+            setTimeout(function () {
+                document.getElementById("message").innerHTML = "You've Arrived!";
+                placeMarkerAndPopupUsingCoords([navPosObj.coords.longitude, navPosObj.coords.latitude], `<p>You've Arrived!</p><br><pre>${JSON.stringify({"your-location": [navPosObj.coords.longitude, navPosObj.coords.latitude]}, null, 2)}</pre>`, MAPBOX_TOKEN, map, true);
+            }, 1500);
+            setTimeout(function () {
+                document.getElementById("message").innerHTML = "";
+            }, 2500);
         } catch {
             console.log("Not able to obtain geo coords.");
         }
@@ -60,7 +67,7 @@ function geocode(search, token) {
 
     // The following lines are important utility considerations when building strings with parameters
     // This is deliberate documentation.
-    
+
     // let uriEncodedSearch = encodeURIComponent(search);
     // let uriDecodedSearch = decodeURIComponent(uriEncodedSearch);
 

@@ -115,7 +115,7 @@ geojson.features.forEach(function (marker, index) {
     });
 
     // add marker to map
-    var m = new mapboxgl.Marker(el, { offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2] });
+    var m = new mapboxgl.Marker(el, {offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]});
     m.setLngLat(marker.geometry.coordinates);
     m.addTo(map);
 
@@ -159,14 +159,14 @@ function geocodeExample() {
     geocode("Main Street, Daytona Beach, FL 32118", MAPBOX_TOKEN)
         .then(result => {
 
-            map.flyTo({ center: result, zoom: 5 })
+            map.flyTo({center: result, zoom: 5})
 
             // Redraw the map of the above location at zoom levels 5, 15, and 20.
             // Do this by simply changing the value of zoom level where the map properties are initially set and refresh the page to see the changes.
             // Can the zoom be changed programmatically after the initial map is drawn? Yes!
 
             setTimeout(function () {
-                map.flyTo({ center: result, zoom: 8 })
+                map.flyTo({center: result, zoom: 8})
             }, 5000);
 
         });
@@ -189,7 +189,7 @@ function markerExample() {
                 .setLngLat(result)
                 .addTo(map);
 
-            map.flyTo({ center: result, zoom: 15 })
+            map.flyTo({center: result, zoom: 15})
         });
 
 }
@@ -214,7 +214,7 @@ function popupExample() {
 
     tapRoomLocationMarker.setPopup(taproomPopup);
 
-    map.flyTo({ center: [-81.016247, 29.233942], zoom: 18 })
+    map.flyTo({center: [-81.016247, 29.233942], zoom: 18})
 
 }
 
@@ -266,7 +266,7 @@ function favoritesExample() {
     });
 
     setTimeout(function () {
-        map.flyTo({ center: [-81.016247, 29.233942], zoom: 11 });
+        map.flyTo({center: [-81.016247, 29.233942], zoom: 11});
     }, 100);
 
 }
@@ -276,7 +276,9 @@ document.getElementById("btn-favorites").addEventListener("click", function () {
 });
 
 function goHome() {
+    document.getElementById("message").innerHTML = "Standby...";
     setTimeout(function () {
+        document.getElementById("message").innerHTML = "On the way...";
         setCurrentPosition();
     }, 500);
 }
@@ -307,8 +309,10 @@ const mPopup = new mapboxgl.Popup()
 
 marker.setPopup(mPopup);
 
+let bounceSpeed = map.getZoom() / 2;
+
 let counter = 0;
-let dirY = .0005;
+let dirY = .0005 / bounceSpeed;
 let stopLimit = 20;
 let currentLimit = 0;
 let isRunning = false;
@@ -318,14 +322,17 @@ function animateMarker(timestamp) {
 
     if (!isRunning) {
         if (intervalTimer) {
-            cancelAnimationFrame(intervalTimer);;
+            cancelAnimationFrame(intervalTimer);
+            ;
         }
         return;
     }
 
     let data = marker.getLngLat();
 
-    if (!data) { return; }
+    if (!data) {
+        return;
+    }
 
     counter++;
 
@@ -336,11 +343,11 @@ function animateMarker(timestamp) {
     }
 
     if (counter > 0) {
-        dirY = .0005;
+        dirY = .0005 / bounceSpeed;
     }
 
     if (counter > 10) {
-        dirY = -.0005;
+        dirY = -.0005 / bounceSpeed;
     }
 
     if (counter > 30) {
@@ -375,7 +382,8 @@ document.getElementById("btn-toggle-bounce").addEventListener("click", function 
     isRunning = !isRunning;
     marker.setLngLat([-111.9462511, 40.6446734]);
     counter = 0;
-    dirY = .0005;
+    bounceSpeed = map.getZoom() / 2;
+    dirY = .0005 / bounceSpeed;
     currentLimit = 0;
     intervalTimer = requestAnimationFrame(animateMarker);
 });
