@@ -94,7 +94,7 @@
             // to get all the data from the request, comment out the following three lines...
             .then(data => {
                 let tempTitle = data?.features[0]?.place_name || "No results found";
-                setTitle(tempTitle);
+                setSubTitle(tempTitle);
                 return data.features[0].center;
             })
             .catch((error) => {
@@ -2108,11 +2108,13 @@
 
         findButton.addEventListener("click", (e) => {
             e.preventDefault();
+            setTitle("Searching for your city.");
             setSubTitle("");
             submitForm(e);
         });
 
         loadButton.addEventListener("click", async (e) => {
+            setTitle("Awaiting your load selection.");
             setSubTitle("");
             findInput.value = "";
 
@@ -2171,6 +2173,7 @@
 
         homeButton.addEventListener("click", (e) => {
             e.preventDefault();
+            setTitle("Searching for your current GPS Location.");
             setSubTitle("");
 
             findInput.value = "";
