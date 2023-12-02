@@ -8,6 +8,12 @@
     let findInput = null;
     let findForm = null;
 
+    let forecastAutoIntervalTimer = null;
+
+    let forecastRangeSlider = null;
+
+    let currentForecastIndex = 0;
+
     let forecastData = [];
 
     let dynamicallyAddedMapObjectsArray = [];
@@ -219,6 +225,10 @@
     }
 
     function forecastByCoords(lat, lon) {
+
+        forecastRangeSlider.value = 0; // start next results at first forecast
+        currentForecastIndex = 0;
+
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=imperial`)
             .then(res => res.json())
             .then(data => {
@@ -239,7 +249,8 @@
 
     function forecastByCity(city) {
 
-        // @todo - continue to troubleshoot city name, for spacing and special characters.
+        forecastRangeSlider.value = 0; // start next results at first forecast
+        currentForecastIndex = 0;
 
         city = city.trim();
 
@@ -264,7 +275,10 @@
     let forecastContainer = document.getElementById("forecast-container");
 
     async function getForecastFromCurrentGpsPosition() {
-        // setTitle("Your current GPS Location.")
+
+        forecastRangeSlider.value = 0; // start next results at first forecast
+        currentForecastIndex = 0;
+
         const getCoords = async () => {
             const pos = await new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -327,11 +341,25 @@
 
     function renderForecast(forecastData) {
 
+        if (forecastAutoIntervalTimer) {
+            clearInterval(forecastAutoIntervalTimer);
+        }
+
+        forecastAutoIntervalTimer = setInterval(function () {
+            currentForecastIndex += 1;
+            if (currentForecastIndex >= 8) {
+                currentForecastIndex = 0;
+            }
+            forecastRangeSlider.value = currentForecastIndex;
+            renderForecast(forecastData);
+        }, 5000);
+
+
         forecastContainer.innerHTML = "";
 
         console.log(forecastData);
 
-        if (!forecastData) {
+        if (!forecastData || !forecastData?.city || !forecastData?.list) {
             setTitle(`Could not find forecast data.`);
             setSubTitle(`Please try again.`);
             return;
@@ -353,7 +381,7 @@
 
         let cityOffsetTimeHours = forecastData.city.timezone;
 
-        for (let i = 0; i < forecastData.list.length; i += 8) {
+        for (let i = currentForecastIndex; i < forecastData.list.length; i += 8) {
 
             // for (let j = i; j < i + 8; j++) {
             //     console.log(forecastData.list[j].dt_txt);
@@ -596,6 +624,15 @@
         loadButton = document.getElementById('btn-load');
         findInput = document.getElementById("input-find");
 
+        forecastRangeSlider = document.getElementById("forecast-range");
+
+        forecastRangeSlider.addEventListener("change", (event) => {
+            event.preventDefault();
+            let value = event.target.value;
+            currentForecastIndex = Number(value) || 0;
+            renderForecast(forecastData);
+        })
+
         findForm.addEventListener("submit", (event) => {
             event.preventDefault();
             setSubTitle("");
@@ -714,9 +751,6 @@
 
 
         });
-
-        // NOTE: If enabled below, this will render the forecast default that is set in code above.
-        // renderForecast(forecastData);
 
     }
 
