@@ -1754,6 +1754,13 @@
     }
 
     function forecastByCity(city) {
+
+        alert("troubleshoot city search, for example los angeles, ca");
+        // (( @ // todo uri encode city )) - try los angeles
+
+        city = city.replace(" ", "+");
+        // city = encodeURIComponent(city);
+
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${WEATHER_API_KEY}&units=imperial`)
             .then(res => res.json())
             .then(data => {
@@ -2054,18 +2061,28 @@
 
         loadButton.addEventListener("click", async (e) => {
 
-            let savedForecastFiles = await getSavedForecasts("", "");
+            let data = await getSavedForecasts("", "");
 
-            let id = prompt("Which id ?", savedForecastFiles[savedForecastFiles.length - 1]);
+            let forecasts = data.data.forecasts;
 
-            let testData = await getSavedForecast(id);
+            console.log(forecasts);
 
-            console.log(testData);
+            let id = prompt("Which id ?", forecasts[forecasts.length - 1]);
 
-            let forecastData = testData.data;
+            id = id.replace(".json", "");
+
+            id = Math.floor(Number(id));
+
+            let loadedForecastResult = await getSavedForecast(id);
+
+            console.log(loadedForecastResult);
+
+            let forecastData = loadedForecastResult.data;
+
+            console.log(forecastData);
 
             renderForecast(forecastData);
-            
+
         });
 
         homeButton.addEventListener("click", (e) => {
