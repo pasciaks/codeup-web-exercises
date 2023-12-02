@@ -1786,7 +1786,10 @@
         reverseGeocode(coords, MAPBOX_TOKEN).then((data) => {
             setTitle(`${data}`);
         });
+
         forecastData = await getForecastFromSpecificGpsPosition(coords);
+
+        document.querySelector("#modalClose").click();
 
         postToUpload(forecastData);
 
@@ -1823,11 +1826,21 @@
         return forecastData;
     }
 
-    function renderForecast() {
+    function renderForecast(forecastData) {
 
         forecastContainer.innerHTML = "";
 
         for (let i = 0; i < forecastData.list.length; i += 8) {
+
+            for (let j = i; j < i + 8; j++) {
+                console.log(forecastData.list[j].dt_txt);
+            }
+
+            console.log('---');
+            console.log(forecastData.list[i].dt_txt);
+            console.log(forecastData.list[i].weather[0].description);
+            console.log('---');
+
             let forecastItem = forecastData.list[i];
             let forecastItemElement = document.createElement("div");
             forecastItemElement.classList.add("forecast-item");
@@ -1903,8 +1916,8 @@
 
             forecastContainer.appendChild(forecastItemElement);
 
-            document.querySelector("#modalClose").click();
         }
+
     }
 
     function getLiveForecastDataFromCurrentGpsLocation() {
@@ -2014,8 +2027,6 @@
 
             findInput.value = "";
 
-            getLiveForecastDataFromCurrentGpsLocation();
-
             let mHead = "Getting Home Weather";
 
             let mBody = `
@@ -2027,7 +2038,17 @@
             `;
 
             modal(mHead, mBody);
+
+            getLiveForecastDataFromCurrentGpsLocation();
+
+            setTimeout(function () {
+                document.querySelector("#modalClose").click();
+            }, 9000);
+
+
         });
+
+        renderForecast(forecastData);
 
     }
 
