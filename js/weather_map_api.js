@@ -30,7 +30,7 @@ map.on('style.load', function () {
             MAPBOX_TOKEN,
             map,
             true);
-        favorites.push({address, lngLat});
+        favorites.push({ address, lngLat });
         console.log(favorites);
         map.flyTo({
             center: lngLat,
@@ -1820,7 +1820,7 @@ function modal(mhead, mbody) {
     document.querySelector("#modalClose").addEventListener("click", () => {
         document.querySelector("#modal").classList.remove("show");
         document.querySelector('#modal').removeAttribute("style");
-    }, {once: true});
+    }, { once: true });
 }
 
 function setTitle(title) {
@@ -1865,6 +1865,36 @@ function init() {
 }
 
 init();
+
+function postToUpload(forecastData) {
+    let data = new FormData();
+    let file = new Blob([JSON.stringify(forecastData)], { type: "application/json" });
+    data.append('file1', file);
+    fetch('https://pasciak.com:8181/upload', {
+        method: 'POST',
+        body: data
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            let html = `<a target='_blank' href='https://pasciak.com/weather_buddy/uploads/${data.file_uploaded}.json'>*</a>`;
+            document.getElementById("uploaded").innerHTML = html;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
+setTimeout(() => {
+    let confirmUpload = window.confirm("Would you like to upload this forecast data to the server?");
+    if (confirmUpload) {
+        postToUpload(forecastData);
+    }
+}, 1000);
+
+// document.querySelector("#btn-upload").addEventListener("click", () => {
+//     postToUpload();
+// });
 
 // todo: better formatting of weather data
 // todo: show wind direction and speed on map
