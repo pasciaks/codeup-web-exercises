@@ -67,6 +67,10 @@ async function getSavedForecasts(user = "", password = "") {
         })
             .then((res) => res.json())
             .then((data) => {
+                data.reduce((acc, cur) => {
+                    acc.push(cur.replace(".json", ""));
+                    return acc;
+                }, [])
                 return {data: data, error: null};
             })
             .catch((error) => {
@@ -99,4 +103,10 @@ async function getSavedForecast(id) {
         return {data: null, error};
     }
 }
+
+//  saveForecastData(data).then();
+
+//  await getSavedForecast(id);
+
+//  await getSavedForecasts("", "");
 
