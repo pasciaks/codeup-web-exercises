@@ -77,3 +77,26 @@ async function getSavedForecasts(user = "", password = "") {
     }
 }
 
+async function getSavedForecast(id) {
+    try {
+        return await fetch(`https://pasciak.com:8181/id?id=${id}`, {
+            method: 'GET',
+            // headers: {"Authorization": `Basic ${user}:${password}`}
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+                return {data, error: null};
+            })
+            .catch((error) => {
+                console.log(error);
+                return {data: null, error};
+            });
+    } catch (error) {
+        console.log(error);
+        return {data: null, error};
+    }
+}
+

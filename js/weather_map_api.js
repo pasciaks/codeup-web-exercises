@@ -4,6 +4,7 @@
 
     let findButton = null;
     let homeButton = null;
+    let loadButton = null;
     let findInput = null;
     let findForm = null;
 
@@ -1789,57 +1790,9 @@
 
         forecastData = await getForecastFromSpecificGpsPosition(coords);
 
+        saveForecastData(forecastData).then();
+
         document.querySelector("#modalClose").click();
-
-        async function getSavedForecast(id) {
-            try {
-                return await fetch(`https://pasciak.com:8181/id?id=${id}`, {
-                    method: 'GET',
-                    // headers: {"Authorization": `Basic ${user}:${password}`}
-                })
-                    .then((res) => {
-                        return res.json();
-                    })
-                    .then((data) => {
-                        console.log(data);
-                        return {data, error: null};
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                        return {data: null, error};
-                    });
-            } catch (error) {
-                console.log(error);
-                return {data: null, error};
-            }
-        }
-
-        if (confirm("Save this forecast?")) {
-            // Implementation of backend for saving a forecast JSON file
-            let saveForecastResult = await saveForecast(forecastData, "", "");
-            if (saveForecastResult.data.statusCode === 201) {
-
-
-                let testData = await getSavedForecast(saveForecastResult.data.file_uploaded);
-
-                console.log(testData);
-                alert(JSON.stringify(testData, null, 2));
-
-                let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${saveForecastResult.data.file_uploaded}.json`;
-                document.getElementById("uploaded").innerHTML = `<a target='_blank' href='${savedForecastFileLink}'>*</a>`;
-            }
-        }
-
-        // Implementation of backend for getting a list of saved forecast JSON files
-        let getSavedForecastsResult = await getSavedForecasts("", "");
-        if (getSavedForecastsResult.data.statusCode === 200) {
-            let savedForecastFiles = getSavedForecastsResult.data.forecasts;
-            let savedForecastFilesHtml = "";
-            for (let i = 0; i < savedForecastFiles.length; i++) {
-                savedForecastFilesHtml += `<li class="list-inline-item"><a target='_blank' href='https://pasciak.com/weather_buddy/uploads/${savedForecastFiles[i]}'>${savedForecastFiles[i]}</a></li>`;
-            }
-            document.getElementById("saved-forecasts").innerHTML = savedForecastFilesHtml;
-        }
 
         return forecastData;
     }
@@ -1879,8 +1832,11 @@
         forecastContainer.innerHTML = "";
 
         console.log(forecastData);
+        
+        setTitle(`${forecastData.city.name}`);
 
         for (let i = 0; i < forecastData.list.length; i += 8) {
+
 
             // for (let j = i; j < i + 8; j++) {
             //     console.log(forecastData.list[j].dt_txt);
@@ -1987,6 +1943,7 @@
         getForecastFromSpecificGpsPosition(coords)
             .then((data) => {
                 renderForecast(data);
+                saveForecastData(data).then();
             })
             .catch((error) => {
                 console.error(error);
@@ -2000,10 +1957,28 @@
         getForecastFromCity(city)
             .then((data) => {
                 renderForecast(data);
+                saveForecastData(data).then();
             })
             .catch((error) => {
                 console.error(error);
             });
+    }
+
+    async function saveForecastData(forecastData) {
+        if (confirm("Save this forecast?")) {
+            // Implementation of backend for saving a forecast JSON file
+            let saveForecastResult = await saveForecast(forecastData, "", "");
+            if (saveForecastResult.data.statusCode === 201) {
+
+                alert(JSON.stringify(saveForecastResult.data, null, 2));
+
+                let testData = await getSavedForecast(saveForecastResult.data.file_uploaded);
+                console.log(testData);
+
+                let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${saveForecastResult.data.file_uploaded}.json`;
+                document.getElementById("uploaded").innerHTML = `<a target='_blank' href='${savedForecastFileLink}'>*</a>`;
+            }
+        }
     }
 
     function submitForm(event) {
@@ -2062,6 +2037,7 @@
         findForm = document.getElementById("form-find");
         findButton = document.getElementById("btn-find");
         homeButton = document.getElementById("btn-home");
+        loadButton = document.getElementById('btn-load');
         findInput = document.getElementById("input-find");
 
         findForm.addEventListener("submit", (e) => {
@@ -2071,6 +2047,31 @@
 
         findButton.addEventListener("click", (e) => {
             submitForm(e);
+        });
+
+        loadButton.addEventListener("click", async (e) => {
+
+            // Implementation of backend for getting a list of saved forecast JSON files
+
+            let savedForecastFiles = [];
+
+            let getSavedForecastsResult = await getSavedForecasts("", "");
+
+            if (getSavedForecastsResult.data.statusCode === 200) {
+                savedForecastFiles = getSavedForecastsResult.data.forecasts;
+                let savedForecastFilesHtml = "";
+                for (let i = 0; i < savedForecastFiles.length; i++) {
+                    savedForecastFilesHtml += `<li class="list-inline-item"><a target='_blank' href='https://pasciak.com/weather_buddy/uploads/${savedForecastFiles[i]}'>${savedForecastFiles[i].replace(".json", "")}</a></li>`;
+                }
+                document.getElementById("saved-forecasts").innerHTML = savedForecastFilesHtml;
+            }
+
+            let file_uploaded = prompt("Which id ?", savedForecastFiles[savedForecastFiles.length - 1].replace(".json", ""));
+            let testData = await getSavedForecast(file_uploaded);
+            console.log(testData);
+            alert(JSON.stringify(testData, null, 2));
+            let forecastData = testData.data;
+            renderForecast(forecastData);
         });
 
         homeButton.addEventListener("click", (e) => {
