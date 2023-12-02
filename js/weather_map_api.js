@@ -93,12 +93,17 @@
             .then(res => res.json())
             // to get all the data from the request, comment out the following three lines...
             .then(data => {
+                if (!data || !data.features || !data.features[0].center) {
+                    console.error("No coordinates found for address");
+                    setSubTitle("No coordinates found for address");
+                    return;
+                }
                 let tempTitle = data?.features[0]?.place_name || "No results found";
                 setSubTitle(tempTitle);
                 return data.features[0].center;
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 // alert(error.message);
                 let mHead = "ERROR"
                 let mBody = `${JSON.stringify(error, null, 2)}`;
@@ -142,6 +147,11 @@
         let id = Date.now() + Math.floor(Math.random() * 99999);
         geocode(address, token)
             .then(coords => {
+                if (!coords.lng || !coords.lat) {
+                    // console.error("No coordinates found for address");
+                    setSubTitle("No coordinates found for address");
+                    return;
+                }
                 let popup = new mapboxgl.Popup()
                     .setHTML(popupHTML);
                 let marker = new mapboxgl.Marker({
@@ -1744,6 +1754,9 @@
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=imperial`)
             .then(res => res.json())
             .then(data => {
+                if (data?.cod !== "200") {
+                    throw new Error("City not found.");
+                }
                 return data;
             })
             .catch((error) => {
@@ -1758,19 +1771,30 @@
 
     function forecastByCity(city) {
 
-        // alert("@todo - troubleshooting - city search, for example los angeles, ca");
+        // @todo - continue to troubleshoot city name, for spacing and special characters.
 
-        city = city.replace(" ", "+");
+        // west valley city
 
-        city = encodeURIComponent(city);
+        // los angeles, ca
+
+        city = city.trim();
+
+        // city = 'Whitefish, TX, US';
+
+        // city = city.replace(/[^a-zA-Z ]/g, "");
+
+        setTitle(`${city}`);
 
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${WEATHER_API_KEY}&units=imperial`)
             .then(res => res.json())
             .then(data => {
+                if (data?.cod !== "200") {
+                    throw new Error("City not found.");
+                }
                 return data;
             })
             .catch((error) => {
-                console.error(error);
+                // console.error(error);
                 // alert(error.message);
                 let mHead = "ERROR"
                 let mBody = `${JSON.stringify(error, null, 2)}`;
@@ -1809,7 +1833,7 @@
     }
 
     async function getForecastFromCity(city) {
-        setTitle(`${city}`);
+
         forecastData = await forecastByCity(city)
             .then((data) => {
                 return data;
@@ -1850,9 +1874,14 @@
 
         console.log(forecastData);
 
-        setTitle(`${forecastData?.city?.name || ""}, ${forecastData?.city?.country || ""}`);
+        if (!forecastData) {
+            setTitle(`Could not find forecast data.`);
+            setSubTitle(`Please try again.`);
+        }
 
-        findInput.value = `${forecastData?.city?.name || ""}, ${forecastData?.city?.country || ""}`;
+        setTitle(`${forecastData?.city?.name || ""} ${forecastData?.city?.country || ""}`);
+
+        findInput.value = `${forecastData?.city?.name || ""} ${forecastData?.city?.country || ""}`;
 
         for (let i = 0; i < forecastData.list.length; i += 8) {
 
@@ -1992,6 +2021,11 @@
 
         getForecastFromCity(city)
             .then((data) => {
+                if (!data) {
+                    setTitle(`Could not find forecast data.`);
+                    setSubTitle(`Please try again.`);
+                    return;
+                }
                 renderForecast(data);
                 saveForecastData(data).then();
             })
@@ -2042,6 +2076,26 @@
             return;
         }
 
+        /// @todo - todo --- don't start with marker, start with map forecast data, it has gps coords
+        /// @todo - todo --- don't start with marker, start with map forecast data, it has gps coords
+        /// @todo - todo --- don't start with marker, start with map forecast data, it has gps coords
+
+        /*
+
+                    city
+            :
+            coord
+            :
+            {lat: 48.4108, lon: -114.3346}
+            country
+            :
+            "US"
+            id
+            :
+            5686121
+
+         */
+
         placeMarkerAndPopupUsingAddress(
             city,
             `<div>${city}</div>`,
@@ -2051,10 +2105,14 @@
 
         geocode(city, MAPBOX_TOKEN)
             .then((lngLat) => {
-                map.flyTo({
-                    center: lngLat,
-                    zoom: 10
-                });
+                try {
+                    map.flyTo({
+                        center: lngLat,
+                        zoom: 10
+                    });
+                } catch {
+                    console.log("Error flying to location", lngLat);
+                }
             })
             .then(() => {
                 getLiveForecastFromCity(city);
@@ -2144,7 +2202,7 @@
                 return;
             }
 
-            let form = document.createElement("form");
+            let form = document.createElement("div");
             form.id = "modal-form";
 
             let select = document.createElement("select");
@@ -2187,10 +2245,10 @@
                 closeModal();
 
                 setTimeout(function () {
-                    setSubTitle("Your forecast has been loaded. Note: After a few seconds, the map will navigate again and then update that forecast.");
+                    setSubTitle("Your forecast has been loaded.");
 
                 }, 1500);
-                
+
                 setTimeout(function () {
                     navigateMapUpdateForecastAfterLoad();
                 }, 5000);
