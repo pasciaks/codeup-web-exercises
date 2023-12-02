@@ -1850,7 +1850,9 @@
 
         console.log(forecastData);
 
-        setTitle(`${forecastData.city.name}`);
+        setTitle(`${forecastData?.city?.name || ""}, ${forecastData?.city?.country || ""}`);
+
+        findInput.value = `${forecastData.city.name}`;
 
         for (let i = 0; i < forecastData.list.length; i += 8) {
 
@@ -2012,8 +2014,9 @@
                 document.getElementById("uploaded").innerHTML = `<a target='_blank' href='${savedForecastFileLink}'>*</a>`;
             }
 
-        } catch {
+        } catch (error) {
 
+            console.log(error);
             console.log("Error saving forecast data");
 
         }
