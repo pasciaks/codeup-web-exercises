@@ -1755,11 +1755,11 @@
 
     function forecastByCity(city) {
 
-        alert("troubleshoot city search, for example los angeles, ca");
-        // (( @ // todo uri encode city )) - try los angeles
+        alert("@todo - troubleshooting - city search, for example los angeles, ca");
 
         city = city.replace(" ", "+");
-        // city = encodeURIComponent(city);
+
+        city = encodeURIComponent(city);
 
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${WEATHER_API_KEY}&units=imperial`)
             .then(res => res.json())
