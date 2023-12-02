@@ -2102,6 +2102,10 @@
         document.getElementById("sub-title").innerText = title;
     }
 
+    function navigateMapUpdateForecastAfterLoad() {
+        findButton.click();
+    }
+
     function init() {
 
         findForm = document.getElementById("form-find");
@@ -2177,8 +2181,20 @@
 
                 let loadedForecastResult = await getSavedForecast(selected);
                 forecastData = loadedForecastResult.data;
+
                 renderForecast(forecastData);
+
                 closeModal();
+
+                setTimeout(function () {
+                    setSubTitle("Your forecast has been loaded. Note: After a few seconds, the map will navigate again and then update that forecast.");
+
+                }, 1500);
+                
+                setTimeout(function () {
+                    navigateMapUpdateForecastAfterLoad();
+                }, 5000);
+
             });
 
             form.append(select);
