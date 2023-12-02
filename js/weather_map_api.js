@@ -396,7 +396,8 @@
             let forecastItemElement = document.createElement("div");
             forecastItemElement.classList.add("forecast-item");
             forecastItemElement.classList.add("card");
-            forecastItemElement.title = forecastItem.weather[0].description + "\n\nTemperature:" + forecastItem.main.temp + "°F" + "\n\nFeels Like:" + forecastItem.main['feels_like'] + "°F";
+
+            // forecastItemElement.title = forecastItem.weather[0].description + "\n\nTemperature:" + forecastItem.main.temp + "°F" + "\n\nFeels Like:" + forecastItem.main['feels_like'] + "°F";
 
             let forecastItemImg = document.createElement("img");
             forecastItemImg.classList.add("img-responsive");
@@ -648,7 +649,9 @@
 
         loadButton.addEventListener("click", async (event) => {
             event.preventDefault();
+
             setTitle("Awaiting your load selection.");
+
             setSubTitle("");
             findInput.value = "";
 
@@ -689,6 +692,9 @@
             select.addEventListener("change", async (event) => {
                 event.preventDefault();
                 let selected = event.target.value;
+
+                forecastRangeSlider.value = 0; // start next results at first forecast
+                currentForecastIndex = 0;
 
                 try {
                     if (selected) {
