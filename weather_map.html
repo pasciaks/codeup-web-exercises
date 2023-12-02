@@ -1,208 +1,164 @@
 <!DOCTYPE html>
 <html id="top" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
     <title>Weather Buddy</title>
 
     <link
-      crossorigin="anonymous"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      rel="stylesheet"
-    />
+            crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            rel="stylesheet"/>
 
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css"
-      rel="stylesheet"
-    />
+            href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css"
+            rel="stylesheet"/>
 
-    <link href="css/weather_map_api.css" rel="stylesheet" />
+    <link href="css/weather_map_api.css" rel="stylesheet"/>
 
     <script src="js/keys.js"></script>
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js"></script>
-  </head>
+</head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
         <a class="navbar-brand" href="#">Weather Buddy</a>
         <button
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          class="navbar-toggler"
-          data-bs-target="#navbarSupportedContent"
-          data-bs-toggle="collapse"
-          type="button"
-        >
-          <span class="navbar-toggler-icon"></span>
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent"
+                data-bs-toggle="collapse"
+                type="button">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a aria-current="page" class="nav-link active" href="#about"
-                >About</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="https://openweathermap.org/"
-                target="_blank"
-                >Open Weather Maps Reference</a
-              >
-            </li>
-            <li>
-              <div class="display-inline pull-right" id="uploaded"></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <header>
-      <h1 class="text-center align-baseline">Weather Buddy</h1>
-      <form id="form-find">
-        <div class="input-group align-baseline">
-          <input
-            aria-describedby="btn-find"
-            aria-label="Find"
-            class="form-control"
-            id="input-find"
-            placeholder="Find city..."
-            type="text"
-          />
-          <button class="btn btn-primary me-1" id="btn-find" type="submit">
-            Find
-          </button>
-          <button class="btn btn-primary ms-2" id="btn-home" type="button">
-            Home
-          </button>
-        </div>
-      </form>
-    </header>
-
-    <h3 class="text-center" id="title">Weather Buddy</h3>
-
-    <main>
-      <div
-        class="forecast-container flex flex-md-wrap"
-        id="forecast-container"
-      ></div>
-    </main>
-
-    <div class="container pb-3">
-      <a class="btn btn-primary px-1 mx-1" href="#top" type="button"
-        >Home / Top Of Page</a
-      >
-    </div>
-
-    <div id="map"></div>
-
-    <div id="about">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <h1>About</h1>
-            <hr />
-            <p>
-              This is a simple weather app that uses the Open Weather Map API to
-              display the current weather conditions for a given city. The app
-              also displays a 5-day forecast for the city.
-            </p>
-            <p>
-              The app uses the Mapbox API to display a map of the city. The map
-              is interactive and can be zoomed in and out and panned.
-            </p>
-            <p>The app uses Bootstrap for styling and layout.</p>
-            <p>
-              The app uses JavaScript to make AJAX calls to the Open Weather Map
-              API and the Mapbox API.
-            </p>
-            <p>The app uses the following JavaScript libraries:</p>
-            <ul>
-              <li>Mapbox</li>
-              <li>Open Weather MAP API</li>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://openweathermap.org/" target="_blank">Open Weather Maps
+                        Reference</a>
+                </li>
+                <li>
+                    <div class="display-inline pull-right" id="uploaded"></div>
+                </li>
             </ul>
-
-            <p>
-              Search with the text form by typing in a City, State, Country.
-            </p>
-
-            <p>
-              Click the home button to navigate and get forecast for your
-              current GPS location.
-            </p>
-
-            <p>Double click on map to get a draggable, weather search icon.</p>
-
-            <div class="container pb-3">
-              <a class="btn btn-primary px-1 mx-1" href="#top" type="button"
-                >Home / Top Of Page</a
-              >
-            </div>
-          </div>
         </div>
-      </div>
     </div>
+</nav>
 
-    <footer>
-      <p class="text-center">&copy; 2023 by Sheldon Pasciak, Imugi Solutions</p>
-    </footer>
+<header>
+    <h1 class="text-center align-baseline">Weather Buddy</h1>
+    <form id="form-find">
+        <div class="input-group align-baseline">
+            <input
+                    aria-describedby="btn-find"
+                    aria-label="Find"
+                    class="form-control"
+                    id="input-find"
+                    placeholder="Find city..."
+                    type="text"/>
+            <button class="btn btn-primary me-1" id="btn-find" type="submit">
+                Find
+            </button>
+            <button class="btn btn-primary ms-2" id="btn-home" type="button">
+                Home
+            </button>
+        </div>
+    </form>
+</header>
 
-    <script
-      crossorigin="anonymous"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    ></script>
+<h3 class="text-center" id="title">Weather Buddy</h3>
 
-    <script defer src="js/weather_map_api_utils.js"></script>
+<main>
+    <div class="forecast-container flex flex-md-wrap" id="forecast-container">
 
-    <script defer src="js/weather_map_api.js"></script>
+    </div>
+</main>
 
-    <!-- <div class="container m-3 p-3">
-      <form>
+<div id="map"></div>
+
+<section id="about">
+    <div class="container">
         <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <input class="form-control" type="file" id="files" />
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <button class="form-control" type="button" id="btn-upload">
-                Upload
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div> -->
+            <div class="col-12">
+                <h1>About</h1>
+                <hr/>
+                <p>
+                    This is a simple weather app that uses the Open Weather Map API to
+                    display the current weather conditions for a given city. The app
+                    also displays a 5-day forecast for the city.
+                </p>
+                <p>
+                    The app uses the Mapbox API to display a map of the city. The map
+                    is interactive and can be zoomed in and out and panned.
+                </p>
+                <p>The app uses Bootstrap for styling and layout.</p>
+                <p>
+                    The app uses JavaScript to make AJAX calls to the Open Weather Map
+                    API and the Mapbox API.
+                </p>
+                <p>The app uses the following JavaScript libraries:</p>
+                <ul>
+                    <li>Mapbox</li>
+                    <li>Open Weather MAP API</li>
+                </ul>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modal" tabindex="-1">
-      <div class="modal-dialog bg-danger">
-        <div class="modal-content modal-color">
-          <div class="modal-header">
-            <h1 class="modal-title" id="modalHead"></h1>
-          </div>
-          <div class="modal-body-container">
-            <div class="modal-body" id="modalBody"></div>
-          </div>
-          <br />
-          <button
-            class="btn btn-outline-warning fs-4"
-            data-bs-dismiss="modal"
-            id="modalClose"
-            type="button"
-          >
-            Close
-          </button>
+                <p>
+                    Search with the text form by typing in a City, State, Country.
+                </p>
+
+                <p>
+                    Click the home button to navigate and get forecast for your
+                    current GPS location.
+                </p>
+
+                <p>Double click on map to get a draggable, weather search icon.</p>
+
+                <div class="container pb-3">
+                    <a class="btn btn-primary px-1 mx-1" href="#top" type="button">Home / Top Of Page</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </body>
+</section>
+
+<footer>
+    <p class="text-center">&copy; 2023 by Sheldon Pasciak, Imugi Solutions</p>
+</footer>
+
+<script crossorigin="anonymous" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script defer src="js/weather_map_api.js"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog bg-danger">
+        <div class="modal-content modal-color">
+            <div class="modal-header">
+                <h1 class="modal-title" id="modalHead"></h1>
+            </div>
+            <div class="modal-body-container">
+                <div class="modal-body" id="modalBody"></div>
+            </div>
+            <br/>
+            <button
+                    class="btn btn-outline-warning fs-4"
+                    data-bs-dismiss="modal"
+                    id="modalClose"
+                    type="button">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+</body>
 </html>
