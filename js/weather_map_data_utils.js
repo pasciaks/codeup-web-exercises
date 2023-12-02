@@ -78,8 +78,7 @@ async function getSavedForecasts(user = "", password = "") {
     }
 }
 
-async function getSavedForecast(id) {
-    id = id.replace(".json", "");
+async function getSavedForecast(id = "") {
     try {
         return await fetch(`https://pasciak.com:8181/id?id=${id}`, {
             method: 'GET',

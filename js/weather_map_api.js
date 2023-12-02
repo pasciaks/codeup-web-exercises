@@ -1852,7 +1852,7 @@
 
         setTitle(`${forecastData?.city?.name || ""}, ${forecastData?.city?.country || ""}`);
 
-        findInput.value = `${forecastData.city.name}`;
+        findInput.value = `${forecastData?.city?.name || ""}, ${forecastData?.city?.country || ""}`;
 
         for (let i = 0; i < forecastData.list.length; i += 8) {
 
@@ -2007,8 +2007,14 @@
             // Implementation of backend for saving a forecast JSON file
             let saveForecastResult = await saveForecast(forecastData, "", "");
 
+            console.log(saveForecastResult);
+
+            let id = saveForecastResult.data.id;
+
+            console.log(id);
+
             if (saveForecastResult.data.statusCode === 201) {
-                let testData = await getSavedForecast(saveForecastResult.data.file_uploaded);
+                let testData = await getSavedForecast(id);
                 console.log(testData);
                 let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${saveForecastResult.data.file_uploaded}.json`;
                 document.getElementById("uploaded").innerHTML = `<a target='_blank' href='${savedForecastFileLink}'>*</a>`;
@@ -2080,7 +2086,8 @@
 
         document.querySelector("#modal").style.display = "block";
 
-        document.querySelector("#modalClose").addEventListener("click", () => {
+        document.querySelector("#modalClose").addEventListener("click", (event) => {
+            event.preventDefault();
             document.querySelector("#modal").classList.remove("show");
             document.querySelector('#modal').removeAttribute("style");
         }, {once: true});
@@ -2103,20 +2110,21 @@
         loadButton = document.getElementById('btn-load');
         findInput = document.getElementById("input-find");
 
-        findForm.addEventListener("submit", (e) => {
-            e.preventDefault();
+        findForm.addEventListener("submit", (event) => {
+            event.preventDefault();
             setSubTitle("");
-            submitForm(e);
+            submitForm(event);
         });
 
-        findButton.addEventListener("click", (e) => {
-            e.preventDefault();
+        findButton.addEventListener("click", (event) => {
+            event.preventDefault();
             setTitle("Searching for your city.");
             setSubTitle("");
-            submitForm(e);
+            submitForm(event);
         });
 
-        loadButton.addEventListener("click", async (e) => {
+        loadButton.addEventListener("click", async (event) => {
+            event.preventDefault();
             setTitle("Awaiting your load selection.");
             setSubTitle("");
             findInput.value = "";
@@ -2155,8 +2163,18 @@
                 select.appendChild(option);
             });
 
-            select.addEventListener("change", async (e) => {
-                let selected = e.target.value;
+            select.addEventListener("change", async (event) => {
+                event.preventDefault();
+                let selected = event.target.value;
+
+                try {
+                    if (selected) {
+                        selected = selected.replace(".json", "");
+                    }
+                } catch {
+                    console.log("Error loading selected forecast", selected);
+                }
+
                 let loadedForecastResult = await getSavedForecast(selected);
                 forecastData = loadedForecastResult.data;
                 renderForecast(forecastData);
@@ -2174,8 +2192,8 @@
 
         });
 
-        homeButton.addEventListener("click", (e) => {
-            e.preventDefault();
+        homeButton.addEventListener("click", (event) => {
+            event.preventDefault();
             setTitle("Searching for your current GPS Location.");
             setSubTitle("");
 
