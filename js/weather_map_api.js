@@ -1741,9 +1741,6 @@
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=imperial`)
             .then(res => res.json())
             .then(data => {
-                if (!data.city.name) {
-                    alert("Probably could not get weather data for that location.");
-                }
                 return data;
             })
             .catch((error) => {
@@ -1760,14 +1757,10 @@
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${WEATHER_API_KEY}&units=imperial`)
             .then(res => res.json())
             .then(data => {
-                if (!data.city.name) {
-                    alert("Probably could not get weather data for that location.");
-                }
                 return data;
             })
             .catch((error) => {
                 console.error(error);
-                // @todo - show modal error
                 let mHead = "ERROR"
                 let mBody = `${JSON.stringify(error, null, 2)}`;
                 modal(mHead, mBody);
@@ -1976,7 +1969,6 @@
             let saveForecastResult = await saveForecast(forecastData, "", "");
             if (saveForecastResult.data.statusCode === 201) {
 
-                alert(JSON.stringify(saveForecastResult.data, null, 2));
 
                 let testData = await getSavedForecast(saveForecastResult.data.file_uploaded);
                 console.log(testData);
@@ -2075,7 +2067,7 @@
             let file_uploaded = prompt("Which id ?", savedForecastFiles[savedForecastFiles.length - 1].replace(".json", ""));
             let testData = await getSavedForecast(file_uploaded);
             console.log(testData);
-            alert(JSON.stringify(testData, null, 2));
+
             let forecastData = testData.data;
             renderForecast(forecastData);
         });
