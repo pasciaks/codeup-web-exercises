@@ -1791,7 +1791,55 @@
 
         document.querySelector("#modalClose").click();
 
-        postToUpload(forecastData);
+        async function getSavedForecast(id) {
+            try {
+                return await fetch(`https://pasciak.com:8181/id?id=${id}`, {
+                    method: 'GET',
+                    // headers: {"Authorization": `Basic ${user}:${password}`}
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                        return {data, error: null};
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        return {data: null, error};
+                    });
+            } catch (error) {
+                console.log(error);
+                return {data: null, error};
+            }
+        }
+
+        if (confirm("Save this forecast?")) {
+            // Implementation of backend for saving a forecast JSON file
+            let saveForecastResult = await saveForecast(forecastData, "", "");
+            if (saveForecastResult.data.statusCode === 201) {
+
+
+                let testData = await getSavedForecast(saveForecastResult.data.file_uploaded);
+
+                console.log(testData);
+                alert(JSON.stringify(testData, null, 2));
+
+                let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${saveForecastResult.data.file_uploaded}.json`;
+                document.getElementById("uploaded").innerHTML = `<a target='_blank' href='${savedForecastFileLink}'>*</a>`;
+            }
+        }
+
+        // Implementation of backend for getting a list of saved forecast JSON files
+        let getSavedForecastsResult = await getSavedForecasts("", "");
+        if (getSavedForecastsResult.data.statusCode === 200) {
+            let savedForecastFiles = getSavedForecastsResult.data.forecasts;
+            let savedForecastFilesHtml = "";
+            for (let i = 0; i < savedForecastFiles.length; i++) {
+                savedForecastFilesHtml += `<li class="list-inline-item"><a target='_blank' href='https://pasciak.com/weather_buddy/uploads/${savedForecastFiles[i]}'>${savedForecastFiles[i]}</a></li>`;
+            }
+            document.getElementById("saved-forecasts").innerHTML = savedForecastFilesHtml;
+        }
 
         return forecastData;
     }
@@ -1830,16 +1878,18 @@
 
         forecastContainer.innerHTML = "";
 
+        console.log(forecastData);
+
         for (let i = 0; i < forecastData.list.length; i += 8) {
 
-            for (let j = i; j < i + 8; j++) {
-                console.log(forecastData.list[j].dt_txt);
-            }
+            // for (let j = i; j < i + 8; j++) {
+            //     console.log(forecastData.list[j].dt_txt);
+            // }
 
-            console.log('---');
-            console.log(forecastData.list[i].dt_txt);
-            console.log(forecastData.list[i].weather[0].description);
-            console.log('---');
+            // console.log('---');
+            // console.log(forecastData.list[i].dt_txt);
+            // console.log(forecastData.list[i].weather[0].description);
+            // console.log('---');
 
             let forecastItem = forecastData.list[i];
             let forecastItemElement = document.createElement("div");
@@ -1923,7 +1973,7 @@
     function getLiveForecastDataFromCurrentGpsLocation() {
         getForecastFromCurrentGpsPosition()
             .then((data) => {
-                renderForecast();
+                renderForecast(data);
             })
             .catch((error) => {
                 console.error(error);
@@ -1936,7 +1986,7 @@
 
         getForecastFromSpecificGpsPosition(coords)
             .then((data) => {
-                renderForecast();
+                renderForecast(data);
             })
             .catch((error) => {
                 console.error(error);
@@ -1949,7 +1999,7 @@
 
         getForecastFromCity(city)
             .then((data) => {
-                renderForecast();
+                renderForecast(data);
             })
             .catch((error) => {
                 console.error(error);
@@ -2048,29 +2098,12 @@
 
         });
 
-        renderForecast(forecastData);
+        // NOTE: If enabled below, this will render the forecast default that is set in code above.
+        // renderForecast(forecastData);
 
     }
 
     init();
-
-    function postToUpload(forecastData) {
-        let data = new FormData();
-        let file = new Blob([JSON.stringify(forecastData)], {type: "application/json"});
-        data.append('file1', file);
-        fetch('https://pasciak.com:8181/upload', {
-            method: 'POST',
-            body: data
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                document.getElementById("uploaded").innerHTML = `<a target='_blank' href='https://pasciak.com/weather_buddy/uploads/${data.file_uploaded}.json'>*</a>`;
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
 
 // todo: better formatting of weather data
 // todo: show wind direction and speed on map
