@@ -1741,6 +1741,9 @@
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=imperial`)
             .then(res => res.json())
             .then(data => {
+                if (!data.city.name) {
+                    alert("Probably could not get weather data for that location.");
+                }
                 return data;
             })
             .catch((error) => {
@@ -1757,6 +1760,9 @@
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${WEATHER_API_KEY}&units=imperial`)
             .then(res => res.json())
             .then(data => {
+                if (!data.city.name) {
+                    alert("Probably could not get weather data for that location.");
+                }
                 return data;
             })
             .catch((error) => {
@@ -1832,7 +1838,7 @@
         forecastContainer.innerHTML = "";
 
         console.log(forecastData);
-        
+
         setTitle(`${forecastData.city.name}`);
 
         for (let i = 0; i < forecastData.list.length; i += 8) {
