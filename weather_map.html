@@ -55,7 +55,10 @@
 </nav>
 
 <header>
-    <h1 class="text-center align-baseline">Weather Buddy</h1>
+    <div>
+        <h3 class="text-center" id="title">Weather Buddy</h3>
+        <p id="sub-title">Test</p>
+    </div>
     <form id="form-find">
         <div class="input-group align-baseline">
             <input
@@ -78,11 +81,8 @@
     </form>
 </header>
 
-<h3 class="text-center" id="title">Weather Buddy</h3>
-
 <main>
     <div class="forecast-container flex flex-md-wrap" id="forecast-container">
-
     </div>
 </main>
 
@@ -133,6 +133,40 @@
     </div>
 </section>
 
+<section id="info">
+    <div class="container">
+        <h3>High Pressure</h3>
+        <p>
+            A barometric reading over 30.20 inHg is generally considered high, and high pressure is associated with
+            clear
+            skies and calm weather.</p>
+
+        <h3>Low Pressure</h3>
+        <p>
+            A barometric reading below 29.80 inHg is generally considered low, and low pressure is associated with warm
+            air
+            and rainstorms.</p>
+        <h3>Normal Pressure</h3>
+        <p>
+            A barometric reading in the range of 29.80 and 30.20 inHg can be considered normal, and normal pressure is
+            associated with steady weather.</p>
+        <hr>
+        <p>Pressure systems are caused by the movement of air around the globe; they are the wind, and the wind is
+            caused
+            by differences in temperature in the atmosphere. Differences in temperature are caused by the sun; the sun
+            is
+            the engine that drives our weather.</p>
+
+        <a href="https://www.thoughtco.com/how-to-read-a-barometer-3444043" target="_blank">https://www.thoughtco.com/how-to-read-a-barometer-3444043</a>
+        <hr>
+        <div class="container pb-3">
+            <a class="btn btn-primary px-1 mx-1" href="#top" type="button">Home / Top Of Page</a>
+        </div>
+        <hr>
+
+    </div>
+</section>
+
 <section id="saved-forecasts-container">
     <ul class="list-group" id="saved-forecasts">
     </ul>
@@ -159,6 +193,7 @@
             <div class="modal-body-container">
                 <div class="modal-body" id="modalBody"></div>
             </div>
+            <div id="modal-form"></div>
             <br/>
             <button
                     class="btn btn-outline-warning fs-4"

@@ -25,7 +25,9 @@
 
     map.on('style.load', function () {
         map.on('dblclick', async function (e) {
-            setTitle("Loading...");
+            e.preventDefault();
+            setSubTitle("");
+            setTitle("");
             let lngLat = e.lngLat;
             getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
             let address = await reverseGeocode(lngLat, MAPBOX_TOKEN);
@@ -97,6 +99,7 @@
             })
             .catch((error) => {
                 console.error('Error:', error);
+                // alert(error.message);
                 let mHead = "ERROR"
                 let mBody = `${JSON.stringify(error, null, 2)}`;
                 modal(mHead, mBody);
@@ -126,7 +129,7 @@
             // to get all the data from the request, comment out the following three lines...
             .then(data => {
                 let tempTitle = data?.features[0]?.place_name || "No results found";
-                setTitle(tempTitle);
+                setSubTitle(tempTitle);
                 return tempTitle; // data.features[0].place_name;
             })
             .catch((error) => {
@@ -189,7 +192,7 @@
                     .then((address) => {
                         favorites.push({address, lngLat});
                         console.log(favorites);
-                        setTitle(address);
+                        // setTitle(address);
                         popupHTML = `<div>${address}</div>`;
                         popup.setHTML(popupHTML);
                         popup.addTo(map);
@@ -1745,7 +1748,7 @@
             })
             .catch((error) => {
                 console.error(error);
-                // @todo - show modal error
+                // alert(error.message);
                 let mHead = "ERROR"
                 let mBody = `${JSON.stringify(error, null, 2)}`;
                 modal(mHead, mBody);
@@ -1755,7 +1758,7 @@
 
     function forecastByCity(city) {
 
-        alert("@todo - troubleshooting - city search, for example los angeles, ca");
+        // alert("@todo - troubleshooting - city search, for example los angeles, ca");
 
         city = city.replace(" ", "+");
 
@@ -1768,6 +1771,7 @@
             })
             .catch((error) => {
                 console.error(error);
+                // alert(error.message);
                 let mHead = "ERROR"
                 let mBody = `${JSON.stringify(error, null, 2)}`;
                 modal(mHead, mBody);
@@ -1778,7 +1782,7 @@
     let forecastContainer = document.getElementById("forecast-container");
 
     async function getForecastFromCurrentGpsPosition() {
-        setTitle("Your current GPS Location.")
+        // setTitle("Your current GPS Location.")
         const getCoords = async () => {
             const pos = await new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -1791,7 +1795,8 @@
 
         const coords = await getCoords();
         reverseGeocode(coords, MAPBOX_TOKEN).then((data) => {
-            setTitle(`${data}`);
+            // setTitle(`${data}`);
+            setSubTitle(data);
         });
 
         forecastData = await getForecastFromSpecificGpsPosition(coords);
@@ -1811,13 +1816,13 @@
             })
             .catch((error) => {
                 console.error(error);
-                setTitle(`...`);
+                // setTitle(`...`);
             })
         return forecastData;
     }
 
     async function getForecastFromSpecificGpsPosition(lngLat) {
-        setTitle(`${lngLat.lat}, ${lngLat.lng}`);
+        // setTitle(`${lngLat.lat}, ${lngLat.lng}`);
         map.flyTo({
             center: lngLat,
             zoom: 10
@@ -1828,9 +1833,15 @@
             })
             .catch((error) => {
                 console.error(error);
-                setTitle(`...`);
+                // setTitle(`...`);
             })
         return forecastData;
+    }
+
+    function degToCompass(num) {
+        let val = Math.floor((num / 22.5) + 0.5);
+        let arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+        return arr[(val % 16)];
     }
 
     function renderForecast(forecastData) {
@@ -1842,7 +1853,6 @@
         setTitle(`${forecastData.city.name}`);
 
         for (let i = 0; i < forecastData.list.length; i += 8) {
-
 
             // for (let j = i; j < i + 8; j++) {
             //     console.log(forecastData.list[j].dt_txt);
@@ -1871,33 +1881,47 @@
             forecastItemDetail.classList.add("card-detail");
             forecastItemDetail.innerText = forecastItem.weather[0].description;
 
-            let forecastItemTemperatureMin = document.createElement("div");
-            forecastItemTemperatureMin.classList.add("card-temperature-min");
-            forecastItemTemperatureMin.innerText = forecastItem.main.temp_min + "°F";
+            let minMaxContainer = document.createElement("div");
+            minMaxContainer.classList.add("text-center");
+            minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - ${forecastItem.main.temp_max + " °F"}</span>`;
+            forecastItemBody.appendChild(minMaxContainer);
 
-            let forecastItemTemperatureMax = document.createElement("div");
-            forecastItemTemperatureMax.classList.add("card-temperature-max");
-            forecastItemTemperatureMax.innerText = forecastItem.main.temp_max + "°F";
+            // let forecastItemTemperatureMin = document.createElement("div");
+            // forecastItemTemperatureMin.classList.add("card-temperature-min");
+            // forecastItemTemperatureMin.innerText = forecastItem.main.temp_min + "°F";
+
+            // let forecastItemTemperatureMax = document.createElement("div");
+            // forecastItemTemperatureMax.classList.add("card-temperature-max");
+            // forecastItemTemperatureMax.innerText = forecastItem.main.temp_max + "°F";
 
             let forecastItemHumidity = document.createElement("div");
-            forecastItemHumidity.classList.add("card-humidity");
-            forecastItemHumidity.innerText = forecastItem.main.humidity + "%";
+            forecastItemHumidity.classList.add("text-center");
+            forecastItemHumidity.innerText = "Humidity: " + forecastItem.main.humidity + "%";
 
-            let forecastItemWindSpeed = document.createElement("div");
-            forecastItemWindSpeed.classList.add("card-wind");
-            forecastItemWindSpeed.innerText = forecastItem.wind.speed + "mph";
+            let speedAndDirection = document.createElement("div");
 
-            let forecastItemWindDirection = document.createElement("div");
-            forecastItemWindDirection.classList.add("card-wind-direction");
-            forecastItemWindDirection.innerText = forecastItem.wind.deg + "°";
+            let stringWind = `${forecastItem.wind.speed} mph (${forecastItem.wind.deg}°) ${degToCompass(forecastItem.wind.deg)}`;
+
+            speedAndDirection.classList.add("text-center");
+            speedAndDirection.innerHTML = `<span>${stringWind}</span>`;
+            // speedAndDirection.innerHTML = `<span>${forecastItem.wind.speed + " mph"}</span> - ${forecastItem.wind.deg + "°"}`;
+            forecastItemBody.appendChild(speedAndDirection);
+
+            // let forecastItemWindSpeed = document.createElement("div");
+            // forecastItemWindSpeed.classList.add("card-wind");
+            // forecastItemWindSpeed.innerText = forecastItem.wind.speed + "mph";
+
+            // let forecastItemWindDirection = document.createElement("div");
+            // forecastItemWindDirection.classList.add("card-wind-direction");
+            // forecastItemWindDirection.innerText = forecastItem.wind.deg + "°";
 
             let forecastItemPressure = document.createElement("div");
-            forecastItemPressure.classList.add("card-pressure");
-            forecastItemPressure.innerText = forecastItem.main.pressure + "hPa";
+            forecastItemPressure.classList.add("text-center");
+            forecastItemPressure.innerText = "Pressure: " + forecastItem.main.pressure + "hPa";
 
             let forecastItemTitle = document.createElement("h5");
-            forecastItemTitle.classList.add("card-title");
-            forecastItemTitle.innerText = convertTime(forecastItem.dt);
+            forecastItemTitle.classList.add("text-center");
+            forecastItemTitle.innerText = convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString();
 
             let forecastItemText = document.createElement("p");
             forecastItemText.classList.add("card-text");
@@ -1908,13 +1932,17 @@
             fullDateTime.innerText = new Date(forecastItem.dt_txt).toLocaleString();
 
             forecastItemBody.appendChild(forecastItemTitle);
-            forecastItemBody.appendChild(fullDateTime);
 
-            forecastItemBody.appendChild(forecastItemTemperatureMin);
-            forecastItemBody.appendChild(forecastItemTemperatureMax);
+            // forecastItemBody.appendChild(fullDateTime);
+
+            // forecastItemBody.appendChild(forecastItemTemperatureMin);
+            // forecastItemBody.appendChild(forecastItemTemperatureMax);
+
             forecastItemBody.appendChild(forecastItemHumidity);
-            forecastItemBody.appendChild(forecastItemWindSpeed);
-            forecastItemBody.appendChild(forecastItemWindDirection);
+
+            // forecastItemBody.appendChild(forecastItemWindSpeed);
+            // forecastItemBody.appendChild(forecastItemWindDirection);
+
             forecastItemBody.appendChild(forecastItemPressure);
 
             // forecastItemBody.appendChild(forecastItemDetail);
@@ -1944,7 +1972,7 @@
 
     function getLiveForecastDataFromGpsCoords(coords) {
 
-        setTitle(`${coords.lat}, ${coords.lng}`);
+        // setTitle(`${coords.lat}, ${coords.lng}`);
 
         getForecastFromSpecificGpsPosition(coords)
             .then((data) => {
@@ -1958,7 +1986,7 @@
 
     function getLiveForecastFromCity(city) {
 
-        setTitle(`${city}`);
+        // setTitle(`${city}`);
 
         getForecastFromCity(city)
             .then((data) => {
@@ -1996,7 +2024,14 @@
 
         let city = findInput?.value || "";
 
-        setTitle(`${city} ...`);
+        findInput.value = "";
+
+        if (!city) {
+            let mHead = "ERROR"
+            let mBody = `Please enter a city name.`;
+            modal(mHead, mBody);
+            return;
+        }
 
         placeMarkerAndPopupUsingAddress(
             city,
@@ -2017,6 +2052,7 @@
             })
             .catch((error) => {
                 console.log(error);
+                // alert(error.message);
                 let mHead = "ERROR"
                 let mBody = `${JSON.stringify(error, null, 2)}`;
                 modal(mHead, mBody);
@@ -2024,13 +2060,23 @@
 
     }
 
-    function modal(mhead, mbody) {
+    function modal(mhead, mbody, mform = document.getElementById("modal-form"), melement = null) {
         let modalHead = document.querySelector("#modalHead");
         let modalBody = document.querySelector("#modalBody");
         modalHead.innerText = mhead;
         modalBody.innerHTML = mbody;
+
+        if (mform) {
+            mform.innerHTML = "";
+            if (melement) {
+                mform.appendChild(melement);
+            }
+        }
+
         document.querySelector("#modal").classList.add("show");
+
         document.querySelector("#modal").style.display = "block";
+
         document.querySelector("#modalClose").addEventListener("click", () => {
             document.querySelector("#modal").classList.remove("show");
             document.querySelector('#modal').removeAttribute("style");
@@ -2040,6 +2086,10 @@
     function setTitle(title) {
         document.title = title;
         document.getElementById("title").innerText = title;
+    }
+
+    function setSubTitle(title) {
+        document.getElementById("sub-title").innerText = title;
     }
 
     function init() {
@@ -2052,40 +2102,76 @@
 
         findForm.addEventListener("submit", (e) => {
             e.preventDefault();
+            setSubTitle("");
             submitForm(e);
         });
 
         findButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            setSubTitle("");
             submitForm(e);
         });
 
         loadButton.addEventListener("click", async (e) => {
+            setSubTitle("");
+            findInput.value = "";
 
             let data = await getSavedForecasts("", "");
 
             let forecasts = data.data.forecasts;
 
-            console.log(forecasts);
+            if (!forecasts || forecasts.length === 0) {
+                let mHead = "ERROR"
+                let mBody = `No saved forecasts found.`;
+                modal(mHead, mBody);
+                return;
+            }
 
-            let id = prompt("Which id ?", forecasts[forecasts.length - 1]);
+            let form = document.createElement("form");
+            form.id = "modal-form";
 
-            id = id.replace(".json", "");
+            let select = document.createElement("select");
+            select.classList.add("form-control");
+            select.classList.add("form-select");
+            select.id = "select-load";
+            select.name = "select-load";
 
-            id = Math.floor(Number(id));
+            let option = document.createElement("option");
+            option.value = "";
+            option.text = "Choose One";
+            option.selected = true;
+            option.disabled = true;
+            select.appendChild(option);
 
-            let loadedForecastResult = await getSavedForecast(id);
+            forecasts.forEach((forecast) => {
+                let option = document.createElement("option");
+                option.value = forecast;
+                option.text = forecast;
+                select.appendChild(option);
+            });
 
-            console.log(loadedForecastResult);
+            select.addEventListener("change", async (e) => {
+                let selected = e.target.value;
+                let loadedForecastResult = await getSavedForecast(selected);
+                forecastData = loadedForecastResult.data;
+                renderForecast(forecastData);
+                closeModal();
+            });
 
-            let forecastData = loadedForecastResult.data;
+            form.append(select);
 
-            console.log(forecastData);
+            let mHead = "Load"
+            let mBody = `Use the dropdown to load a saved forecast.`;
 
-            renderForecast(forecastData);
+            let mForm = document.getElementById("modal-form");
+
+            modal(mHead, mBody, mForm, form);
 
         });
 
         homeButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            setSubTitle("");
 
             findInput.value = "";
 
@@ -2104,7 +2190,7 @@
             getLiveForecastDataFromCurrentGpsLocation();
 
             setTimeout(function () {
-                document.querySelector("#modalClose").click();
+                closeModal();
             }, 9000);
 
 
@@ -2113,6 +2199,10 @@
         // NOTE: If enabled below, this will render the forecast default that is set in code above.
         // renderForecast(forecastData);
 
+    }
+
+    function closeModal() {
+        document.querySelector("#modalClose").click();
     }
 
     init();
