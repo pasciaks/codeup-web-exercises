@@ -1964,19 +1964,19 @@
     }
 
     async function saveForecastData(forecastData) {
-        if (confirm("Save this forecast?")) {
-            // Implementation of backend for saving a forecast JSON file
-            let saveForecastResult = await saveForecast(forecastData, "", "");
-            if (saveForecastResult.data.statusCode === 201) {
+        // if (confirm("Save this forecast?")) {
+        // Implementation of backend for saving a forecast JSON file
+        let saveForecastResult = await saveForecast(forecastData, "", "");
+        if (saveForecastResult.data.statusCode === 201) {
 
 
-                let testData = await getSavedForecast(saveForecastResult.data.file_uploaded);
-                console.log(testData);
+            let testData = await getSavedForecast(saveForecastResult.data.file_uploaded);
+            console.log(testData);
 
-                let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${saveForecastResult.data.file_uploaded}.json`;
-                document.getElementById("uploaded").innerHTML = `<a target='_blank' href='${savedForecastFileLink}'>*</a>`;
-            }
+            let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${saveForecastResult.data.file_uploaded}.json`;
+            document.getElementById("uploaded").innerHTML = `<a target='_blank' href='${savedForecastFileLink}'>*</a>`;
         }
+        // }
     }
 
     function submitForm(event) {
