@@ -2067,11 +2067,10 @@
 // TODO: Trap for errors or not found cities ... {"cod":"404","message":"city not found"}
 // todo: lancaster PA, etc...
 // todo: consider the dataset and don't simply just show every 8, allow some type of use of all that data...
-
 // todo: click on one box of forecast and show all the data for that day in a modal
 // todo: take away the title hover in the forecast boxes and show the data in a modal
-
 // todo: different icon if it is a draggable marker or not
 // todo: different icon based on the weather , temp, etc...
+// todo: use the city detail in the forecast data to show as titles in the overall render, instead of numerous set title calls
 
 })();
