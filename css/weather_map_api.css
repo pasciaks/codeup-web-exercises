@@ -41,8 +41,10 @@ body {
 }
 
 .card {
+    border: none !important;
     width: 15dvw;
-    margin: .5em;
+    margin: .25em;
+    padding: .25em;
 }
 
 .card-img-top {
@@ -55,12 +57,13 @@ body {
 }
 
 header {
-    min-height: 10vh;
+    min-height: 15vh;
     background-color: #00ABA9;
     margin-bottom: 1em;
     display: flex;
     flex-direction: row;
     align-items: center;
+    align-content: baseline;
     justify-content: space-around;
 }
 
