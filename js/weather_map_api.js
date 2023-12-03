@@ -8,6 +8,10 @@
     let findInput = null;
     let findForm = null;
 
+    let animationArray = [];
+    let animationTimer = null;
+    let currentWeatherIconIndex = 0;
+
     let forecastAutoIntervalTimer = null;
 
     let forecastRangeSlider = null;
@@ -110,7 +114,7 @@
                 //console.error('Error:', error);
                 // alert(error.message);
                 let mHead = "ERROR"
-                let mBody = `${JSON.stringify(error, null, 2)}`;
+                let mBody = ``;
                 modal(mHead, mBody);
                 return error;
             });
@@ -241,7 +245,7 @@
                 console.error(error);
                 // alert(error.message);
                 let mHead = "ERROR"
-                let mBody = `${JSON.stringify(error, null, 2)}`;
+                let mBody = ``;
                 modal(mHead, mBody);
                 return null;
             });
@@ -266,7 +270,7 @@
             })
             .catch((error) => {
                 let mHead = "ERROR"
-                let mBody = `${JSON.stringify(error, null, 2)}`;
+                let mBody = ``;
                 modal(mHead, mBody);
                 return null;
             });
@@ -296,7 +300,7 @@
 
         forecastData = await getForecastFromSpecificGpsPosition(coords);
 
-        saveForecastData(forecastData).then();
+        // saveForecastData(forecastData).then();
 
         document.querySelector("#modalClose").click();
 
@@ -339,6 +343,48 @@
         return arr[(val % 16)];
     }
 
+    function renderOneForecastItem(forecastItem) {
+        let forecastItemElement = document.createElement("div");
+        forecastItemElement.classList.add("forecast-item");
+        forecastItemElement.classList.add("card");
+        let forecastItemImg = document.createElement("img");
+        forecastItemImg.classList.add("card-img-top");
+        forecastItemImg.src = `https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}.png`;
+        let forecastItemBody = document.createElement("div");
+        forecastItemBody.classList.add("card-body");
+        let forecastItemDetail = document.createElement("div");
+        forecastItemDetail.classList.add("card-detail");
+        forecastItemDetail.innerText = forecastItem.weather[0].description;
+        let minMaxContainer = document.createElement("div");
+        minMaxContainer.classList.add("text-center");
+        minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - ${forecastItem.main.temp_max + " °F"}</span>`;
+        forecastItemBody.appendChild(minMaxContainer);
+        let forecastItemHumidity = document.createElement("div");
+        forecastItemHumidity.classList.add("text-center");
+        forecastItemHumidity.innerText = "Humidity: " + forecastItem.main.humidity + "%";
+        let speedAndDirection = document.createElement("div");
+        let stringWind = `${forecastItem.wind.speed} mph (${forecastItem.wind.deg}°) ${degToCompass(forecastItem.wind.deg)}`;
+        speedAndDirection.classList.add("text-center");
+        speedAndDirection.innerHTML = `<span>${stringWind}</span>`;
+        forecastItemBody.appendChild(speedAndDirection);
+        let forecastItemPressure = document.createElement("div");
+        forecastItemPressure.classList.add("text-center");
+        forecastItemPressure.innerText = "Pressure: " + forecastItem.main.pressure + "hPa";
+        let forecastItemTitle = document.createElement("h5");
+        forecastItemTitle.classList.add("text-center");
+        forecastItemTitle.innerText = convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString();
+        let forecastItemText = document.createElement("p");
+        forecastItemText.classList.add("card-text");
+        forecastItemText.innerText = forecastItem.weather[0].description;
+        forecastItemBody.appendChild(forecastItemTitle);
+        forecastItemBody.appendChild(forecastItemHumidity);
+        forecastItemBody.appendChild(forecastItemPressure);
+        forecastItemBody.appendChild(forecastItemTitle);
+        forecastItemElement.appendChild(forecastItemImg);
+        forecastItemElement.appendChild(forecastItemBody);
+        return forecastItemElement;
+    }
+
     function renderForecast(forecastData) {
 
         if (forecastAutoIntervalTimer) {
@@ -354,10 +400,7 @@
             renderForecast(forecastData);
         }, 5000);
 
-
         forecastContainer.innerHTML = "";
-
-        console.log(forecastData);
 
         if (!forecastData || !forecastData?.city || !forecastData?.list) {
             setTitle(`Could not find forecast data.`);
@@ -366,8 +409,6 @@
         }
 
         setTitle(`${forecastData?.city?.name || ""} ${forecastData?.city?.country || ""}`);
-
-        findInput.value = ``;
 
         let cityCoords = {
             lng: forecastData.city.coord.lon,
@@ -379,105 +420,56 @@
             zoom: 10
         });
 
-        let cityOffsetTimeHours = forecastData.city.timezone;
-
         for (let i = currentForecastIndex; i < forecastData.list.length; i += 8) {
-
-            // for (let j = i; j < i + 8; j++) {
-            //     console.log(forecastData.list[j].dt_txt);
-            // }
-
-            // console.log('---');
-            // console.log(forecastData.list[i].dt_txt);
-            // console.log(forecastData.list[i].weather[0].description);
-            // console.log('---');
-
-            let forecastItem = forecastData.list[i];
-            let forecastItemElement = document.createElement("div");
-            forecastItemElement.classList.add("forecast-item");
-            forecastItemElement.classList.add("card");
-
-            // forecastItemElement.title = forecastItem.weather[0].description + "\n\nTemperature:" + forecastItem.main.temp + "°F" + "\n\nFeels Like:" + forecastItem.main['feels_like'] + "°F";
-
-            let forecastItemImg = document.createElement("img");
-            forecastItemImg.classList.add("img-responsive");
-            forecastItemImg.classList.add("card-img-top");
-            forecastItemImg.src = `https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}.png`;
-
-            let forecastItemBody = document.createElement("div");
-            forecastItemBody.classList.add("card-body");
-
-            let forecastItemDetail = document.createElement("div");
-            forecastItemDetail.classList.add("card-detail");
-            forecastItemDetail.innerText = forecastItem.weather[0].description;
-
-            let minMaxContainer = document.createElement("div");
-            minMaxContainer.classList.add("text-center");
-            minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - ${forecastItem.main.temp_max + " °F"}</span>`;
-            forecastItemBody.appendChild(minMaxContainer);
-
-            // let forecastItemTemperatureMin = document.createElement("div");
-            // forecastItemTemperatureMin.classList.add("card-temperature-min");
-            // forecastItemTemperatureMin.innerText = forecastItem.main.temp_min + "°F";
-
-            // let forecastItemTemperatureMax = document.createElement("div");
-            // forecastItemTemperatureMax.classList.add("card-temperature-max");
-            // forecastItemTemperatureMax.innerText = forecastItem.main.temp_max + "°F";
-
-            let forecastItemHumidity = document.createElement("div");
-            forecastItemHumidity.classList.add("text-center");
-            forecastItemHumidity.innerText = "Humidity: " + forecastItem.main.humidity + "%";
-
-            let speedAndDirection = document.createElement("div");
-
-            let stringWind = `${forecastItem.wind.speed} mph (${forecastItem.wind.deg}°) ${degToCompass(forecastItem.wind.deg)}`;
-
-            speedAndDirection.classList.add("text-center");
-            speedAndDirection.innerHTML = `<span>${stringWind}</span>`;
-            // speedAndDirection.innerHTML = `<span>${forecastItem.wind.speed + " mph"}</span> - ${forecastItem.wind.deg + "°"}`;
-            forecastItemBody.appendChild(speedAndDirection);
-
-            // let forecastItemWindSpeed = document.createElement("div");
-            // forecastItemWindSpeed.classList.add("card-wind");
-            // forecastItemWindSpeed.innerText = forecastItem.wind.speed + "mph";
-
-            // let forecastItemWindDirection = document.createElement("div");
-            // forecastItemWindDirection.classList.add("card-wind-direction");
-            // forecastItemWindDirection.innerText = forecastItem.wind.deg + "°";
-
-            let forecastItemPressure = document.createElement("div");
-            forecastItemPressure.classList.add("text-center");
-            forecastItemPressure.innerText = "Pressure: " + forecastItem.main.pressure + "hPa";
-
-            let forecastItemTitle = document.createElement("h5");
-            forecastItemTitle.classList.add("text-center");
-            forecastItemTitle.innerText = convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString();
-
-            let forecastItemText = document.createElement("p");
-            forecastItemText.classList.add("card-text");
-            forecastItemText.innerText = forecastItem.weather[0].description;
-
-            forecastItemBody.appendChild(forecastItemTitle);
-
-            // let miscItem = document.createElement("div");
-            // miscItem.classList.add("card-full-date-time");
-            // miscItem.appendChild(document.createElement("hr"));
-            //
-            // forecastItemBody.appendChild(miscItem);
-
-            forecastItemBody.appendChild(forecastItemHumidity);
-
-            forecastItemBody.appendChild(forecastItemPressure);
-
-            forecastItemBody.appendChild(forecastItemTitle);
-
-            forecastItemElement.appendChild(forecastItemImg);
-
-            forecastItemElement.appendChild(forecastItemBody);
-
-            forecastContainer.appendChild(forecastItemElement);
-
+            let oneForecastItem = forecastData.list[i];
+            let oneForecastItemElement = renderOneForecastItem(oneForecastItem);
+            forecastContainer.appendChild(oneForecastItemElement);
         }
+
+        // for (let i = currentForecastIndex; i < forecastData.list.length; i += 8) {
+        //     let forecastItem = forecastData.list[i];
+        //     let forecastItemElement = document.createElement("div");
+        //     forecastItemElement.classList.add("forecast-item");
+        //     forecastItemElement.classList.add("card");
+        //     let forecastItemImg = document.createElement("img");
+        //     forecastItemImg.classList.add("img-responsive");
+        //     forecastItemImg.classList.add("card-img-top");
+        //     forecastItemImg.src = `https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}.png`;
+        //     let forecastItemBody = document.createElement("div");
+        //     forecastItemBody.classList.add("card-body");
+        //     let forecastItemDetail = document.createElement("div");
+        //     forecastItemDetail.classList.add("card-detail");
+        //     forecastItemDetail.innerText = forecastItem.weather[0].description;
+        //     let minMaxContainer = document.createElement("div");
+        //     minMaxContainer.classList.add("text-center");
+        //     minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - ${forecastItem.main.temp_max + " °F"}</span>`;
+        //     forecastItemBody.appendChild(minMaxContainer);
+        //     let forecastItemHumidity = document.createElement("div");
+        //     forecastItemHumidity.classList.add("text-center");
+        //     forecastItemHumidity.innerText = "Humidity: " + forecastItem.main.humidity + "%";
+        //     let speedAndDirection = document.createElement("div");
+        //     let stringWind = `${forecastItem.wind.speed} mph (${forecastItem.wind.deg}°) ${degToCompass(forecastItem.wind.deg)}`;
+        //     speedAndDirection.classList.add("text-center");
+        //     speedAndDirection.innerHTML = `<span>${stringWind}</span>`;
+        //     forecastItemBody.appendChild(speedAndDirection);
+        //     let forecastItemPressure = document.createElement("div");
+        //     forecastItemPressure.classList.add("text-center");
+        //     forecastItemPressure.innerText = "Pressure: " + forecastItem.main.pressure + "hPa";
+        //     let forecastItemTitle = document.createElement("h5");
+        //     forecastItemTitle.classList.add("text-center");
+        //     forecastItemTitle.innerText = convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString();
+        //     let forecastItemText = document.createElement("p");
+        //     forecastItemText.classList.add("card-text");
+        //     forecastItemText.innerText = forecastItem.weather[0].description;
+        //     forecastItemBody.appendChild(forecastItemTitle);
+        //     forecastItemBody.appendChild(forecastItemHumidity);
+        //     forecastItemBody.appendChild(forecastItemPressure);
+        //     forecastItemBody.appendChild(forecastItemTitle);
+        //     forecastItemElement.appendChild(forecastItemImg);
+        //     forecastItemElement.appendChild(forecastItemBody);
+        //
+        //     forecastContainer.appendChild(forecastItemElement);
+        // }
 
     }
 
@@ -485,6 +477,8 @@
         getForecastFromCurrentGpsPosition()
             .then((data) => {
                 renderForecast(data);
+                saveForecastData(data).then();
+                createAnimations();
             })
             .catch((error) => {
                 console.error(error);
@@ -499,10 +493,49 @@
             .then((data) => {
                 renderForecast(data);
                 saveForecastData(data).then();
+                createAnimations();
             })
             .catch((error) => {
                 console.error(error);
             });
+    }
+
+    /**
+     * In this function, /\B(?=(\d{3})+(?!\d))/g is a regular expression that matches
+     * every third digit from the end of the number and inserts a comma before it.
+     * The replace method is then used to replace those occurrences with commas.
+     *
+     * @param number
+     * @returns {string}
+     */
+    function formatNumberWithCommas(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function convertEpochToUtcAndLocal(epoch) {
+
+        // Convert epoch to milliseconds (JavaScript uses milliseconds for timestamps)
+        const timestamp = epoch * 1000;
+
+        // Create a Date object using the timestamp
+        const dateTime = new Date(timestamp);
+
+        console.log("Epoch Time:", dateTime.toUTCString());
+        console.log("Local Time:", dateTime.toLocaleString());
+
+        return {utc: dateTime.toUTCString(), local: dateTime.toLocaleString()};
+    }
+
+    function renderCityDataForHtmlPopup(cityData) {
+        let popupHTML = `
+            <div class="text-center">
+                <h5>${cityData?.name || "Unknown!"} ${cityData?.country || ""}</h5>
+                <p><i class="bi bi-people"></i> ${formatNumberWithCommas(cityData.population)}</p>
+                <p><i class="bi bi-sun"></i> ${convertEpochToUtcAndLocal(cityData.sunrise).local}</p>
+                <p><i class="bi bi-moon"></i> ${convertEpochToUtcAndLocal(cityData.sunset).local}</p>
+            </div>
+        `;
+        return popupHTML;
     }
 
     function getLiveForecastFromCity(city) {
@@ -518,13 +551,14 @@
                 }
                 renderForecast(data);
                 saveForecastData(data).then();
+                createAnimations();
 
                 let cityCoords = {
                     lng: data.city.coord.lon,
                     lat: data.city.coord.lat
                 }
 
-                let popupHTML = `<pre>${JSON.stringify(data.city, null, 2)}</pre>`;
+                let popupHTML = renderCityDataForHtmlPopup(data?.city || {});
 
                 placeMarkerAndPopupUsingCoords(cityCoords, popupHTML, MAPBOX_TOKEN, map, true);
 
@@ -632,7 +666,14 @@
             let value = event.target.value;
             currentForecastIndex = Number(value) || 0;
             renderForecast(forecastData);
-        })
+        });
+
+        forecastRangeSlider.addEventListener("focus", (event) => {
+            event.preventDefault();
+            if (forecastAutoIntervalTimer) {
+                clearInterval(forecastAutoIntervalTimer);
+            }
+        });
 
         findForm.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -711,11 +752,6 @@
 
                 closeModal();
 
-                setTimeout(function () {
-                    setSubTitle("Your forecast has been loaded.");
-
-                }, 1500);
-
 
             });
 
@@ -731,8 +767,11 @@
         });
 
         homeButton.addEventListener("click", (event) => {
+
             event.preventDefault();
+
             setTitle("Searching for your current GPS Location.");
+
             setSubTitle("");
 
             findInput.value = "";
@@ -755,9 +794,77 @@
                 closeModal();
             }, 9000);
 
-
         });
 
+    }
+
+    function createAnimations() {
+
+        // animation of weather icons
+        animationArray = [];
+        for (let i = 0; i < forecastData.list.length; i++) {
+            let forecastItem = forecastData.list[i];
+            let forecastItemElement = document.createElement("div");
+            forecastItemElement.classList.add("forecast-item");
+            forecastItemElement.style.display = "none";
+
+            let forecastItemData = document.createElement("div");
+            forecastItemData.innerText = forecastItem["dt_txt"];
+
+            let temperature = forecastItem.main.temp;
+            
+            let forecastItemTempElement = document.createElement("div");
+            forecastItemTempElement.innerText = `${temperature} °F`;
+
+            let temperatureColor = "black";
+            if (temperature < 32) {
+                temperatureColor = "blue";
+            }
+            if (temperature > 80) {
+                temperatureColor = "red";
+            }
+            forecastItemTempElement.style.color = temperatureColor;
+
+            let forecastItemImg = document.createElement("img");
+            forecastItemImg.classList.add("img-responsive");
+            forecastItemImg.classList.add("card-img-top");
+            forecastItemImg.alt = forecastData.list[i].weather[0].description;
+            forecastItemImg.title = new Date(forecastData.list[i].dt);
+            forecastItemImg.src = `https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}.png`;
+
+            forecastItemElement.appendChild(forecastItemTempElement);
+            forecastItemElement.appendChild(forecastItemData);
+            forecastItemElement.appendChild(forecastItemImg);
+            animationArray.push(forecastItemElement);
+        }
+
+        document.getElementById("animationImages").innerHTML = "";
+        animationArray.forEach((element) => {
+            element.style.display = "none";
+            document.getElementById("animationImages").appendChild(element);
+        });
+
+        if (animationTimer) {
+            clearInterval(animationTimer);
+        }
+        startAnimations();
+
+    }
+
+    function startAnimations() {
+        animationTimer = setInterval(function () {
+            currentWeatherIconIndex++;
+            if (currentWeatherIconIndex >= animationArray.length) {
+                currentWeatherIconIndex = 0;
+            }
+            for (let i = 0; i < animationArray.length; i++) {
+                if (currentWeatherIconIndex === i) {
+                    animationArray[i].style.display = "block";
+                } else {
+                    animationArray[i].style.display = "none";
+                }
+            }
+        }, 1000);
     }
 
     function closeModal() {
