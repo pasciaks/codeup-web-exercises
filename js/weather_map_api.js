@@ -200,8 +200,23 @@
             marker.on('dragend', onDragEnd);
         }
         dynamicallyAddedMapObjectsArray.push({id, popup, marker, forecastData});
+        recordSavedForecast(id);
         popup.addTo(map);
         return id;
+    }
+
+    function recordSavedForecast(id) {
+        try {
+            let currentStorage = localStorage.getItem("savedForecasts");
+            let savedForecasts = [];
+            if (currentStorage) {
+                savedForecasts = JSON.parse(currentStorage);
+            }
+            savedForecasts.push(id);
+            localStorage.setItem("savedForecasts", JSON.stringify(savedForecasts));
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     function convertTime(epoch) {

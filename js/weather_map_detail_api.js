@@ -3,6 +3,7 @@
 (() => {
 
     let viewContainer = document.getElementById("view-container");
+    let contentContainer = document.getElementById("content");
 
     let forecastData = [];
 
@@ -138,11 +139,6 @@
         titleElement.innerText = title;
     }
 
-    function setSubTitle(subTitle) {
-        let subTitleElement = document.getElementById("sub-title");
-        subTitleElement.innerText = subTitle;
-    }
-
     function setHeading(heading) {
         let headingElement = document.getElementById("heading");
         headingElement.innerText = heading;
@@ -155,12 +151,11 @@
 
         if (!forecastData || !forecastData?.city || !forecastData?.list) {
             setTitle(`Could not find forecast data.`);
-            setSubTitle(`Please try again.`);
+            contentContainer.style.display = "none";
             return;
-        } else {
-            setTitle(`${forecastData.city.name}, ${forecastData.city.country}`);
-            setSubTitle(`Forecast for ${forecastData.list.length} Projections (8 per day)`);
         }
+
+        setTitle(`${forecastData.city.name}, ${forecastData.city.country}`);
 
         for (let i = 0; i < forecastData.list.length; i += 1) {
             let oneForecastItem = forecastData.list[i];

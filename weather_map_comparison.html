@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-    <title>Weather Buddy Details</title>
+    <title>Weather Buddy Comparison</title>
 
     <link
             crossorigin="anonymous"
@@ -14,13 +14,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link href="css/weather_map_detail_api.css" rel="stylesheet"/>
-
-    <script src="js/socket/jquery-3.3.1.min.js"></script>
-
-    <script src="js/socket/socket.io-1.3.5.js"></script>
-
-    <script src="js/socket/socket-runner.js"></script>
+    <link href="css/weather_map_comparison_api.css" rel="stylesheet"/>
 
 </head>
 
@@ -29,30 +23,21 @@
 <header>
     <div class="d-flex">
         <a class="navbar-brand px-3" href="weather_map.html">
-            <h3 class="text-center" id="title">Weather Buddy Details</h3>
+            <h3 class="text-center" id="title">Weather Buddy Comparison</h3>
         </a>
     </div>
 </header>
 
 <main>
-    <div class="text-center container">
-        <img alt="Weather Buddy Logo" class="img-fluid" id="liveImage" src="images/background.jpeg"/>
-    </div>
     <div class="container" id="content">
-        <h1 id="heading">
-        </h1>
-        <hr>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <canvas id="tempChart"></canvas>
-                <canvas id="windChart"></canvas>
-            </div>
-            <div class="col-12 col-md-6" id="forecast-items">
-                <div id="view-container"></div>
-            </div>
-        </div>
+        <canvas id="tempChart"></canvas>
     </div>
 </main>
+
+<div class="container menu text-center pt-2">
+    <button class="btn btn-primary px-2" id="home-button">Home</button>
+    <button class="btn btn-primary px-2" id="clear-button">Clear</button>
+</div>
 
 <footer>
     <p class="text-center">&copy; 2023 by Sheldon Pasciak, Imugi Solutions</p>
@@ -65,7 +50,7 @@
 
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script defer src="js/weather_map_detail_api.js"></script>
+<script defer src="js/weather_map_comparison_api.js"></script>
 
 </body>
 

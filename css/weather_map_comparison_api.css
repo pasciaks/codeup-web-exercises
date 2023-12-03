@@ -1,0 +1,32 @@
+header {
+    min-height: 15vh;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: baseline;
+    justify-content: space-around;
+}
+
+/* The following style will set a background image with low opacity to fit and cover the whole page */
+
+#content {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}
+
+canvas {
+    color: black;
+    background-color: #aebadc;
+}
+
+body {
+    background-image: url("../images/background.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.8;
+
+}
+
+
+
