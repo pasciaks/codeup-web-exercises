@@ -37,3 +37,7 @@ header {
 a {
     text-decoration: none;
 }
+
+#liveImage {
+    height: 200px;
+}
