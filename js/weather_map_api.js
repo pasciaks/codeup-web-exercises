@@ -40,6 +40,9 @@
             setTitle("");
             let lngLat = e.lngLat;
             getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
+
+
+            // @todo - adjust this to show the popup with generated info
             let address = await reverseGeocode(lngLat, MAPBOX_TOKEN);
             placeMarkerAndPopupUsingCoords(
                 lngLat,
@@ -51,6 +54,8 @@
                 center: lngLat,
                 zoom: 10
             });
+
+
         });
     });
 
@@ -151,45 +156,48 @@
             });
     }
 
-    function placeMarkerAndPopupUsingAddress(address, popupHTML, token, map, draggable = false) {
-        let id = Date.now() + Math.floor(Math.random() * 99999);
-        geocode(address, token)
-            .then(coords => {
-                if (!coords.lng || !coords.lat) {
-                    // console.error("No coordinates found for address");
-                    setSubTitle("No coordinates found for address");
-                    return;
-                }
-                let popup = new mapboxgl.Popup()
-                    .setHTML(popupHTML);
-                let marker = new mapboxgl.Marker({
-                    draggable
-                })
-                    .setLngLat(coords)
-                    .addTo(map)
-                    .setPopup(popup);
-
-                if (draggable) {
-                    function onDragEnd(e) {
-                        const lngLat = e.target.getLngLat();
-                        getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
-
-
-                        popupHTML = `<div>${address}</div>`;
-                        popup.setHTML(popupHTML);
-                        popup.addTo(map);
-                    }
-
-                    marker.on('dragend', onDragEnd);
-                }
-                popup.addTo(map);
-                dynamicallyAddedMapObjectsArray.push({id, popup, marker});
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        return id;
-    }
+    // function placeMarkerAndPopupUsingAddress(address, popupHTML, token, map, draggable = false) {
+    //     let id = Date.now() + Math.floor(Math.random() * 99999);
+    //     geocode(address, token)
+    //         .then(coords => {
+    //             if (!coords.lng || !coords.lat) {
+    //                 // console.error("No coordinates found for address");
+    //                 setSubTitle("No coordinates found for address");
+    //                 return;
+    //             }
+    //             let popup = new mapboxgl.Popup()
+    //                 .setHTML(popupHTML);
+    //             let marker = new mapboxgl.Marker({
+    //                 draggable
+    //             })
+    //                 .setLngLat(coords)
+    //                 .addTo(map)
+    //                 .setPopup(popup);
+    //
+    //             if (draggable) {
+    //                 function onDragEnd(e) {
+    //
+    //                     const lngLat = e.target.getLngLat();
+    //
+    //                     getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
+    //
+    //                     // @todo - adjust this to show the popup with generated info
+    //
+    //                     popupHTML = `<div>${address}</div>`;
+    //                     popup.setHTML(popupHTML);
+    //                     popup.addTo(map);
+    //                 }
+    //
+    //                 marker.on('dragend', onDragEnd);
+    //             }
+    //             popup.addTo(map);
+    //             dynamicallyAddedMapObjectsArray.push({id, popup, marker});
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error:', error);
+    //         });
+    //     return id;
+    // }
 
     function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable = false) {
         let id = Date.now() + Math.floor(Math.random() * 99999);
@@ -410,15 +418,15 @@
 
         setTitle(`${forecastData?.city?.name || ""} ${forecastData?.city?.country || ""}`);
 
-        let cityCoords = {
-            lng: forecastData.city.coord.lon,
-            lat: forecastData.city.coord.lat
-        }
-
-        map.flyTo({
-            center: cityCoords,
-            zoom: 10
-        });
+        // let cityCoords = {
+        //     lng: forecastData.city.coord.lon,
+        //     lat: forecastData.city.coord.lat
+        // }
+        //
+        // map.flyTo({
+        //     center: cityCoords,
+        //     zoom: 10
+        // });
 
         for (let i = currentForecastIndex; i < forecastData.list.length; i += 8) {
             let oneForecastItem = forecastData.list[i];
@@ -750,6 +758,18 @@
 
                 renderForecast(forecastData);
 
+                let cityCoords = {
+                    lng: forecastData.city.coord.lon,
+                    lat: forecastData.city.coord.lat
+                }
+
+                map.flyTo({
+                    center: cityCoords,
+                    zoom: 10
+                });
+
+                createAnimations();
+
                 closeModal();
 
 
@@ -812,7 +832,7 @@
             forecastItemData.innerText = forecastItem["dt_txt"];
 
             let temperature = forecastItem.main.temp;
-            
+
             let forecastItemTempElement = document.createElement("div");
             forecastItemTempElement.innerText = `${temperature} °F`;
 
