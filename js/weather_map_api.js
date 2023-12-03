@@ -919,4 +919,8 @@
 
     // todo - make icon html show graph of current days hourly temperature, and whole set temperatures by date,time
 
+    // todo - make external view file functions that can be used to render the data in different ways
+
+    // todo - like the library for data, a library for rendering the data in different ways
+
 })();
