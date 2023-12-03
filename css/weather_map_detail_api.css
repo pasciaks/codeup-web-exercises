@@ -15,13 +15,12 @@ header {
 }
 
 #content {
-    height: 50dvh;
     overflow-y: auto;
     border-bottom: 2px solid #00ABA9;
 }
 
 #forecast-items {
-    height: 50dvh;
+    height: 70dvh;
     overflow-y: auto;
 }
 

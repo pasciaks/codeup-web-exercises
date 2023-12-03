@@ -155,7 +155,7 @@
     function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable = false, theForecastData) {
         let id = Date.now() + Math.floor(Math.random() * 99999);
         localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(theForecastData));
-        popupHTML += `<div id="data"><a target="_blank" href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
+        popupHTML += `<div id="data"><a href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
         let popup = new mapboxgl.Popup()
             .setHTML(popupHTML);
         let marker = new mapboxgl.Marker({
@@ -184,7 +184,7 @@
                             item.popup = popup;
                             item.marker = marker;
                             item.forecastData = forecastData;
-                            popupHTML += `<div id="data"><a target="_blank" href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
+                            popupHTML += `<div id="data"><a href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
                             popup.setHTML(popupHTML);
                             localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(forecastData));
                         }
@@ -595,7 +595,7 @@
             if (saveForecastResult.data.statusCode === 201) {
                 // let testData = await getSavedForecast(id);
                 let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${saveForecastResult.data.file_uploaded}.json`;
-                document.getElementById("uploaded").innerHTML = `<a target='_blank' href='${savedForecastFileLink}'>*</a>`;
+                document.getElementById("uploaded").innerHTML = `<a href='${savedForecastFileLink}'>*</a>`;
             }
 
         } catch (error) {
