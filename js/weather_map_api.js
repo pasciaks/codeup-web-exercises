@@ -8,6 +8,8 @@
     let findInput = null;
     let findForm = null;
 
+    let defaultZoom = 10;
+
     let animationArray = [];
     let animationTimer = null;
     let currentWeatherIconIndex = 0;
@@ -41,48 +43,41 @@
             let lngLat = e.lngLat;
             getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
 
+            setTimeout(function () {
+                let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
 
-            // @todo - adjust this to show the popup with generated info
-            let address = await reverseGeocode(lngLat, MAPBOX_TOKEN);
-            placeMarkerAndPopupUsingCoords(
-                lngLat,
-                `<div>${address}</div>`,
-                MAPBOX_TOKEN,
-                map,
-                true);
-            map.flyTo({
-                center: lngLat,
-                zoom: 10
-            });
+                placeMarkerAndPopupUsingCoords(
+                    lngLat,
+                    popupHTML,
+                    MAPBOX_TOKEN,
+                    map,
+                    true);
+                map.flyTo({
+                    center: lngLat,
+                    zoom: defaultZoom
+                });
+            }, 1000);
+
+            // let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
+            //
+            // // @todo - adjust this to show the popup with generated info
+            // let address = await reverseGeocode(lngLat, MAPBOX_TOKEN);
+            //
+            // placeMarkerAndPopupUsingCoords(
+            //     lngLat,
+            //     popupHTML,
+            //     MAPBOX_TOKEN,
+            //     map,
+            //     true);
+            // map.flyTo({
+            //     center: lngLat,
+            //     zoom: 10
+            // });
 
 
         });
     });
 
-    /**
-     * getCurrentPosition is a method that will obtain the current gps position of the user
-     *
-     * @param allowMapFlyTo - boolean, default true, will allow the map to fly to the current position
-     * @param setZoom - integer, default 15, will set the zoom level of the map if allowMapFlyTo is true
-     * @returns {Promise<void>}
-     */
-    const getCurrentPosition = (allowMapFlyTo = true, setZoom = 15) => {
-        try {
-            navigator.geolocation.getCurrentPosition(function (navPosObj) {
-                let resultObject = {
-                    "lng": navPosObj.coords.longitude,
-                    "lat": navPosObj.coords.latitude
-                }
-                if (allowMapFlyTo) {
-                    map.flyTo({center: [resultObject.lng, resultObject.lat], zoom: setZoom});
-                }
-                return resultObject;
-            });
-        } catch (error) {
-            console.error(error);
-            return error;
-        }
-    }
 
     /**
      * geocode is a method to search for coordinates based on a physical address and return
@@ -156,49 +151,6 @@
             });
     }
 
-    // function placeMarkerAndPopupUsingAddress(address, popupHTML, token, map, draggable = false) {
-    //     let id = Date.now() + Math.floor(Math.random() * 99999);
-    //     geocode(address, token)
-    //         .then(coords => {
-    //             if (!coords.lng || !coords.lat) {
-    //                 // console.error("No coordinates found for address");
-    //                 setSubTitle("No coordinates found for address");
-    //                 return;
-    //             }
-    //             let popup = new mapboxgl.Popup()
-    //                 .setHTML(popupHTML);
-    //             let marker = new mapboxgl.Marker({
-    //                 draggable
-    //             })
-    //                 .setLngLat(coords)
-    //                 .addTo(map)
-    //                 .setPopup(popup);
-    //
-    //             if (draggable) {
-    //                 function onDragEnd(e) {
-    //
-    //                     const lngLat = e.target.getLngLat();
-    //
-    //                     getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
-    //
-    //                     // @todo - adjust this to show the popup with generated info
-    //
-    //                     popupHTML = `<div>${address}</div>`;
-    //                     popup.setHTML(popupHTML);
-    //                     popup.addTo(map);
-    //                 }
-    //
-    //                 marker.on('dragend', onDragEnd);
-    //             }
-    //             popup.addTo(map);
-    //             dynamicallyAddedMapObjectsArray.push({id, popup, marker});
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error:', error);
-    //         });
-    //     return id;
-    // }
-
     function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable = false) {
         let id = Date.now() + Math.floor(Math.random() * 99999);
         let popup = new mapboxgl.Popup()
@@ -213,16 +165,23 @@
             function onDragEnd(e) {
                 const lngLat = e.target.getLngLat();
                 getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
-                reverseGeocode(lngLat, MAPBOX_TOKEN)
-                    .then((address) => {
-                        //@todo - adjust this to show the popup with generated info
-                        popupHTML = `<div>${address}</div>`;
-                        popup.setHTML(popupHTML);
-                        popup.addTo(map);
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
+                // reverseGeocode(lngLat, MAPBOX_TOKEN)
+                //     .then(async (address) => {
+
+                //@todo - adjust this to show the popup with generated info
+
+                // popupHTML = `<div>${address}</div>`;
+                popup.setHTML('searching...');
+                setTimeout(function () {
+                    popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
+                    popup.setHTML(popupHTML);
+                    popup.addTo(map);
+                }, 1000);
+
+                // })
+                // .catch((error) => {
+                //     console.error('Error:', error);
+                // });
             }
 
             marker.on('dragend', onDragEnd);
@@ -332,7 +291,7 @@
 
         map.flyTo({
             center: lngLat,
-            zoom: 10
+            zoom: defaultZoom
         });
         forecastData = await forecastByCoords(lngLat.lat, lngLat.lng)
             .then((data) => {
@@ -363,10 +322,24 @@
         let forecastItemDetail = document.createElement("div");
         forecastItemDetail.classList.add("card-detail");
         forecastItemDetail.innerText = forecastItem.weather[0].description;
+
+        let temperature = forecastItem.main.temp;
+        let temperatureColor = "black";
+        if (temperature < 32) {
+            temperatureColor = "blue";
+        }
+        if (temperature > 80) {
+            temperatureColor = "red";
+        }
+
         let minMaxContainer = document.createElement("div");
         minMaxContainer.classList.add("text-center");
         minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - ${forecastItem.main.temp_max + " °F"}</span>`;
+        minMaxContainer.style.color = temperatureColor;
+
+
         forecastItemBody.appendChild(minMaxContainer);
+
         let forecastItemHumidity = document.createElement("div");
         forecastItemHumidity.classList.add("text-center");
         forecastItemHumidity.innerText = "Humidity: " + forecastItem.main.humidity + "%";
@@ -517,7 +490,7 @@
      * @returns {string}
      */
     function formatNumberWithCommas(number) {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return number?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     function convertEpochToUtcAndLocal(epoch) {
@@ -572,7 +545,7 @@
 
                 map.flyTo({
                     center: cityCoords,
-                    zoom: 10
+                    zoom: defaultZoom
                 });
 
             })
@@ -659,6 +632,14 @@
         document.getElementById("sub-title").innerText = title;
     }
 
+    function clearPopups() {
+        dynamicallyAddedMapObjectsArray.forEach((item) => {
+            item.marker.remove();
+            item.popup.remove();
+        });
+        dynamicallyAddedMapObjectsArray = [];
+    }
+
     function init() {
 
         findForm = document.getElementById("form-find");
@@ -681,6 +662,9 @@
             if (forecastAutoIntervalTimer) {
                 clearInterval(forecastAutoIntervalTimer);
             }
+            let value = event.target.value;
+            currentForecastIndex = Number(value) || 0;
+            currentWeatherIconIndex = currentForecastIndex;
         });
 
         findForm.addEventListener("submit", (event) => {
@@ -765,7 +749,7 @@
 
                 map.flyTo({
                     center: cityCoords,
-                    zoom: 10
+                    zoom: defaultZoom
                 });
 
                 createAnimations();
@@ -789,6 +773,8 @@
         homeButton.addEventListener("click", (event) => {
 
             event.preventDefault();
+
+            clearPopups();
 
             setTitle("Searching for your current GPS Location.");
 
