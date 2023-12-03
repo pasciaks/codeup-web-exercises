@@ -51,7 +51,8 @@
                     popupHTML,
                     MAPBOX_TOKEN,
                     map,
-                    true);
+                    true,
+                    forecastData);
                 map.flyTo({
                     center: lngLat,
                     zoom: defaultZoom
@@ -151,8 +152,10 @@
             });
     }
 
-    function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable = false) {
+    function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable = false, theForecastData) {
         let id = Date.now() + Math.floor(Math.random() * 99999);
+        localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(theForecastData));
+        popupHTML += `<div id="data"><a target="_blank" href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
         let popup = new mapboxgl.Popup()
             .setHTML(popupHTML);
         let marker = new mapboxgl.Marker({
@@ -176,6 +179,16 @@
                     popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
                     popup.setHTML(popupHTML);
                     popup.addTo(map);
+                    dynamicallyAddedMapObjectsArray.find((item) => {
+                        if (item.id === id) {
+                            item.popup = popup;
+                            item.marker = marker;
+                            item.forecastData = forecastData;
+                            popupHTML += `<div id="data"><a target="_blank" href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
+                            popup.setHTML(popupHTML);
+                            localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(forecastData));
+                        }
+                    });
                 }, 1000);
 
                 // })
@@ -186,7 +199,7 @@
 
             marker.on('dragend', onDragEnd);
         }
-        dynamicallyAddedMapObjectsArray.push({id, popup, marker});
+        dynamicallyAddedMapObjectsArray.push({id, popup, marker, forecastData});
         popup.addTo(map);
         return id;
     }
@@ -541,7 +554,7 @@
 
                 let popupHTML = renderCityDataForHtmlPopup(data?.city || {});
 
-                placeMarkerAndPopupUsingCoords(cityCoords, popupHTML, MAPBOX_TOKEN, map, true);
+                placeMarkerAndPopupUsingCoords(cityCoords, popupHTML, MAPBOX_TOKEN, map, true, forecastData);
 
                 map.flyTo({
                     center: cityCoords,
