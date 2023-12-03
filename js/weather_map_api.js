@@ -215,7 +215,7 @@
                 getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
                 reverseGeocode(lngLat, MAPBOX_TOKEN)
                     .then((address) => {
-
+                        //@todo - adjust this to show the popup with generated info
                         popupHTML = `<div>${address}</div>`;
                         popup.setHTML(popupHTML);
                         popup.addTo(map);
