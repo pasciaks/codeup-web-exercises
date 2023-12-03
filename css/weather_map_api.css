@@ -25,7 +25,7 @@ body {
     padding: 0;
 }
 
-.forecast-container {
+#forecast-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -38,13 +38,21 @@ body {
 .forecast-item {
     justify-content: center;
     width: 15dvw;
+    min-width: 10dvw;
+    margin: 0;
 }
 
 .card {
-    border: none !important;
+    /*border: none !important;*/
     width: 15dvw;
-    margin: .25em;
-    padding: .25em;
+    margin: .0em;
+    padding: 0em;
+    cursor: pointer;
+    min-width: 200px !important;
+}
+
+.card:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 }
 
 .card-img-top {
