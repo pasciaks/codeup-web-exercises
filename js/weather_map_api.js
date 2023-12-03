@@ -897,5 +897,14 @@
 // todo: different icon if it is a draggable marker or not
 // todo: different icon based on the weather , temp, etc...
 // todo: use the city detail in the forecast data to show as titles in the overall render, instead of numerous set title calls
+// todo - load and plot route data, see data/route_data.js
+// todo - from route points, poll the collection of the weather forecast for all those locations
+// todo - have the icons of all points in the route animate in a loop
+// todo - use custom marker for temp, wind direction, etc
+// todo - store the loaded data in an object of the remembered locations ( dynamicallyAddedMapObjectsArray
+// todo - hen when they click on the remembered location, it will load the data from the object and ask if it
+// todo - needs to be updated with a fresh api call
+// todo - update stored library file and share with class so all their forecasts can be captured
+// todo - graph hourly temperatures for the 40 elements, use chart js
 
 })();
