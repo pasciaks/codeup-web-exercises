@@ -907,4 +907,10 @@
 // todo - update stored library file and share with class so all their forecasts can be captured
 // todo - graph hourly temperatures for the 40 elements, use chart js
 
+    // todo - table view of data
+
+    // todo - single day view of data ( 24 hours, 3 hour increments )
+
+    // todo - done - standard view ( 5 days, each showing same hour, pulsing between the 3 hour increments)
+
 })();
