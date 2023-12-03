@@ -560,13 +560,12 @@
 
             // Implementation of backend for saving a forecast JSON file
 
-            let saveForecastResult = await saveForecast(forecastData, "", "");
+            let saveForecastResult = await saveForecast(forecastData);
 
             let id = saveForecastResult.data.id;
 
             if (saveForecastResult.data.statusCode === 201) {
-                let testData = await getSavedForecast(id);
-                console.log(testData);
+                // let testData = await getSavedForecast(id);
                 let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${saveForecastResult.data.file_uploaded}.json`;
                 document.getElementById("uploaded").innerHTML = `<a target='_blank' href='${savedForecastFileLink}'>*</a>`;
             }
@@ -688,7 +687,7 @@
             setSubTitle("");
             findInput.value = "";
 
-            let data = await getSavedForecasts("", "");
+            let data = await getSavedForecasts();
 
             let forecasts = data.data.forecasts;
 
