@@ -101,9 +101,12 @@ async function getSavedForecast(id = "") {
     }
 }
 
-//  saveForecastData(data).then();
+// let data = await saveForecast(forecastData);
+// let id = data.data.id;
 
-//  await getSavedForecast(id);
+// let data = await getSavedForecast(id);
+// console.log(data);
 
-//  await getSavedForecasts("", "");
+// let data = await getSavedForecasts();
+// let forecasts = data.data.forecasts;
 

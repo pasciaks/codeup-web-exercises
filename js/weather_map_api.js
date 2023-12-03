@@ -8,6 +8,8 @@
     let findInput = null;
     let findForm = null;
 
+    let defaultZoom = 10;
+
     let animationArray = [];
     let animationTimer = null;
     let currentWeatherIconIndex = 0;
@@ -41,48 +43,42 @@
             let lngLat = e.lngLat;
             getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
 
+            setTimeout(function () {
+                let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
 
-            // @todo - adjust this to show the popup with generated info
-            let address = await reverseGeocode(lngLat, MAPBOX_TOKEN);
-            placeMarkerAndPopupUsingCoords(
-                lngLat,
-                `<div>${address}</div>`,
-                MAPBOX_TOKEN,
-                map,
-                true);
-            map.flyTo({
-                center: lngLat,
-                zoom: 10
-            });
+                placeMarkerAndPopupUsingCoords(
+                    lngLat,
+                    popupHTML,
+                    MAPBOX_TOKEN,
+                    map,
+                    true,
+                    forecastData);
+                map.flyTo({
+                    center: lngLat,
+                    zoom: defaultZoom
+                });
+            }, 1000);
+
+            // let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
+            //
+            // // @todo - adjust this to show the popup with generated info
+            // let address = await reverseGeocode(lngLat, MAPBOX_TOKEN);
+            //
+            // placeMarkerAndPopupUsingCoords(
+            //     lngLat,
+            //     popupHTML,
+            //     MAPBOX_TOKEN,
+            //     map,
+            //     true);
+            // map.flyTo({
+            //     center: lngLat,
+            //     zoom: 10
+            // });
 
 
         });
     });
 
-    /**
-     * getCurrentPosition is a method that will obtain the current gps position of the user
-     *
-     * @param allowMapFlyTo - boolean, default true, will allow the map to fly to the current position
-     * @param setZoom - integer, default 15, will set the zoom level of the map if allowMapFlyTo is true
-     * @returns {Promise<void>}
-     */
-    const getCurrentPosition = (allowMapFlyTo = true, setZoom = 15) => {
-        try {
-            navigator.geolocation.getCurrentPosition(function (navPosObj) {
-                let resultObject = {
-                    "lng": navPosObj.coords.longitude,
-                    "lat": navPosObj.coords.latitude
-                }
-                if (allowMapFlyTo) {
-                    map.flyTo({center: [resultObject.lng, resultObject.lat], zoom: setZoom});
-                }
-                return resultObject;
-            });
-        } catch (error) {
-            console.error(error);
-            return error;
-        }
-    }
 
     /**
      * geocode is a method to search for coordinates based on a physical address and return
@@ -156,51 +152,10 @@
             });
     }
 
-    // function placeMarkerAndPopupUsingAddress(address, popupHTML, token, map, draggable = false) {
-    //     let id = Date.now() + Math.floor(Math.random() * 99999);
-    //     geocode(address, token)
-    //         .then(coords => {
-    //             if (!coords.lng || !coords.lat) {
-    //                 // console.error("No coordinates found for address");
-    //                 setSubTitle("No coordinates found for address");
-    //                 return;
-    //             }
-    //             let popup = new mapboxgl.Popup()
-    //                 .setHTML(popupHTML);
-    //             let marker = new mapboxgl.Marker({
-    //                 draggable
-    //             })
-    //                 .setLngLat(coords)
-    //                 .addTo(map)
-    //                 .setPopup(popup);
-    //
-    //             if (draggable) {
-    //                 function onDragEnd(e) {
-    //
-    //                     const lngLat = e.target.getLngLat();
-    //
-    //                     getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
-    //
-    //                     // @todo - adjust this to show the popup with generated info
-    //
-    //                     popupHTML = `<div>${address}</div>`;
-    //                     popup.setHTML(popupHTML);
-    //                     popup.addTo(map);
-    //                 }
-    //
-    //                 marker.on('dragend', onDragEnd);
-    //             }
-    //             popup.addTo(map);
-    //             dynamicallyAddedMapObjectsArray.push({id, popup, marker});
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error:', error);
-    //         });
-    //     return id;
-    // }
-
-    function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable = false) {
+    function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable = false, theForecastData) {
         let id = Date.now() + Math.floor(Math.random() * 99999);
+        localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(theForecastData));
+        popupHTML += `<div id="data"><a target="_blank" href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
         let popup = new mapboxgl.Popup()
             .setHTML(popupHTML);
         let marker = new mapboxgl.Marker({
@@ -213,23 +168,55 @@
             function onDragEnd(e) {
                 const lngLat = e.target.getLngLat();
                 getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
-                reverseGeocode(lngLat, MAPBOX_TOKEN)
-                    .then((address) => {
-                        //@todo - adjust this to show the popup with generated info
-                        popupHTML = `<div>${address}</div>`;
-                        popup.setHTML(popupHTML);
-                        popup.addTo(map);
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
+                // reverseGeocode(lngLat, MAPBOX_TOKEN)
+                //     .then(async (address) => {
+
+                //@todo - adjust this to show the popup with generated info
+
+                // popupHTML = `<div>${address}</div>`;
+                popup.setHTML('searching...');
+                setTimeout(function () {
+                    popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
+                    popup.setHTML(popupHTML);
+                    popup.addTo(map);
+                    dynamicallyAddedMapObjectsArray.find((item) => {
+                        if (item.id === id) {
+                            item.popup = popup;
+                            item.marker = marker;
+                            item.forecastData = forecastData;
+                            popupHTML += `<div id="data"><a target="_blank" href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
+                            popup.setHTML(popupHTML);
+                            localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(forecastData));
+                        }
                     });
+                }, 1000);
+
+                // })
+                // .catch((error) => {
+                //     console.error('Error:', error);
+                // });
             }
 
             marker.on('dragend', onDragEnd);
         }
-        dynamicallyAddedMapObjectsArray.push({id, popup, marker});
+        dynamicallyAddedMapObjectsArray.push({id, popup, marker, forecastData});
+        recordSavedForecast(id);
         popup.addTo(map);
         return id;
+    }
+
+    function recordSavedForecast(id) {
+        try {
+            let currentStorage = localStorage.getItem("savedForecasts");
+            let savedForecasts = [];
+            if (currentStorage) {
+                savedForecasts = JSON.parse(currentStorage);
+            }
+            savedForecasts.push(id);
+            localStorage.setItem("savedForecasts", JSON.stringify(savedForecasts));
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     function convertTime(epoch) {
@@ -332,7 +319,7 @@
 
         map.flyTo({
             center: lngLat,
-            zoom: 10
+            zoom: defaultZoom
         });
         forecastData = await forecastByCoords(lngLat.lat, lngLat.lng)
             .then((data) => {
@@ -363,10 +350,24 @@
         let forecastItemDetail = document.createElement("div");
         forecastItemDetail.classList.add("card-detail");
         forecastItemDetail.innerText = forecastItem.weather[0].description;
+
+        let temperature = forecastItem.main.temp;
+        let temperatureColor = "black";
+        if (temperature < 32) {
+            temperatureColor = "blue";
+        }
+        if (temperature > 80) {
+            temperatureColor = "red";
+        }
+
         let minMaxContainer = document.createElement("div");
         minMaxContainer.classList.add("text-center");
         minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - ${forecastItem.main.temp_max + " °F"}</span>`;
+        minMaxContainer.style.color = temperatureColor;
+
+
         forecastItemBody.appendChild(minMaxContainer);
+
         let forecastItemHumidity = document.createElement("div");
         forecastItemHumidity.classList.add("text-center");
         forecastItemHumidity.innerText = "Humidity: " + forecastItem.main.humidity + "%";
@@ -517,7 +518,7 @@
      * @returns {string}
      */
     function formatNumberWithCommas(number) {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return number?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     function convertEpochToUtcAndLocal(epoch) {
@@ -568,11 +569,11 @@
 
                 let popupHTML = renderCityDataForHtmlPopup(data?.city || {});
 
-                placeMarkerAndPopupUsingCoords(cityCoords, popupHTML, MAPBOX_TOKEN, map, true);
+                placeMarkerAndPopupUsingCoords(cityCoords, popupHTML, MAPBOX_TOKEN, map, true, forecastData);
 
                 map.flyTo({
                     center: cityCoords,
-                    zoom: 10
+                    zoom: defaultZoom
                 });
 
             })
@@ -587,13 +588,12 @@
 
             // Implementation of backend for saving a forecast JSON file
 
-            let saveForecastResult = await saveForecast(forecastData, "", "");
+            let saveForecastResult = await saveForecast(forecastData);
 
             let id = saveForecastResult.data.id;
 
             if (saveForecastResult.data.statusCode === 201) {
-                let testData = await getSavedForecast(id);
-                console.log(testData);
+                // let testData = await getSavedForecast(id);
                 let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${saveForecastResult.data.file_uploaded}.json`;
                 document.getElementById("uploaded").innerHTML = `<a target='_blank' href='${savedForecastFileLink}'>*</a>`;
             }
@@ -659,6 +659,14 @@
         document.getElementById("sub-title").innerText = title;
     }
 
+    function clearPopups() {
+        dynamicallyAddedMapObjectsArray.forEach((item) => {
+            item.marker.remove();
+            item.popup.remove();
+        });
+        dynamicallyAddedMapObjectsArray = [];
+    }
+
     function init() {
 
         findForm = document.getElementById("form-find");
@@ -681,6 +689,9 @@
             if (forecastAutoIntervalTimer) {
                 clearInterval(forecastAutoIntervalTimer);
             }
+            let value = event.target.value;
+            currentForecastIndex = Number(value) || 0;
+            currentWeatherIconIndex = currentForecastIndex;
         });
 
         findForm.addEventListener("submit", (event) => {
@@ -704,7 +715,7 @@
             setSubTitle("");
             findInput.value = "";
 
-            let data = await getSavedForecasts("", "");
+            let data = await getSavedForecasts();
 
             let forecasts = data.data.forecasts;
 
@@ -765,7 +776,7 @@
 
                 map.flyTo({
                     center: cityCoords,
-                    zoom: 10
+                    zoom: defaultZoom
                 });
 
                 createAnimations();
@@ -789,6 +800,8 @@
         homeButton.addEventListener("click", (event) => {
 
             event.preventDefault();
+
+            clearPopups();
 
             setTitle("Searching for your current GPS Location.");
 
@@ -912,5 +925,30 @@
 // todo: different icon if it is a draggable marker or not
 // todo: different icon based on the weather , temp, etc...
 // todo: use the city detail in the forecast data to show as titles in the overall render, instead of numerous set title calls
+// todo - load and plot route data, see data/route_data.js
+// todo - from route points, poll the collection of the weather forecast for all those locations
+// todo - have the icons of all points in the route animate in a loop
+// todo - use custom marker for temp, wind direction, etc
+// todo - store the loaded data in an object of the remembered locations ( dynamicallyAddedMapObjectsArray
+// todo - hen when they click on the remembered location, it will load the data from the object and ask if it
+// todo - needs to be updated with a fresh api call
+// todo - update stored library file and share with class so all their forecasts can be captured
+// todo - graph hourly temperatures for the 40 elements, use chart js
+
+    // todo - table view of data
+
+    // todo - single day view of data ( 24 hours, 3 hour increments )
+
+    // todo - done - standard view ( 5 days, each showing same hour, pulsing between the 3 hour increments)
+
+    // todo -search for unused classes, functions, etc, commented out code, etc
+
+    // todo - save to local storage and navigate to a new page and load from local storage for alternate views
+
+    // todo - make icon html show graph of current days hourly temperature, and whole set temperatures by date,time
+
+    // todo - make external view file functions that can be used to render the data in different ways
+
+    // todo - like the library for data, a library for rendering the data in different ways
 
 })();

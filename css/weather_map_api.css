@@ -25,7 +25,7 @@ body {
     padding: 0;
 }
 
-.forecast-container {
+#forecast-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -38,11 +38,21 @@ body {
 .forecast-item {
     justify-content: center;
     width: 15dvw;
+    min-width: 10dvw;
+    margin: 0;
 }
 
 .card {
+    /*border: none !important;*/
     width: 15dvw;
-    margin: .5em;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    min-width: 200px !important;
+}
+
+.card:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 }
 
 .card-img-top {
@@ -55,12 +65,13 @@ body {
 }
 
 header {
-    min-height: 10vh;
+    min-height: 15vh;
     background-color: #00ABA9;
     margin-bottom: 1em;
     display: flex;
     flex-direction: row;
     align-items: center;
+    align-content: baseline;
     justify-content: space-around;
 }
 

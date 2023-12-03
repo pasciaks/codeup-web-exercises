@@ -1,0 +1,43 @@
+
+header {
+    min-height: 15vh;
+    background-color: #00ABA9;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: baseline;
+    justify-content: space-around;
+}
+
+#view-container {
+    overflow-y: auto;
+}
+
+#content {
+    height: 50dvh;
+    overflow-y: auto;
+    border-bottom: 2px solid #00ABA9;
+}
+
+#forecast-items {
+    height: 50dvh;
+    overflow-y: auto;
+}
+
+.card:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}
+
+.card-img-top {
+    height: 5dvw;
+    object-fit: contain;
+}
+
+a {
+    text-decoration: none;
+}
+
+#liveImage {
+    height: 400px;
+}

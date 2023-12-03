@@ -27,35 +27,6 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Weather Buddy</a>
-        <button
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-                class="navbar-toggler"
-                data-bs-target="#navbarSupportedContent"
-                data-bs-toggle="collapse"
-                type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a aria-current="page" class="nav-link active" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://openweathermap.org/" target="_blank">Open Weather Maps
-                        Reference</a>
-                </li>
-                <li>
-                    <div class="display-inline pull-right" id="uploaded"></div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <header>
     <div>
@@ -87,91 +58,41 @@
         </div>
     </form>
     <section id="animationImages"></section>
+    <p><a href="weather_map_comparison.html" target="_blank">World</a></p>
 </header>
 
 <main>
-    <div class="forecast-container flex flex-md-wrap" id="forecast-container">
+    <div id="forecast-container">
     </div>
 </main>
 
 <div id="map"></div>
 
-<section id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1>About</h1>
-                <hr/>
-                <p>
-                    This is a simple weather app that uses the Open Weather Map API to
-                    display the current weather conditions for a given city. The app
-                    also displays a 5-day forecast for the city.
-                </p>
-                <p>
-                    The app uses the Mapbox API to display a map of the city. The map
-                    is interactive and can be zoomed in and out and panned.
-                </p>
-                <p>The app uses Bootstrap for styling and layout.</p>
-                <p>
-                    The app uses JavaScript to make AJAX calls to the Open Weather Map
-                    API and the Mapbox API.
-                </p>
-                <p>The app uses the following JavaScript libraries:</p>
-                <ul>
-                    <li>Mapbox</li>
-                    <li>Open Weather MAP API</li>
-                </ul>
-
-                <p>
-                    Search with the text form by typing in a City, State, Country.
-                </p>
-
-                <p>
-                    Click the home button to navigate and get forecast for your
-                    current GPS location.
-                </p>
-
-                <p>Double-click on map to get a draggable, weather search icon.</p>
-
-                <div class="container pb-3">
-                    <a class="btn btn-primary px-1 mx-1" href="#top" type="button">Home / Top Of Page</a>
+<section class="container" id="about">
+    <div class="row">
+        <div class="col">
+            <h3>About</h3>
+            <p>This website was uses the following JavaScript libraries:</p>
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li>Mapbox</li>
+                        <li>Open Weather MAP API</li>
+                        <li>Bootstrap</li>
+                        <li>ChartJs</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <p>This site was made with lots of features and represents many hours of effort.</p>
+                    <p>There are still many ideas to consider for implementation. I look forward to potentially
+                        deploying this site in the real world with the goal of providing value and creating something
+                        like the world has never seen before!</p>
                 </div>
             </div>
+            <div class="container pb-3">
+                <a class="btn btn-primary px-1 mx-1" href="#top" type="button">Home / Top Of Page</a>
+            </div>
         </div>
-    </div>
-</section>
-
-<section id="info">
-    <div class="container">
-        <h3>High Pressure</h3>
-        <p>
-            A barometric reading over 30.20 inHg is generally considered high, and high pressure is associated with
-            clear
-            skies and calm weather.</p>
-
-        <h3>Low Pressure</h3>
-        <p>
-            A barometric reading below 29.80 inHg is generally considered low, and low pressure is associated with warm
-            air
-            and rainstorms.</p>
-        <h3>Normal Pressure</h3>
-        <p>
-            A barometric reading in the range of 29.80 and 30.20 inHg can be considered normal, and normal pressure is
-            associated with steady weather.</p>
-        <hr>
-        <p>Pressure systems are caused by the movement of air around the globe; they are the wind, and the wind is
-            caused
-            by differences in temperature in the atmosphere. Differences in temperature are caused by the sun; the sun
-            is
-            the engine that drives our weather.</p>
-
-        <a href="https://www.thoughtco.com/how-to-read-a-barometer-3444043" target="_blank">https://www.thoughtco.com/how-to-read-a-barometer-3444043</a>
-        <hr>
-        <div class="container pb-3">
-            <a class="btn btn-primary px-1 mx-1" href="#top" type="button">Home / Top Of Page</a>
-        </div>
-        <hr>
-
     </div>
 </section>
 
