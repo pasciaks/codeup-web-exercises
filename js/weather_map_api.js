@@ -915,4 +915,8 @@
 
     // todo -search for unused classes, functions, etc, commented out code, etc
 
+    // todo - save to local storage and navigate to a new page and load from local storage for alternate views
+
+    // todo - make icon html show graph of current days hourly temperature, and whole set temperatures by date,time
+
 })();
