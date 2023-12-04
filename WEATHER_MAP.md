@@ -24,9 +24,9 @@ the marker to a new location, and the weather forecast will update to the new lo
 
 The following images show all the features of the application and its related implementation.
 
+![wm_interface.png](images%2Fwm_interface.png)
 ![wm_day_forecast_detail.png](images%2Fwm_day_forecast_detail.png)
 ![wm_forecast-detail.png](images%2Fwm_forecast-detail.png)
-![wm_interface.png](images%2Fwm_interface.png)
 ![wm_temperature-comparison.png](images%2Fwm_temperature-comparison.png)
 
 # Weather Map Rubric
