@@ -32,7 +32,7 @@
     function randomLocation() {
         document.querySelector('h2').innerText = `${30 - totalCollisions}`;
         if (totalCollisions >= 30) {
-            location = "konami.html";
+            window.location = "konami.html";
         }
         let x = 100 + Math.floor(Math.random() * (window.innerWidth - 200));
         let y = 100 + Math.floor(Math.random() * (window.innerHeight - 200));

@@ -143,7 +143,7 @@
     function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable = false, theForecastData) {
         let id = Date.now() + Math.floor(Math.random() * 99999);
         localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(theForecastData));
-        popupHTML += `<div id="data"><a href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
+        popupHTML += `<div id="data"><a target="_blank" href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
         let popup = new mapboxgl.Popup()
             .setHTML(popupHTML);
         let marker = new mapboxgl.Marker({
@@ -171,7 +171,7 @@
                             item.popup = popup;
                             item.marker = marker;
                             item.forecastData = forecastData;
-                            popupHTML += `<div id="data"><a href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
+                            popupHTML += `<div id="data"><a target="_blank" href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
                             popup.setHTML(popupHTML);
                             localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(forecastData));
                         }
@@ -193,7 +193,7 @@
         return id;
     }
 
-    function recordSavedForecast(id) {
+    function recordSavedForecast(id, theForecastData) {
         try {
 
             let currentStorage = localStorage.getItem("savedForecasts");
@@ -204,6 +204,12 @@
             }
 
             savedForecasts.push(id);
+
+            if (!theForecastData || !theForecastData?.city || !theForecastData?.list) {
+                theForecastData = forecastData; // Rely on latest global forecastData
+            }
+
+            localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(theForecastData));
 
             localStorage.setItem("savedForecasts", JSON.stringify(savedForecasts));
 
@@ -676,6 +682,22 @@
 
                 currentWeatherIconIndex = 0;
 
+                let lngLat = {
+                    lng: forecastData.city.coord.lon,
+                    lat: forecastData.city.coord.lat
+                }
+
+                let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
+
+                placeMarkerAndPopupUsingCoords(lngLat, popupHTML, MAPBOX_TOKEN, map, true, forecastData);
+
+                map.flyTo({
+                    center: lngLat,
+                    zoom: defaultZoom
+                });
+
+                // recordSavedForecast(selected, forecastData);
+
                 renderForecast(forecastData);
 
                 let cityCoords = {
@@ -731,7 +753,7 @@
             `;
 
             modal(mHead, mBody);
-            
+
             try {
                 let saveDataResult = await saveDataToBackend(forecastData);
                 console.log({saveDataResult});
@@ -745,11 +767,13 @@
             }, 9000);
         });
 
-        homeButton.addEventListener("click", (event) => {
+        homeButton.addEventListener("click", async (event) => {
 
             event.preventDefault();
 
-            clearPopups();
+            if (confirm("Would you also like to clear current map markers?")) {
+                clearPopups();
+            }
 
             setTitle("Searching for your current GPS Location.");
 
@@ -769,10 +793,19 @@
 
             modal(mHead, mBody);
 
-            getLiveForecastDataFromCurrentGpsLocation();
 
+            await getLiveForecastDataFromCurrentGpsLocation();
+            
             setTimeout(function () {
                 closeModal();
+                if (confirm("Would you like to add a popup marker for your current GPS Location?")) {
+                    let lngLat = {
+                        lng: forecastData.city.coord.lon,
+                        lat: forecastData.city.coord.lat
+                    }
+                    let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
+                    placeMarkerAndPopupUsingCoords(lngLat, popupHTML, MAPBOX_TOKEN, map, true, forecastData);
+                }
             }, 9000);
 
         });
