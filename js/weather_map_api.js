@@ -12,14 +12,14 @@
 
     let animationArray = [];
     let animationTimer = null;
-    let animateRotateInterval = 2000;
+    let animateRotateInterval = 1000;
     let currentWeatherIconIndex = 0;
     let forecastAutoIntervalTimer = null;
-    let forecastRotateInterval = 10000;
+    let forecastRotateInterval = 5000;
     let forecastRangeSlider = null;
     let currentForecastIndex = 0;
 
-    let forecastData = [];
+    let forecastData = {};
 
     let dynamicallyAddedMapObjectsArray = [];
 
@@ -395,9 +395,11 @@
         forecastItemTitle.classList.add("text-center");
 
         // @todo - troubleshoot this time conversion
-        forecastItemTitle.innerText = convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString();
-        forecastItemTitle.innerText += convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleTimeString('en-us', options)
-        forecastItemTitle.innerText += new Date(forecastItem.dt_txt).toLocaleTimeString('en-us', options)
+        // @todo - fix all date and time conversions
+
+        forecastItemTitle.innerHTML = forecastItem['dt_txt'] + "<br>" + forecastItem.dt + "<br>" + convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString();
+        forecastItemTitle.innerHTML += "<br>" + convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleTimeString('en-us', options)
+        forecastItemTitle.innerHTML += "<br>" + new Date(forecastItem.dt_txt).toLocaleTimeString('en-us', options)
 
         // @todo - troubleshoot this time conversion
 
@@ -406,7 +408,8 @@
         forecastItemText.innerText = forecastItem.weather[0].description;
         forecastItemBody.appendChild(forecastItemTitle);
         forecastItemBody.appendChild(forecastItemHumidity);
-        // forecastItemBody.appendChild(forecastItemPressure);
+
+
         forecastItemBody.appendChild(forecastItemTitle);
         forecastItemElement.appendChild(forecastItemImg);
         forecastItemElement.appendChild(forecastItemBody);
@@ -423,12 +426,22 @@
 
                         // @todo - improve code with better template functions
 
+                        // @todo - testing date time
+                        let time = new Date(eachDayItem.dt * 1000);
+                        let theTime = `<p>${time.toLocaleTimeString(options)}</p>
+                          `;
+
+
                         let template = `
                             <div class="my-card w-25">
                             <div class="my-card-body text-center">
-                            <h5>
-                                ${convertTime(eachDayItem.dt) + " " + new Date(eachDayItem.dt_txt).toLocaleString()}
-                            </h5>
+                            <p>THE TIME:${theTime}</p>
+                            <h3>
+                                THE DATE:${new Date(eachDayItem.dt_txt).toLocaleString()}
+                            </h3>
+                            <h6>
+                                MY DATE:${convertTime(eachDayItem.dt) + " " + new Date(eachDayItem.dt_txt).toLocaleString()}
+                            </h6>
                             <img src="https://openweathermap.org/img/wn/${eachDayItem.weather[0].icon}.png" alt="${eachDayItem.weather[0].description}">
                             <p class="card-text">${eachDayItem.weather[0].description}</p>
                             <p class="card-text">${eachDayItem.main.temp_min} °F - (${eachDayItem.main.temp} °F) - ${eachDayItem.main.temp_max} °F</p>
@@ -456,18 +469,10 @@
 
     function renderForecast(forecastData) {
 
-        if (forecastAutoIntervalTimer) {
-            clearInterval(forecastAutoIntervalTimer);
-        }
+        // if (forecastAutoIntervalTimer) {
+        //     clearInterval(forecastAutoIntervalTimer);
+        // }
 
-        forecastAutoIntervalTimer = setInterval(function () {
-            currentForecastIndex += 1; // @todo - troublshoot possibly off by one, or disable this auto sequence...
-            if (currentForecastIndex > 8) {
-                currentForecastIndex = 0;
-            }
-            forecastRangeSlider.value = currentForecastIndex;
-            renderForecast(forecastData);
-        }, forecastRotateInterval);
 
         forecastContainer.innerHTML = "";
 
@@ -689,17 +694,30 @@
             let value = event.target.value;
             currentForecastIndex = Number(value) || 0;
             renderForecast(forecastData);
-        });
 
-        forecastRangeSlider.addEventListener("focus", (event) => {
-            event.preventDefault();
             if (forecastAutoIntervalTimer) {
                 clearInterval(forecastAutoIntervalTimer);
             }
-            let value = event.target.value;
-            currentForecastIndex = Number(value) || 0;
-            currentWeatherIconIndex = currentForecastIndex;
+
+            forecastAutoIntervalTimer = setInterval(function () {
+                currentForecastIndex += 1; // @todo - troublshoot possibly off by one, or disable this auto sequence...
+                if (currentForecastIndex > 7) {
+                    currentForecastIndex = 0;
+                }
+                forecastRangeSlider.value = currentForecastIndex;
+                renderForecast(forecastData);
+            }, forecastRotateInterval);
         });
+
+        // forecastRangeSlider.addEventListener("focus", (event) => {
+        //     event.preventDefault();
+        //     if (forecastAutoIntervalTimer) {
+        //         clearInterval(forecastAutoIntervalTimer);
+        //     }
+        //     let value = event.target.value;
+        //     currentForecastIndex = Number(value) || 0;
+        //     currentWeatherIconIndex = currentForecastIndex;
+        // });
 
         findForm.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -836,6 +854,7 @@
 
         });
 
+        renderForecast(forecastData);
     }
 
     function createAnimations() {
