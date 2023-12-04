@@ -12,8 +12,10 @@
 
     let animationArray = [];
     let animationTimer = null;
+    let animateRotateInterval = 2000;
     let currentWeatherIconIndex = 0;
     let forecastAutoIntervalTimer = null;
+    let forecastRotateInterval = 10000;
     let forecastRangeSlider = null;
     let currentForecastIndex = 0;
 
@@ -329,6 +331,17 @@
 
     function renderOneForecastItem(forecastItem, index) {
 
+        var options = {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        };
+
         let forecastItemElement = document.createElement("div");
         forecastItemElement.classList.add("forecast-item");
         forecastItemElement.classList.add("card");
@@ -357,14 +370,14 @@
 
         let minMaxContainer = document.createElement("div");
         minMaxContainer.classList.add("text-center");
-        minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - ${forecastItem.main.temp_max + " °F"}</span>`;
+        minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - <span>(${temperature + " °F"})<span> - ${forecastItem.main.temp_max + " °F"}</span>`;
         minMaxContainer.style.color = temperatureColor;
 
         forecastItemBody.appendChild(minMaxContainer);
 
         let forecastItemHumidity = document.createElement("div");
         forecastItemHumidity.classList.add("text-center");
-        forecastItemHumidity.innerText = "Humidity: " + forecastItem.main.humidity + "%";
+        forecastItemHumidity.innerText = "" + forecastItem.main.humidity + "%" + " - " + "" + forecastItem.main.pressure + "hPa"
 
         let speedAndDirection = document.createElement("div");
 
@@ -373,20 +386,27 @@
         speedAndDirection.innerHTML = `<span>${stringWind}</span>`;
         forecastItemBody.appendChild(speedAndDirection);
 
-        let forecastItemPressure = document.createElement("div");
-        forecastItemPressure.classList.add("text-center");
-        forecastItemPressure.innerText = "Pressure: " + forecastItem.main.pressure + "hPa";
+        // let forecastItemPressure = document.createElement("div");
+        // forecastItemPressure.classList.add("text-center");
+        // forecastItemPressure.innerText = "Pressure: " + forecastItem.main.pressure + "hPa";
 
         let forecastItemTitle = document.createElement("h5");
+        forecastItemTitle.classList.add("bg-warning");
         forecastItemTitle.classList.add("text-center");
+
+        // @todo - troubleshoot this time conversion
         forecastItemTitle.innerText = convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString();
+        forecastItemTitle.innerText += convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleTimeString('en-us', options)
+        forecastItemTitle.innerText += new Date(forecastItem.dt_txt).toLocaleTimeString('en-us', options)
+
+        // @todo - troubleshoot this time conversion
 
         let forecastItemText = document.createElement("p");
         forecastItemText.classList.add("card-text");
         forecastItemText.innerText = forecastItem.weather[0].description;
         forecastItemBody.appendChild(forecastItemTitle);
         forecastItemBody.appendChild(forecastItemHumidity);
-        forecastItemBody.appendChild(forecastItemPressure);
+        // forecastItemBody.appendChild(forecastItemPressure);
         forecastItemBody.appendChild(forecastItemTitle);
         forecastItemElement.appendChild(forecastItemImg);
         forecastItemElement.appendChild(forecastItemBody);
@@ -402,22 +422,18 @@
                         let eachDayItem = data.list[jj];
 
                         // @todo - improve code with better template functions
-                        
+
                         let template = `
                             <div class="my-card w-25">
                             <div class="my-card-body text-center">
                             <h5>
-                                ${convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString()}
+                                ${convertTime(eachDayItem.dt) + " " + new Date(eachDayItem.dt_txt).toLocaleString()}
                             </h5>
                             <img src="https://openweathermap.org/img/wn/${eachDayItem.weather[0].icon}.png" alt="${eachDayItem.weather[0].description}">
                             <p class="card-text">${eachDayItem.weather[0].description}</p>
-                            <p class="card-text">${eachDayItem.main.temp} °F</p>
-                            <p class="card-text">${eachDayItem.main.temp_min} °F</p>
-                            <p class="card-text">${eachDayItem.main.temp_max} °F</p>
-                            <p class="card-text">${eachDayItem.main.humidity} %</p>
-                            <p class="card-text">${eachDayItem.main.pressure} hPa</p>
-                            <p class="card-text">${eachDayItem.wind.speed} mph</p>
-                            <p class="card-text">${degToCompass(eachDayItem.wind.deg)}</p>
+                            <p class="card-text">${eachDayItem.main.temp_min} °F - (${eachDayItem.main.temp} °F) - ${eachDayItem.main.temp_max} °F</p>
+                            <p class="card-text">${eachDayItem.main.humidity} % (${eachDayItem.main.pressure} hPa)</p>
+                            <p class="card-text">${eachDayItem.wind.speed} mph (${degToCompass(eachDayItem.wind.deg)})</p>
                             </div>
                             </div>
                         `;
@@ -451,7 +467,7 @@
             }
             forecastRangeSlider.value = currentForecastIndex;
             renderForecast(forecastData);
-        }, 5000);
+        }, forecastRotateInterval);
 
         forecastContainer.innerHTML = "";
 
@@ -895,7 +911,7 @@
                     animationArray[i].style.display = "none";
                 }
             }
-        }, 1000);
+        }, animateRotateInterval);
     }
 
     function closeModal() {

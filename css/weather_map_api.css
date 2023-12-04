@@ -94,3 +94,13 @@ a {
     object-fit: contain;
     border-radius: 100%;
 }
+
+.my-card {
+    border: 2px solid #24c4c3;
+    background-color: #abe8e7;
+}
+
+.my-card img {
+    height: 5dvw;
+    object-fit: contain;
+}
