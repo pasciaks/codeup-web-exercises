@@ -7,6 +7,7 @@
     let loadButton = null;
     let findInput = null;
     let findForm = null;
+    let saveButton = null;
 
     let defaultZoom = 10;
 
@@ -28,6 +29,8 @@
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v12', // style URL
+        // style: 'mapbox://styles/mapbox/navigation-night-v1', // style URL
+        // style: 'mapbox://styles/mapbox/satellite-v9', // style URL
         center: [-111.9462511, 40.6466734], // starting position [lng, lat]
         zoom: 2, // starting zoom // 5 // 15 // 20 // 25
     });
@@ -571,6 +574,7 @@
         homeButton = document.getElementById("btn-home");
         loadButton = document.getElementById('btn-load');
         findInput = document.getElementById("input-find");
+        saveButton = document.getElementById("btn-save");
 
         forecastRangeSlider = document.getElementById("forecast-range");
 
@@ -701,6 +705,46 @@
 
         });
 
+        saveButton.addEventListener("click", async (event) => {
+            event.preventDefault();
+
+            if (!forecastData || !forecastData?.city || !forecastData?.list) {
+                let mHead = "ERROR"
+                let mBody = `No forecast data to save.`;
+                modal(mHead, mBody);
+                return;
+            }
+
+            setTitle("Saving your forecast.");
+
+            setSubTitle("");
+
+            findInput.value = "";
+
+            let mHead = "Saving"
+            let mBody = `
+            <div class="modal-body text-center">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            `;
+
+            modal(mHead, mBody);
+            
+            try {
+                let saveDataResult = await saveDataToBackend(forecastData);
+                console.log({saveDataResult});
+                window.open("https://public.requestbin.com/r/en9lq7dy4nwcl/");
+            } catch (error) {
+                console.log(error);
+            }
+
+            setTimeout(function () {
+                closeModal();
+            }, 9000);
+        });
+
         homeButton.addEventListener("click", (event) => {
 
             event.preventDefault();
@@ -801,7 +845,7 @@
             if (currentWeatherIconIndex >= animationArray.length) {
                 currentWeatherIconIndex = 0;
             }
-            
+
             for (let i = 0; i < animationArray.length; i++) {
                 if (currentWeatherIconIndex === i) {
                     animationArray[i].style.display = "block";
