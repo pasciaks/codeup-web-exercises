@@ -10,6 +10,11 @@
         window.close();
     });
 
+    let refreshButton = document.getElementById("refresh-window-button");
+    refreshButton.addEventListener("click", () => {
+        window.location.reload();
+    });
+
     let forecastData = [];
 
     function getParameterByName(name, url = window.location.href) {
