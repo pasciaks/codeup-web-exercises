@@ -1,21 +1,5 @@
 "use strict";
 
-// https://codeup-curriculum.web.app/curriculum/java/3.0.1/javascript-3/mapbox-api
-// https://docs.mapbox.com/mapbox-gl-js/api/
-// https://docs.mapbox.com/mapbox-gl-js/example/scroll-fly-to/
-// https://docs.mapbox.com/mapbox-gl-js/example/
-
-// references: https://jsfiddle.net/jz08vuo4/
-
-/*
-
-Additional reference code:
-
-            map.setCenter(result);
-            map.setZoom(10);
-
- */
-
 let dynamicallyAddedMapObjectsArray = [];
 
 /**
@@ -281,6 +265,3 @@ let testId = 0;
 //         mapObject.marker.togglePopup();
 //     });
 // }, 4000);
-
-
-
