@@ -327,7 +327,8 @@
         return arr[(val % 16)];
     }
 
-    function renderOneForecastItem(forecastItem) {
+    function renderOneForecastItem(forecastItem, index) {
+
         let forecastItemElement = document.createElement("div");
         forecastItemElement.classList.add("forecast-item");
         forecastItemElement.classList.add("card");
@@ -390,6 +391,50 @@
         forecastItemElement.appendChild(forecastItemImg);
         forecastItemElement.appendChild(forecastItemBody);
 
+        forecastItemElement.addEventListener("click", (event) => {
+            event.preventDefault();
+            let currentSelectedForecast = localStorage.getItem("currentForecastRecord");
+            if (currentSelectedForecast) {
+                let data = JSON.parse(currentSelectedForecast);
+                if (data) {
+                    let dayHTML = '';
+                    for (let jj = index; jj < index + 8; jj++) {
+                        let eachDayItem = data.list[jj];
+
+                        // @todo - improve code with better template functions
+                        
+                        let template = `
+                            <div class="my-card w-25">
+                            <div class="my-card-body text-center">
+                            <h5>
+                                ${convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString()}
+                            </h5>
+                            <img src="https://openweathermap.org/img/wn/${eachDayItem.weather[0].icon}.png" alt="${eachDayItem.weather[0].description}">
+                            <p class="card-text">${eachDayItem.weather[0].description}</p>
+                            <p class="card-text">${eachDayItem.main.temp} °F</p>
+                            <p class="card-text">${eachDayItem.main.temp_min} °F</p>
+                            <p class="card-text">${eachDayItem.main.temp_max} °F</p>
+                            <p class="card-text">${eachDayItem.main.humidity} %</p>
+                            <p class="card-text">${eachDayItem.main.pressure} hPa</p>
+                            <p class="card-text">${eachDayItem.wind.speed} mph</p>
+                            <p class="card-text">${degToCompass(eachDayItem.wind.deg)}</p>
+                            </div>
+                            </div>
+                        `;
+                        dayHTML += template;
+                    }
+                    let containerHTML = `
+                    <div class="container-fluid">
+                        <div class="flex-wrap align-baseline justify-around justify-center row">
+                            ${dayHTML}
+                        </div>  
+                    </div>
+                    `;
+                    modal("Forecast", containerHTML);
+                }
+            }
+        });
+
         return forecastItemElement;
     }
 
@@ -400,8 +445,8 @@
         }
 
         forecastAutoIntervalTimer = setInterval(function () {
-            currentForecastIndex += 1;
-            if (currentForecastIndex >= 8) {
+            currentForecastIndex += 1; // @todo - troublshoot possibly off by one, or disable this auto sequence...
+            if (currentForecastIndex > 8) {
                 currentForecastIndex = 0;
             }
             forecastRangeSlider.value = currentForecastIndex;
@@ -418,9 +463,11 @@
 
         setTitle(`${forecastData?.city?.name || ""} ${forecastData?.city?.country || ""}`);
 
+        localStorage.setItem("currentForecastRecord", JSON.stringify(forecastData));
+
         for (let i = currentForecastIndex; i < forecastData.list.length; i += 8) {
             let oneForecastItem = forecastData.list[i];
-            let oneForecastItemElement = renderOneForecastItem(oneForecastItem);
+            let oneForecastItemElement = renderOneForecastItem(oneForecastItem, i - currentForecastIndex);
             forecastContainer.appendChild(oneForecastItemElement);
         }
 
