@@ -24,12 +24,12 @@ $(document).ready(function () {
 
             recurringTimer = window.setInterval(function () {
                 socket.emit("get_signs", "0.0.0.0")
-            }, 10000);
+            }, 5000);
 
-            // window.setTimeout(function () {
-            //     socket.emit("identify", myUniqueId);
-            //     socket.emit("public_message", "picture");
-            // }, 5000);
+            window.setTimeout(function () {
+                socket.emit("identify", myUniqueId);
+                socket.emit("public_message", "picture");
+            }, 500);
         });
 
         socket.on("got_signs", function (data) {
