@@ -595,7 +595,7 @@
             }
 
             forecastAutoIntervalTimer = setInterval(function () {
-                currentForecastIndex += 1; // @todo - troublshoot possibly off by one, or disable this auto sequence...
+                currentForecastIndex += 1;
                 if (currentForecastIndex > 7) {
                     currentForecastIndex = 0;
                 }
@@ -795,7 +795,7 @@
 
 
             await getLiveForecastDataFromCurrentGpsLocation();
-            
+
             setTimeout(function () {
                 closeModal();
                 if (confirm("Would you like to add a popup marker for your current GPS Location?")) {
@@ -899,40 +899,10 @@
 
     init();
 
-    // todo: trap all errors and show modal error
-    // todo: consider implementing favorites
-    // todo: consider implementing backend to store favorites and other user's search data
-    // todo: consider adding live 'sky' view or 'upload' view like gas buddy but for live weather views
-    // todo: consider 'How Hot It Is... ' for indoor use of webcam to show the 'current capacity/clientele' of a place
-    // todo: implement drop down menu or off canvas menu for accessing favorites
-    // todo: allow re-query frequency to auto update from favorites and store in database
-    // todo: show current forecast details or chart/graphs in popups
-    // todo: check for duplicate calls to title, document.getElementById("title").innerText = title, etc...
-    // todo: optimize calls for data... don't call if already have data, much more, but lower priority.
-    // TODO: Trap for errors or not found cities ... {"cod":"404","message":"city not found"}
-    // todo: lancaster PA, etc...
-    // todo: consider the dataset and don't simply just show every 8, allow some type of use of all that data...
-    // todo: click on one box of forecast and show all the data for that day in a modal
-    // todo: take away the title hover in the forecast boxes and show the data in a modal
-    // todo: different icon if it is a draggable marker or not
     // todo: different icon based on the weather , temp, etc...
-    // todo: use the city detail in the forecast data to show as titles in the overall render, instead of numerous set title calls
     // todo - load and plot route data, see data/route_data.js
-    // todo - from route points, poll the collection of the weather forecast for all those locations
-    // todo - have the icons of all points in the route animate in a loop
-    // todo - use custom marker for temp, wind direction, etc
-    // todo - store the loaded data in an object of the remembered locations ( dynamicallyAddedMapObjectsArray
-    // todo - hen when they click on the remembered location, it will load the data from the object and ask if it
-    // todo - needs to be updated with a fresh api call
+    // todo - get all forecasts along the route
     // todo - update stored library file and share with class so all their forecasts can be captured
-    // todo - graph hourly temperatures for the 40 elements, use chart js
     // todo - table view of data
-    // todo - single day view of data ( 24 hours, 3 hour increments )
-    // todo - done - standard view ( 5 days, each showing same hour, pulsing between the 3 hour increments)
-    // todo -search for unused classes, functions, etc, commented out code, etc
-    // todo - save to local storage and navigate to a new page and load from local storage for alternate views
-    // todo - make icon html show graph of current days hourly temperature, and whole set temperatures by date,time
-    // todo - make external view file functions that can be used to render the data in different ways
-    // todo - like the library for data, a library for rendering the data in different ways
 
 })();

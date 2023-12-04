@@ -43,8 +43,6 @@ const setCurrentPosition = async () => {
 
                 setTimeout(async function () {
 
-                    // @todo - optimize and cleanup - remove UI/UX code from this method
-
                     document.getElementById("message").innerHTML = "You've Arrived!";
 
                     placeMarkerAndPopupUsingCoords(
