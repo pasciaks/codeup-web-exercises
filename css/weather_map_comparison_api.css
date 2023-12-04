@@ -8,8 +8,6 @@ header {
     justify-content: space-around;
 }
 
-/* The following style will set a background image with low opacity to fit and cover the whole page */
-
 #content {
     box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 }
@@ -25,7 +23,6 @@ body {
     background-size: cover;
     background-attachment: fixed;
     opacity: 0.8;
-
 }
 
 

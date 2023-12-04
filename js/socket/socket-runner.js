@@ -2,17 +2,7 @@ let recurringTimer = null;
 let connectionString = "http://lostwords.org" + ":8383";
 let storedImageData = "";
 let socket;
-let ww, hh;
 let myUniqueId = Math.floor(Math.random() * 9999) + "-" + Date.now();
-
-function resizeWindow() {
-    ww = window.innerWidth;
-    hh = window.innerHeight;
-}
-
-$(window).resize(function () {
-    resizeWindow();
-});
 
 $(document).ready(function () {
 
@@ -35,9 +25,11 @@ $(document).ready(function () {
                 socket.emit("public_message", "picture");
             }, 2000);
         });
+
         socket.on("got_signs", function (data) {
             console.log(JSON.stringify(data));
         });
+
         socket.on("message", function (data) {
             storedImageData = data;
             if (data.length > 5) {
@@ -48,5 +40,7 @@ $(document).ready(function () {
                 }
             }
         });
+
     });
+    
 });

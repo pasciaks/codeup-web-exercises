@@ -13,11 +13,8 @@
     let animationArray = [];
     let animationTimer = null;
     let currentWeatherIconIndex = 0;
-
     let forecastAutoIntervalTimer = null;
-
     let forecastRangeSlider = null;
-
     let currentForecastIndex = 0;
 
     let forecastData = [];
@@ -38,12 +35,17 @@
     map.on('style.load', function () {
         map.on('dblclick', async function (e) {
             e.preventDefault();
+
             setSubTitle("");
+
             setTitle("");
+
             let lngLat = e.lngLat;
+
             getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
 
             setTimeout(function () {
+
                 let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
 
                 placeMarkerAndPopupUsingCoords(
@@ -57,24 +59,8 @@
                     center: lngLat,
                     zoom: defaultZoom
                 });
+
             }, 1000);
-
-            // let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
-            //
-            // // @todo - adjust this to show the popup with generated info
-            // let address = await reverseGeocode(lngLat, MAPBOX_TOKEN);
-            //
-            // placeMarkerAndPopupUsingCoords(
-            //     lngLat,
-            //     popupHTML,
-            //     MAPBOX_TOKEN,
-            //     map,
-            //     true);
-            // map.flyTo({
-            //     center: lngLat,
-            //     zoom: 10
-            // });
-
 
         });
     });
@@ -112,8 +98,6 @@
                 return data.features[0].center;
             })
             .catch((error) => {
-                //console.error('Error:', error);
-                // alert(error.message);
                 let mHead = "ERROR"
                 let mBody = ``;
                 modal(mHead, mBody);
@@ -140,11 +124,10 @@
         let endPoint = '/geocoding/v5/mapbox.places/';
         return fetch(`${baseUrl}${endPoint}${coordinates.lng},${coordinates.lat}.json?access_token=${token}`)
             .then(res => res.json())
-            // to get all the data from the request, comment out the following three lines...
             .then(data => {
                 let tempTitle = data?.features[0]?.place_name || "No results found";
                 setSubTitle(tempTitle);
-                return tempTitle; // data.features[0].place_name;
+                return tempTitle;
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -166,19 +149,18 @@
             .setPopup(popup);
         if (draggable) {
             function onDragEnd(e) {
+
                 const lngLat = e.target.getLngLat();
+
                 getLiveForecastDataFromGpsCoords(lngLat, WEATHER_API_KEY);
-                // reverseGeocode(lngLat, MAPBOX_TOKEN)
-                //     .then(async (address) => {
 
-                //@todo - adjust this to show the popup with generated info
-
-                // popupHTML = `<div>${address}</div>`;
                 popup.setHTML('searching...');
+
                 setTimeout(function () {
                     popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
                     popup.setHTML(popupHTML);
                     popup.addTo(map);
+
                     dynamicallyAddedMapObjectsArray.find((item) => {
                         if (item.id === id) {
                             item.popup = popup;
@@ -189,33 +171,41 @@
                             localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(forecastData));
                         }
                     });
+
                 }, 1000);
 
-                // })
-                // .catch((error) => {
-                //     console.error('Error:', error);
-                // });
             }
 
             marker.on('dragend', onDragEnd);
         }
+
         dynamicallyAddedMapObjectsArray.push({id, popup, marker, forecastData});
+
         recordSavedForecast(id);
+
         popup.addTo(map);
+
         return id;
     }
 
     function recordSavedForecast(id) {
         try {
+
             let currentStorage = localStorage.getItem("savedForecasts");
             let savedForecasts = [];
+
             if (currentStorage) {
                 savedForecasts = JSON.parse(currentStorage);
             }
+
             savedForecasts.push(id);
+
             localStorage.setItem("savedForecasts", JSON.stringify(savedForecasts));
+
         } catch (error) {
+
             console.log(error);
+
         }
     }
 
@@ -225,7 +215,7 @@
 
     function forecastByCoords(lat, lon) {
 
-        forecastRangeSlider.value = 0; // start next results at first forecast
+        forecastRangeSlider.value = 0;
         currentForecastIndex = 0;
 
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=imperial`)
@@ -238,7 +228,6 @@
             })
             .catch((error) => {
                 console.error(error);
-                // alert(error.message);
                 let mHead = "ERROR"
                 let mBody = ``;
                 modal(mHead, mBody);
@@ -248,7 +237,7 @@
 
     function forecastByCity(city) {
 
-        forecastRangeSlider.value = 0; // start next results at first forecast
+        forecastRangeSlider.value = 0;
         currentForecastIndex = 0;
 
         city = city.trim();
@@ -295,8 +284,6 @@
 
         forecastData = await getForecastFromSpecificGpsPosition(coords);
 
-        // saveForecastData(forecastData).then();
-
         document.querySelector("#modalClose").click();
 
         return forecastData;
@@ -311,24 +298,26 @@
             .catch((error) => {
                 console.error(error);
             })
+
         return forecastData;
     }
 
     async function getForecastFromSpecificGpsPosition(lngLat) {
 
-
         map.flyTo({
             center: lngLat,
             zoom: defaultZoom
         });
+
         forecastData = await forecastByCoords(lngLat.lat, lngLat.lng)
             .then((data) => {
                 return data;
             })
             .catch((error) => {
                 console.error(error);
-                // setTitle(`...`);
+                return [];
             })
+
         return forecastData;
     }
 
@@ -342,20 +331,25 @@
         let forecastItemElement = document.createElement("div");
         forecastItemElement.classList.add("forecast-item");
         forecastItemElement.classList.add("card");
+
         let forecastItemImg = document.createElement("img");
         forecastItemImg.classList.add("card-img-top");
         forecastItemImg.src = `https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}.png`;
+
         let forecastItemBody = document.createElement("div");
         forecastItemBody.classList.add("card-body");
+
         let forecastItemDetail = document.createElement("div");
         forecastItemDetail.classList.add("card-detail");
         forecastItemDetail.innerText = forecastItem.weather[0].description;
 
         let temperature = forecastItem.main.temp;
         let temperatureColor = "black";
+
         if (temperature < 32) {
             temperatureColor = "blue";
         }
+
         if (temperature > 80) {
             temperatureColor = "red";
         }
@@ -365,23 +359,27 @@
         minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - ${forecastItem.main.temp_max + " °F"}</span>`;
         minMaxContainer.style.color = temperatureColor;
 
-
         forecastItemBody.appendChild(minMaxContainer);
 
         let forecastItemHumidity = document.createElement("div");
         forecastItemHumidity.classList.add("text-center");
         forecastItemHumidity.innerText = "Humidity: " + forecastItem.main.humidity + "%";
+
         let speedAndDirection = document.createElement("div");
+
         let stringWind = `${forecastItem.wind.speed} mph (${forecastItem.wind.deg}°) ${degToCompass(forecastItem.wind.deg)}`;
         speedAndDirection.classList.add("text-center");
         speedAndDirection.innerHTML = `<span>${stringWind}</span>`;
         forecastItemBody.appendChild(speedAndDirection);
+
         let forecastItemPressure = document.createElement("div");
         forecastItemPressure.classList.add("text-center");
         forecastItemPressure.innerText = "Pressure: " + forecastItem.main.pressure + "hPa";
+
         let forecastItemTitle = document.createElement("h5");
         forecastItemTitle.classList.add("text-center");
         forecastItemTitle.innerText = convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString();
+
         let forecastItemText = document.createElement("p");
         forecastItemText.classList.add("card-text");
         forecastItemText.innerText = forecastItem.weather[0].description;
@@ -391,6 +389,7 @@
         forecastItemBody.appendChild(forecastItemTitle);
         forecastItemElement.appendChild(forecastItemImg);
         forecastItemElement.appendChild(forecastItemBody);
+
         return forecastItemElement;
     }
 
@@ -419,66 +418,11 @@
 
         setTitle(`${forecastData?.city?.name || ""} ${forecastData?.city?.country || ""}`);
 
-        // let cityCoords = {
-        //     lng: forecastData.city.coord.lon,
-        //     lat: forecastData.city.coord.lat
-        // }
-        //
-        // map.flyTo({
-        //     center: cityCoords,
-        //     zoom: 10
-        // });
-
         for (let i = currentForecastIndex; i < forecastData.list.length; i += 8) {
             let oneForecastItem = forecastData.list[i];
             let oneForecastItemElement = renderOneForecastItem(oneForecastItem);
             forecastContainer.appendChild(oneForecastItemElement);
         }
-
-        // for (let i = currentForecastIndex; i < forecastData.list.length; i += 8) {
-        //     let forecastItem = forecastData.list[i];
-        //     let forecastItemElement = document.createElement("div");
-        //     forecastItemElement.classList.add("forecast-item");
-        //     forecastItemElement.classList.add("card");
-        //     let forecastItemImg = document.createElement("img");
-        //     forecastItemImg.classList.add("img-responsive");
-        //     forecastItemImg.classList.add("card-img-top");
-        //     forecastItemImg.src = `https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}.png`;
-        //     let forecastItemBody = document.createElement("div");
-        //     forecastItemBody.classList.add("card-body");
-        //     let forecastItemDetail = document.createElement("div");
-        //     forecastItemDetail.classList.add("card-detail");
-        //     forecastItemDetail.innerText = forecastItem.weather[0].description;
-        //     let minMaxContainer = document.createElement("div");
-        //     minMaxContainer.classList.add("text-center");
-        //     minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - ${forecastItem.main.temp_max + " °F"}</span>`;
-        //     forecastItemBody.appendChild(minMaxContainer);
-        //     let forecastItemHumidity = document.createElement("div");
-        //     forecastItemHumidity.classList.add("text-center");
-        //     forecastItemHumidity.innerText = "Humidity: " + forecastItem.main.humidity + "%";
-        //     let speedAndDirection = document.createElement("div");
-        //     let stringWind = `${forecastItem.wind.speed} mph (${forecastItem.wind.deg}°) ${degToCompass(forecastItem.wind.deg)}`;
-        //     speedAndDirection.classList.add("text-center");
-        //     speedAndDirection.innerHTML = `<span>${stringWind}</span>`;
-        //     forecastItemBody.appendChild(speedAndDirection);
-        //     let forecastItemPressure = document.createElement("div");
-        //     forecastItemPressure.classList.add("text-center");
-        //     forecastItemPressure.innerText = "Pressure: " + forecastItem.main.pressure + "hPa";
-        //     let forecastItemTitle = document.createElement("h5");
-        //     forecastItemTitle.classList.add("text-center");
-        //     forecastItemTitle.innerText = convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString();
-        //     let forecastItemText = document.createElement("p");
-        //     forecastItemText.classList.add("card-text");
-        //     forecastItemText.innerText = forecastItem.weather[0].description;
-        //     forecastItemBody.appendChild(forecastItemTitle);
-        //     forecastItemBody.appendChild(forecastItemHumidity);
-        //     forecastItemBody.appendChild(forecastItemPressure);
-        //     forecastItemBody.appendChild(forecastItemTitle);
-        //     forecastItemElement.appendChild(forecastItemImg);
-        //     forecastItemElement.appendChild(forecastItemBody);
-        //
-        //     forecastContainer.appendChild(forecastItemElement);
-        // }
 
     }
 
@@ -495,8 +439,6 @@
     }
 
     function getLiveForecastDataFromGpsCoords(coords) {
-
-        // setTitle(`${coords.lat}, ${coords.lng}`);
 
         getForecastFromSpecificGpsPosition(coords)
             .then((data) => {
@@ -529,8 +471,8 @@
         // Create a Date object using the timestamp
         const dateTime = new Date(timestamp);
 
-        console.log("Epoch Time:", dateTime.toUTCString());
-        console.log("Local Time:", dateTime.toLocaleString());
+        // console.log("Epoch Time:", dateTime.toUTCString());
+        // console.log("Local Time:", dateTime.toLocaleString());
 
         return {utc: dateTime.toUTCString(), local: dateTime.toLocaleString()};
     }
@@ -548,8 +490,6 @@
     }
 
     function getLiveForecastFromCity(city) {
-
-        // setTitle(`${city}`);
 
         getForecastFromCity(city)
             .then((data) => {
@@ -586,22 +526,24 @@
 
         try {
 
-            // Implementation of backend for saving a forecast JSON file
-
             let saveForecastResult = await saveForecast(forecastData);
 
-            let id = saveForecastResult.data.id;
+            if (!saveForecastResult.data) {
+                console.log("Error saving forecast data");
+                return;
+            }
+
+            let id = saveForecastResult.data.file_uploaded;
 
             if (saveForecastResult.data.statusCode === 201) {
                 // let testData = await getSavedForecast(id);
-                let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${saveForecastResult.data.file_uploaded}.json`;
-                document.getElementById("uploaded").innerHTML = `<a href='${savedForecastFileLink}'>*</a>`;
+                let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${id}.json`;
+                document.getElementById("uploadedJson").innerHTML = `<a href='${savedForecastFileLink}'>*</a>`;
             }
 
         } catch (error) {
 
             console.log(error);
-
             console.log("Error saving forecast data");
 
         }
@@ -620,6 +562,7 @@
         }
 
         findInput.value = "";
+
         findInput.focus();
 
         getLiveForecastFromCity(city);
@@ -648,6 +591,7 @@
             document.querySelector("#modal").classList.remove("show");
             document.querySelector('#modal').removeAttribute("style");
         }, {once: true});
+
     }
 
     function setTitle(title) {
@@ -713,6 +657,7 @@
             setTitle("Awaiting your load selection.");
 
             setSubTitle("");
+
             findInput.value = "";
 
             let data = await getSavedForecasts();
@@ -783,7 +728,6 @@
 
                 closeModal();
 
-
             });
 
             form.append(select);
@@ -833,9 +777,10 @@
 
     function createAnimations() {
 
-        // animation of weather icons
         animationArray = [];
+
         for (let i = 0; i < forecastData.list.length; i++) {
+
             let forecastItem = forecastData.list[i];
             let forecastItemElement = document.createElement("div");
             forecastItemElement.classList.add("forecast-item");
@@ -850,12 +795,15 @@
             forecastItemTempElement.innerText = `${temperature} °F`;
 
             let temperatureColor = "black";
+
             if (temperature < 32) {
                 temperatureColor = "blue";
             }
+
             if (temperature > 80) {
                 temperatureColor = "red";
             }
+
             forecastItemTempElement.style.color = temperatureColor;
 
             let forecastItemImg = document.createElement("img");
@@ -869,9 +817,11 @@
             forecastItemElement.appendChild(forecastItemData);
             forecastItemElement.appendChild(forecastItemImg);
             animationArray.push(forecastItemElement);
+
         }
 
         document.getElementById("animationImages").innerHTML = "";
+
         animationArray.forEach((element) => {
             element.style.display = "none";
             document.getElementById("animationImages").appendChild(element);
@@ -880,6 +830,7 @@
         if (animationTimer) {
             clearInterval(animationTimer);
         }
+
         startAnimations();
 
     }
@@ -907,48 +858,40 @@
 
     init();
 
-// todo: trap all errors and show modal error
-// todo: consider implementing favorites
-// todo: consider implementing backend to store favorites and other user's search data
-// todo: consider adding live 'sky' view or 'upload' view like gas buddy but for live weather views
-// todo: consider 'How Hot It Is... ' for indoor use of webcam to show the 'current capacity/clientele' of a place
-// todo: implement drop down menu or off canvas menu for accessing favorites
-// todo: allow re-query frequency to auto update from favorites and store in database
-// todo: show current forecast details or chart/graphs in popups
-// todo: check for duplicate calls to title, document.getElementById("title").innerText = title, etc...
-// todo: optimize calls for data... don't call if already have data, much more, but lower priority.
-// TODO: Trap for errors or not found cities ... {"cod":"404","message":"city not found"}
-// todo: lancaster PA, etc...
-// todo: consider the dataset and don't simply just show every 8, allow some type of use of all that data...
-// todo: click on one box of forecast and show all the data for that day in a modal
-// todo: take away the title hover in the forecast boxes and show the data in a modal
-// todo: different icon if it is a draggable marker or not
-// todo: different icon based on the weather , temp, etc...
-// todo: use the city detail in the forecast data to show as titles in the overall render, instead of numerous set title calls
-// todo - load and plot route data, see data/route_data.js
-// todo - from route points, poll the collection of the weather forecast for all those locations
-// todo - have the icons of all points in the route animate in a loop
-// todo - use custom marker for temp, wind direction, etc
-// todo - store the loaded data in an object of the remembered locations ( dynamicallyAddedMapObjectsArray
-// todo - hen when they click on the remembered location, it will load the data from the object and ask if it
-// todo - needs to be updated with a fresh api call
-// todo - update stored library file and share with class so all their forecasts can be captured
-// todo - graph hourly temperatures for the 40 elements, use chart js
-
+    // todo: trap all errors and show modal error
+    // todo: consider implementing favorites
+    // todo: consider implementing backend to store favorites and other user's search data
+    // todo: consider adding live 'sky' view or 'upload' view like gas buddy but for live weather views
+    // todo: consider 'How Hot It Is... ' for indoor use of webcam to show the 'current capacity/clientele' of a place
+    // todo: implement drop down menu or off canvas menu for accessing favorites
+    // todo: allow re-query frequency to auto update from favorites and store in database
+    // todo: show current forecast details or chart/graphs in popups
+    // todo: check for duplicate calls to title, document.getElementById("title").innerText = title, etc...
+    // todo: optimize calls for data... don't call if already have data, much more, but lower priority.
+    // TODO: Trap for errors or not found cities ... {"cod":"404","message":"city not found"}
+    // todo: lancaster PA, etc...
+    // todo: consider the dataset and don't simply just show every 8, allow some type of use of all that data...
+    // todo: click on one box of forecast and show all the data for that day in a modal
+    // todo: take away the title hover in the forecast boxes and show the data in a modal
+    // todo: different icon if it is a draggable marker or not
+    // todo: different icon based on the weather , temp, etc...
+    // todo: use the city detail in the forecast data to show as titles in the overall render, instead of numerous set title calls
+    // todo - load and plot route data, see data/route_data.js
+    // todo - from route points, poll the collection of the weather forecast for all those locations
+    // todo - have the icons of all points in the route animate in a loop
+    // todo - use custom marker for temp, wind direction, etc
+    // todo - store the loaded data in an object of the remembered locations ( dynamicallyAddedMapObjectsArray
+    // todo - hen when they click on the remembered location, it will load the data from the object and ask if it
+    // todo - needs to be updated with a fresh api call
+    // todo - update stored library file and share with class so all their forecasts can be captured
+    // todo - graph hourly temperatures for the 40 elements, use chart js
     // todo - table view of data
-
     // todo - single day view of data ( 24 hours, 3 hour increments )
-
     // todo - done - standard view ( 5 days, each showing same hour, pulsing between the 3 hour increments)
-
     // todo -search for unused classes, functions, etc, commented out code, etc
-
     // todo - save to local storage and navigate to a new page and load from local storage for alternate views
-
     // todo - make icon html show graph of current days hourly temperature, and whole set temperatures by date,time
-
     // todo - make external view file functions that can be used to render the data in different ways
-
     // todo - like the library for data, a library for rendering the data in different ways
 
 })();

@@ -263,7 +263,6 @@
         });
     }
 
-
     function displayForecast() {
 
         forecastData = getFromLocalStorage(getParameterByName("id"));
@@ -276,6 +275,5 @@
     }
 
     displayForecast();
-
 
 })();

@@ -25,7 +25,6 @@
             console.log(error);
             return null;
         }
-
     }
 
     function getStoredData() {
@@ -106,8 +105,6 @@
 
         let datasets = [];
 
-        console.log(chartDataObject);
-
         let arrayOfCities = Object.keys(chartDataObject);
 
         arrayOfCities.forEach((city) => {
@@ -157,8 +154,6 @@
 
             let average = Number(computeAverage(data));
 
-            console.log(average);
-
             let oneDataSet = {
                 label: city,
                 data: data,
@@ -196,10 +191,8 @@
             data: data,
             options: {
                 plugins: {
-                    // colors: {
-                    //     enabled: false
-                    // },
                     colors: {
+                        enabled: true,
                         forceOverride: true
                     }
                 },
