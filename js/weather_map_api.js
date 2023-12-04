@@ -104,7 +104,7 @@
             })
             .catch((error) => {
                 let mHead = "ERROR"
-                let mBody = ``;
+                let mBody = `Please try again.`;
                 modal(mHead, mBody);
                 return error;
             });
@@ -234,14 +234,16 @@
             .then(res => res.json())
             .then(data => {
                 if (data?.cod !== "200") {
-                    throw new Error("City not found.");
+                    let mHead = "ERROR"
+                    let mBody = `We could not find any forecast data for the search criteria you entered. Please try again.`;
+                    modal(mHead, mBody);
                 }
                 return data;
             })
             .catch((error) => {
                 console.error(error);
                 let mHead = "ERROR"
-                let mBody = ``;
+                let mBody = `We could not find any forecast data for the search criteria you entered. Please try again.`;
                 modal(mHead, mBody);
                 return null;
             });
@@ -267,7 +269,7 @@
             })
             .catch((error) => {
                 let mHead = "ERROR"
-                let mBody = ``;
+                let mBody = `We could not find any forecast data for the search criteria you entered. Please try again.`;
                 modal(mHead, mBody);
                 return null;
             });
@@ -367,6 +369,14 @@
         return forecastItemElement;
     }
 
+    function showForecastSliderControl(show = true) {
+        if (show) {
+            document.getElementById("forecast-slider-container").classList.remove("d-none");
+        } else {
+            document.getElementById("forecast-slider-container").classList.add("d-none");
+        }
+    }
+
     function renderForecast(forecastData) {
 
         forecastContainer.innerHTML = "";
@@ -376,6 +386,8 @@
             setSubTitle(`Please try again.`);
             return;
         }
+
+        showForecastSliderControl(forecastData.list.length > 0);
 
         setTitle(`${forecastData?.city?.name || ""} ${forecastData?.city?.country || ""}`);
 
@@ -518,7 +530,7 @@
 
         if (!city) {
             let mHead = "ERROR"
-            let mBody = `Please enter a city name.`;
+            let mBody = `Please enter somewhere to search for.. Example: "San Antonio"`;
             modal(mHead, mBody);
             return;
         }

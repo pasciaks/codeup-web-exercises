@@ -32,7 +32,7 @@
     <div>
         <h3 class="text-center" id="title">Weather Buddy</h3>
         <p id="sub-title"></p>
-        <div class="container-fluid">
+        <div class="d-none" id="forecast-slider-container">
             <label class="form-label" for="forecast-range">Forecast Index</label>
             <input class="form-range" id="forecast-range" max="7" min="0" type="range" value="0">
         </div>
@@ -40,7 +40,7 @@
     <form id="form-find">
         <div class="input-group align-baseline">
             <input aria-describedby="btn-find" aria-label="Find" class="form-control" id="input-find"
-                   placeholder="Find city..." type="text"/>
+                   placeholder="Search..." type="text"/>
             <button class="btn btn-primary m-1" id="btn-find" type="submit">
                 Find
             </button>
@@ -56,7 +56,14 @@
         </div>
     </form>
     <section id="animationImages"></section>
+
     <p>
+        <a href="weather_map_about.html" target="_blank">
+            <h1><i class="bi bi-info-circle" id="about-icon"
+                   title="Read about this Weather Buddy application here."></i></h1>
+        </a>
+    </p>
+    <p class="d-none d-md-block" title="Temperature Comparison Tool">
         <a href="weather_map_comparison.html" target="_blank">
             <img alt="" class="m-2 img-fluid" id="alt-logo-img" src="images/background.jpeg">
         </a>
@@ -72,7 +79,7 @@
 <section class="container" id="about">
     <div class="row">
         <div class="col">
-            <h3>About</h3>
+            <h3>About <a href="weather_map_about.html" target="_blank">(read more...)</a></h3>
             <p>This website was uses the following JavaScript libraries:</p>
             <div class="row">
                 <div class="col">

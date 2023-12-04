@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html id="top" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+    <title>Weather Buddy</title>
+
+    <link
+            crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            rel="stylesheet"/>
+
+    <link
+            href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css"
+            rel="stylesheet"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="css/weather_map_api.css" rel="stylesheet"/>
+
+
+</head>
+
+<body>
+
+<header>
+    <div class="d-flex">
+        <a class="navbar-brand px-3" href="weather_map.html">
+            <h3 class="text-center font-roboto" id="about-title">Weather Buddy (About)</h3>
+        </a>
+        <button class="btn btn-primary mx-2" id="close-window-button">Close</button>
+    </div>
+</header>
+
+<main class="container">
+    <section>
+        <h1>Weather Buddy - User Interface</h1>
+        <img alt="Weather Map Interface" class="img-fluid responsive" src="images/wm_interface.png">
+    </section>
+    <section>
+        <h1>Forecast Day Detail</h1>
+        <img alt="Weather Map Detail" class="img-fluid responsive"
+             src="images/wm_day_forecast_detail.png">
+    </section>
+    <section>
+        <h1>Forecast Location Detail</h1>
+        <img alt="Weather Map Detail" class="img-fluid responsive"
+             src="images/wm_forecast-detail.png">
+    </section>
+    <section>
+        <h1>Temperature Comparison</h1>
+        <img alt="Weather Map Temperature Comparison" class="img-fluid responsive"
+             src="images/wm_temperature-comparison.png">
+    </section>
+</main>
+
+<footer>
+    <p class="text-center">&copy; 2023 by Sheldon Pasciak, Imugi Solutions <span id="uploadedJson"></span></p>
+</footer>
+
+<script crossorigin="anonymous" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    /**
+     *    NOTE: This can be outsourced into utility file, however,
+     *    it is placed and left here to help with understanding and
+     *    to identify that good coding practices suggest refactoring
+     *    and optimizing code.  This is an 'example' of what
+     *    should be avoided, inline JS code.
+     *
+     */
+    let closeWindowButton = document.getElementById("close-window-button");
+    closeWindowButton.addEventListener("click", () => {
+        window.close();
+    });
+</script>
+
+</body>
+
+</html>

@@ -8,11 +8,6 @@
         window.close();
     });
 
-    let homeButton = document.getElementById("home-button");
-    homeButton.addEventListener("click", () => {
-        window.location = 'weather_map.html';
-    });
-
     let closeWindowButton = document.getElementById("close-window-button");
     closeWindowButton.addEventListener("click", () => {
         window.close();
