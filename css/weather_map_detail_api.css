@@ -9,6 +9,14 @@ header {
     justify-content: space-around;
 }
 
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-cambo {
+    font-family: 'Cambo', serif;
+}
+
 #view-container {
     overflow-y: auto;
 }
