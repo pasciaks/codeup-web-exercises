@@ -5,7 +5,9 @@ let socket;
 let myUniqueId = Math.floor(Math.random() * 9999) + "-" + Date.now();
 
 $(document).ready(function () {
-    
+
+    console.log("ready...");
+
     localStorage.setItem("SSI-Chat-ID", myUniqueId);
 
     socket = io.connect(connectionString);
@@ -17,13 +19,17 @@ $(document).ready(function () {
 
     socket.on("connect", function () {
         socket.on("connected", function (data) {
+
+            console.log("connected...");
+
             recurringTimer = window.setInterval(function () {
                 socket.emit("get_signs", "0.0.0.0")
             }, 10000);
-            window.setTimeout(function () {
-                socket.emit("identify", myUniqueId);
-                socket.emit("public_message", "picture");
-            }, 2000);
+
+            // window.setTimeout(function () {
+            //     socket.emit("identify", myUniqueId);
+            //     socket.emit("public_message", "picture");
+            // }, 5000);
         });
 
         socket.on("got_signs", function (data) {
