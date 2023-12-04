@@ -3,77 +3,16 @@
 (() => {
 
     let clearButton = document.getElementById("clear-button");
-
     clearButton.addEventListener("click", () => {
         localStorage.clear();
         location = 'weather_map.html';
     });
 
     let homeButton = document.getElementById("home-button");
-
     homeButton.addEventListener("click", () => {
         location = 'weather_map.html';
 
     });
-
-    function getFromLocalStorage(id) {
-        try {
-            let key = `dynamicallyAddedMapObjectsArray-${id}`;
-            let data = localStorage.getItem(key);
-            return JSON.parse(data);
-        } catch (error) {
-            console.log(error);
-            return null;
-        }
-    }
-
-    function getStoredData() {
-        let currentStorage = localStorage.getItem("savedForecasts");
-        let savedForecasts = [];
-        if (currentStorage) {
-            savedForecasts = JSON.parse(currentStorage);
-        }
-        let allForecasts = [];
-        savedForecasts.forEach((item) => {
-            let oneForecast = getFromLocalStorage(item);
-            allForecasts.push(oneForecast);
-        });
-        return allForecasts;
-    }
-
-    function getRandomColorByType(colorType) {
-        // Define the minimum and maximum values for the color components (0 to 255)
-        const minComponent = 125;
-        const maxComponent = 255;
-
-        // Generate a random component value
-        const generateComponent = () => Math.floor(Math.random() * (maxComponent - minComponent + 1)) + minComponent;
-
-        let red, green, blue;
-
-        switch (colorType.toUpperCase()) {
-            case 'RED':
-                red = generateComponent();
-                green = 0;
-                blue = 0;
-                break;
-            case 'GREEN':
-                red = 0;
-                green = generateComponent();
-                blue = 0;
-                break;
-            case 'BLUE':
-                red = 0;
-                green = 0;
-                blue = generateComponent();
-                break;
-            default:
-                throw new Error('Invalid color type. Please use "RED", "GREEN", or "BLUE".');
-        }
-
-        // Return the RGB color as an HTML string
-        return `rgb(${red}, ${green}, ${blue})`;
-    }
 
     function renderTemperatureChart(theForecast) {
 
@@ -133,13 +72,6 @@
             });
         }
 
-        function computeAverage(array) {
-            let sum = 0;
-            array.forEach((item) => {
-                sum += item;
-            });
-            return (sum / array.length);
-        }
 
         arrayOfCities.forEach((city) => {
 

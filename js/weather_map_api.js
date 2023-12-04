@@ -12,10 +12,10 @@
 
     let animationArray = [];
     let animationTimer = null;
-    let animateRotateInterval = 1000;
+    let animateRotateInterval = 2000;
     let currentWeatherIconIndex = 0;
     let forecastAutoIntervalTimer = null;
-    let forecastRotateInterval = 5000;
+    let forecastRotateInterval = 10000;
     let forecastRangeSlider = null;
     let currentForecastIndex = 0;
 
@@ -219,6 +219,7 @@
 
         forecastRangeSlider.value = 0;
         currentForecastIndex = 0;
+        currentWeatherIconIndex = 0;
 
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=imperial`)
             .then(res => res.json())
@@ -241,6 +242,7 @@
 
         forecastRangeSlider.value = 0;
         currentForecastIndex = 0;
+        currentWeatherIconIndex = 0;
 
         city = city.trim();
 
@@ -323,134 +325,23 @@
         return forecastData;
     }
 
-    function degToCompass(num) {
-        let val = Math.floor((num / 22.5) + 0.5);
-        let arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
-        return arr[(val % 16)];
-    }
-
     function renderOneForecastItem(forecastItem, index) {
 
-        var options = {
-            weekday: 'short',
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        };
-
         let forecastItemElement = document.createElement("div");
-        forecastItemElement.classList.add("forecast-item");
-        forecastItemElement.classList.add("card");
-
-        let forecastItemImg = document.createElement("img");
-        forecastItemImg.classList.add("card-img-top");
-        forecastItemImg.src = `https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}.png`;
-
-        let forecastItemBody = document.createElement("div");
-        forecastItemBody.classList.add("card-body");
-
-        let forecastItemDetail = document.createElement("div");
-        forecastItemDetail.classList.add("card-detail");
-        forecastItemDetail.innerText = forecastItem.weather[0].description;
-
-        let temperature = forecastItem.main.temp;
-        let temperatureColor = "black";
-
-        if (temperature < 32) {
-            temperatureColor = "blue";
-        }
-
-        if (temperature > 80) {
-            temperatureColor = "red";
-        }
-
-        let minMaxContainer = document.createElement("div");
-        minMaxContainer.classList.add("text-center");
-        minMaxContainer.innerHTML = `<span>${forecastItem.main.temp_min + " °F"}</span> - <span>(${temperature + " °F"})<span> - ${forecastItem.main.temp_max + " °F"}</span>`;
-        minMaxContainer.style.color = temperatureColor;
-
-        forecastItemBody.appendChild(minMaxContainer);
-
-        let forecastItemHumidity = document.createElement("div");
-        forecastItemHumidity.classList.add("text-center");
-        forecastItemHumidity.innerText = "" + forecastItem.main.humidity + "%" + " - " + "" + forecastItem.main.pressure + "hPa"
-
-        let speedAndDirection = document.createElement("div");
-
-        let stringWind = `${forecastItem.wind.speed} mph (${forecastItem.wind.deg}°) ${degToCompass(forecastItem.wind.deg)}`;
-        speedAndDirection.classList.add("text-center");
-        speedAndDirection.innerHTML = `<span>${stringWind}</span>`;
-        forecastItemBody.appendChild(speedAndDirection);
-
-        // let forecastItemPressure = document.createElement("div");
-        // forecastItemPressure.classList.add("text-center");
-        // forecastItemPressure.innerText = "Pressure: " + forecastItem.main.pressure + "hPa";
-
-        let forecastItemTitle = document.createElement("h5");
-        forecastItemTitle.classList.add("bg-warning");
-        forecastItemTitle.classList.add("text-center");
-
-        // @todo - troubleshoot this time conversion
-        // @todo - fix all date and time conversions
-
-        forecastItemTitle.innerHTML = forecastItem['dt_txt'] + "<br>" + forecastItem.dt + "<br>" + convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleString();
-        forecastItemTitle.innerHTML += "<br>" + convertTime(forecastItem.dt) + " " + new Date(forecastItem.dt_txt).toLocaleTimeString('en-us', options)
-        forecastItemTitle.innerHTML += "<br>" + new Date(forecastItem.dt_txt).toLocaleTimeString('en-us', options)
-
-        // @todo - troubleshoot this time conversion
-
-        let forecastItemText = document.createElement("p");
-        forecastItemText.classList.add("card-text");
-        forecastItemText.innerText = forecastItem.weather[0].description;
-        forecastItemBody.appendChild(forecastItemTitle);
-        forecastItemBody.appendChild(forecastItemHumidity);
-
-
-        forecastItemBody.appendChild(forecastItemTitle);
-        forecastItemElement.appendChild(forecastItemImg);
-        forecastItemElement.appendChild(forecastItemBody);
+        forecastItemElement.innerHTML = renderForecastCard(forecastItem, "m-2");
 
         forecastItemElement.addEventListener("click", (event) => {
             event.preventDefault();
+
             let currentSelectedForecast = localStorage.getItem("currentForecastRecord");
+
             if (currentSelectedForecast) {
                 let data = JSON.parse(currentSelectedForecast);
                 if (data) {
                     let dayHTML = '';
                     for (let jj = index; jj < index + 8; jj++) {
                         let eachDayItem = data.list[jj];
-
-                        // @todo - improve code with better template functions
-
-                        // @todo - testing date time
-                        let time = new Date(eachDayItem.dt * 1000);
-                        let theTime = `<p>${time.toLocaleTimeString(options)}</p>
-                          `;
-
-
-                        let template = `
-                            <div class="my-card w-25">
-                            <div class="my-card-body text-center">
-                            <p>THE TIME:${theTime}</p>
-                            <h3>
-                                THE DATE:${new Date(eachDayItem.dt_txt).toLocaleString()}
-                            </h3>
-                            <h6>
-                                MY DATE:${convertTime(eachDayItem.dt) + " " + new Date(eachDayItem.dt_txt).toLocaleString()}
-                            </h6>
-                            <img src="https://openweathermap.org/img/wn/${eachDayItem.weather[0].icon}.png" alt="${eachDayItem.weather[0].description}">
-                            <p class="card-text">${eachDayItem.weather[0].description}</p>
-                            <p class="card-text">${eachDayItem.main.temp_min} °F - (${eachDayItem.main.temp} °F) - ${eachDayItem.main.temp_max} °F</p>
-                            <p class="card-text">${eachDayItem.main.humidity} % (${eachDayItem.main.pressure} hPa)</p>
-                            <p class="card-text">${eachDayItem.wind.speed} mph (${degToCompass(eachDayItem.wind.deg)})</p>
-                            </div>
-                            </div>
-                        `;
-                        dayHTML += template;
+                        dayHTML += renderForecastCard(eachDayItem, "w-25");
                     }
                     let containerHTML = `
                     <div class="container-fluid">
@@ -468,11 +359,6 @@
     }
 
     function renderForecast(forecastData) {
-
-        // if (forecastAutoIntervalTimer) {
-        //     clearInterval(forecastAutoIntervalTimer);
-        // }
-
 
         forecastContainer.innerHTML = "";
 
@@ -604,7 +490,6 @@
             let id = saveForecastResult.data.file_uploaded;
 
             if (saveForecastResult.data.statusCode === 201) {
-                // let testData = await getSavedForecast(id);
                 let savedForecastFileLink = `https://pasciak.com/weather_buddy/uploads/${id}.json`;
                 document.getElementById("uploadedJson").innerHTML = `<a href='${savedForecastFileLink}'>*</a>`;
             }
@@ -709,16 +594,6 @@
             }, forecastRotateInterval);
         });
 
-        // forecastRangeSlider.addEventListener("focus", (event) => {
-        //     event.preventDefault();
-        //     if (forecastAutoIntervalTimer) {
-        //         clearInterval(forecastAutoIntervalTimer);
-        //     }
-        //     let value = event.target.value;
-        //     currentForecastIndex = Number(value) || 0;
-        //     currentWeatherIconIndex = currentForecastIndex;
-        // });
-
         findForm.addEventListener("submit", (event) => {
             event.preventDefault();
             setSubTitle("");
@@ -753,6 +628,7 @@
             }
 
             let form = document.createElement("div");
+
             form.id = "modal-form";
 
             let select = document.createElement("select");
@@ -791,7 +667,10 @@
                 }
 
                 let loadedForecastResult = await getSavedForecast(selected);
+
                 forecastData = loadedForecastResult.data;
+
+                currentWeatherIconIndex = 0;
 
                 renderForecast(forecastData);
 
@@ -854,7 +733,6 @@
 
         });
 
-        renderForecast(forecastData);
     }
 
     function createAnimations() {
@@ -919,10 +797,11 @@
 
     function startAnimations() {
         animationTimer = setInterval(function () {
-            currentWeatherIconIndex++;
+
             if (currentWeatherIconIndex >= animationArray.length) {
                 currentWeatherIconIndex = 0;
             }
+            
             for (let i = 0; i < animationArray.length; i++) {
                 if (currentWeatherIconIndex === i) {
                     animationArray[i].style.display = "block";
@@ -930,6 +809,9 @@
                     animationArray[i].style.display = "none";
                 }
             }
+
+            currentWeatherIconIndex++;
+
         }, animateRotateInterval);
     }
 

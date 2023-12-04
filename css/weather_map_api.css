@@ -104,3 +104,15 @@ a {
     height: 5dvw;
     object-fit: contain;
 }
+
+.normal {
+    color: black;
+}
+
+.cold {
+    color: blue;
+}
+
+.hot {
+    color: red;
+}

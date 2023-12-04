@@ -5,7 +5,7 @@ let socket;
 let myUniqueId = Math.floor(Math.random() * 9999) + "-" + Date.now();
 
 $(document).ready(function () {
-
+    
     localStorage.setItem("SSI-Chat-ID", myUniqueId);
 
     socket = io.connect(connectionString);
@@ -42,5 +42,5 @@ $(document).ready(function () {
         });
 
     });
-    
+
 });

@@ -130,19 +130,10 @@
         return forecastItemElement;
     }
 
-    function setPageTitle(title) {
-        document.title = title;
-    }
 
     function setTitle(title) {
         let titleElement = document.getElementById("title");
         titleElement.innerText = title;
-    }
-
-    function setHeading(heading) {
-        let headingElement = document.getElementById("heading");
-        headingElement.innerText = heading;
-
     }
 
     function renderForecast(forecastData) {
@@ -157,10 +148,13 @@
 
         setTitle(`${forecastData.city.name}, ${forecastData.city.country}`);
 
+        let forecastHTML = "";
+
         for (let i = 0; i < forecastData.list.length; i += 1) {
-            let oneForecastItem = forecastData.list[i];
-            let oneForecastItemElement = renderOneForecastItem(oneForecastItem);
-            viewContainer.appendChild(oneForecastItemElement);
+            let eachDayItem = forecastData.list[i];
+            let oneForecastItemElement = renderForecastCard(eachDayItem, "w-100");
+            forecastHTML += oneForecastItemElement;
+            viewContainer.innerHTML = forecastHTML;
         }
 
     }
