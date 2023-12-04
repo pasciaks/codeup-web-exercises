@@ -1,24 +1,24 @@
 let recurringTimer = null;
-let connectstring = "http://lostwords.org" + ":8383";
+let connectionString = "http://lostwords.org" + ":8383";
 let storedImageData = "";
 let socket;
 let ww, hh;
 let myUniqueId = Math.floor(Math.random() * 9999) + "-" + Date.now();
 
-function resizewindow() {
+function resizeWindow() {
     ww = window.innerWidth;
     hh = window.innerHeight;
 }
 
 $(window).resize(function () {
-    resizewindow();
+    resizeWindow();
 });
 
 $(document).ready(function () {
 
     localStorage.setItem("SSI-Chat-ID", myUniqueId);
 
-    socket = io.connect(connectstring);
+    socket = io.connect(connectionString);
 
     socket.on("error", function (PARAMETERS) {
         console.log("Connection Error - " + PARAMETERS);
