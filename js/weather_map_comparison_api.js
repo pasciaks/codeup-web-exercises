@@ -5,7 +5,7 @@
     let clearButton = document.getElementById("clear-button");
     clearButton.addEventListener("click", () => {
         localStorage.clear();
-        window.location = 'weather_map.html';
+        window.close();
     });
 
     let homeButton = document.getElementById("home-button");
