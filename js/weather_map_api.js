@@ -7,6 +7,7 @@
     let loadButton = null;
     let findInput = null;
     let findForm = null;
+    let saveButton = null;
 
     let defaultZoom = 10;
 
@@ -28,6 +29,8 @@
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v12', // style URL
+        // style: 'mapbox://styles/mapbox/navigation-night-v1', // style URL
+        // style: 'mapbox://styles/mapbox/satellite-v9', // style URL
         center: [-111.9462511, 40.6466734], // starting position [lng, lat]
         zoom: 2, // starting zoom // 5 // 15 // 20 // 25
     });
@@ -140,7 +143,7 @@
     function placeMarkerAndPopupUsingCoords(coords, popupHTML, token, map, draggable = false, theForecastData) {
         let id = Date.now() + Math.floor(Math.random() * 99999);
         localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(theForecastData));
-        popupHTML += `<div id="data"><a href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
+        popupHTML += `<div id="data"><a target="_blank" href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
         let popup = new mapboxgl.Popup()
             .setHTML(popupHTML);
         let marker = new mapboxgl.Marker({
@@ -168,7 +171,7 @@
                             item.popup = popup;
                             item.marker = marker;
                             item.forecastData = forecastData;
-                            popupHTML += `<div id="data"><a href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
+                            popupHTML += `<div id="data"><a target="_blank" href="weather_map_detail.html?id=${id}">Details:${id}</a></div>`;
                             popup.setHTML(popupHTML);
                             localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(forecastData));
                         }
@@ -190,7 +193,7 @@
         return id;
     }
 
-    function recordSavedForecast(id) {
+    function recordSavedForecast(id, theForecastData) {
         try {
 
             let currentStorage = localStorage.getItem("savedForecasts");
@@ -201,6 +204,12 @@
             }
 
             savedForecasts.push(id);
+
+            if (!theForecastData || !theForecastData?.city || !theForecastData?.list) {
+                theForecastData = forecastData; // Rely on latest global forecastData
+            }
+
+            localStorage.setItem(`dynamicallyAddedMapObjectsArray-${id}`, JSON.stringify(theForecastData));
 
             localStorage.setItem("savedForecasts", JSON.stringify(savedForecasts));
 
@@ -571,6 +580,7 @@
         homeButton = document.getElementById("btn-home");
         loadButton = document.getElementById('btn-load');
         findInput = document.getElementById("input-find");
+        saveButton = document.getElementById("btn-save");
 
         forecastRangeSlider = document.getElementById("forecast-range");
 
@@ -672,6 +682,22 @@
 
                 currentWeatherIconIndex = 0;
 
+                let lngLat = {
+                    lng: forecastData.city.coord.lon,
+                    lat: forecastData.city.coord.lat
+                }
+
+                let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
+
+                placeMarkerAndPopupUsingCoords(lngLat, popupHTML, MAPBOX_TOKEN, map, true, forecastData);
+
+                map.flyTo({
+                    center: lngLat,
+                    zoom: defaultZoom
+                });
+
+                // recordSavedForecast(selected, forecastData);
+
                 renderForecast(forecastData);
 
                 let cityCoords = {
@@ -701,11 +727,53 @@
 
         });
 
-        homeButton.addEventListener("click", (event) => {
+        saveButton.addEventListener("click", async (event) => {
+            event.preventDefault();
+
+            if (!forecastData || !forecastData?.city || !forecastData?.list) {
+                let mHead = "ERROR"
+                let mBody = `No forecast data to save.`;
+                modal(mHead, mBody);
+                return;
+            }
+
+            setTitle("Saving your forecast.");
+
+            setSubTitle("");
+
+            findInput.value = "";
+
+            let mHead = "Saving"
+            let mBody = `
+            <div class="modal-body text-center">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            `;
+
+            modal(mHead, mBody);
+
+            try {
+                let saveDataResult = await saveDataToBackend(forecastData);
+                console.log({saveDataResult});
+                window.open("https://public.requestbin.com/r/en9lq7dy4nwcl/");
+            } catch (error) {
+                console.log(error);
+            }
+
+            setTimeout(function () {
+                closeModal();
+            }, 9000);
+        });
+
+        homeButton.addEventListener("click", async (event) => {
 
             event.preventDefault();
 
-            clearPopups();
+            if (confirm("Would you also like to clear current map markers?")) {
+                clearPopups();
+            }
 
             setTitle("Searching for your current GPS Location.");
 
@@ -725,10 +793,19 @@
 
             modal(mHead, mBody);
 
-            getLiveForecastDataFromCurrentGpsLocation();
 
+            await getLiveForecastDataFromCurrentGpsLocation();
+            
             setTimeout(function () {
                 closeModal();
+                if (confirm("Would you like to add a popup marker for your current GPS Location?")) {
+                    let lngLat = {
+                        lng: forecastData.city.coord.lon,
+                        lat: forecastData.city.coord.lat
+                    }
+                    let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
+                    placeMarkerAndPopupUsingCoords(lngLat, popupHTML, MAPBOX_TOKEN, map, true, forecastData);
+                }
             }, 9000);
 
         });
@@ -801,7 +878,7 @@
             if (currentWeatherIconIndex >= animationArray.length) {
                 currentWeatherIconIndex = 0;
             }
-            
+
             for (let i = 0; i < animationArray.length; i++) {
                 if (currentWeatherIconIndex === i) {
                     animationArray[i].style.display = "block";

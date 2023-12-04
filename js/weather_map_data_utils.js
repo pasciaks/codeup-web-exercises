@@ -101,6 +101,47 @@ async function getSavedForecast(id = "") {
     }
 }
 
+async function saveDataToBackend(forecastData) {
+
+    const jsonData = forecastData;
+
+    try {
+
+        const headers = new Headers()
+        headers.append("Content-Type", "application/json")
+
+        const body = {jsonData}
+
+        const options = {
+            method: "POST",
+            headers,
+            mode: "cors",
+            body: JSON.stringify(body),
+        }
+
+        fetch("https://en9lq7dy4nwcl.x.pipedream.net/", options)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                return {
+                    statusCode: 200,
+                    body: JSON.stringify(res),
+                }
+            })
+            .catch(err => console.error(err))
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+    console.log(jsonData);
+
+    return jsonData;
+
+}
+
 // let data = await saveForecast(forecastData);
 // let id = data.data.id;
 

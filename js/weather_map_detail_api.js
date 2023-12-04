@@ -5,6 +5,11 @@
     let viewContainer = document.getElementById("view-container");
     let contentContainer = document.getElementById("content");
 
+    let closeWindowButton = document.getElementById("close-window-button");
+    closeWindowButton.addEventListener("click", () => {
+        window.close();
+    });
+
     let forecastData = [];
 
     function getParameterByName(name, url = window.location.href) {

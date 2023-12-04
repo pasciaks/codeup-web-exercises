@@ -5,13 +5,17 @@
     let clearButton = document.getElementById("clear-button");
     clearButton.addEventListener("click", () => {
         localStorage.clear();
-        location = 'weather_map.html';
+        window.location = 'weather_map.html';
     });
 
     let homeButton = document.getElementById("home-button");
     homeButton.addEventListener("click", () => {
-        location = 'weather_map.html';
+        window.location = 'weather_map.html';
+    });
 
+    let closeWindowButton = document.getElementById("close-window-button");
+    closeWindowButton.addEventListener("click", () => {
+        window.close();
     });
 
     function renderTemperatureChart(theForecast) {
