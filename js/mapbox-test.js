@@ -23,8 +23,6 @@ Replace the generic marker icon with an image that is more appropriate for each 
 
  */
 
-console.log("mapbox-test.js is connected...");
-
 mapboxgl.accessToken = MAPBOX_TOKEN;
 
 const setCurrentPosition = async () => {
