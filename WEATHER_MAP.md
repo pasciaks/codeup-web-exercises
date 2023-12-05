@@ -1,4 +1,4 @@
-# Weather Map Project - Sheldon Pasciak
+# Weather Map Project - Sheldon Pasciak, CodeUp - December 2023
 
 I developed this project using the following technologies:
 
@@ -11,17 +11,22 @@ I developed this project using the following technologies:
     - OpenWeatherMap API - https://openweathermap.org/api
     - Request Bin - - https://public.requestbin.com/
 
-## Architecture & Lessons Learned - Sheldon Pasciak
+## Development Environment
 
-- Development Environment
-    - IntelliJ - https://www.jetbrains.com/idea/
-        - IntelliJ is a Java IDE, but it has a JavaScript plugin that allows for JavaScript development.
-    - VS Code - https://code.visualstudio.com/
-        - VS Code is a JavaScript IDE that is used for JavaScript development.
-    - MySql Workbench - https://www.mysql.com/products/workbench/
-        - MySql Workbench is a database IDE that is used for database development.
-    - WakaTime - https://wakatime.com/
-        - WakaTime is a plugin for IntelliJ and VS Code that tracks the amount of time spent on a project.
+- IntelliJ - https://www.jetbrains.com/idea/
+    - IntelliJ is a Java IDE, but it has a JavaScript plugin that allows for JavaScript development.
+- VS Code - https://code.visualstudio.com/
+    - VS Code is a JavaScript IDE that is used for JavaScript development.
+- MySql Workbench - https://www.mysql.com/products/workbench/
+    - MySql Workbench is a database IDE that is used for database development.
+- FileZilla - https://filezilla-project.org/
+    - FileZilla is an FTP client that is used to upload files to a web server. It was used to examine the results of
+      .json files that were posted to the server from the application frontend.
+- WakaTime - https://wakatime.com/
+    - WakaTime is a plugin for IntelliJ and VS Code that tracks the amount of time spent on a project.
+
+## Architecture & Lessons Learned
+
 - Client - HTML, CSS, JavaScript and libraries mentioned above.
 - Server - OpenWeatherMap API, Mapbox GL JS API, custom Node.js server(s).
     - NGINX - https://www.nginx.com/
