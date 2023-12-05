@@ -9,6 +9,7 @@ I developed this project using the following technologies:
 - Third party API's
     - Mapbox GL JS - https://docs.mapbox.com/mapbox-gl-js/api/
     - OpenWeatherMap API - https://openweathermap.org/api
+    - Request Bin - - https://public.requestbin.com/
 
 ## Architecture & Lessons Learned - Sheldon Pasciak
 
@@ -29,20 +30,24 @@ I developed this project using the following technologies:
           WebSockets). This provides the live snapshot functionality where the current 'weather' can be shown.
 
 - Raspberry PI - https://www.raspberrypi.org/
-    - The Raspberry PI runs a webpage that serves as a remote chat client with access to a web camera, when a message is
+    - The Raspberry PI runs a webpage (autostart chrome local webpage with websocket connection) that serves as a remote
+      chat client with access to a web camera, when a message is
       received from the server, the Raspberry PI takes a picture and sends it back to the server. The server then sends
       the picture to the client via WebSockets.
     - The Raspberry PI is running a local Node.js server that is used to shell a bash script that executes the image
       capture from the connected webcam. Once captured the image is converted into base64 and broadcast with websockets
       to the listening clients.
 
+- Database - Request Bin
+    - Forecasts for a given city can also be stored by posting JSON data to request bin. This is a free service that
+      allows you to post data to a URL and then view the data in a web browser. This is a temporary solution until a
+      database is implemented fully. It has only been implemented as a demonstration of database CRUD functionality
+      opposed to data storage and retrieval in a file based system.
 - Database - MySql
     - The database application of choice that would be used to store the list of forecasts and the individual forecasts.
     - Although a database table was created in a MySql database running at https://hidden.com, it hasn't been
-      implemented because the extra work
-      involved and time constraints meant that this project was better served by implementing front end features
-      instead. A future project
-      will explore full database CRUD functionality.
+      implemented because the extra work involved and time constraints meant that this project was better served by
+      implementing front end features instead. A future project will explore full database CRUD functionality.
 
 - Deployment - Run locally for demo purposes, but can be deployed to a web server.
 
