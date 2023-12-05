@@ -67,7 +67,7 @@ exercises.
 │___ ├── topleft.png
 │___ ├── topright.png
 │___ └── welcome.png
-├── info.md
+├── INFO.md
 ├── inline_js.html
 ├── iterating_arrays_js.html
 ├── js

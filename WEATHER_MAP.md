@@ -2,10 +2,51 @@
 
 I developed this project using the following technologies:
 
-- Bootstrap 5.x.x. - https://getbootstrap.com/
-- Mapbox GL JS - https://docs.mapbox.com/mapbox-gl-js/api/
-- OpenWeatherMap API - https://openweathermap.org/api
-- Chart.js - https://www.chartjs.org/
+- Front end libraries
+    - Bootstrap 5.x.x. - https://getbootstrap.com/
+    - Chart.js - https://www.chartjs.org/
+
+- Third party API's
+    - Mapbox GL JS - https://docs.mapbox.com/mapbox-gl-js/api/
+    - OpenWeatherMap API - https://openweathermap.org/api
+
+## Architecture & Lessons Learned - Sheldon Pasciak
+
+- Client - HTML, CSS, JavaScript and libraries mentioned above.
+- Server - OpenWeatherMap API, Mapbox GL JS API, custom Node.js server(s).
+    - NGINX - https://www.nginx.com/
+        - NGINX is used to receive uploaded files from the client and to deliver the list of stored
+          forecasts as well as an individual stored forecast. (JSON stored files)
+        - NGINX is used with a backend Node.Js REST API server which receives and sends data to the
+          client. (https://hidden.com:8181)
+            - POST - /forecast
+            - GET - /forecast
+            - GET - /id/?id=123456789
+                - The custom API backend server is written in plain JavaScript for an old version of node. It doesn't
+                  use Express server so API routes were created plainly. Ideally, route parameter would be used instead
+                  of the specific route for get by id.
+        - NGINX is used with a backend Node.Js server as a socket listener to receive messages from the client. (
+          WebSockets). This provides the live snapshot functionality where the current 'weather' can be shown.
+
+- Raspberry PI - https://www.raspberrypi.org/
+    - The Raspberry PI runs a webpage that serves as a remote chat client with access to a web camera, when a message is
+      received from the server, the Raspberry PI takes a picture and sends it back to the server. The server then sends
+      the picture to the client via WebSockets.
+    - The Raspberry PI is running a local Node.js server that is used to shell a bash script that executes the image
+      capture from the connected webcam. Once captured the image is converted into base64 and broadcast with websockets
+      to the listening clients.
+
+- Database - MySql
+    - The database application of choice that would be used to store the list of forecasts and the individual forecasts.
+    - Although a database table was created in a MySql database running at https://hidden.com, it hasn't been
+      implemented because the extra work
+      involved and time constraints meant that this project was better served by implementing front end features
+      instead. A future project
+      will explore full database CRUD functionality.
+
+- Deployment - Run locally for demo purposes, but can be deployed to a web server.
+
+- Testing - Other than TDD, no testing framework is used.
 
 ## Project Requirements
 
@@ -29,7 +70,7 @@ The following images show all the features of the application and its related im
 ![wm_forecast-detail.png](images%2Fwm_forecast-detail.png)
 ![wm_temperature-comparison.png](images%2Fwm_temperature-comparison.png)
 
-# Weather Map Rubric
+## Weather Map Rubric
 
 For each project aspect below, a grade of 0, 0.5, or 1 will be assigned. Each aspect represents
 10% of the total possible grade.
