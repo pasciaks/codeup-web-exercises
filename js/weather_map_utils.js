@@ -6,7 +6,7 @@ function renderForecastCard(eachDayItem, cardClass = "") {
     let temperatureClass = getTemperatureClassFromValue(temperature);
 
     return `
-                <div class="card ${cardClass}">
+                <div class="card bg-light ${cardClass}">
                     <div class="text-center">
                     <h4>${eachDayTheWordNameOfTheWeek}</h4>
                     <h5>${displayDateTime}</h5>
@@ -60,6 +60,27 @@ function getStoredData() {
         allForecasts.push(oneForecast);
     });
     return allForecasts;
+}
+
+function getRandomColorByTypeLimitedColors(colorType) {
+    let colorToReturn = '#000000';
+    let colorChoices = ['#000000'];
+    switch (colorType.toUpperCase()) {
+        case 'RED':
+            colorChoices = ['#ff0000', '#af0000', '#7f0000', '#5f0000', '#3f0000', '#1f0000'];
+            colorToReturn = colorChoices[Math.floor(Math.random() * colorChoices.length)];
+            break;
+        case 'GREEN':
+            colorChoices = ['#00ff00', '#00af00', '#007f00', '#005f00', '#003f00', '#001f00'];
+            colorToReturn = colorChoices[Math.floor(Math.random() * colorChoices.length)];
+            break;
+        case 'BLUE':
+            colorChoices = ['#0000ff', '#0000af', '#00007f', '#00005f', '#00003f', '#00001f'];
+            colorToReturn = colorChoices[Math.floor(Math.random() * colorChoices.length)];
+            break;
+        default:
+            break;
+    }
 }
 
 function getRandomColorByType(colorType) {

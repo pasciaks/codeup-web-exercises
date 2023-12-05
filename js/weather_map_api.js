@@ -834,10 +834,12 @@
             let forecastItem = forecastData.list[i];
             let forecastItemElement = document.createElement("div");
             forecastItemElement.classList.add("forecast-item");
+            forecastItemElement.classList.add("text-center");
             forecastItemElement.style.display = "none";
 
             let forecastItemData = document.createElement("div");
-            forecastItemData.innerText = forecastItem["dt_txt"];
+            let forecastItemTime = new Date(forecastItem.dt * 1000);
+            forecastItemData.innerText = forecastItemTime.toLocaleString();
 
             let temperature = forecastItem.main.temp;
 

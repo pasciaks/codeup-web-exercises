@@ -86,8 +86,8 @@ header {
 }
 
 header form {
-    width: 50%;
-    min-width: 150px;
+    width: 30%;
+    min-width: 100px;
 }
 
 #input-find {
