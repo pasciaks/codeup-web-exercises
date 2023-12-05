@@ -13,10 +13,10 @@
 
     let animationArray = [];
     let animationTimer = null;
-    let animateRotateInterval = 2000;
+    let animateRotateInterval = 1000;
     let currentWeatherIconIndex = 0;
     let forecastAutoIntervalTimer = null;
-    let forecastRotateInterval = 10000;
+    let forecastRotateInterval = 5000;
     let forecastRangeSlider = null;
     let currentForecastIndex = 0;
 
