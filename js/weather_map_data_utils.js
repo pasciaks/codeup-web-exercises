@@ -142,6 +142,8 @@ async function saveDataToBackend(forecastData) {
 
 }
 
+// Usage Examples:
+
 // let data = await saveForecast(forecastData);
 // let id = data.data.id;
 

@@ -29,8 +29,6 @@
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v12', // style URL
-        // style: 'mapbox://styles/mapbox/navigation-night-v1', // style URL
-        // style: 'mapbox://styles/mapbox/satellite-v9', // style URL
         center: [-111.9462511, 40.6466734], // starting position [lng, lat]
         zoom: 2, // starting zoom // 5 // 15 // 20 // 25
     });
@@ -445,9 +443,6 @@
 
         // Create a Date object using the timestamp
         const dateTime = new Date(timestamp);
-
-        // console.log("Epoch Time:", dateTime.toUTCString());
-        // console.log("Local Time:", dateTime.toLocaleString());
 
         return {utc: dateTime.toUTCString(), local: dateTime.toLocaleString()};
     }
