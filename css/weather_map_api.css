@@ -4,9 +4,18 @@
     --border-style: solid;
 }
 
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-cambo {
+    font-family: 'Cambo', serif;
+}
+
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 #map {
@@ -31,7 +40,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    width: 100dvw;
+    width: 90dvw;
     margin: auto;
 }
 
@@ -73,6 +82,7 @@ header {
     align-items: center;
     align-content: baseline;
     justify-content: space-around;
+    width: 100%;
 }
 
 header form {
@@ -86,13 +96,6 @@ header form {
 
 a {
     text-decoration: none;
-}
-
-#alt-logo-img {
-    height: 10vh;
-    width: 10vh;
-    object-fit: contain;
-    border-radius: 100%;
 }
 
 .my-card {
@@ -121,3 +124,5 @@ ul {
     list-style-type: none;
     padding: 0;
 }
+
+

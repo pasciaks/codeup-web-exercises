@@ -783,9 +783,9 @@
 
             event.preventDefault();
 
-            if (confirm("Would you also like to clear current map markers?")) {
-                clearPopups();
-            }
+            clearPopups();
+
+            console.log("Note this feature clears any local map markers and popups.")
 
             setTitle("Searching for your current GPS Location.");
 
@@ -810,14 +810,15 @@
 
             setTimeout(function () {
                 closeModal();
-                if (confirm("Would you like to add a popup marker for your current GPS Location?")) {
-                    let lngLat = {
-                        lng: forecastData.city.coord.lon,
-                        lat: forecastData.city.coord.lat
-                    }
-                    let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
-                    placeMarkerAndPopupUsingCoords(lngLat, popupHTML, MAPBOX_TOKEN, map, true, forecastData);
+
+                console.log("Note, this feature will add a marker and popup to the map.");
+                let lngLat = {
+                    lng: forecastData.city.coord.lon,
+                    lat: forecastData.city.coord.lat
                 }
+                let popupHTML = renderCityDataForHtmlPopup(forecastData?.city || {});
+                placeMarkerAndPopupUsingCoords(lngLat, popupHTML, MAPBOX_TOKEN, map, true, forecastData);
+
             }, 9000);
 
         });

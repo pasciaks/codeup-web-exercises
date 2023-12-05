@@ -1,5 +1,6 @@
 header {
     min-height: 15vh;
+    background-color: #00ABA9;
     margin-bottom: 1em;
     display: flex;
     flex-direction: row;
@@ -8,22 +9,25 @@ header {
     justify-content: space-around;
 }
 
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-cambo {
+    font-family: 'Cambo', serif;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 #content {
     box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 }
 
 canvas {
     color: black;
-    background-color: #aebadc;
-}
 
-body {
-    background-image: url("../images/background.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    opacity: 0.8;
 }
-
 
 
