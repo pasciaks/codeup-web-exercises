@@ -14,7 +14,6 @@ import {getRandomGreeting} from "./greeting-logic.js";
         let name = greeterInput.value;
         let greeting = getRandomGreeting();
         greetingElement.innerText = `${greeting}, ${name}!`;
-
     });
 
 })();
