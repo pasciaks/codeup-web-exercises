@@ -2,7 +2,7 @@
 
 I developed this project using the following technologies:
 
-- Front end libraries
+- Frontend libraries
     - Bootstrap 5.x.x. - https://getbootstrap.com/
     - Chart.js - https://www.chartjs.org/
 
@@ -13,6 +13,15 @@ I developed this project using the following technologies:
 
 ## Architecture & Lessons Learned - Sheldon Pasciak
 
+- Development Environment
+    - IntelliJ - https://www.jetbrains.com/idea/
+        - IntelliJ is a Java IDE, but it has a JavaScript plugin that allows for JavaScript development.
+    - VS Code - https://code.visualstudio.com/
+        - VS Code is a JavaScript IDE that is used for JavaScript development.
+    - MySql Workbench - https://www.mysql.com/products/workbench/
+        - MySql Workbench is a database IDE that is used for database development.
+    - WakaTime - https://wakatime.com/
+        - WakaTime is a plugin for IntelliJ and VS Code that tracks the amount of time spent on a project.
 - Client - HTML, CSS, JavaScript and libraries mentioned above.
 - Server - OpenWeatherMap API, Mapbox GL JS API, custom Node.js server(s).
     - NGINX - https://www.nginx.com/
@@ -47,7 +56,7 @@ I developed this project using the following technologies:
     - The database application of choice that would be used to store the list of forecasts and the individual forecasts.
     - Although a database table was created in a MySql database running at https://hidden.com, it hasn't been
       implemented because the extra work involved and time constraints meant that this project was better served by
-      implementing front end features instead. A future project will explore full database CRUD functionality.
+      implementing frontend features instead. A future project will explore full database CRUD functionality.
 
 - Deployment - Run locally for demo purposes, but can be deployed to a web server.
 
@@ -70,10 +79,16 @@ the marker to a new location, and the weather forecast will update to the new lo
 
 The following images show all the features of the application and its related implementation.
 
+## User interface Frontend
+
 ![wm_interface.png](images%2Fwm_interface.png)
 ![wm_day_forecast_detail.png](images%2Fwm_day_forecast_detail.png)
 ![wm_forecast-detail.png](images%2Fwm_forecast-detail.png)
 ![wm_temperature-comparison.png](images%2Fwm_temperature-comparison.png)
+
+## Coding time spent, tracked with WakaTime
+
+![wm_interface.png](images/wm_wakatime.png)
 
 ## Weather Map Rubric
 
