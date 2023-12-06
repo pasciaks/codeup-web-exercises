@@ -1,123 +1,5 @@
 (async () => {
 
-
-// // index.js
-// fetch('http://localhost:3000/books')
-//     .then(response => response.json())
-//     .then(books => console.log(books))
-//     .catch(error => console.error(error));
-//
-// // index.js
-// fetch('http://localhost:3000/books/1')
-//     .then(response => response.json())
-//     .then(book => {
-//         // do something with the `book` data
-//         console.log(book);
-//     })
-//     .catch(error => console.error(error));
-//
-// // index.js
-// fetch('http://localhost:3000/books/1')
-//     .then(response => response.json())
-//     .then(book => {
-//         // A second fetch request to get the author data
-//         fetch(`http://localhost:3000/authors/${book.authorId}`)
-//             .then(response => response.json())
-//             .then(author => {
-//                 // Log the book and author data to the console
-//                 console.log(book);
-//                 console.log(author);
-//                 // OR we could simply add the author into the book object
-//                 book.author = author;
-//                 console.log(book);
-//             })
-//             .catch(error => console.error(error));
-//     })
-//     .catch(error => console.error(error));
-//
-//
-// // index.js
-// const getBookAndAuthor = async (id) => {
-//     try {
-//         // Get the book data
-//         const bookUrl = `http://localhost:3000/books/${id}`;
-//         const bookResponse = await fetch(bookUrl);
-//         const book = await bookResponse.json();
-//         // Get the author data
-//         const authorUrl = `http://localhost:3000/authors/${book.authorId}`;
-//         const authorResponse = await fetch(authorUrl);
-//         const author = await authorResponse.json();
-//         // Add the author to the book object
-//         book.author = author;
-//         // Return the book object
-//         return book;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-//
-//
-//
-//
-//
-//
-
-// index.js
-// const getBookAndAuthor = async (id) => {
-//     try {
-//         // Get the book data
-//         const bookUrl = `http://localhost:3000/books/${id}`;
-//         const bookResponse = await fetch(bookUrl);
-//         const book = await bookResponse.json();
-//         // Get the author data
-//         const authorUrl = `http://localhost:3000/authors/${book.authorId}`;
-//         const authorResponse = await fetch(authorUrl);
-//         const author = await authorResponse.json();
-//         // Add the author to the book object
-//         book.author = author;
-//         // Return the book object
-//         return book;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-
-// async function init() {
-//     let result = await getBookAndAuthor(1);
-//     console.log(result);
-// }
-
-// init();
-
-
-// index.js
-// async function to retrieve a specific book's data with author data
-// const getBookAndAuthor = async (id) => {
-//     try {
-//         // Get the book data
-//         const bookUrl = `http://localhost:3000/books/${id}`;
-//         const bookResponse = await fetch(bookUrl);
-//         const book = await bookResponse.json();
-//         // Get the author data
-//         const authorUrl = `http://localhost:3000/authors/${book.authorId}`;
-//         const authorResponse = await fetch(authorUrl);
-//         const author = await authorResponse.json();
-//         // Add the author to the book object
-//         book.author = author;
-//         // Return the book object
-//         return book;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-//
-// // async IIFE (Immediately Invoked Function Expression)
-// (async () => { // <-- this is our main thread
-//     const book = await getBookAndAuthor(1);
-//     console.log(book);
-// })();
-
-// books-api.js
     const getBookAndAuthor = async (id) => { // <-- notice the export keyword
         try {
             // Get the book data
@@ -138,7 +20,6 @@
         }
     }
 
-
     const createBook = async (book) => {
         try {
             const url = 'http://localhost:3000/books';
@@ -153,6 +34,26 @@
             const newBook = await response.json();
             console.log(newBook);
             return newBook;
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    }
+
+    const createAuthor = async (author) => {
+        try {
+            const url = 'http://localhost:3000/authors';
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(author)
+            };
+            const response = await fetch(url, options);
+            const newAuthor = await response.json();
+            console.log(newAuthor);
+            return newAuthor;
         } catch (error) {
             console.error(error);
             return null;
@@ -176,28 +77,40 @@
         }
     }
 
-    async function initCreateBook() {
-        let book = {
-            // "id": 4, <-- this will be auto-generated by the server
-            "title": "Moby Dick",
+    const createABook = async (book = {}) => {
+        let newBookData = {...book};
+        newBookData = {
+            ...newBookData,
+            "id": null,
+            "title": "Moby Dick " + Math.random(),
             "authorId": 4,
-            "publishedYear": 1851,
-            "genre": "Adventure Fiction",
+            "publishedYear": 1851 + Math.floor(Math.random() * 100),
+            "genre": "Adventure Fiction " + Math.random(),
             "summary": "The epic tale of the relentless pursuit of the great white whale.",
-            "ISBN": "9780142000083"
+            "ISBN": Date.now().toString()
         }
 
-        let newBook = await createBook(book);
-        
-        console.log(newBook);
-
-        return newBook;
+        return await createBook(newBookData);
     }
 
-    await initCreateBook();
+    console.log(await createABook());
 
     let allBooks = await getBooks();
 
     console.log(allBooks.length);
 
 })();
+
+/**
+ * When to Use PUT or PATCH:
+ * PUT: Use PUT when you have the full representation of the resource and want to replace the existing resource entirely.
+ * PATCH: Use PATCH when you want to apply partial updates to a resource, especially when dealing with large resources, or when you want to minimize the data sent over the network.
+ */
+
+/**
+ *
+ * POST                    for (C)reating Data
+ * GET                       for (R)eading Data
+ * PUT/PATCH           for (U)pdating Data
+ * DELETE                  for (D)eleting Data
+ */

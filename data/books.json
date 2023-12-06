@@ -89,6 +89,33 @@
       "summary": "The epic tale of the relentless pursuit of the great white whale.",
       "ISBN": "9780142000083",
       "id": 14
+    },
+    {
+      "id": 15,
+      "title": "Moby Dick 0.33151867245589006",
+      "authorId": 4,
+      "publishedYear": 1920,
+      "genre": "Adventure Fiction 0.10161149407758452",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "1701884291476"
+    },
+    {
+      "id": 16,
+      "title": "Moby Dick 0.11032873729858572",
+      "authorId": 4,
+      "publishedYear": 1944,
+      "genre": "Adventure Fiction 0.5746616572336003",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "1701884294326"
+    },
+    {
+      "id": 17,
+      "title": "Moby Dick 0.38428257669773846",
+      "authorId": 4,
+      "publishedYear": 1898,
+      "genre": "Adventure Fiction 0.316338216490903",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "1701884319244"
     }
   ],
   "authors": [
