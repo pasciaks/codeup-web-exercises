@@ -1,0 +1,151 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "To Kill a Mockingbird",
+      "authorId": 1,
+      "publishedYear": 1960,
+      "genre": "Fiction",
+      "summary": "A story of a young girl confronting the harsh realities of social inequality and racial injustice.",
+      "ISBN": "9780446310789"
+    },
+    {
+      "id": 2,
+      "title": "1984",
+      "authorId": 2,
+      "publishedYear": 1949,
+      "genre": "Dystopian Fiction",
+      "summary": "A chilling portrayal of how a society dominated by a totalitarian government gives rise to a culture of fear and paranoia.",
+      "ISBN": "9780451524935"
+    },
+    {
+      "id": 3,
+      "title": "Brave New World",
+      "authorId": 3,
+      "publishedYear": 1932,
+      "genre": "Dystopian Fiction",
+      "summary": "A grim dystopian view of a future society where life is pain-free but meaningless.",
+      "ISBN": "9780060850524"
+    },
+    {
+      "id": 4,
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083"
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 9
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 10
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 11
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 12
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 13
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 14
+    },
+    {
+      "id": 15,
+      "title": "Moby Dick 0.33151867245589006",
+      "authorId": 4,
+      "publishedYear": 1920,
+      "genre": "Adventure Fiction 0.10161149407758452",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "1701884291476"
+    },
+    {
+      "id": 16,
+      "title": "Moby Dick 0.11032873729858572",
+      "authorId": 4,
+      "publishedYear": 1944,
+      "genre": "Adventure Fiction 0.5746616572336003",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "1701884294326"
+    },
+    {
+      "id": 17,
+      "title": "Moby Dick 0.38428257669773846",
+      "authorId": 4,
+      "publishedYear": 1898,
+      "genre": "Adventure Fiction 0.316338216490903",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "1701884319244"
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "name": "Harper Lee",
+      "birthYear": 1926,
+      "deathYear": 2016,
+      "nationality": "American"
+    },
+    {
+      "id": 2,
+      "name": "George Orwell",
+      "birthYear": 1903,
+      "deathYear": 1950,
+      "nationality": "British"
+    },
+    {
+      "id": 3,
+      "name": "Aldous Huxley",
+      "birthYear": 1894,
+      "deathYear": 1963,
+      "nationality": "British"
+    },
+    {
+      "id": 4,
+      "name": "Herman Melville",
+      "birthYear": 1819,
+      "deathYear": 1891,
+      "nationality": "American"
+    }
+  ]
+}
