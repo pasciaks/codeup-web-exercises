@@ -93,12 +93,20 @@
         return await createBook(newBookData);
     }
 
-    console.log(await createABook());
+    async function createABookAndListThem() {
+        console.log(await createABook());
+        let allBooks = await getBooks();
+        console.log(allBooks.length);
+    }
 
-    let allBooks = await getBooks();
+    let userDataForm = document.getElementById('userData');
 
-    console.log(allBooks.length);
-
+    userDataForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let values = {"name": (userDataForm.name.value), "email": (userDataForm.email.value)}
+        console.log(values);
+    });
+    
 })();
 
 /**
