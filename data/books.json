@@ -35,6 +35,60 @@
       "genre": "Adventure Fiction",
       "summary": "The epic tale of the relentless pursuit of the great white whale.",
       "ISBN": "9780142000083"
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 9
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 10
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 11
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 12
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 13
+    },
+    {
+      "title": "Moby Dick",
+      "authorId": 4,
+      "publishedYear": 1851,
+      "genre": "Adventure Fiction",
+      "summary": "The epic tale of the relentless pursuit of the great white whale.",
+      "ISBN": "9780142000083",
+      "id": 14
     }
   ],
   "authors": [
