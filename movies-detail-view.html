@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Movie Card</title>
+    <style>
+        /* Add your custom styles here if needed */
+    </style>
+</head>
+<body>
+
+<script>
+    function generateMovieCard(movieData = {
+        "Title": "Star Wars: Episode IV - A New Hope",
+        "Year": "1977",
+        "Rated": "PG",
+        "Released": "25 May 1977",
+        "Runtime": "121 min",
+        "Genre": "Action, Adventure, Fantasy",
+        "Director": "George Lucas",
+        "Writer": "George Lucas",
+        "Actors": "Mark Hamill, Harrison Ford, Carrie Fisher",
+        "Plot": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth ...",
+        "Language": "English",
+        "Country": "United States",
+        "Awards": "Won 6 Oscars. 65 wins & 31 nominations total",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BOTA5NjhiOTAtZWM0ZC00MWNhLThiMzEtZDFkOTk2OTU1ZDJkXkEyXkFqcGdeQXVyMTA4NDI1NTQx._V1_SX300.jpg",
+        "Ratings": [
+            {
+                "Source": "Internet Movie Database",
+                "Value": "8.6/10"
+            },
+            {
+                "Source": "Rotten Tomatoes",
+                "Value": "93%"
+            },
+            {
+                "Source": "Metacritic",
+                "Value": "90/100"
+            }
+        ],
+        "Metascore": "90",
+        "imdbRating": "8.6",
+        "imdbVotes": "1,424,627",
+        "imdbID": "tt0076759",
+        "Type": "movie",
+        "DVD": "10 Oct 2016",
+        "BoxOffice": "$460,998,507",
+        "Production": "N/A",
+        "Website": "N/A",
+        "Response": "True"
+    }) {
+        // Function to conditionally include properties in the HTML
+        function addPropertyIfPresent(propertyName, propertyValue) {
+            return propertyValue ? `<p class="card-text"><strong>${propertyName}:</strong> ${propertyValue}</p>` : '';
+        }
+
+        // Extract data from the JSON object
+        const {
+            Title,
+            Year,
+            Rated,
+            Released,
+            Runtime,
+            Genre,
+            Director,
+            Writer,
+            Actors,
+            Plot,
+            Language,
+            Country,
+            Awards,
+            Poster,
+            Ratings,
+            Metascore,
+            imdbRating,
+            imdbVotes,
+            imdbID,
+            Type,
+            DVD,
+            BoxOffice,
+            Production,
+            Website,
+            Response
+        } = movieData;
+
+        // Create HTML for the movie card with Bootstrap styles
+        const movieCardHTML = `
+      <div class="card">
+        <img src="${Poster}" class="card-img-top" alt="${Title}">
+        <div class="card-body">
+          <h5 class="card-title">${Title} (${Year})</h5>
+          ${addPropertyIfPresent('Genre', Genre)}
+          ${addPropertyIfPresent('Director', Director)}
+          ${addPropertyIfPresent('Actors', Actors)}
+          ${addPropertyIfPresent('Plot', Plot)}
+          ${addPropertyIfPresent('Language', Language)}
+          ${addPropertyIfPresent('Country', Country)}
+          ${addPropertyIfPresent('Awards', Awards)}
+          ${addPropertyIfPresent('Ratings', Ratings.map(rating => `${rating.Source}: ${rating.Value}`).join(', '))}
+          ${addPropertyIfPresent('Metascore', Metascore)}
+          ${addPropertyIfPresent('IMDb Rating', `${imdbRating}/10 (${imdbVotes} votes)`)}
+          ${addPropertyIfPresent('Box Office', BoxOffice)}
+          ${addPropertyIfPresent('DVD', DVD)}
+          ${addPropertyIfPresent('Production', Production)}
+          ${addPropertyIfPresent('Website', Website)}
+        </div>
+      </div>
+    `;
+
+        return movieCardHTML;
+    }
+
+    // Example usage
+    const movieCard = generateMovieCard();
+
+    // Append the generated card to the body or any other container
+    document.body.innerHTML = movieCard;
+</script>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
