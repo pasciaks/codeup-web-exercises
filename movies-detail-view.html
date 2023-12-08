@@ -7,6 +7,9 @@
     <title>Movie Card</title>
     <style>
         /* Add your custom styles here if needed */
+        #moviePoster {
+            display: none; /* Hide the image by default */
+        }
     </style>
 </head>
 <body>
@@ -26,7 +29,7 @@
         "Language": "English",
         "Country": "United States",
         "Awards": "Won 6 Oscars. 65 wins & 31 nominations total",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BOTA5NjhiOTAtZWM0ZC00MWNhLThiMzEtZDFkOTk2OTU1ZDJkXkEyXkFqcGdeQXVyMTA4NDI1NTQx._V1_SX300.jpg",
+        "Poster": "https://mm.media-amazon.com/images/M/MV5BOTA5NjhiOTAtZWM0ZC00MWNhLThiMzEtZDFkOTk2OTU1ZDJkXkEyXkFqcGdeQXVyMTA4NDI1NTQx._V1_SX300.jpg",
         "Ratings": [
             {
                 "Source": "Internet Movie Database",
@@ -89,7 +92,7 @@
         // Create HTML for the movie card with Bootstrap styles
         const movieCardHTML = `
       <div class="card">
-        <img src="${Poster}" class="card-img-top" alt="${Title}">
+        <img id="moviePoster" src="${Poster}" class="card-img-top" alt="${Title}" onload="this.style.display='block'" onerror="this.style.display='none'">
         <div class="card-body">
           <h5 class="card-title">${Title} (${Year})</h5>
           ${addPropertyIfPresent('Genre', Genre)}
